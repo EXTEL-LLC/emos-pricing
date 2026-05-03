@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 Hunter Sales Manager</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f8;color:#1a1a2e;min-height:100vh}
+
+/* ===== LOGIN ===== */
+.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#1565C0 0%,#0d47a1 60%,#01579B 100%);display:flex;align-items:center;justify-content:center;z-index:9999}
+.login-box{background:#fff;border-radius:24px;padding:44px 40px;width:400px;max-width:94vw;text-align:center;box-shadow:0 28px 72px rgba(0,0,0,.35)}
+.login-logo{font-size:52px;margin-bottom:10px}
+.login-title{font-size:22px;font-weight:800;color:#1565C0;margin-bottom:4px}
+.login-sub{font-size:13px;color:#aaa;margin-bottom:30px}
+.login-input{width:100%;padding:14px 16px;border:2px solid #e0e6ed;border-radius:12px;font-size:20px;text-align:center;letter-spacing:6px;transition:border-color .2s}
+.login-input:focus{outline:none;border-color:#1565C0;box-shadow:0 0 0 4px rgba(21,101,192,.12)}
+.login-btn{width:100%;margin-top:14px;padding:13px;border-radius:12px;border:none;background:#1565C0;color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s}
+.login-btn:hover{background:#0d47a1}
+.login-err{color:#b71c1c;font-size:13px;margin-top:10px;min-height:20px}
+.login-hint{color:#aaa;font-size:11px;margin-top:14px}
+
+/* ===== NAV ===== */
+.nav{background:linear-gradient(135deg,#1565C0,#0d47a1);color:#fff;padding:0 20px;display:flex;align-items:center;height:56px;box-shadow:0 2px 12px rgba(0,0,0,.25);position:sticky;top:0;z-index:100;gap:4px}
+.nav-brand{font-size:17px;font-weight:700;margin-right:20px;white-space:nowrap}
+.nav-tabs{display:flex;gap:3px;flex:1;overflow-x:auto}
+.nav-tab{padding:7px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s;color:rgba(255,255,255,.8);white-space:nowrap}
+.nav-tab:hover{background:rgba(255,255,255,.15);color:#fff}
+.nav-tab.active{background:#fff;color:#1565C0;font-weight:700}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.logout-btn{background:rgba(255,255,255,.15);border:none;color:rgba(255,255,255,.9);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap}
+.logout-btn:hover{background:rgba(255,255,255,.25)}
+
+/* ===== CONTENT ===== */
+.content{padding:20px 22px;max-width:100%}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+
+/* ===== CARD ===== */
+.card{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:20px;margin-bottom:20px}
+.card-title{font-size:15px;font-weight:700;color:#1565C0;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section-title{font-size:12px;font-weight:700;color:#1565C0;text-transform:uppercase;letter-spacing:.8px;padding:4px 0 10px;border-bottom:2px solid #e3f2fd;margin-bottom:14px}
+
+/* ===== TABLE ===== */
+.table-wrap{overflow-x:auto;border-radius:8px}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:800px}
+thead th{background:#1565C0;color:#fff;padding:10px 8px;text-align:left;white-space:nowrap;font-weight:500;font-size:12px}
+tbody td{padding:9px 8px;border-bottom:1px solid #f0f4f8;vertical-align:middle;font-size:12px}
+tbody tr:hover td{background:#f8f9ff}
+tbody tr:last-child td{border-bottom:none}
+
+/* ===== BADGES ===== */
+.badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.s-New{background:#e3f2fd;color:#1565C0}.s-Contacted{background:#e8f5e9;color:#2e7d32}
+.s-Warm{background:#fff8e1;color:#f57f17}.s-Meeting{background:#f3e5f5;color:#6a1b9a}
+.s-Offer{background:#e0f7fa;color:#006064}.s-Won{background:#c8e6c9;color:#1b5e20}
+.s-Lost{background:#ffcdd2;color:#b71c1c}.s-Recycle{background:#f5f5f5;color:#616161}
+.ch-badge{background:#e8eaf6;color:#283593;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700}
+.ctrl-ok{color:#2e7d32;font-weight:700}.ctrl-risk{color:#e65100;font-weight:700}.ctrl-crit{color:#b71c1c;font-weight:700}
+tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230,81,0,.03)}
+
+/* ===== BUTTONS ===== */
+.btn{padding:8px 16px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:600;transition:all .15s;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.btn-primary{background:#1565C0;color:#fff}.btn-primary:hover{background:#0d47a1}
+.btn-success{background:#2e7d32;color:#fff}.btn-success:hover{background:#1b5e20}
+.btn-danger{background:#c62828;color:#fff}.btn-danger:hover{background:#b71c1c}
+.btn-ghost{background:#f0f4f8;color:#555}.btn-ghost:hover{background:#e0e6ed}
+.btn-orange{background:#e65100;color:#fff}.btn-orange:hover{background:#bf360c}
+.btn-sm{padding:4px 9px;font-size:11px;border-radius:6px}
+
+/* ===== TOOLBAR ===== */
+.toolbar{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.filter-select,.search-input{padding:8px 12px;border:1.5px solid #e0e6ed;border-radius:8px;font-size:13px;background:#fff;transition:border-color .2s;color:#333}
+.filter-select:focus,.search-input:focus{outline:none;border-color:#1565C0}
+.search-input{width:200px;padding-left:32px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zm-5.44 1.398a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:10px center}
+
+/* ===== STATS ===== */
+.stats-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.stat-chip{background:#fff;border-radius:8px;padding:7px 14px;font-size:13px;box-shadow:0 1px 4px rgba(0,0,0,.08);white-space:nowrap}
+
+/* ===== MODAL ===== */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:16px;padding:28px;width:700px;max-width:96vw;max-height:92vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3)}
+.modal-title{font-size:18px;font-weight:700;color:#1565C0;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #f0f4f8}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group.full{grid-column:1/-1}
+.form-label{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px}
+.form-control{padding:9px 12px;border:1.5px solid #e0e6ed;border-radius:8px;font-size:13px;transition:border-color .2s;font-family:inherit;color:#333}
+.form-control:focus{outline:none;border-color:#1565C0;box-shadow:0 0 0 3px rgba(21,101,192,.1)}
+.modal-footer{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:2px solid #f0f4f8}
+
+/* ===== KPI ===== */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:20px}
+.kpi-card{background:#fff;border-radius:12px;padding:20px 16px;box-shadow:0 1px 6px rgba(0,0,0,.08);text-align:center;border-top:4px solid #1565C0;transition:transform .15s}
+.kpi-card:hover{transform:translateY(-2px)}
+.kpi-value{font-size:30px;font-weight:800;color:#1565C0;line-height:1}
+.kpi-label{font-size:12px;color:#888;margin-top:6px;line-height:1.3}
+
+/* ===== FUNNEL ===== */
+.funnel{display:flex;flex-direction:column;gap:7px}
+.funnel-row{display:flex;align-items:center;gap:10px}
+.funnel-label{width:150px;font-size:12px;font-weight:500;color:#444;white-space:nowrap}
+.funnel-bar-wrap{flex:1;background:#f0f4f8;border-radius:6px;height:30px;overflow:hidden}
+.funnel-bar{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:10px;color:#fff;font-size:12px;font-weight:700;transition:width .6s ease;min-width:8px}
+.funnel-num{width:36px;text-align:right;font-size:13px;font-weight:700;color:#333}
+
+/* ===== ALERTS ===== */
+.alert-box{display:flex;flex-direction:column;gap:8px}
+.alert-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:500}
+.al-red{background:#ffebee;color:#b71c1c}.al-orange{background:#fff8e1;color:#e65100}
+.al-green{background:#e8f5e9;color:#2e7d32}.al-blue{background:#e3f2fd;color:#1565C0}
+
+/* ===== CHANNELS ===== */
+.ch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.ch-card{background:#f8f9ff;border-radius:10px;padding:14px 12px;text-align:center;border-left:4px solid #1565C0;transition:transform .15s}
+.ch-card:hover{transform:translateY(-2px)}
+.ch-name{font-size:13px;font-weight:800;color:#1565C0}
+.ch-count{font-size:26px;font-weight:800;color:#333;line-height:1.2}
+.ch-type{font-size:10px;color:#999;margin-top:2px}
+.conv-table{width:100%;border-collapse:collapse;font-size:13px}
+.conv-table td{padding:8px 12px;border-bottom:1px solid #f0f4f8}
+.conv-table tr:last-child td{border:none}
+.conv-bar{height:8px;border-radius:4px;background:#1565C0;display:inline-block;vertical-align:middle;margin-right:8px}
+
+/* ===== EMPTY ===== */
+.empty{text-align:center;padding:50px 20px;color:#bbb}
+.empty-icon{font-size:44px;margin-bottom:10px}
+.kpi-ok{color:#2e7d32;font-weight:700;white-space:nowrap}
+.kpi-warn{color:#e65100;font-weight:700;white-space:nowrap}
+.kpi-bad{color:#b71c1c;font-weight:700;white-space:nowrap}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+
+/* ===== SETTINGS ===== */
+.settings-section{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:24px;margin-bottom:20px}
+.settings-section h3{font-size:16px;font-weight:700;color:#1565C0;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.settings-section p{font-size:13px;color:#888;margin-bottom:18px}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.input-group{display:flex;gap:8px}
+.input-group .form-control{flex:1}
+.sync-status{font-size:12px;margin-top:8px;padding:8px 12px;border-radius:8px;display:none}
+.sync-ok{background:#e8f5e9;color:#2e7d32;display:block}
+.sync-err{background:#ffebee;color:#b71c1c;display:block}
+.sync-loading{background:#e3f2fd;color:#1565C0;display:block}
+.share-code{width:100%;padding:10px 12px;border:1.5px solid #e0e6ed;border-radius:8px;font-size:11px;font-family:monospace;resize:vertical;min-height:80px;color:#555}
+.danger-zone{border:2px dashed #ffcdd2;border-radius:12px;padding:20px}
+.danger-zone h3{color:#b71c1c}
+.step-badge{display:inline-block;background:#1565C0;color:#fff;border-radius:50%;width:22px;height:22px;font-size:12px;font-weight:700;text-align:center;line-height:22px;margin-right:6px}
+.api-help{background:#f8f9ff;border-radius:8px;padding:12px;font-size:12px;color:#555;margin-top:10px;line-height:1.7}
+.api-help a{color:#1565C0;font-weight:600}
+
+/* ===== CSV IMPORT ===== */
+.drop-zone{border:2px dashed #b0bec5;border-radius:12px;padding:30px;text-align:center;color:#90a4ae;cursor:pointer;transition:all .2s}
+.drop-zone:hover,.drop-zone.drag{border-color:#1565C0;color:#1565C0;background:#f0f4ff}
+.drop-zone-icon{font-size:36px;margin-bottom:8px}
+.import-preview{max-height:200px;overflow-y:auto;border:1px solid #e0e6ed;border-radius:8px;font-size:11px}
+.import-preview table{min-width:100%;font-size:11px}
+.import-preview thead th{background:#e8eaf6;color:#333;font-size:11px;padding:6px 8px;position:static}
+
+@media(max-width:900px){.grid2{grid-template-columns:1fr}.settings-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.form-grid{grid-template-columns:1fr}.content{padding:12px}.nav-brand{display:none}}
+
+/* ===== ROLES ===== */
+.admin-only{} /* shown for admin */
+.manager-mode .admin-only{display:none!important}
+.role-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+.role-admin{background:rgba(255,255,255,.2);color:#fff}
+.role-manager{background:rgba(255,193,7,.25);color:#fff}
+.mgr-perm{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:8px;background:#f8f9ff;border:1px solid #e8eaf6;font-size:13px}
+.mgr-perm label{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500}
+.toggle{position:relative;width:38px;height:20px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:#ccc;border-radius:20px;transition:.3s;cursor:pointer}
+.toggle-slider:before{content:'';position:absolute;width:16px;height:16px;left:2px;bottom:2px;background:#fff;border-radius:50%;transition:.3s}
+.toggle input:checked+.toggle-slider{background:#1565C0}
+.toggle input:checked+.toggle-slider:before{transform:translateX(18px)}
+.mgr-banner{background:linear-gradient(90deg,#FF8F00,#F57F17);color:#fff;padding:8px 22px;font-size:12px;font-weight:700;text-align:center;letter-spacing:.5px}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-box">
+    <div class="login-logo">🎯</div>
+    <div class="login-title">Hunter Sales Manager</div>
+    <div class="login-sub" id="loginSubtitle">Введіть пароль для доступу</div>
+    <input type="password" class="login-input" id="loginPass" placeholder="••••" maxlength="32"
+           onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">→ Увійти</button>
+    <div class="login-err" id="loginErr"></div>
+    <div class="login-hint" id="loginHint"></div>
+  </div>
+</div>
+
+<!-- ===== MAIN APP ===== -->
+<div id="appMain" style="display:none">
+<div id="mgr-banner" class="mgr-banner" style="display:none">👷 РЕЖИМ МЕНЕДЖЕРА — доступ обмежено адміністратором</div>
+<nav class="nav">
+  <div class="nav-brand">🎯 Hunter Sales</div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="showTab('pipeline',this)">📋 Pipeline</div>
+    <div class="nav-tab" onclick="showTab('activity',this)">📊 Activity</div>
+    <div class="nav-tab" onclick="showTab('dashboard',this)">🚀 Dashboard</div>
+    <div class="nav-tab admin-only" onclick="showTab('settings',this)">⚙️ Налаштування</div>
+  </div>
+  <div class="nav-right">
+    <span id="role-badge" class="role-badge role-admin">👑 Адмін</span>
+    <span id="nav-date" style="font-size:11px;color:rgba(255,255,255,.6)"></span>
+    <button class="logout-btn" onclick="doLogout()">🚪 Вийти</button>
+  </div>
+</nav>
+
+<div class="content">
+
+<!-- ===== PIPELINE ===== -->
+<div class="tab-pane active" id="tab-pipeline">
+  <div class="toolbar">
+    <button class="btn btn-primary" onclick="openDeal(null)">➕ Новий клієнт</button>
+    <input class="search-input" type="text" placeholder="Пошук..." id="srch" oninput="renderPipeline()">
+    <select class="filter-select" id="fStatus" onchange="renderPipeline()">
+      <option value="">Всі статуси</option>
+      <option>New</option><option>Contacted</option><option>Warm</option>
+      <option>Meeting scheduled</option><option>Offer sent</option>
+      <option>Won</option><option>Lost</option><option>Recycle</option>
+    </select>
+    <select class="filter-select" id="fChannel" onchange="renderPipeline()">
+      <option value="">Всі канали</option>
+      <option>D1</option><option>D2</option><option>D3</option>
+      <option>D4.1</option><option>D4.2</option><option>D5</option>
+      <option>D5 Partner</option><option>D6</option>
+    </select>
+    <select class="filter-select" id="fCtrl" onchange="renderPipeline()">
+      <option value="">Всі</option>
+      <option value="crit">🔴 Критичні</option>
+      <option value="risk">🟡 Ризик</option>
+      <option value="ok">🟢 OK</option>
+    </select>
+    <button class="btn btn-ghost" onclick="exportCSV()" title="Завантажити як CSV">⬇ CSV</button>
+  </div>
+  <div class="stats-row" id="pipe-stats"></div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th style="width:34px">№</th><th>Дата</th><th>Компанія</th><th>Контакт</th><th>Посада</th>
+          <th>Телефон</th><th>Email</th><th>Канал</th><th>Тип клієнта</th><th>Статус</th>
+          <th>Дата контакту</th><th>Наступний крок</th><th>Дата кроку</th><th>Результат</th>
+          <th>Причина відмови</th><th>Коментар</th>
+          <th>⚠ Простр.</th><th>🚨 Без кроку</th><th>Днів</th><th>🔴 Контроль</th>
+          <th style="width:72px">Дії</th>
+        </tr></thead>
+        <tbody id="pipe-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ACTIVITY ===== -->
+<div class="tab-pane" id="tab-activity">
+  <div class="toolbar">
+    <button class="btn btn-primary" onclick="openActivity(null)">➕ Додати день</button>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Дата</th><th>Нових</th><th>Дзвінки</th><th>WA/Viber</th>
+          <th>Діалоги</th><th>Демо</th><th>Зустрічі</th><th>КП</th><th>Оплати</th>
+          <th>Коментар</th><th>KPI Нових</th><th>KPI Діалоги</th><th>KPI Зустрічі</th>
+          <th style="width:72px">Дії</th>
+        </tr></thead>
+        <tbody id="act-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div class="tab-pane" id="tab-dashboard">
+  <div id="dash-content"></div>
+</div>
+
+<!-- ===== SETTINGS ===== -->
+<div class="tab-pane" id="tab-settings">
+
+  <!-- Password -->
+  <div class="settings-section">
+    <h3>🔐 Пароль доступу</h3>
+    <p>Захист від несанкціонованого доступу. Пароль зберігається локально.</p>
+    <div class="settings-grid">
+      <div class="form-group">
+        <label class="form-label">Поточний пароль</label>
+        <input type="password" class="form-control" id="s-oldpass" placeholder="Введіть поточний">
+      </div>
+      <div class="form-group"></div>
+      <div class="form-group">
+        <label class="form-label">Новий пароль</label>
+        <input type="password" class="form-control" id="s-newpass" placeholder="Мін. 3 символи">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Підтвердіть пароль</label>
+        <input type="password" class="form-control" id="s-newpass2" placeholder="Повторіть">
+      </div>
+    </div>
+    <div style="margin-top:12px">
+      <button class="btn btn-primary" onclick="changePassword()">🔒 Змінити пароль</button>
+    </div>
+    <div class="sync-status" id="pass-status"></div>
+  </div>
+
+  <!-- Manager Access -->
+  <div class="settings-section">
+    <h3>👷 Доступ менеджера</h3>
+    <p>Окремий пароль для менеджера з обмеженим доступом. Менеджер не бачить налаштувань і не може видаляти дані.</p>
+    <div class="settings-grid">
+      <div class="form-group">
+        <label class="form-label">Пароль менеджера</label>
+        <input type="password" class="form-control" id="s-mgrpass" placeholder="Залиште порожнім — вимкнено">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Підтвердіть пароль</label>
+        <input type="password" class="form-control" id="s-mgrpass2" placeholder="Повторіть">
+      </div>
+    </div>
+    <div style="margin-top:16px;margin-bottom:16px">
+      <div class="section-title" style="margin-bottom:12px">Дозволи менеджера</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="mgr-perm">
+          <label><label class="toggle"><input type="checkbox" id="perm-pipeline" checked disabled><span class="toggle-slider"></span></label>📋 Перегляд Pipeline</label>
+          <span style="color:#2e7d32;font-size:12px;font-weight:600">Завжди ✅</span>
+        </div>
+        <div class="mgr-perm">
+          <label><label class="toggle"><input type="checkbox" id="perm-add" checked><span class="toggle-slider"></span></label>➕ Додавати нових клієнтів</label>
+        </div>
+        <div class="mgr-perm">
+          <label><label class="toggle"><input type="checkbox" id="perm-edit" checked><span class="toggle-slider"></span></label>✏️ Редагувати клієнтів</label>
+        </div>
+        <div class="mgr-perm">
+          <label><label class="toggle"><input type="checkbox" id="perm-activity" checked><span class="toggle-slider"></span></label>📊 Заповнювати Activity Log</label>
+        </div>
+        <div class="mgr-perm">
+          <label><label class="toggle"><input type="checkbox" id="perm-dashboard" checked><span class="toggle-slider"></span></label>🚀 Перегляд Dashboard</label>
+        </div>
+        <div class="mgr-perm">
+          <label><label class="toggle"><input type="checkbox" id="perm-export"><span class="toggle-slider"></span></label>⬇ Експорт в CSV</label>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="saveMgrSettings()">💾 Зберегти доступ менеджера</button>
+      <button class="btn btn-ghost" onclick="testMgrPass()">🔍 Перевірити пароль</button>
+      <button class="btn btn-danger" onclick="removeMgrAccess()">🗑 Вимкнути доступ менеджера</button>
+    </div>
+    <div class="sync-status" id="mgr-status"></div>
+  </div>
+
+  <!-- Cloud Sync -->
+  <div class="settings-section">
+    <h3>☁️ Хмарна синхронізація (JSONBin.io)</h3>
+    <p>Безкоштовне хмарне сховище. Дані доступні з будь-якого пристрою.</p>
+    <div class="api-help">
+      <span class="step-badge">1</span> Зареєструйтесь на <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> (безкоштовно)<br>
+      <span class="step-badge">2</span> В акаунті: <strong>API Keys → Master Key</strong> — скопіюйте ключ<br>
+      <span class="step-badge">3</span> Вставте ключ нижче та натисніть <strong>"Перший запуск"</strong><br>
+      <span class="step-badge">4</span> Збережіть Bin ID — він потрібен на інших пристроях
+    </div>
+    <div class="settings-grid" style="margin-top:14px">
+      <div class="form-group">
+        <label class="form-label">Master API Key</label>
+        <input type="password" class="form-control" id="s-apikey" placeholder="$2b$10$...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Bin ID <span style="color:#999">(після першого запуску)</span></label>
+        <input type="text" class="form-control" id="s-binid" placeholder="64abc123def456...">
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="cloudFirstRun()">🚀 Перший запуск (створити)</button>
+      <button class="btn btn-success" onclick="cloudPush()">⬆ Зберегти в хмару</button>
+      <button class="btn btn-orange" onclick="cloudPull()">⬇ Завантажити з хмари</button>
+      <button class="btn btn-ghost" onclick="saveCloudSettings()">💾 Зберегти налаштування</button>
+    </div>
+    <div class="sync-status" id="cloud-status"></div>
+  </div>
+
+  <!-- Share Code -->
+  <div class="settings-section">
+    <h3>🔗 Код синхронізації (без реєстрації)</h3>
+    <p>Скопіюйте код і вставте на іншому пристрої — всі дані перенесуться. Не потребує інтернету.</p>
+    <div class="settings-grid">
+      <div class="form-group full">
+        <label class="form-label">Ваш код (натисніть для копіювання)</label>
+        <textarea class="share-code" id="shareCodeOut" readonly onclick="copyShareCode()" placeholder="Натисніть 'Згенерувати код'"></textarea>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Вставте код з іншого пристрою</label>
+        <textarea class="share-code" id="shareCodeIn" placeholder="Вставте код тут..."></textarea>
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="generateShareCode()">📋 Згенерувати код</button>
+      <button class="btn btn-success" onclick="importShareCode()">📥 Імпортувати код</button>
+    </div>
+    <div class="sync-status" id="share-status"></div>
+  </div>
+
+  <!-- CSV Import -->
+  <div class="settings-section">
+    <h3>📂 Імпорт з CSV</h3>
+    <p>Завантажте файл CSV з даними клієнтів. Підтримується формат експорту цього додатку або Google Sheets.</p>
+    <div class="drop-zone" id="dropZone" onclick="document.getElementById('csvFileInput').click()"
+         ondragover="event.preventDefault();this.classList.add('drag')"
+         ondragleave="this.classList.remove('drag')"
+         ondrop="handleDrop(event)">
+      <div class="drop-zone-icon">📄</div>
+      <div style="font-weight:600;margin-bottom:4px">Натисніть або перетягніть CSV файл</div>
+      <div style="font-size:12px">Підтримується кодування UTF-8, роздільники , або ;</div>
+    </div>
+    <input type="file" id="csvFileInput" accept=".csv" style="display:none" onchange="handleCSVFile(this)">
+    <div id="csv-preview" style="margin-top:14px;display:none">
+      <div class="section-title">Попередній перегляд</div>
+      <div class="import-preview" id="csv-preview-table"></div>
+      <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+        <button class="btn btn-success" onclick="confirmCSVImport()">✅ Імпортувати <span id="csv-count"></span> рядків</button>
+        <button class="btn btn-ghost" onclick="cancelCSVImport()">Скасувати</button>
+        <label style="font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer">
+          <input type="checkbox" id="csv-merge"> Злиття (не видаляти існуючі)
+        </label>
+      </div>
+    </div>
+    <div class="sync-status" id="csv-status"></div>
+  </div>
+
+  <!-- Danger Zone -->
+  <div class="settings-section">
+    <div class="danger-zone">
+      <h3>⚠️ Небезпечна зона</h3>
+      <p style="color:#666;font-size:13px;margin:8px 0 16px">Ці дії незворотні!</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-danger" onclick="clearAllData()">🗑 Видалити всі дані</button>
+        <button class="btn btn-ghost" onclick="exportFullBackup()">💾 Повний бекап (JSON)</button>
+        <button class="btn btn-ghost" onclick="document.getElementById('jsonBackupInput').click()">📥 Відновити з бекапу</button>
+      </div>
+      <input type="file" id="jsonBackupInput" accept=".json" style="display:none" onchange="restoreFromBackup(this)">
+    </div>
+  </div>
+
+</div><!-- /settings -->
+</div><!-- /content -->
+</div><!-- /appMain -->
+
+<!-- ===== DEAL MODAL ===== -->
+<div class="modal-overlay" id="dealModal">
+  <div class="modal">
+    <div class="modal-title" id="deal-modal-title">➕ Новий клієнт</div>
+    <div class="form-grid">
+      <div class="form-group"><label class="form-label">Дата</label><input type="date" class="form-control" id="d-date"></div>
+      <div class="form-group"><label class="form-label">Компанія *</label><input type="text" class="form-control" id="d-company" placeholder="Назва компанії"></div>
+      <div class="form-group"><label class="form-label">Контакт (ПІБ)</label><input type="text" class="form-control" id="d-contact" placeholder="Іваненко Іван"></div>
+      <div class="form-group"><label class="form-label">Посада</label><input type="text" class="form-control" id="d-position" placeholder="Директор"></div>
+      <div class="form-group"><label class="form-label">Телефон</label><input type="tel" class="form-control" id="d-phone" placeholder="+380501234567"></div>
+      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-control" id="d-email" placeholder="email@company.ua"></div>
+      <div class="form-group"><label class="form-label">Канал</label>
+        <select class="form-control" id="d-channel">
+          <option value="">— вибрати —</option>
+          <option value="D1">D1 — Нац. мережі</option><option value="D2">D2 — Регіон./B2B</option>
+          <option value="D3">D3 — Роздріб</option><option value="D4.1">D4.1 — Інтернет (склад)</option>
+          <option value="D4.2">D4.2 — Dropshipping</option><option value="D5">D5 — Проектні</option>
+          <option value="D5 Partner">D5 Partner — Інсталятори</option><option value="D6">D6 — Регіон. дист.</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Статус</label>
+        <select class="form-control" id="d-status">
+          <option>New</option><option>Contacted</option><option>Warm</option>
+          <option>Meeting scheduled</option><option>Offer sent</option>
+          <option>Won</option><option>Lost</option><option>Recycle</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Дата контакту</label><input type="date" class="form-control" id="d-contactdate"></div>
+      <div class="form-group"><label class="form-label">Дата наступного кроку</label><input type="date" class="form-control" id="d-stepdate"></div>
+      <div class="form-group full"><label class="form-label">Наступний крок</label><input type="text" class="form-control" id="d-nextstep" placeholder="Що плануєте зробити?"></div>
+      <div class="form-group"><label class="form-label">Результат</label>
+        <select class="form-control" id="d-result">
+          <option value="">—</option><option>Зустріч проведена</option>
+          <option>КП відправлено</option><option>Тест / демо</option><option>Оплата</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">Причина відмови</label><input type="text" class="form-control" id="d-reject" placeholder="якщо статус Lost..."></div>
+      <div class="form-group full"><label class="form-label">Коментар</label><textarea class="form-control" id="d-comment" rows="3" placeholder="Нотатки, деталі..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('dealModal')">Скасувати</button>
+      <button class="btn btn-primary" onclick="saveDeal()">💾 Зберегти</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ACTIVITY MODAL ===== -->
+<div class="modal-overlay" id="actModal">
+  <div class="modal">
+    <div class="modal-title">📊 Запис активності</div>
+    <div class="form-grid">
+      <div class="form-group"><label class="form-label">Дата *</label><input type="date" class="form-control" id="a-date"></div>
+      <div class="form-group"><label class="form-label">Нових клієнтів <span style="color:#1565C0">(ціль 10+)</span></label><input type="number" class="form-control" id="a-new" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">Дзвінки</label><input type="number" class="form-control" id="a-calls" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">WhatsApp / Viber</label><input type="number" class="form-control" id="a-msg" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">Діалогів <span style="color:#1565C0">(ціль 5+)</span></label><input type="number" class="form-control" id="a-dialogs" min="0" value="0" placeholder="авто = дзвінки+WA"></div>
+      <div class="form-group"><label class="form-label">Демо / Тест</label><input type="number" class="form-control" id="a-demo" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">Зустрічі <span style="color:#1565C0">(ціль 2+)</span></label><input type="number" class="form-control" id="a-meet" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">КП відправлено</label><input type="number" class="form-control" id="a-prop" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">Оплати</label><input type="number" class="form-control" id="a-pay" min="0" value="0"></div>
+      <div class="form-group full"><label class="form-label">Коментар</label><textarea class="form-control" id="a-comment" rows="2"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('actModal')">Скасувати</button>
+      <button class="btn btn-primary" onclick="saveActivity()">💾 Зберегти</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+let deals = JSON.parse(localStorage.getItem('hsm_deals')||'[]');
+let acts   = JSON.parse(localStorage.getItem('hsm_acts')||'[]');
+let editDealId=null, editActId=null, csvParsed=[];
+
+function saveDeals(){ localStorage.setItem('hsm_deals',JSON.stringify(deals)); }
+function saveActs(){  localStorage.setItem('hsm_acts', JSON.stringify(acts));  }
+
+// ============================================================
+// CONSTANTS
+// ============================================================
+const CH_TYPES={'D1':'Нац. мережі','D2':'Регіон./B2B','D3':'Роздріб','D4.1':'Інтернет(склад)','D4.2':'Dropshipping','D5':'Проектні','D5 Partner':'Інсталятори','D6':'Регіон. дист.'};
+const S_CLASS={'New':'s-New','Contacted':'s-Contacted','Warm':'s-Warm','Meeting scheduled':'s-Meeting','Offer sent':'s-Offer','Won':'s-Won','Lost':'s-Lost','Recycle':'s-Recycle'};
+const FCOLORS={'New':'#1565C0','Contacted':'#1976D2','Warm':'#FB8C00','Meeting scheduled':'#7B1FA2','Offer sent':'#00838F','Won':'#2E7D32','Lost':'#C62828','Recycle':'#757575'};
+
+// ============================================================
+// UTILS
+// ============================================================
+const todayStr=()=>new Date().toISOString().split('T')[0];
+const fmtDate=d=>d?d.split('-').reverse().join('.'):'';
+const parseD=d=>d?new Date(d+'T00:00:00'):null;
+const diffDays=(a,b)=>Math.floor((b-a)/86400000);
+const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function calcDeal(d){
+  const now=new Date();now.setHours(0,0,0,0);
+  const active=d.status!=='Won'&&d.status!=='Lost';
+  const stepD=parseD(d.stepdate),contD=parseD(d.contactdate);
+  const overdue=active&&stepD&&stepD<now;
+  const noStep=active&&d.status&&!d.nextstep;
+  const daysInact=contD?diffDays(contD,now):null;
+  let ctrl,ctrlCls;
+  if(!d.company){ctrl='';ctrlCls='';}
+  else if(overdue||noStep){ctrl='🔴 КРИТИЧНО';ctrlCls='ctrl-crit';}
+  else if(daysInact!==null&&daysInact>3&&active){ctrl='🟡 РИЗИК';ctrlCls='ctrl-risk';}
+  else{ctrl='🟢 OK';ctrlCls='ctrl-ok';}
+  return{overdue,noStep,daysInact,ctrl,ctrlCls};
+}
+
+function kpiBadge(v,t){
+  if(!v&&v!==0)return'';
+  if(v>=t)return`<span class="kpi-ok">✅ ${v}/${t}+</span>`;
+  if(v>=t*.7)return`<span class="kpi-warn">⚠️ ${v}/${t}+</span>`;
+  return`<span class="kpi-bad">🔴 ${v}/${t}+</span>`;
+}
+
+// ============================================================
+// AUTH
+// ============================================================
+async function sha256(s){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+async function initAuth(){
+  const stored=localStorage.getItem('hsm_pass');
+  if(!stored){
+    document.getElementById('loginSubtitle').textContent='Вперше? Задайте свій пароль';
+    document.getElementById('loginHint').textContent='Введіть будь-який пароль — він стане вашим';
+    document.getElementById('loginScreen').style.display='flex';
+    document.getElementById('appMain').style.display='none';
+  } else {
+    const sess=sessionStorage.getItem('hsm_session');
+    if(sess==='admin'||sess==='manager'){showApp(sess);}
+    else{
+      document.getElementById('loginSubtitle').textContent='Введіть пароль для доступу';
+      document.getElementById('loginHint').textContent='';
+      document.getElementById('loginScreen').style.display='flex';
+      document.getElementById('appMain').style.display='none';
+    }
+  }
+}
+
+async function doLogin(){
+  const pass=document.getElementById('loginPass').value;
+  if(!pass){document.getElementById('loginErr').textContent='Введіть пароль';return;}
+  const stored=localStorage.getItem('hsm_pass');
+  if(!stored){
+    if(pass.length<3){document.getElementById('loginErr').textContent='Пароль мінімум 3 символи';return;}
+    const h=await sha256(pass);
+    localStorage.setItem('hsm_pass',h);
+    sessionStorage.setItem('hsm_session','admin');
+    showApp('admin');return;
+  }
+  const h=await sha256(pass);
+  if(h===stored){
+    sessionStorage.setItem('hsm_session','admin');
+    showApp('admin');return;
+  }
+  // Check manager password
+  const mgrCfg=JSON.parse(localStorage.getItem('hsm_mgr')||'{}');
+  if(mgrCfg.passHash&&h===mgrCfg.passHash){
+    sessionStorage.setItem('hsm_session','manager');
+    showApp('manager');return;
+  }
+  document.getElementById('loginErr').textContent='❌ Невірний пароль';
+  document.getElementById('loginPass').value='';
+  document.getElementById('loginPass').focus();
+}
+
+function showApp(role){
+  role=role||sessionStorage.getItem('hsm_session')||'admin';
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('appMain').style.display='block';
+  document.getElementById('nav-date').textContent=new Date().toLocaleDateString('uk-UA',{weekday:'short',day:'numeric',month:'long'});
+  applyRole(role);
+  renderPipeline();
+}
+
+function applyRole(role){
+  const body=document.body;
+  const mgrCfg=JSON.parse(localStorage.getItem('hsm_mgr')||'{}');
+  const perms=mgrCfg.perms||{add:true,edit:true,activity:true,dashboard:true,export:false};
+
+  if(role==='manager'){
+    body.classList.add('manager-mode');
+    document.getElementById('mgr-banner').style.display='block';
+    document.getElementById('role-badge').textContent='👷 Менеджер';
+    document.getElementById('role-badge').className='role-badge role-manager';
+    // Hide dashboard tab if not permitted
+    const dashTab=document.querySelector('.nav-tab[onclick*="dashboard"]');
+    if(dashTab&&!perms.dashboard) dashTab.style.display='none';
+    // Hide activity tab if not permitted
+    const actTab=document.querySelector('.nav-tab[onclick*="activity"]');
+    if(actTab&&!perms.activity) actTab.style.display='none';
+    // Store perms for render functions
+    window._mgrPerms=perms;
+  } else {
+    body.classList.remove('manager-mode');
+    document.getElementById('mgr-banner').style.display='none';
+    document.getElementById('role-badge').textContent='👑 Адмін';
+    document.getElementById('role-badge').className='role-badge role-admin';
+    window._mgrPerms=null;
+  }
+}
+
+function getRole(){return sessionStorage.getItem('hsm_session')||'admin';}
+
+function doLogout(){
+  sessionStorage.removeItem('hsm_session');
+  document.getElementById('loginPass').value='';
+  document.getElementById('loginErr').textContent='';
+  document.getElementById('loginSubtitle').textContent='Введіть пароль для доступу';
+  document.getElementById('loginHint').textContent='';
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('appMain').style.display='none';
+}
+
+async function changePassword(){
+  const oldP=document.getElementById('s-oldpass').value;
+  const newP=document.getElementById('s-newpass').value;
+  const newP2=document.getElementById('s-newpass2').value;
+  const el=document.getElementById('pass-status');
+  if(!oldP||!newP||!newP2){showStatus(el,'Заповніть всі поля','err');return;}
+  if(newP!==newP2){showStatus(el,'Нові паролі не співпадають','err');return;}
+  if(newP.length<3){showStatus(el,'Мінімум 3 символи','err');return;}
+  const stored=localStorage.getItem('hsm_pass');
+  const oldH=await sha256(oldP);
+  if(oldH!==stored){showStatus(el,'Поточний пароль невірний','err');return;}
+  const newH=await sha256(newP);
+  localStorage.setItem('hsm_pass',newH);
+  document.getElementById('s-oldpass').value='';
+  document.getElementById('s-newpass').value='';
+  document.getElementById('s-newpass2').value='';
+  showStatus(el,'✅ Пароль успішно змінено','ok');
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function showTab(name,el){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  if(el)el.classList.add('active');
+  if(name==='pipeline')renderPipeline();
+  if(name==='activity')renderActivity();
+  if(name==='dashboard')renderDashboard();
+  if(name==='settings'){loadCloudSettings();loadMgrSettings();}
+}
+
+// ============================================================
+// PIPELINE
+// ============================================================
+function renderPipeline(){
+  // Apply manager permission to toolbar buttons
+  const role=getRole();
+  const perms=window._mgrPerms||{add:true,edit:true,export:true};
+  const addBtn=document.querySelector('#tab-pipeline .toolbar .btn-primary');
+  if(addBtn) addBtn.style.display=(role==='manager'&&!perms.add)?'none':'';
+  const expBtn=document.querySelector('#tab-pipeline .toolbar .btn-ghost');
+  if(expBtn) expBtn.style.display=(role==='manager'&&!perms.export)?'none':'';
+
+  const srch=(document.getElementById('srch')?.value||'').toLowerCase();
+  const fS=document.getElementById('fStatus')?.value||'';
+  const fC=document.getElementById('fChannel')?.value||'';
+  const fCtrl=document.getElementById('fCtrl')?.value||'';
+  let rows=deals.filter(d=>{
+    if(fS&&d.status!==fS)return false;
+    if(fC&&d.channel!==fC)return false;
+    if(fCtrl){const{ctrlCls}=calcDeal(d);
+      if(fCtrl==='crit'&&ctrlCls!=='ctrl-crit')return false;
+      if(fCtrl==='risk'&&ctrlCls!=='ctrl-risk')return false;
+      if(fCtrl==='ok'&&ctrlCls!=='ctrl-ok')return false;}
+    if(srch&&!JSON.stringify(d).toLowerCase().includes(srch))return false;
+    return true;
+  });
+  const won=deals.filter(d=>d.status==='Won').length;
+  const crits=deals.filter(d=>calcDeal(d).ctrlCls==='ctrl-crit').length;
+  const risks=deals.filter(d=>calcDeal(d).ctrlCls==='ctrl-risk').length;
+  document.getElementById('pipe-stats').innerHTML=`
+    <div class="stat-chip">Всього: <strong>${deals.length}</strong></div>
+    <div class="stat-chip">✅ Won: <strong style="color:#2e7d32">${won}</strong></div>
+    <div class="stat-chip">🔴 Критичних: <strong style="color:#b71c1c">${crits}</strong></div>
+    <div class="stat-chip">🟡 Ризик: <strong style="color:#e65100">${risks}</strong></div>
+    <div class="stat-chip">Показано: <strong>${rows.length}</strong></div>`;
+  const tbody=document.getElementById('pipe-body');
+  if(!rows.length){tbody.innerHTML=`<tr><td colspan="21"><div class="empty"><div class="empty-icon">📋</div>Немає записів. Додайте першого клієнта!</div></td></tr>`;return;}
+  tbody.innerHTML=rows.map((d,i)=>{
+    const{overdue,noStep,daysInact,ctrl,ctrlCls}=calcDeal(d);
+    const rCls=ctrlCls==='ctrl-crit'?'row-crit':ctrlCls==='ctrl-risk'?'row-risk':'';
+    const sCls=S_CLASS[d.status]||'s-New';
+    return`<tr class="${rCls}">
+      <td style="text-align:center;color:#bbb;font-size:11px">${i+1}</td>
+      <td style="white-space:nowrap">${fmtDate(d.date)}</td>
+      <td><strong>${esc(d.company)}</strong></td>
+      <td>${esc(d.contact)}</td><td style="color:#999">${esc(d.position)}</td>
+      <td style="white-space:nowrap">${esc(d.phone)}</td>
+      <td style="color:#1565C0;font-size:11px">${esc(d.email)}</td>
+      <td><span class="badge ch-badge">${esc(d.channel)}</span></td>
+      <td style="color:#666;font-size:11px">${CH_TYPES[d.channel]||''}</td>
+      <td><span class="badge ${sCls}">${d.status||''}</span></td>
+      <td style="white-space:nowrap">${fmtDate(d.contactdate)}</td>
+      <td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(d.nextstep)}">${esc(d.nextstep)}</td>
+      <td style="white-space:nowrap;${overdue?'color:#b71c1c;font-weight:700':''}">${fmtDate(d.stepdate)}</td>
+      <td style="font-size:11px">${esc(d.result)}</td>
+      <td style="color:#b71c1c;font-size:11px">${esc(d.reject)}</td>
+      <td style="color:#888;font-size:11px;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(d.comment)}">${esc(d.comment)}</td>
+      <td style="color:#b71c1c;font-weight:700;font-size:11px">${overdue?'ПРОСТРОЧЕНО':''}</td>
+      <td style="color:#b71c1c;font-weight:700;font-size:11px">${noStep?'БЕЗ КРОКУ!':''}</td>
+      <td style="text-align:center;font-weight:600">${daysInact!==null?daysInact:''}</td>
+      <td class="${ctrlCls}">${ctrl}</td>
+      <td style="white-space:nowrap">
+        ${(role!=='manager'||perms.edit)?`<button class="btn btn-sm btn-primary" onclick="openDeal(${d.id})">✏️</button>`:''}
+        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">🗑</button>
+      </td></tr>`;
+  }).join('');
+}
+
+function openDeal(id){
+  editDealId=id;
+  if(id===null){
+    document.getElementById('deal-modal-title').textContent='➕ Новий клієнт';
+    ['company','contact','position','phone','email','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value='');
+    document.getElementById('d-date').value=todayStr();
+    document.getElementById('d-contactdate').value='';
+    document.getElementById('d-stepdate').value='';
+    document.getElementById('d-channel').value='';
+    document.getElementById('d-status').value='New';
+    document.getElementById('d-result').value='';
+  } else {
+    const d=deals.find(x=>x.id===id);if(!d)return;
+    document.getElementById('deal-modal-title').textContent='✏️ Редагувати клієнта';
+    ['company','contact','position','phone','email','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value=d[f]||'');
+    document.getElementById('d-date').value=d.date||'';
+    document.getElementById('d-contactdate').value=d.contactdate||'';
+    document.getElementById('d-stepdate').value=d.stepdate||'';
+    document.getElementById('d-channel').value=d.channel||'';
+    document.getElementById('d-status').value=d.status||'New';
+    document.getElementById('d-result').value=d.result||'';
+  }
+  document.getElementById('dealModal').classList.add('open');
+}
+
+function saveDeal(){
+  const company=document.getElementById('d-company').value.trim();
+  if(!company){alert('Введіть назву компанії!');return;}
+  const deal={
+    id:editDealId||Date.now(),
+    date:document.getElementById('d-date').value,
+    company,
+    contact:document.getElementById('d-contact').value.trim(),
+    position:document.getElementById('d-position').value.trim(),
+    phone:document.getElementById('d-phone').value.trim(),
+    email:document.getElementById('d-email').value.trim(),
+    channel:document.getElementById('d-channel').value,
+    status:document.getElementById('d-status').value,
+    contactdate:document.getElementById('d-contactdate').value,
+    stepdate:document.getElementById('d-stepdate').value,
+    nextstep:document.getElementById('d-nextstep').value.trim(),
+    result:document.getElementById('d-result').value,
+    reject:document.getElementById('d-reject').value.trim(),
+    comment:document.getElementById('d-comment').value.trim(),
+  };
+  if(editDealId){const i=deals.findIndex(x=>x.id===editDealId);deals[i]=deal;}
+  else deals.push(deal);
+  saveDeals();closeModal('dealModal');renderPipeline();
+}
+
+function delDeal(id){
+  if(!confirm('Видалити цей запис?'))return;
+  deals=deals.filter(x=>x.id!==id);saveDeals();renderPipeline();
+}
+
+// ============================================================
+// ACTIVITY
+// ============================================================
+function renderActivity(){
+  const role=getRole();
+  const perms=window._mgrPerms||{activity:true};
+  const actAddBtn=document.querySelector('#tab-activity .toolbar .btn-primary');
+  if(actAddBtn) actAddBtn.style.display=(role==='manager'&&!perms.activity)?'none':'';
+  const tbody=document.getElementById('act-body');
+  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">📊</div>Немає записів. Додайте перший день!</div></td></tr>`;return;}
+  tbody.innerHTML=acts.map(a=>`<tr>
+    <td style="font-weight:600;white-space:nowrap">${fmtDate(a.date)}</td>
+    <td style="text-align:center">${a.newc}</td><td style="text-align:center">${a.calls}</td>
+    <td style="text-align:center">${a.msg}</td><td style="text-align:center;font-weight:700">${a.dialogs}</td>
+    <td style="text-align:center">${a.demo}</td><td style="text-align:center;font-weight:700">${a.meet}</td>
+    <td style="text-align:center">${a.prop}</td><td style="text-align:center">${a.pay}</td>
+    <td style="color:#888;font-size:12px">${esc(a.comment)}</td>
+    <td>${kpiBadge(a.newc,10)}</td><td>${kpiBadge(a.dialogs,5)}</td><td>${kpiBadge(a.meet,2)}</td>
+    <td style="white-space:nowrap">
+      <button class="btn btn-sm btn-primary" onclick="openActivity(${a.id})">✏️</button>
+      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">🗑</button>
+    </td></tr>`).join('');
+}
+
+function openActivity(id){
+  editActId=id;
+  if(id===null){
+    document.getElementById('a-date').value=todayStr();
+    ['new','calls','msg','dialogs','demo','meet','prop','pay'].forEach(f=>document.getElementById('a-'+f).value=0);
+    document.getElementById('a-comment').value='';
+  } else {
+    const a=acts.find(x=>x.id===id);if(!a)return;
+    document.getElementById('a-date').value=a.date;
+    document.getElementById('a-new').value=a.newc;
+    document.getElementById('a-calls').value=a.calls;
+    document.getElementById('a-msg').value=a.msg;
+    document.getElementById('a-dialogs').value=a.dialogs;
+    document.getElementById('a-demo').value=a.demo;
+    document.getElementById('a-meet').value=a.meet;
+    document.getElementById('a-prop').value=a.prop;
+    document.getElementById('a-pay').value=a.pay;
+    document.getElementById('a-comment').value=a.comment||'';
+  }
+  document.getElementById('actModal').classList.add('open');
+}
+
+function saveActivity(){
+  const date=document.getElementById('a-date').value;
+  if(!date){alert('Вкажіть дату!');return;}
+  const calls=+document.getElementById('a-calls').value||0;
+  const msg=+document.getElementById('a-msg').value||0;
+  const di=+document.getElementById('a-dialogs').value||0;
+  const act={
+    id:editActId||Date.now(),date,
+    newc:+document.getElementById('a-new').value||0,
+    calls,msg,dialogs:di||(calls+msg),
+    demo:+document.getElementById('a-demo').value||0,
+    meet:+document.getElementById('a-meet').value||0,
+    prop:+document.getElementById('a-prop').value||0,
+    pay:+document.getElementById('a-pay').value||0,
+    comment:document.getElementById('a-comment').value
+  };
+  if(editActId){const i=acts.findIndex(x=>x.id===editActId);acts[i]=act;}
+  else acts.push(act);
+  acts.sort((a,b)=>b.date.localeCompare(a.date));
+  saveActs();closeModal('actModal');renderActivity();
+}
+
+function delAct(id){if(!confirm('Видалити?'))return;acts=acts.filter(x=>x.id!==id);saveActs();renderActivity();}
+
+// ============================================================
+// DASHBOARD
+// ============================================================
+function renderDashboard(){
+  const sts=['New','Contacted','Warm','Meeting scheduled','Offer sent','Won','Lost','Recycle'];
+  const cnt={};sts.forEach(s=>cnt[s]=deals.filter(d=>d.status===s).length);
+  const total=deals.length,won=cnt['Won'],lost=cnt['Lost'];
+  const active=deals.filter(d=>d.status!=='Won'&&d.status!=='Lost'&&d.status!=='Recycle').length;
+  const crits=deals.filter(d=>calcDeal(d).ctrlCls==='ctrl-crit').length;
+  const risks=deals.filter(d=>calcDeal(d).ctrlCls==='ctrl-risk').length;
+  const noSteps=deals.filter(d=>calcDeal(d).noStep).length;
+  const overdues=deals.filter(d=>calcDeal(d).overdue).length;
+  const conv=total>0?Math.round(won/total*100):0;
+  const fStages=['New','Contacted','Warm','Meeting scheduled','Offer sent','Won'];
+  const maxC=Math.max(...fStages.map(s=>cnt[s]),1);
+  const CHS=['D1','D2','D3','D4.1','D4.2','D5','D5 Partner','D6'];
+  const wDates=Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-i);return d.toISOString().split('T')[0];});
+  const wActs=acts.filter(a=>wDates.includes(a.date));
+  const wNew=wActs.reduce((s,a)=>s+a.newc,0);
+  const wDial=wActs.reduce((s,a)=>s+a.dialogs,0);
+  const wMeet=wActs.reduce((s,a)=>s+a.meet,0);
+  const cr=(f,t)=>{const n=cnt[f];if(!n)return'—';return Math.round(cnt[t]/n*100)+'%';};
+  document.getElementById('dash-content').innerHTML=`
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-value">${total}</div><div class="kpi-label">Всього в базі</div></div>
+    <div class="kpi-card" style="border-top-color:#2e7d32"><div class="kpi-value" style="color:#2e7d32">${won}</div><div class="kpi-label">✅ Won — закрито</div></div>
+    <div class="kpi-card" style="border-top-color:#00838F"><div class="kpi-value" style="color:#00838F">${conv}%</div><div class="kpi-label">Конверсія</div></div>
+    <div class="kpi-card" style="border-top-color:#7B1FA2"><div class="kpi-value" style="color:#7B1FA2">${active}</div><div class="kpi-label">Активних угод</div></div>
+    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">🔴 Критичних</div></div>
+    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">🟡 Ризиків</div></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">📊 Воронка продажів</div>
+      <div class="funnel">
+        ${fStages.map(s=>`<div class="funnel-row">
+          <div class="funnel-label">${s}</div>
+          <div class="funnel-bar-wrap"><div class="funnel-bar" style="background:${FCOLORS[s]};width:${Math.max(cnt[s]/maxC*100,3)}%">${cnt[s]>0?cnt[s]:''}</div></div>
+          <div class="funnel-num">${cnt[s]}</div></div>`).join('')}
+        <div class="funnel-row" style="opacity:.6;margin-top:6px">
+          <div class="funnel-label">Lost</div>
+          <div class="funnel-bar-wrap"><div class="funnel-bar" style="background:#C62828;width:${Math.max(cnt['Lost']/maxC*100,3)}%">${cnt['Lost']>0?cnt['Lost']:''}</div></div>
+          <div class="funnel-num">${cnt['Lost']}</div></div>
+      </div>
+      <div style="margin-top:16px"><div class="section-title">Конверсія між етапами</div>
+        <table class="conv-table">
+          ${[['New','Contacted'],['Contacted','Warm'],['Warm','Meeting scheduled'],['Offer sent','Won']].map(([f,t])=>`
+          <tr><td>${f} → ${t.replace('Meeting scheduled','Meeting')}</td>
+          <td><div class="conv-bar" style="width:${Math.min(parseInt(cr(f,t))||0,100)*0.55}px"></div><strong>${cr(f,t)}</strong></td></tr>`).join('')}
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🚨 Контроль</div>
+      <div class="alert-box">
+        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>🔴 Критичні (прострочено/без кроку)</span><strong>${crits}</strong></div>
+        <div class="alert-item ${overdues>0?'al-red':'al-green'}"><span>⏰ Прострочений крок</span><strong>${overdues}</strong></div>
+        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>🚨 Без наступного кроку</span><strong>${noSteps}</strong></div>
+        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>🟡 Без активності 3+ дні</span><strong>${risks}</strong></div>
+        <div class="alert-item al-blue"><span>♻️ Recycle</span><strong>${cnt['Recycle']}</strong></div>
+        <div class="alert-item al-blue"><span>❌ Lost</span><strong>${lost}</strong></div>
+      </div>
+      <div style="margin-top:18px"><div class="section-title">📅 KPI за 7 днів</div>
+        ${acts.length===0?`<div style="color:#bbb;text-align:center;padding:14px;font-size:13px">Додайте дані в Activity Log</div>`:`
+        <div class="alert-box">
+          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>🆕 Нових клієнтів (ціль 70+)</span><strong>${wNew}</strong></div>
+          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>💬 Діалогів (ціль 35+)</span><strong>${wDial}</strong></div>
+          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>🤝 Зустрічей (ціль 14+)</span><strong>${wMeet}</strong></div>
+        </div>`}
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🗂 Розбивка по каналах</div>
+    <div class="ch-grid">
+      ${CHS.map(ch=>{
+        const n=deals.filter(d=>d.channel===ch).length;
+        const w=deals.filter(d=>d.channel===ch&&d.status==='Won').length;
+        const c=deals.filter(d=>d.channel===ch&&calcDeal(d).ctrlCls==='ctrl-crit').length;
+        return`<div class="ch-card">
+          <div class="ch-name">${ch}</div><div class="ch-count">${n}</div>
+          <div class="ch-type">${CH_TYPES[ch]||''}</div>
+          <div style="font-size:11px;color:#2e7d32;font-weight:600;margin-top:4px">✅ Won: ${w}</div>
+          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">🔴 Крит: ${c}</div>`:''}
+        </div>`;}).join('')}
+    </div>
+  </div>`;
+}
+
+// ============================================================
+// MANAGER ACCESS
+// ============================================================
+async function saveMgrSettings(){
+  const el=document.getElementById('mgr-status');
+  const p1=document.getElementById('s-mgrpass').value;
+  const p2=document.getElementById('s-mgrpass2').value;
+  const existing=JSON.parse(localStorage.getItem('hsm_mgr')||'{}');
+
+  let passHash=existing.passHash||'';
+  if(p1||p2){
+    if(p1!==p2){showStatus(el,'❌ Паролі не співпадають','err');return;}
+    if(p1.length<3){showStatus(el,'❌ Мінімум 3 символи','err');return;}
+    passHash=await sha256(p1);
+    // Guard: manager password must differ from admin password
+    const adminHash=localStorage.getItem('hsm_pass');
+    if(passHash===adminHash){
+      showStatus(el,'❌ Пароль менеджера не може співпадати з паролем адміна! Виберіть інший.','err');
+      return;
+    }
+  }
+  if(!passHash){showStatus(el,'❌ Введіть пароль менеджера','err');return;}
+
+  const perms={
+    add:    document.getElementById('perm-add').checked,
+    edit:   document.getElementById('perm-edit').checked,
+    activity:document.getElementById('perm-activity').checked,
+    dashboard:document.getElementById('perm-dashboard').checked,
+    export: document.getElementById('perm-export').checked,
+  };
+  localStorage.setItem('hsm_mgr',JSON.stringify({passHash,perms}));
+  document.getElementById('s-mgrpass').value='';
+  document.getElementById('s-mgrpass2').value='';
+  showStatus(el,'✅ Доступ менеджера збережено! Він може входити зі своїм паролем.','ok');
+}
+
+async function testMgrPass(){
+  const el=document.getElementById('mgr-status');
+  const cfg=JSON.parse(localStorage.getItem('hsm_mgr')||'{}');
+  if(!cfg.passHash){showStatus(el,'⚠️ Пароль менеджера НЕ встановлено. Введіть і збережіть його.','err');return;}
+  const testPass=prompt('Введіть пароль менеджера для перевірки:');
+  if(!testPass)return;
+  const h=await sha256(testPass);
+  const adminHash=localStorage.getItem('hsm_pass');
+  if(h===adminHash){showStatus(el,'❌ Це пароль АДМІНА, а не менеджера! Встановіть інший пароль для менеджера.','err');return;}
+  if(h===cfg.passHash){showStatus(el,'✅ Пароль менеджера правильний! Збережено коректно.','ok');}
+  else{showStatus(el,'❌ Невірний пароль. Спробуйте ще раз або перевстановіть пароль менеджера.','err');}
+}
+
+function removeMgrAccess(){
+  if(!confirm('Вимкнути доступ менеджера? Менеджер більше не зможе увійти.'))return;
+  localStorage.removeItem('hsm_mgr');
+  showStatus(document.getElementById('mgr-status'),'✅ Доступ менеджера вимкнено','ok');
+}
+
+function loadMgrSettings(){
+  const cfg=JSON.parse(localStorage.getItem('hsm_mgr')||'{}');
+  const perms=cfg.perms||{add:true,edit:true,activity:true,dashboard:true,export:false};
+  document.getElementById('perm-add').checked=perms.add!==false;
+  document.getElementById('perm-edit').checked=perms.edit!==false;
+  document.getElementById('perm-activity').checked=perms.activity!==false;
+  document.getElementById('perm-dashboard').checked=perms.dashboard!==false;
+  document.getElementById('perm-export').checked=!!perms.export;
+  if(cfg.passHash){
+    document.getElementById('s-mgrpass').placeholder='••••• (встановлено)';
+    document.getElementById('s-mgrpass2').placeholder='••••• (встановлено)';
+  }
+}
+
+// ============================================================
+// CLOUD SYNC (JSONBin.io)
+// ============================================================
+function loadCloudSettings(){
+  const cfg=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
+  if(cfg.apiKey) document.getElementById('s-apikey').value=cfg.apiKey;
+  if(cfg.binId)  document.getElementById('s-binid').value=cfg.binId;
+}
+
+function saveCloudSettings(){
+  const cfg={
+    apiKey:document.getElementById('s-apikey').value.trim(),
+    binId:document.getElementById('s-binid').value.trim()
+  };
+  localStorage.setItem('hsm_cloud',JSON.stringify(cfg));
+  showStatus(document.getElementById('cloud-status'),'✅ Налаштування збережено','ok');
+}
+
+function getCloudCfg(){
+  const cfg=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
+  const apiKey=document.getElementById('s-apikey').value.trim()||cfg.apiKey||'';
+  const binId=document.getElementById('s-binid').value.trim()||cfg.binId||'';
+  return{apiKey,binId};
+}
+
+async function cloudFirstRun(){
+  const el=document.getElementById('cloud-status');
+  const{apiKey}=getCloudCfg();
+  if(!apiKey){showStatus(el,'❌ Введіть API Key!','err');return;}
+  showStatus(el,'⏳ Створюю сховище...','loading');
+  try{
+    const r=await fetch('https://api.jsonbin.io/v3/b',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-Master-Key':apiKey,'X-Bin-Name':'HunterSalesCRM','X-Bin-Private':'true'},
+      body:JSON.stringify({deals,acts,version:1,savedAt:new Date().toISOString()})
+    });
+    const j=await r.json();
+    if(!r.ok)throw new Error(j.message||r.statusText);
+    const binId=j.metadata.id;
+    document.getElementById('s-binid').value=binId;
+    localStorage.setItem('hsm_cloud',JSON.stringify({apiKey,binId}));
+    showStatus(el,`✅ Створено! Bin ID: ${binId} — збережіть його для інших пристроїв`,'ok');
+  }catch(e){showStatus(el,'❌ Помилка: '+e.message,'err');}
+}
+
+async function cloudPush(){
+  const el=document.getElementById('cloud-status');
+  const{apiKey,binId}=getCloudCfg();
+  if(!apiKey||!binId){showStatus(el,'❌ Введіть API Key та Bin ID','err');return;}
+  showStatus(el,'⏳ Зберігаю в хмару...','loading');
+  try{
+    const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}`,{
+      method:'PUT',
+      headers:{'Content-Type':'application/json','X-Master-Key':apiKey},
+      body:JSON.stringify({deals,acts,version:1,savedAt:new Date().toISOString()})
+    });
+    const j=await r.json();
+    if(!r.ok)throw new Error(j.message||r.statusText);
+    showStatus(el,`✅ Збережено! ${deals.length} клієнтів, ${acts.length} активностей — ${new Date().toLocaleTimeString('uk-UA')}`,'ok');
+  }catch(e){showStatus(el,'❌ Помилка: '+e.message,'err');}
+}
+
+async function cloudPull(){
+  const el=document.getElementById('cloud-status');
+  const{apiKey,binId}=getCloudCfg();
+  if(!apiKey||!binId){showStatus(el,'❌ Введіть API Key та Bin ID','err');return;}
+  if(!confirm('Завантажити дані з хмари? Локальні дані будуть замінені!'))return;
+  showStatus(el,'⏳ Завантажую з хмари...','loading');
+  try{
+    const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`,{
+      headers:{'X-Master-Key':apiKey}
+    });
+    const j=await r.json();
+    if(!r.ok)throw new Error(j.message||r.statusText);
+    deals=j.record.deals||[];
+    acts=j.record.acts||[];
+    saveDeals();saveActs();
+    showStatus(el,`✅ Завантажено! ${deals.length} клієнтів, ${acts.length} активностей`,'ok');
+    renderPipeline();
+  }catch(e){showStatus(el,'❌ Помилка: '+e.message,'err');}
+}
+
+// ============================================================
+// SHARE CODE
+// ============================================================
+function generateShareCode(){
+  const data=JSON.stringify({v:2,deals,acts,ts:Date.now()});
+  const code=btoa(unescape(encodeURIComponent(data)));
+  document.getElementById('shareCodeOut').value=code;
+  showStatus(document.getElementById('share-status'),'✅ Код згенеровано! Натисніть на текстове поле щоб скопіювати','ok');
+}
+
+function copyShareCode(){
+  const ta=document.getElementById('shareCodeOut');
+  if(!ta.value)return;
+  ta.select();
+  document.execCommand('copy');
+  showStatus(document.getElementById('share-status'),'✅ Скопійовано в буфер обміну!','ok');
+}
+
+function importShareCode(){
+  const el=document.getElementById('share-status');
+  const code=document.getElementById('shareCodeIn').value.trim();
+  if(!code){showStatus(el,'❌ Вставте код!','err');return;}
+  try{
+    const data=JSON.parse(decodeURIComponent(escape(atob(code))));
+    if(!data.deals&&!data.acts)throw new Error('Невірний формат коду');
+    if(!confirm(`Імпортувати ${(data.deals||[]).length} клієнтів та ${(data.acts||[]).length} активностей?\nПоточні дані будуть замінені!`))return;
+    deals=data.deals||[];
+    acts=data.acts||[];
+    saveDeals();saveActs();
+    document.getElementById('shareCodeIn').value='';
+    showStatus(el,`✅ Імпортовано! ${deals.length} клієнтів, ${acts.length} активностей`,'ok');
+    renderPipeline();
+  }catch(e){showStatus(el,'❌ Невірний код. Перевірте та спробуйте знову.','err');}
+}
+
+// ============================================================
+// CSV IMPORT
+// ============================================================
+function handleDrop(e){
+  e.preventDefault();
+  document.getElementById('dropZone').classList.remove('drag');
+  const f=e.dataTransfer.files[0];
+  if(f&&f.name.endsWith('.csv'))processCSV(f);
+  else alert('Будь ласка, завантажте файл .csv');
+}
+
+function handleCSVFile(input){
+  if(input.files[0])processCSV(input.files[0]);
+  input.value='';
+}
+
+function processCSV(file){
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const text=e.target.result;
+    parseCSV(text);
+  };
+  reader.readAsText(file,'UTF-8');
+}
+
+function parseCSV(text){
+  const el=document.getElementById('csv-status');
+  // Remove BOM
+  const clean=text.replace(/^﻿/,'');
+  const lines=clean.split(/\r?\n/).filter(l=>l.trim());
+  if(lines.length<2){showStatus(el,'❌ Файл порожній або має лише заголовок','err');return;}
+
+  // Detect delimiter
+  const delim=lines[0].includes(';')?';':',';
+
+  // Parse header
+  const headers=parseCSVLine(lines[0],delim).map(h=>h.toLowerCase().trim());
+
+  // Column map - flexible matching
+  const colMap={
+    company:   findCol(headers,['компанія','company','название','компания']),
+    contact:   findCol(headers,['контакт','contact','пиб','фио','name']),
+    position:  findCol(headers,['посада','position','должность']),
+    phone:     findCol(headers,['телефон','phone','tel']),
+    email:     findCol(headers,['email','пошта','mail']),
+    channel:   findCol(headers,['канал','channel']),
+    status:    findCol(headers,['статус','status']),
+    date:      findCol(headers,['дата','date','дата додавання']),
+    contactdate:findCol(headers,['дата контакту','contact date','дата контакта']),
+    stepdate:  findCol(headers,['дата кроку','step date','дата шага']),
+    nextstep:  findCol(headers,['наступний крок','next step','следующий шаг']),
+    result:    findCol(headers,['результат','result']),
+    reject:    findCol(headers,['причина відмови','причина отказа','reject']),
+    comment:   findCol(headers,['коментар','comment','комментарий'])
+  };
+
+  csvParsed=[];
+  const errors=[];
+  for(let i=1;i<lines.length;i++){
+    const cells=parseCSVLine(lines[i],delim);
+    if(!cells.some(c=>c.trim()))continue;// skip empty rows
+    const company=colMap.company>=0?cells[colMap.company]?.trim():'';
+    if(!company)continue;
+    csvParsed.push({
+      id:Date.now()+i,
+      date:       parseCsvDate(colMap.date>=0?cells[colMap.date]:''),
+      company,
+      contact:    colMap.contact>=0?cells[colMap.contact]?.trim()||'':'',
+      position:   colMap.position>=0?cells[colMap.position]?.trim()||'':'',
+      phone:      colMap.phone>=0?cells[colMap.phone]?.trim()||'':'',
+      email:      colMap.email>=0?cells[colMap.email]?.trim()||'':'',
+      channel:    colMap.channel>=0?cells[colMap.channel]?.trim()||'':'',
+      status:     colMap.status>=0?cells[colMap.status]?.trim()||'New':'New',
+      contactdate:parseCsvDate(colMap.contactdate>=0?cells[colMap.contactdate]:''),
+      stepdate:   parseCsvDate(colMap.stepdate>=0?cells[colMap.stepdate]:''),
+      nextstep:   colMap.nextstep>=0?cells[colMap.nextstep]?.trim()||'':'',
+      result:     colMap.result>=0?cells[colMap.result]?.trim()||'':'',
+      reject:     colMap.reject>=0?cells[colMap.reject]?.trim()||'':'',
+      comment:    colMap.comment>=0?cells[colMap.comment]?.trim()||'':'',
+    });
+  }
+
+  if(!csvParsed.length){showStatus(el,'❌ Не знайдено записів. Перевірте що є колонка "Компанія"','err');return;}
+
+  // Show preview (first 5 rows)
+  const preview=csvParsed.slice(0,5);
+  document.getElementById('csv-preview-table').innerHTML=`
+    <table><thead><tr><th>Компанія</th><th>Контакт</th><th>Канал</th><th>Статус</th><th>Телефон</th></tr></thead>
+    <tbody>${preview.map(r=>`<tr><td>${esc(r.company)}</td><td>${esc(r.contact)}</td><td>${esc(r.channel)}</td><td>${esc(r.status)}</td><td>${esc(r.phone)}</td></tr>`).join('')}
+    ${csvParsed.length>5?`<tr><td colspan="5" style="color:#999;text-align:center">...і ще ${csvParsed.length-5} рядків</td></tr>`:''}
+    </tbody></table>`;
+  document.getElementById('csv-count').textContent=csvParsed.length;
+  document.getElementById('csv-preview').style.display='block';
+  showStatus(el,'','ok');
+}
+
+function findCol(headers,variants){
+  for(const v of variants){const i=headers.findIndex(h=>h.includes(v));if(i>=0)return i;}
+  return -1;
+}
+
+function parseCSVLine(line,delim){
+  const res=[];let cur='',inQ=false;
+  for(let i=0;i<line.length;i++){
+    const c=line[i];
+    if(c==='"'){if(inQ&&line[i+1]==='"'){cur+='"';i++;}else inQ=!inQ;}
+    else if(c===delim&&!inQ){res.push(cur);cur='';}
+    else cur+=c;
+  }
+  res.push(cur);
+  return res;
+}
+
+function parseCsvDate(s){
+  if(!s)return'';
+  s=s.trim();
+  // DD.MM.YYYY
+  const m1=s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/);
+  if(m1)return`${m1[3]}-${m1[2].padStart(2,'0')}-${m1[1].padStart(2,'0')}`;
+  // YYYY-MM-DD
+  const m2=s.match(/^\d{4}-\d{2}-\d{2}$/);
+  if(m2)return s;
+  // DD/MM/YYYY
+  const m3=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if(m3)return`${m3[3]}-${m3[2].padStart(2,'0')}-${m3[1].padStart(2,'0')}`;
+  return'';
+}
+
+function confirmCSVImport(){
+  const merge=document.getElementById('csv-merge').checked;
+  if(merge){
+    // Add only new (by company name)
+    const existing=new Set(deals.map(d=>d.company.toLowerCase()));
+    const added=csvParsed.filter(r=>!existing.has(r.company.toLowerCase()));
+    deals=[...deals,...added];
+    showStatus(document.getElementById('csv-status'),`✅ Додано ${added.length} нових записів (${csvParsed.length-added.length} дублікатів пропущено)`,'ok');
+  } else {
+    deals=[...csvParsed];
+    showStatus(document.getElementById('csv-status'),`✅ Імпортовано ${deals.length} записів`,'ok');
+  }
+  saveDeals();
+  document.getElementById('csv-preview').style.display='none';
+  csvParsed=[];
+  renderPipeline();
+}
+
+function cancelCSVImport(){
+  csvParsed=[];
+  document.getElementById('csv-preview').style.display='none';
+  document.getElementById('csv-status').className='sync-status';
+}
+
+// ============================================================
+// EXPORT CSV
+// ============================================================
+function exportCSV(){
+  const headers=['№','Дата','Компанія','Контакт','Посада','Телефон','Email','Канал','Тип клієнта','Статус','Дата контакту','Наступний крок','Дата кроку','Результат','Причина відмови','Коментар','Контроль'];
+  const rows=deals.map((d,i)=>{
+    const{ctrl}=calcDeal(d);
+    return[i+1,fmtDate(d.date),d.company,d.contact,d.position,d.phone,d.email,d.channel,CH_TYPES[d.channel]||'',d.status,fmtDate(d.contactdate),d.nextstep,fmtDate(d.stepdate),d.result,d.reject,d.comment,ctrl]
+      .map(v=>'"'+(v||'').toString().replace(/"/g,'""')+'"').join(',');
+  });
+  const csv='﻿'+[headers.join(','),...rows].join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download='Hunter_Pipeline_'+todayStr()+'.csv';a.click();
+}
+
+// ============================================================
+// BACKUP / RESTORE
+// ============================================================
+function exportFullBackup(){
+  const data={v:2,deals,acts,exportedAt:new Date().toISOString()};
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
+  a.download='HunterSales_Backup_'+todayStr()+'.json';a.click();
+}
+
+function restoreFromBackup(input){
+  const f=input.files[0];if(!f)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      if(!data.deals)throw new Error('Невірний формат файлу');
+      if(!confirm(`Відновити ${data.deals.length} клієнтів та ${(data.acts||[]).length} активностей?\nПоточні дані будуть замінені!`))return;
+      deals=data.deals||[];acts=data.acts||[];
+      saveDeals();saveActs();
+      alert(`✅ Відновлено! ${deals.length} клієнтів, ${acts.length} активностей.`);
+      renderPipeline();
+    }catch(ex){alert('❌ Помилка: '+ex.message);}
+  };
+  reader.readAsText(f);
+  input.value='';
+}
+
+function clearAllData(){
+  if(!confirm('⚠️ УВАГА!\nВидалити ВСІ дані (клієнти + активність)?\nЦю дію НЕ можна скасувати!'))return;
+  if(!confirm('Ви впевнені? Всі дані будуть ЗНИЩЕНІ назавжди.'))return;
+  deals=[];acts=[];saveDeals();saveActs();
+  renderPipeline();renderActivity();
+  alert('✅ Всі дані видалено.');
+}
+
+// ============================================================
+// MODAL & STATUS HELPERS
+// ============================================================
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');}));
+
+function showStatus(el,msg,type){
+  el.textContent=msg;
+  el.className='sync-status';
+  if(type==='ok')el.classList.add('sync-ok');
+  else if(type==='err')el.classList.add('sync-err');
+  else if(type==='loading')el.classList.add('sync-loading');
+  if(type==='ok')setTimeout(()=>{el.className='sync-status';},4000);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+initAuth();
+</script>
+</body>
+</html>
