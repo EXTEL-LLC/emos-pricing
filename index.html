@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>рЯОѓ Hunter Sales Manager</title>
+<title>&#127919; Hunter Sales Manager</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f8;color:#1a1a2e;min-height:100vh}
@@ -184,12 +184,12 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 <!-- ===== LOGIN SCREEN ===== -->
 <div id="loginScreen" class="login-screen">
   <div class="login-box">
-    <div class="login-logo">рЯОѓ</div>
+    <div class="login-logo">&#127919;</div>
     <div class="login-title">Hunter Sales Manager</div>
-    <div class="login-sub" id="loginSubtitle">–Т–≤–µ–і—Ц—В—М –њ–∞—А–Њ–ї—М –і–ї—П –і–Њ—Б—В—Г–њ—Г</div>
-    <input type="password" class="login-input" id="loginPass" placeholder="вАҐвАҐвАҐвАҐ" maxlength="32"
+    <div class="login-sub" id="loginSubtitle">&#1042;&#1074;&#1077;&#1076;&#1110;&#1090;&#1100; &#1087;&#1072;&#1088;&#1086;&#1083;&#1100; &#1076;&#1083;&#1103; &#1076;&#1086;&#1089;&#1090;&#1091;&#1087;&#1091;</div>
+    <input type="password" class="login-input" id="loginPass" placeholder="&#8226;&#8226;&#8226;&#8226;" maxlength="32"
            onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" onclick="doLogin()">вЖТ –£–≤—Ц–є—В–Є</button>
+    <button class="login-btn" onclick="doLogin()">&#8594; &#1059;&#1074;&#1110;&#1081;&#1090;&#1080;</button>
     <div class="login-err" id="loginErr"></div>
     <div class="login-hint" id="loginHint"></div>
   </div>
@@ -197,19 +197,19 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 
 <!-- ===== MAIN APP ===== -->
 <div id="appMain" style="display:none">
-<div id="mgr-banner" class="mgr-banner" style="display:none">рЯСЈ –†–Х–Ц–Ш–Ь –Ь–Х–Э–Х–Ф–Ц–Х–†–Р: <span id="mgr-name-display"></span> вАФ –і–Њ—Б—В—Г–њ –Њ–±–Љ–µ–ґ–µ–љ–Њ –∞–і–Љ—Ц–љ—Ц—Б—В—А–∞—В–Њ—А–Њ–Љ</div>
+<div id="mgr-banner" class="mgr-banner" style="display:none">&#128119; &#1056;&#1045;&#1046;&#1048;&#1052; &#1052;&#1045;&#1053;&#1045;&#1044;&#1046;&#1045;&#1056;&#1040;: <span id="mgr-name-display"></span> &#8212; &#1076;&#1086;&#1089;&#1090;&#1091;&#1087; &#1086;&#1073;&#1084;&#1077;&#1078;&#1077;&#1085;&#1086; &#1072;&#1076;&#1084;&#1110;&#1085;&#1110;&#1089;&#1090;&#1088;&#1072;&#1090;&#1086;&#1088;&#1086;&#1084;</div>
 <nav class="nav">
-  <div class="nav-brand">рЯОѓ Hunter Sales</div>
+  <div class="nav-brand">&#127919; Hunter Sales</div>
   <div class="nav-tabs">
-    <div class="nav-tab active" onclick="showTab('pipeline',this)">рЯУЛ Pipeline</div>
-    <div class="nav-tab" onclick="showTab('activity',this)">рЯУК Activity</div>
-    <div class="nav-tab" onclick="showTab('dashboard',this)">рЯЪА Dashboard</div>
-    <div class="nav-tab admin-only" onclick="showTab('settings',this)">вЪЩпЄП –Э–∞–ї–∞—И—В—Г–≤–∞–љ–љ—П</div>
+    <div class="nav-tab active" onclick="showTab('pipeline',this)">&#128203; Pipeline</div>
+    <div class="nav-tab" onclick="showTab('activity',this)">&#128202; Activity</div>
+    <div class="nav-tab" onclick="showTab('dashboard',this)">&#128640; Dashboard</div>
+    <div class="nav-tab admin-only" onclick="showTab('settings',this)">&#9881;&#65039; &#1053;&#1072;&#1083;&#1072;&#1096;&#1090;&#1091;&#1074;&#1072;&#1085;&#1085;&#1103;</div>
   </div>
   <div class="nav-right">
-    <span id="role-badge" class="role-badge role-admin">рЯСС –Р–і–Љ—Ц–љ</span>
+    <span id="role-badge" class="role-badge role-admin">&#128081; &#1040;&#1076;&#1084;&#1110;&#1085;</span>
     <span id="nav-date" style="font-size:11px;color:rgba(255,255,255,.6)"></span>
-    <button class="logout-btn" onclick="doLogout()">рЯЪ™ –Т–Є–є—В–Є</button>
+    <button class="logout-btn" onclick="doLogout()">&#128682; &#1042;&#1080;&#1081;&#1090;&#1080;</button>
   </div>
 </nav>
 
@@ -218,39 +218,39 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 <!-- ===== PIPELINE ===== -->
 <div class="tab-pane active" id="tab-pipeline">
   <div class="toolbar">
-    <button class="btn btn-primary" onclick="openDeal(null)">вЮХ –Э–Њ–≤–Є–є –Ї–ї—Ц—Ф–љ—В</button>
-    <input class="search-input" type="text" placeholder="–Я–Њ—И—Г–Ї..." id="srch" oninput="renderPipeline()">
+    <button class="btn btn-primary" onclick="openDeal(null)">&#10133; &#1053;&#1086;&#1074;&#1080;&#1081; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;</button>
+    <input class="search-input" type="text" placeholder="&#1055;&#1086;&#1096;&#1091;&#1082;..." id="srch" oninput="renderPipeline()">
     <select class="filter-select" id="fStatus" onchange="renderPipeline()">
-      <option value="">–Т—Б—Ц —Б—В–∞—В—Г—Б–Є</option>
+      <option value="">&#1042;&#1089;&#1110; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089;&#1080;</option>
       <option>New</option><option>Contacted</option><option>Warm</option>
       <option>Meeting scheduled</option><option>Offer sent</option>
       <option>Won</option><option>Lost</option><option>Recycle</option>
     </select>
     <select class="filter-select" id="fChannel" onchange="renderPipeline()">
-      <option value="">–Т—Б—Ц –Ї–∞–љ–∞–ї–Є</option>
+      <option value="">&#1042;&#1089;&#1110; &#1082;&#1072;&#1085;&#1072;&#1083;&#1080;</option>
       <option>D1</option><option>D2</option><option>D3</option>
       <option>D4.1</option><option>D4.2</option><option>D5</option>
       <option>D5 Partner</option><option>D6</option>
     </select>
     <select class="filter-select" id="fCtrl" onchange="renderPipeline()">
-      <option value="">–Т—Б—Ц</option>
-      <option value="crit">рЯФі –Ъ—А–Є—В–Є—З–љ—Ц</option>
-      <option value="risk">рЯЯ° –†–Є–Ј–Є–Ї</option>
-      <option value="ok">рЯЯҐ OK</option>
+      <option value="">&#1042;&#1089;&#1110;</option>
+      <option value="crit">&#128308; &#1050;&#1088;&#1080;&#1090;&#1080;&#1095;&#1085;&#1110;</option>
+      <option value="risk">&#128993; &#1056;&#1080;&#1079;&#1080;&#1082;</option>
+      <option value="ok">&#128994; OK</option>
     </select>
-    <button class="btn btn-ghost" onclick="exportCSV()" title="–Ч–∞–≤–∞–љ—В–∞–ґ–Є—В–Є —П–Ї CSV">вђЗ CSV</button>
+    <button class="btn btn-ghost" onclick="exportCSV()" title="&#1047;&#1072;&#1074;&#1072;&#1085;&#1090;&#1072;&#1078;&#1080;&#1090;&#1080; &#1103;&#1082; CSV">&#11015; CSV</button>
   </div>
   <div class="stats-row" id="pipe-stats"></div>
   <div class="card" style="padding:0;overflow:hidden">
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th style="width:34px">вДЦ</th><th>–Ф–∞—В–∞</th><th>–Ъ–Њ–Љ–њ–∞–љ—Ц—П</th><th>–Ъ–Њ–љ—В–∞–Ї—В</th><th>–Я–Њ—Б–∞–і–∞</th>
-          <th>–Ґ–µ–ї–µ—Д–Њ–љ</th><th>Email</th><th>–Ъ–∞–љ–∞–ї</th><th>–Ґ–Є–њ –Ї–ї—Ц—Ф–љ—В–∞</th><th>–°—В–∞—В—Г—Б</th>
-          <th>–Ф–∞—В–∞ –Ї–Њ–љ—В–∞–Ї—В—Г</th><th>–Э–∞—Б—В—Г–њ–љ–Є–є –Ї—А–Њ–Ї</th><th>–Ф–∞—В–∞ –Ї—А–Њ–Ї—Г</th><th>–†–µ–Ј—Г–ї—М—В–∞—В</th>
-          <th>–Я—А–Є—З–Є–љ–∞ –≤—Ц–і–Љ–Њ–≤–Є</th><th>–Ъ–Њ–Љ–µ–љ—В–∞—А</th>
-          <th>вЪ† –Я—А–Њ—Б—В—А.</th><th>рЯЪ® –С–µ–Ј –Ї—А–Њ–Ї—Г</th><th>–Ф–љ—Ц–≤</th><th>рЯФі –Ъ–Њ–љ—В—А–Њ–ї—М</th>
-          <th style="width:72px">–Ф—Ц—Ч</th>
+          <th style="width:34px">&#8470;</th><th>&#1044;&#1072;&#1090;&#1072;</th><th>&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</th><th>&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</th><th>&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</th>
+          <th>&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;</th><th>Email</th><th>&#1050;&#1072;&#1085;&#1072;&#1083;</th><th>&#1058;&#1080;&#1087; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1072;</th><th>&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</th>
+          <th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</th><th>&#1053;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1080;&#1081; &#1082;&#1088;&#1086;&#1082;</th><th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1088;&#1086;&#1082;&#1091;</th><th>&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;</th>
+          <th>&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080;</th><th>&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</th>
+          <th>&#9888; &#1055;&#1088;&#1086;&#1089;&#1090;&#1088;.</th><th>&#128680; &#1041;&#1077;&#1079; &#1082;&#1088;&#1086;&#1082;&#1091;</th><th>&#1044;&#1085;&#1110;&#1074;</th><th>&#128308; &#1050;&#1086;&#1085;&#1090;&#1088;&#1086;&#1083;&#1100;</th>
+          <th style="width:72px">&#1044;&#1110;&#1111;</th>
         </tr></thead>
         <tbody id="pipe-body"></tbody>
       </table>
@@ -261,16 +261,16 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 <!-- ===== ACTIVITY ===== -->
 <div class="tab-pane" id="tab-activity">
   <div class="toolbar">
-    <button class="btn btn-primary" onclick="openActivity(null)">вЮХ –Ф–Њ–і–∞—В–Є –і–µ–љ—М</button>
+    <button class="btn btn-primary" onclick="openActivity(null)">&#10133; &#1044;&#1086;&#1076;&#1072;&#1090;&#1080; &#1076;&#1077;&#1085;&#1100;</button>
   </div>
   <div class="card" style="padding:0;overflow:hidden">
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th>–Ф–∞—В–∞</th><th>–Э–Њ–≤–Є—Е</th><th>–Ф–Ј–≤—Ц–љ–Ї–Є</th><th>WA/Viber</th>
-          <th>–Ф—Ц–∞–ї–Њ–≥–Є</th><th>–Ф–µ–Љ–Њ</th><th>–Ч—Г—Б—В—А—Ц—З—Ц</th><th>–Ъ–Я</th><th>–Ю–њ–ї–∞—В–Є</th>
-          <th>–Ъ–Њ–Љ–µ–љ—В–∞—А</th><th>KPI –Э–Њ–≤–Є—Е</th><th>KPI –Ф—Ц–∞–ї–Њ–≥–Є</th><th>KPI –Ч—Г—Б—В—А—Ц—З—Ц</th>
-          <th style="width:72px">–Ф—Ц—Ч</th>
+          <th>&#1044;&#1072;&#1090;&#1072;</th><th>&#1053;&#1086;&#1074;&#1080;&#1093;</th><th>&#1044;&#1079;&#1074;&#1110;&#1085;&#1082;&#1080;</th><th>WA/Viber</th>
+          <th>&#1044;&#1110;&#1072;&#1083;&#1086;&#1075;&#1080;</th><th>&#1044;&#1077;&#1084;&#1086;</th><th>&#1047;&#1091;&#1089;&#1090;&#1088;&#1110;&#1095;&#1110;</th><th>&#1050;&#1055;</th><th>&#1054;&#1087;&#1083;&#1072;&#1090;&#1080;</th>
+          <th>&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</th><th>KPI &#1053;&#1086;&#1074;&#1080;&#1093;</th><th>KPI &#1044;&#1110;&#1072;&#1083;&#1086;&#1075;&#1080;</th><th>KPI &#1047;&#1091;&#1089;&#1090;&#1088;&#1110;&#1095;&#1110;</th>
+          <th style="width:72px">&#1044;&#1110;&#1111;</th>
         </tr></thead>
         <tbody id="act-body"></tbody>
       </table>
@@ -281,9 +281,9 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 <!-- ===== DASHBOARD ===== -->
 <div class="tab-pane" id="tab-dashboard">
   <div class="toolbar admin-only" id="dash-toolbar" style="margin-bottom:0">
-    <span style="font-size:13px;font-weight:600;color:#555">–Ь–µ–љ–µ–і–ґ–µ—А:</span>
+    <span style="font-size:13px;font-weight:600;color:#555">&#1052;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;:</span>
     <select class="filter-select" id="dash-mgr-filter" onchange="renderDashboard()">
-      <option value="">рЯС• –Т—Б—Ц –Љ–µ–љ–µ–і–ґ–µ—А–Є</option>
+      <option value="">&#128101; &#1042;&#1089;&#1110; &#1084;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;&#1080;</option>
     </select>
   </div>
   <div id="dash-content"></div>
@@ -294,89 +294,89 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 
   <!-- Password -->
   <div class="settings-section">
-    <h3>рЯФР –Я–∞—А–Њ–ї—М –і–Њ—Б—В—Г–њ—Г</h3>
-    <p>–Ч–∞—Е–Є—Б—В –≤—Ц–і –љ–µ—Б–∞–љ–Ї—Ж—Ц–Њ–љ–Њ–≤–∞–љ–Њ–≥–Њ –і–Њ—Б—В—Г–њ—Г. –Я–∞—А–Њ–ї—М –Ј–±–µ—А—Ц–≥–∞—Ф—В—М—Б—П –ї–Њ–Ї–∞–ї—М–љ–Њ.</p>
+    <h3>&#128272; &#1055;&#1072;&#1088;&#1086;&#1083;&#1100; &#1076;&#1086;&#1089;&#1090;&#1091;&#1087;&#1091;</h3>
+    <p>&#1047;&#1072;&#1093;&#1080;&#1089;&#1090; &#1074;&#1110;&#1076; &#1085;&#1077;&#1089;&#1072;&#1085;&#1082;&#1094;&#1110;&#1086;&#1085;&#1086;&#1074;&#1072;&#1085;&#1086;&#1075;&#1086; &#1076;&#1086;&#1089;&#1090;&#1091;&#1087;&#1091;. &#1055;&#1072;&#1088;&#1086;&#1083;&#1100; &#1079;&#1073;&#1077;&#1088;&#1110;&#1075;&#1072;&#1108;&#1090;&#1100;&#1089;&#1103; &#1083;&#1086;&#1082;&#1072;&#1083;&#1100;&#1085;&#1086;.</p>
     <div class="settings-grid">
       <div class="form-group">
-        <label class="form-label">–Я–Њ—В–Њ—З–љ–Є–є –њ–∞—А–Њ–ї—М</label>
-        <input type="password" class="form-control" id="s-oldpass" placeholder="–Т–≤–µ–і—Ц—В—М –њ–Њ—В–Њ—З–љ–Є–є">
+        <label class="form-label">&#1055;&#1086;&#1090;&#1086;&#1095;&#1085;&#1080;&#1081; &#1087;&#1072;&#1088;&#1086;&#1083;&#1100;</label>
+        <input type="password" class="form-control" id="s-oldpass" placeholder="&#1042;&#1074;&#1077;&#1076;&#1110;&#1090;&#1100; &#1087;&#1086;&#1090;&#1086;&#1095;&#1085;&#1080;&#1081;">
       </div>
       <div class="form-group"></div>
       <div class="form-group">
-        <label class="form-label">–Э–Њ–≤–Є–є –њ–∞—А–Њ–ї—М</label>
-        <input type="password" class="form-control" id="s-newpass" placeholder="–Ь—Ц–љ. 3 —Б–Є–Љ–≤–Њ–ї–Є">
+        <label class="form-label">&#1053;&#1086;&#1074;&#1080;&#1081; &#1087;&#1072;&#1088;&#1086;&#1083;&#1100;</label>
+        <input type="password" class="form-control" id="s-newpass" placeholder="&#1052;&#1110;&#1085;. 3 &#1089;&#1080;&#1084;&#1074;&#1086;&#1083;&#1080;">
       </div>
       <div class="form-group">
-        <label class="form-label">–Я—Ц–і—В–≤–µ—А–і—Ц—В—М –њ–∞—А–Њ–ї—М</label>
-        <input type="password" class="form-control" id="s-newpass2" placeholder="–Я–Њ–≤—В–Њ—А—Ц—В—М">
+        <label class="form-label">&#1055;&#1110;&#1076;&#1090;&#1074;&#1077;&#1088;&#1076;&#1110;&#1090;&#1100; &#1087;&#1072;&#1088;&#1086;&#1083;&#1100;</label>
+        <input type="password" class="form-control" id="s-newpass2" placeholder="&#1055;&#1086;&#1074;&#1090;&#1086;&#1088;&#1110;&#1090;&#1100;">
       </div>
     </div>
     <div style="margin-top:12px">
-      <button class="btn btn-primary" onclick="changePassword()">рЯФТ –Ч–Љ—Ц–љ–Є—В–Є –њ–∞—А–Њ–ї—М</button>
+      <button class="btn btn-primary" onclick="changePassword()">&#128274; &#1047;&#1084;&#1110;&#1085;&#1080;&#1090;&#1080; &#1087;&#1072;&#1088;&#1086;&#1083;&#1100;</button>
     </div>
     <div class="sync-status" id="pass-status"></div>
   </div>
 
   <!-- Manager Access -->
   <div class="settings-section">
-    <h3>рЯСЈ –Ь–µ–љ–µ–і–ґ–µ—А–Є</h3>
-    <p>–Ф–Њ–і–∞–є—В–µ —Б–Ї—Ц–ї—М–Ї–Є –Ј–∞–≤–≥–Њ–і–љ–Њ –Љ–µ–љ–µ–і–ґ–µ—А—Ц–≤. –Ъ–Њ–ґ–µ–љ –Љ–∞—Ф —Б–≤—Ц–є –њ–∞—А–Њ–ї—М —Ц –Њ–Ї—А–µ–Љ—Г –±–∞–Ј—Г –Ї–ї—Ц—Ф–љ—В—Ц–≤. –Р–і–Љ—Ц–љ –±–∞—З–Є—В—М –≤—Б—Ц—Е –љ–∞ –і–∞—И–±–Њ—А–і—Ц.</p>
+    <h3>&#128119; &#1052;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;&#1080;</h3>
+    <p>&#1044;&#1086;&#1076;&#1072;&#1081;&#1090;&#1077; &#1089;&#1082;&#1110;&#1083;&#1100;&#1082;&#1080; &#1079;&#1072;&#1074;&#1075;&#1086;&#1076;&#1085;&#1086; &#1084;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;&#1110;&#1074;. &#1050;&#1086;&#1078;&#1077;&#1085; &#1084;&#1072;&#1108; &#1089;&#1074;&#1110;&#1081; &#1087;&#1072;&#1088;&#1086;&#1083;&#1100; &#1110; &#1086;&#1082;&#1088;&#1077;&#1084;&#1091; &#1073;&#1072;&#1079;&#1091; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074;. &#1040;&#1076;&#1084;&#1110;&#1085; &#1073;&#1072;&#1095;&#1080;&#1090;&#1100; &#1074;&#1089;&#1110;&#1093; &#1085;&#1072; &#1076;&#1072;&#1096;&#1073;&#1086;&#1088;&#1076;&#1110;.</p>
 
     <!-- Existing managers list -->
     <div id="mgr-list" style="margin-bottom:18px"></div>
 
     <!-- Add new manager form -->
     <div style="background:#f8f9ff;border-radius:10px;padding:16px;border:1.5px dashed #c5cae9">
-      <div class="section-title" style="margin-bottom:12px">вЮХ –Ф–Њ–і–∞—В–Є –Љ–µ–љ–µ–і–ґ–µ—А–∞</div>
+      <div class="section-title" style="margin-bottom:12px">&#10133; &#1044;&#1086;&#1076;&#1072;&#1090;&#1080; &#1084;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;&#1072;</div>
       <div class="settings-grid">
         <div class="form-group">
-          <label class="form-label">–Ж–Љ'—П –Љ–µ–љ–µ–і–ґ–µ—А–∞ *</label>
-          <input type="text" class="form-control" id="s-mgrname" placeholder="–Э–∞–њ—А–Є–Ї–ї–∞–і: –Ю–ї–µ–Ї—Б—Ц–є">
+          <label class="form-label">&#1030;&#1084;'&#1103; &#1084;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;&#1072; *</label>
+          <input type="text" class="form-control" id="s-mgrname" placeholder="&#1053;&#1072;&#1087;&#1088;&#1080;&#1082;&#1083;&#1072;&#1076;: &#1054;&#1083;&#1077;&#1082;&#1089;&#1110;&#1081;">
         </div>
         <div class="form-group"></div>
         <div class="form-group">
-          <label class="form-label">–Я–∞—А–Њ–ї—М *</label>
-          <input type="password" class="form-control" id="s-mgrpass" placeholder="–Ь—Ц–љ. 3 —Б–Є–Љ–≤–Њ–ї–Є">
+          <label class="form-label">&#1055;&#1072;&#1088;&#1086;&#1083;&#1100; *</label>
+          <input type="password" class="form-control" id="s-mgrpass" placeholder="&#1052;&#1110;&#1085;. 3 &#1089;&#1080;&#1084;&#1074;&#1086;&#1083;&#1080;">
         </div>
         <div class="form-group">
-          <label class="form-label">–Я—Ц–і—В–≤–µ—А–і—Ц—В—М –њ–∞—А–Њ–ї—М</label>
-          <input type="password" class="form-control" id="s-mgrpass2" placeholder="–Я–Њ–≤—В–Њ—А—Ц—В—М">
+          <label class="form-label">&#1055;&#1110;&#1076;&#1090;&#1074;&#1077;&#1088;&#1076;&#1110;&#1090;&#1100; &#1087;&#1072;&#1088;&#1086;&#1083;&#1100;</label>
+          <input type="password" class="form-control" id="s-mgrpass2" placeholder="&#1055;&#1086;&#1074;&#1090;&#1086;&#1088;&#1110;&#1090;&#1100;">
         </div>
       </div>
       <div style="margin-top:14px;margin-bottom:14px">
-        <div class="section-title" style="margin-bottom:10px">–Ф–Њ–Ј–≤–Њ–ї–Є</div>
+        <div class="section-title" style="margin-bottom:10px">&#1044;&#1086;&#1079;&#1074;&#1086;&#1083;&#1080;</div>
         <div style="display:flex;flex-direction:column;gap:8px">
           <div class="mgr-perm">
-            <label><label class="toggle"><input type="checkbox" id="perm-add" checked><span class="toggle-slider"></span></label>вЮХ –Ф–Њ–і–∞–≤–∞—В–Є –љ–Њ–≤–Є—Е –Ї–ї—Ц—Ф–љ—В—Ц–≤</label>
+            <label><label class="toggle"><input type="checkbox" id="perm-add" checked><span class="toggle-slider"></span></label>&#10133; &#1044;&#1086;&#1076;&#1072;&#1074;&#1072;&#1090;&#1080; &#1085;&#1086;&#1074;&#1080;&#1093; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074;</label>
           </div>
           <div class="mgr-perm">
-            <label><label class="toggle"><input type="checkbox" id="perm-edit" checked><span class="toggle-slider"></span></label>вЬПпЄП –†–µ–і–∞–≥—Г–≤–∞—В–Є –Ї–ї—Ц—Ф–љ—В—Ц–≤</label>
+            <label><label class="toggle"><input type="checkbox" id="perm-edit" checked><span class="toggle-slider"></span></label>&#9999;&#65039; &#1056;&#1077;&#1076;&#1072;&#1075;&#1091;&#1074;&#1072;&#1090;&#1080; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074;</label>
           </div>
           <div class="mgr-perm">
-            <label><label class="toggle"><input type="checkbox" id="perm-activity" checked><span class="toggle-slider"></span></label>рЯУК Activity Log</label>
+            <label><label class="toggle"><input type="checkbox" id="perm-activity" checked><span class="toggle-slider"></span></label>&#128202; Activity Log</label>
           </div>
           <div class="mgr-perm">
-            <label><label class="toggle"><input type="checkbox" id="perm-dashboard" checked><span class="toggle-slider"></span></label>рЯЪА Dashboard</label>
+            <label><label class="toggle"><input type="checkbox" id="perm-dashboard" checked><span class="toggle-slider"></span></label>&#128640; Dashboard</label>
           </div>
           <div class="mgr-perm">
-            <label><label class="toggle"><input type="checkbox" id="perm-export"><span class="toggle-slider"></span></label>вђЗ –Х–Ї—Б–њ–Њ—А—В CSV</label>
+            <label><label class="toggle"><input type="checkbox" id="perm-export"><span class="toggle-slider"></span></label>&#11015; &#1045;&#1082;&#1089;&#1087;&#1086;&#1088;&#1090; CSV</label>
           </div>
         </div>
       </div>
-      <button class="btn btn-primary" onclick="addManager()">вЮХ –Ф–Њ–і–∞—В–Є –Љ–µ–љ–µ–і–ґ–µ—А–∞</button>
+      <button class="btn btn-primary" onclick="addManager()">&#10133; &#1044;&#1086;&#1076;&#1072;&#1090;&#1080; &#1084;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;&#1072;</button>
     </div>
     <div class="sync-status" id="mgr-status"></div>
   </div>
 
   <!-- Cloud Sync -->
   <div class="settings-section">
-    <h3>вШБпЄП –•–Љ–∞—А–љ–∞ —Б–Є–љ—Е—А–Њ–љ—Ц–Ј–∞—Ж—Ц—П (JSONBin.io)</h3>
-    <p>–С–µ–Ј–Ї–Њ—И—В–Њ–≤–љ–µ —Е–Љ–∞—А–љ–µ —Б—Е–Њ–≤–Є—Й–µ. –Ф–∞–љ—Ц –і–Њ—Б—В—Г–њ–љ—Ц –Ј –±—Г–і—М-—П–Ї–Њ–≥–Њ –њ—А–Є—Б—В—А–Њ—О.</p>
+    <h3>&#9729;&#65039; &#1061;&#1084;&#1072;&#1088;&#1085;&#1072; &#1089;&#1080;&#1085;&#1093;&#1088;&#1086;&#1085;&#1110;&#1079;&#1072;&#1094;&#1110;&#1103; (JSONBin.io)</h3>
+    <p>&#1041;&#1077;&#1079;&#1082;&#1086;&#1096;&#1090;&#1086;&#1074;&#1085;&#1077; &#1093;&#1084;&#1072;&#1088;&#1085;&#1077; &#1089;&#1093;&#1086;&#1074;&#1080;&#1097;&#1077;. &#1044;&#1072;&#1085;&#1110; &#1076;&#1086;&#1089;&#1090;&#1091;&#1087;&#1085;&#1110; &#1079; &#1073;&#1091;&#1076;&#1100;-&#1103;&#1082;&#1086;&#1075;&#1086; &#1087;&#1088;&#1080;&#1089;&#1090;&#1088;&#1086;&#1102;.</p>
     <div class="api-help">
-      <span class="step-badge">1</span> –Ч–∞—А–µ—Ф—Б—В—А—Г–є—В–µ—Б—М –љ–∞ <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> (–±–µ–Ј–Ї–Њ—И—В–Њ–≤–љ–Њ)<br>
-      <span class="step-badge">2</span> –Т –∞–Ї–∞—Г–љ—В—Ц: <strong>API Keys вЖТ Master Key</strong> вАФ —Б–Ї–Њ–њ—Ц—О–є—В–µ –Ї–ї—О—З<br>
-      <span class="step-badge">3</span> –Т—Б—В–∞–≤—В–µ –Ї–ї—О—З –љ–Є–ґ—З–µ —В–∞ –љ–∞—В–Є—Б–љ—Ц—В—М <strong>"–Я–µ—А—И–Є–є –Ј–∞–њ—Г—Б–Ї"</strong><br>
-      <span class="step-badge">4</span> –Ч–±–µ—А–µ–ґ—Ц—В—М Bin ID вАФ –≤—Ц–љ –њ–Њ—В—А—Ц–±–µ–љ –љ–∞ —Ц–љ—И–Є—Е –њ—А–Є—Б—В—А–Њ—П—Е
+      <span class="step-badge">1</span> &#1047;&#1072;&#1088;&#1077;&#1108;&#1089;&#1090;&#1088;&#1091;&#1081;&#1090;&#1077;&#1089;&#1100; &#1085;&#1072; <a href="https://jsonbin.io" target="_blank">jsonbin.io</a> (&#1073;&#1077;&#1079;&#1082;&#1086;&#1096;&#1090;&#1086;&#1074;&#1085;&#1086;)<br>
+      <span class="step-badge">2</span> &#1042; &#1072;&#1082;&#1072;&#1091;&#1085;&#1090;&#1110;: <strong>API Keys &#8594; Master Key</strong> &#8212; &#1089;&#1082;&#1086;&#1087;&#1110;&#1102;&#1081;&#1090;&#1077; &#1082;&#1083;&#1102;&#1095;<br>
+      <span class="step-badge">3</span> &#1042;&#1089;&#1090;&#1072;&#1074;&#1090;&#1077; &#1082;&#1083;&#1102;&#1095; &#1085;&#1080;&#1078;&#1095;&#1077; &#1090;&#1072; &#1085;&#1072;&#1090;&#1080;&#1089;&#1085;&#1110;&#1090;&#1100; <strong>"&#1055;&#1077;&#1088;&#1096;&#1080;&#1081; &#1079;&#1072;&#1087;&#1091;&#1089;&#1082;"</strong><br>
+      <span class="step-badge">4</span> &#1047;&#1073;&#1077;&#1088;&#1077;&#1078;&#1110;&#1090;&#1100; Bin ID &#8212; &#1074;&#1110;&#1085; &#1087;&#1086;&#1090;&#1088;&#1110;&#1073;&#1077;&#1085; &#1085;&#1072; &#1110;&#1085;&#1096;&#1080;&#1093; &#1087;&#1088;&#1080;&#1089;&#1090;&#1088;&#1086;&#1103;&#1093;
     </div>
     <div class="settings-grid" style="margin-top:14px">
       <div class="form-group">
@@ -384,61 +384,61 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
         <input type="password" class="form-control" id="s-apikey" placeholder="$2b$10$...">
       </div>
       <div class="form-group">
-        <label class="form-label">Bin ID <span style="color:#999">(–њ—Ц—Б–ї—П –њ–µ—А—И–Њ–≥–Њ –Ј–∞–њ—Г—Б–Ї—Г)</span></label>
+        <label class="form-label">Bin ID <span style="color:#999">(&#1087;&#1110;&#1089;&#1083;&#1103; &#1087;&#1077;&#1088;&#1096;&#1086;&#1075;&#1086; &#1079;&#1072;&#1087;&#1091;&#1089;&#1082;&#1091;)</span></label>
         <input type="text" class="form-control" id="s-binid" placeholder="64abc123def456...">
       </div>
     </div>
     <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="cloudFirstRun()">рЯЪА –Я–µ—А—И–Є–є –Ј–∞–њ—Г—Б–Ї (—Б—В–≤–Њ—А–Є—В–Є)</button>
-      <button class="btn btn-success" onclick="cloudPush()">вђЖ –Ч–±–µ—А–µ–≥—В–Є –≤ —Е–Љ–∞—А—Г</button>
-      <button class="btn btn-orange" onclick="cloudPull()">вђЗ –Ч–∞–≤–∞–љ—В–∞–ґ–Є—В–Є –Ј —Е–Љ–∞—А–Є</button>
-      <button class="btn btn-ghost" onclick="saveCloudSettings()">рЯТЊ –Ч–±–µ—А–µ–≥—В–Є –љ–∞–ї–∞—И—В—Г–≤–∞–љ–љ—П</button>
+      <button class="btn btn-primary" onclick="cloudFirstRun()">&#128640; &#1055;&#1077;&#1088;&#1096;&#1080;&#1081; &#1079;&#1072;&#1087;&#1091;&#1089;&#1082; (&#1089;&#1090;&#1074;&#1086;&#1088;&#1080;&#1090;&#1080;)</button>
+      <button class="btn btn-success" onclick="cloudPush()">&#11014; &#1047;&#1073;&#1077;&#1088;&#1077;&#1075;&#1090;&#1080; &#1074; &#1093;&#1084;&#1072;&#1088;&#1091;</button>
+      <button class="btn btn-orange" onclick="cloudPull()">&#11015; &#1047;&#1072;&#1074;&#1072;&#1085;&#1090;&#1072;&#1078;&#1080;&#1090;&#1080; &#1079; &#1093;&#1084;&#1072;&#1088;&#1080;</button>
+      <button class="btn btn-ghost" onclick="saveCloudSettings()">&#128190; &#1047;&#1073;&#1077;&#1088;&#1077;&#1075;&#1090;&#1080; &#1085;&#1072;&#1083;&#1072;&#1096;&#1090;&#1091;&#1074;&#1072;&#1085;&#1085;&#1103;</button>
     </div>
     <div class="sync-status" id="cloud-status"></div>
   </div>
 
   <!-- Share Code -->
   <div class="settings-section">
-    <h3>рЯФЧ –Ъ–Њ–і —Б–Є–љ—Е—А–Њ–љ—Ц–Ј–∞—Ж—Ц—Ч (–±–µ–Ј —А–µ—Ф—Б—В—А–∞—Ж—Ц—Ч)</h3>
-    <p>–°–Ї–Њ–њ—Ц—О–є—В–µ –Ї–Њ–і —Ц –≤—Б—В–∞–≤—В–µ –љ–∞ —Ц–љ—И–Њ–Љ—Г –њ—А–Є—Б—В—А–Њ—Ч вАФ –≤—Б—Ц –і–∞–љ—Ц –њ–µ—А–µ–љ–µ—Б—Г—В—М—Б—П. –Э–µ –њ–Њ—В—А–µ–±—Г—Ф —Ц–љ—В–µ—А–љ–µ—В—Г.</p>
+    <h3>&#128279; &#1050;&#1086;&#1076; &#1089;&#1080;&#1085;&#1093;&#1088;&#1086;&#1085;&#1110;&#1079;&#1072;&#1094;&#1110;&#1111; (&#1073;&#1077;&#1079; &#1088;&#1077;&#1108;&#1089;&#1090;&#1088;&#1072;&#1094;&#1110;&#1111;)</h3>
+    <p>&#1057;&#1082;&#1086;&#1087;&#1110;&#1102;&#1081;&#1090;&#1077; &#1082;&#1086;&#1076; &#1110; &#1074;&#1089;&#1090;&#1072;&#1074;&#1090;&#1077; &#1085;&#1072; &#1110;&#1085;&#1096;&#1086;&#1084;&#1091; &#1087;&#1088;&#1080;&#1089;&#1090;&#1088;&#1086;&#1111; &#8212; &#1074;&#1089;&#1110; &#1076;&#1072;&#1085;&#1110; &#1087;&#1077;&#1088;&#1077;&#1085;&#1077;&#1089;&#1091;&#1090;&#1100;&#1089;&#1103;. &#1053;&#1077; &#1087;&#1086;&#1090;&#1088;&#1077;&#1073;&#1091;&#1108; &#1110;&#1085;&#1090;&#1077;&#1088;&#1085;&#1077;&#1090;&#1091;.</p>
     <div class="settings-grid">
       <div class="form-group full">
-        <label class="form-label">–Т–∞—И –Ї–Њ–і (–љ–∞—В–Є—Б–љ—Ц—В—М –і–ї—П –Ї–Њ–њ—Ц—О–≤–∞–љ–љ—П)</label>
-        <textarea class="share-code" id="shareCodeOut" readonly onclick="copyShareCode()" placeholder="–Э–∞—В–Є—Б–љ—Ц—В—М '–Ч–≥–µ–љ–µ—А—Г–≤–∞—В–Є –Ї–Њ–і'"></textarea>
+        <label class="form-label">&#1042;&#1072;&#1096; &#1082;&#1086;&#1076; (&#1085;&#1072;&#1090;&#1080;&#1089;&#1085;&#1110;&#1090;&#1100; &#1076;&#1083;&#1103; &#1082;&#1086;&#1087;&#1110;&#1102;&#1074;&#1072;&#1085;&#1085;&#1103;)</label>
+        <textarea class="share-code" id="shareCodeOut" readonly onclick="copyShareCode()" placeholder="&#1053;&#1072;&#1090;&#1080;&#1089;&#1085;&#1110;&#1090;&#1100; '&#1047;&#1075;&#1077;&#1085;&#1077;&#1088;&#1091;&#1074;&#1072;&#1090;&#1080; &#1082;&#1086;&#1076;'"></textarea>
       </div>
       <div class="form-group full">
-        <label class="form-label">–Т—Б—В–∞–≤—В–µ –Ї–Њ–і –Ј —Ц–љ—И–Њ–≥–Њ –њ—А–Є—Б—В—А–Њ—О</label>
-        <textarea class="share-code" id="shareCodeIn" placeholder="–Т—Б—В–∞–≤—В–µ –Ї–Њ–і —В—Г—В..."></textarea>
+        <label class="form-label">&#1042;&#1089;&#1090;&#1072;&#1074;&#1090;&#1077; &#1082;&#1086;&#1076; &#1079; &#1110;&#1085;&#1096;&#1086;&#1075;&#1086; &#1087;&#1088;&#1080;&#1089;&#1090;&#1088;&#1086;&#1102;</label>
+        <textarea class="share-code" id="shareCodeIn" placeholder="&#1042;&#1089;&#1090;&#1072;&#1074;&#1090;&#1077; &#1082;&#1086;&#1076; &#1090;&#1091;&#1090;..."></textarea>
       </div>
     </div>
     <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-      <button class="btn btn-primary" onclick="generateShareCode()">рЯУЛ –Ч–≥–µ–љ–µ—А—Г–≤–∞—В–Є –Ї–Њ–і</button>
-      <button class="btn btn-success" onclick="importShareCode()">рЯУ• –Ж–Љ–њ–Њ—А—В—Г–≤–∞—В–Є –Ї–Њ–і</button>
+      <button class="btn btn-primary" onclick="generateShareCode()">&#128203; &#1047;&#1075;&#1077;&#1085;&#1077;&#1088;&#1091;&#1074;&#1072;&#1090;&#1080; &#1082;&#1086;&#1076;</button>
+      <button class="btn btn-success" onclick="importShareCode()">&#128229; &#1030;&#1084;&#1087;&#1086;&#1088;&#1090;&#1091;&#1074;&#1072;&#1090;&#1080; &#1082;&#1086;&#1076;</button>
     </div>
     <div class="sync-status" id="share-status"></div>
   </div>
 
   <!-- CSV Import -->
   <div class="settings-section">
-    <h3>рЯУВ –Ж–Љ–њ–Њ—А—В –Ј CSV</h3>
-    <p>–Ч–∞–≤–∞–љ—В–∞–ґ—В–µ —Д–∞–є–ї CSV –Ј –і–∞–љ–Є–Љ–Є –Ї–ї—Ц—Ф–љ—В—Ц–≤. –Я—Ц–і—В—А–Є–Љ—Г—Ф—В—М—Б—П —Д–Њ—А–Љ–∞—В –µ–Ї—Б–њ–Њ—А—В—Г —Ж—М–Њ–≥–Њ –і–Њ–і–∞—В–Ї—Г –∞–±–Њ Google Sheets.</p>
+    <h3>&#128194; &#1030;&#1084;&#1087;&#1086;&#1088;&#1090; &#1079; CSV</h3>
+    <p>&#1047;&#1072;&#1074;&#1072;&#1085;&#1090;&#1072;&#1078;&#1090;&#1077; &#1092;&#1072;&#1081;&#1083; CSV &#1079; &#1076;&#1072;&#1085;&#1080;&#1084;&#1080; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074;. &#1055;&#1110;&#1076;&#1090;&#1088;&#1080;&#1084;&#1091;&#1108;&#1090;&#1100;&#1089;&#1103; &#1092;&#1086;&#1088;&#1084;&#1072;&#1090; &#1077;&#1082;&#1089;&#1087;&#1086;&#1088;&#1090;&#1091; &#1094;&#1100;&#1086;&#1075;&#1086; &#1076;&#1086;&#1076;&#1072;&#1090;&#1082;&#1091; &#1072;&#1073;&#1086; Google Sheets.</p>
     <div class="drop-zone" id="dropZone" onclick="document.getElementById('csvFileInput').click()"
          ondragover="event.preventDefault();this.classList.add('drag')"
          ondragleave="this.classList.remove('drag')"
          ondrop="handleDrop(event)">
-      <div class="drop-zone-icon">рЯУД</div>
-      <div style="font-weight:600;margin-bottom:4px">–Э–∞—В–Є—Б–љ—Ц—В—М –∞–±–Њ –њ–µ—А–µ—В—П–≥–љ—Ц—В—М CSV —Д–∞–є–ї</div>
-      <div style="font-size:12px">–Я—Ц–і—В—А–Є–Љ—Г—Ф—В—М—Б—П –Ї–Њ–і—Г–≤–∞–љ–љ—П UTF-8, —А–Њ–Ј–і—Ц–ї—М–љ–Є–Ї–Є , –∞–±–Њ ;</div>
+      <div class="drop-zone-icon">&#128196;</div>
+      <div style="font-weight:600;margin-bottom:4px">&#1053;&#1072;&#1090;&#1080;&#1089;&#1085;&#1110;&#1090;&#1100; &#1072;&#1073;&#1086; &#1087;&#1077;&#1088;&#1077;&#1090;&#1103;&#1075;&#1085;&#1110;&#1090;&#1100; CSV &#1092;&#1072;&#1081;&#1083;</div>
+      <div style="font-size:12px">&#1055;&#1110;&#1076;&#1090;&#1088;&#1080;&#1084;&#1091;&#1108;&#1090;&#1100;&#1089;&#1103; &#1082;&#1086;&#1076;&#1091;&#1074;&#1072;&#1085;&#1085;&#1103; UTF-8, &#1088;&#1086;&#1079;&#1076;&#1110;&#1083;&#1100;&#1085;&#1080;&#1082;&#1080; , &#1072;&#1073;&#1086; ;</div>
     </div>
     <input type="file" id="csvFileInput" accept=".csv" style="display:none" onchange="handleCSVFile(this)">
     <div id="csv-preview" style="margin-top:14px;display:none">
-      <div class="section-title">–Я–Њ–њ–µ—А–µ–і–љ—Ц–є –њ–µ—А–µ–≥–ї—П–і</div>
+      <div class="section-title">&#1055;&#1086;&#1087;&#1077;&#1088;&#1077;&#1076;&#1085;&#1110;&#1081; &#1087;&#1077;&#1088;&#1077;&#1075;&#1083;&#1103;&#1076;</div>
       <div class="import-preview" id="csv-preview-table"></div>
       <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
-        <button class="btn btn-success" onclick="confirmCSVImport()">вЬЕ –Ж–Љ–њ–Њ—А—В—Г–≤–∞—В–Є <span id="csv-count"></span> —А—П–і–Ї—Ц–≤</button>
-        <button class="btn btn-ghost" onclick="cancelCSVImport()">–°–Ї–∞—Б—Г–≤–∞—В–Є</button>
+        <button class="btn btn-success" onclick="confirmCSVImport()">&#9989; &#1030;&#1084;&#1087;&#1086;&#1088;&#1090;&#1091;&#1074;&#1072;&#1090;&#1080; <span id="csv-count"></span> &#1088;&#1103;&#1076;&#1082;&#1110;&#1074;</button>
+        <button class="btn btn-ghost" onclick="cancelCSVImport()">&#1057;&#1082;&#1072;&#1089;&#1091;&#1074;&#1072;&#1090;&#1080;</button>
         <label style="font-size:13px;display:flex;align-items:center;gap:6px;cursor:pointer">
-          <input type="checkbox" id="csv-merge"> –Ч–ї–Є—В—В—П (–љ–µ –≤–Є–і–∞–ї—П—В–Є —Ц—Б–љ—Г—О—З—Ц)
+          <input type="checkbox" id="csv-merge"> &#1047;&#1083;&#1080;&#1090;&#1090;&#1103; (&#1085;&#1077; &#1074;&#1080;&#1076;&#1072;&#1083;&#1103;&#1090;&#1080; &#1110;&#1089;&#1085;&#1091;&#1102;&#1095;&#1110;)
         </label>
       </div>
     </div>
@@ -448,12 +448,12 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
   <!-- Danger Zone -->
   <div class="settings-section">
     <div class="danger-zone">
-      <h3>вЪ†пЄП –Э–µ–±–µ–Ј–њ–µ—З–љ–∞ –Ј–Њ–љ–∞</h3>
-      <p style="color:#666;font-size:13px;margin:8px 0 16px">–¶—Ц –і—Ц—Ч –љ–µ–Ј–≤–Њ—А–Њ—В–љ—Ц!</p>
+      <h3>&#9888;&#65039; &#1053;&#1077;&#1073;&#1077;&#1079;&#1087;&#1077;&#1095;&#1085;&#1072; &#1079;&#1086;&#1085;&#1072;</h3>
+      <p style="color:#666;font-size:13px;margin:8px 0 16px">&#1062;&#1110; &#1076;&#1110;&#1111; &#1085;&#1077;&#1079;&#1074;&#1086;&#1088;&#1086;&#1090;&#1085;&#1110;!</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button class="btn btn-danger" onclick="clearAllData()">рЯЧС –Т–Є–і–∞–ї–Є—В–Є –≤—Б—Ц –і–∞–љ—Ц</button>
-        <button class="btn btn-ghost" onclick="exportFullBackup()">рЯТЊ –Я–Њ–≤–љ–Є–є –±–µ–Ї–∞–њ (JSON)</button>
-        <button class="btn btn-ghost" onclick="document.getElementById('jsonBackupInput').click()">рЯУ• –Т—Ц–і–љ–Њ–≤–Є—В–Є –Ј –±–µ–Ї–∞–њ—Г</button>
+        <button class="btn btn-danger" onclick="clearAllData()">&#128465; &#1042;&#1080;&#1076;&#1072;&#1083;&#1080;&#1090;&#1080; &#1074;&#1089;&#1110; &#1076;&#1072;&#1085;&#1110;</button>
+        <button class="btn btn-ghost" onclick="exportFullBackup()">&#128190; &#1055;&#1086;&#1074;&#1085;&#1080;&#1081; &#1073;&#1077;&#1082;&#1072;&#1087; (JSON)</button>
+        <button class="btn btn-ghost" onclick="document.getElementById('jsonBackupInput').click()">&#128229; &#1042;&#1110;&#1076;&#1085;&#1086;&#1074;&#1080;&#1090;&#1080; &#1079; &#1073;&#1077;&#1082;&#1072;&#1087;&#1091;</button>
       </div>
       <input type="file" id="jsonBackupInput" accept=".json" style="display:none" onchange="restoreFromBackup(this)">
     </div>
@@ -466,45 +466,45 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 <!-- ===== DEAL MODAL ===== -->
 <div class="modal-overlay" id="dealModal">
   <div class="modal">
-    <div class="modal-title" id="deal-modal-title">вЮХ –Э–Њ–≤–Є–є –Ї–ї—Ц—Ф–љ—В</div>
+    <div class="modal-title" id="deal-modal-title">&#10133; &#1053;&#1086;&#1074;&#1080;&#1081; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;</div>
     <div class="form-grid">
-      <div class="form-group"><label class="form-label">–Ф–∞—В–∞</label><input type="date" class="form-control" id="d-date"></div>
-      <div class="form-group"><label class="form-label">–Ъ–Њ–Љ–њ–∞–љ—Ц—П *</label><input type="text" class="form-control" id="d-company" placeholder="–Э–∞–Ј–≤–∞ –Ї–Њ–Љ–њ–∞–љ—Ц—Ч"></div>
-      <div class="form-group"><label class="form-label">–Ъ–Њ–љ—В–∞–Ї—В (–Я–Ж–С)</label><input type="text" class="form-control" id="d-contact" placeholder="–Ж–≤–∞–љ–µ–љ–Ї–Њ –Ж–≤–∞–љ"></div>
-      <div class="form-group"><label class="form-label">–Я–Њ—Б–∞–і–∞</label><input type="text" class="form-control" id="d-position" placeholder="–Ф–Є—А–µ–Ї—В–Њ—А"></div>
-      <div class="form-group"><label class="form-label">–Ґ–µ–ї–µ—Д–Њ–љ</label><input type="tel" class="form-control" id="d-phone" placeholder="+380501234567"></div>
+      <div class="form-group"><label class="form-label">&#1044;&#1072;&#1090;&#1072;</label><input type="date" class="form-control" id="d-date"></div>
+      <div class="form-group"><label class="form-label">&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103; *</label><input type="text" class="form-control" id="d-company" placeholder="&#1053;&#1072;&#1079;&#1074;&#1072; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1111;"></div>
+      <div class="form-group"><label class="form-label">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090; (&#1055;&#1030;&#1041;)</label><input type="text" class="form-control" id="d-contact" placeholder="&#1030;&#1074;&#1072;&#1085;&#1077;&#1085;&#1082;&#1086; &#1030;&#1074;&#1072;&#1085;"></div>
+      <div class="form-group"><label class="form-label">&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</label><input type="text" class="form-control" id="d-position" placeholder="&#1044;&#1080;&#1088;&#1077;&#1082;&#1090;&#1086;&#1088;"></div>
+      <div class="form-group"><label class="form-label">&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;</label><input type="tel" class="form-control" id="d-phone" placeholder="+380501234567"></div>
       <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-control" id="d-email" placeholder="email@company.ua"></div>
-      <div class="form-group"><label class="form-label">–Ъ–∞–љ–∞–ї</label>
+      <div class="form-group"><label class="form-label">&#1050;&#1072;&#1085;&#1072;&#1083;</label>
         <select class="form-control" id="d-channel">
-          <option value="">вАФ –≤–Є–±—А–∞—В–Є вАФ</option>
-          <option value="D1">D1 вАФ –Э–∞—Ж. –Љ–µ—А–µ–ґ—Ц</option><option value="D2">D2 вАФ –†–µ–≥—Ц–Њ–љ./B2B</option>
-          <option value="D3">D3 вАФ –†–Њ–Ј–і—А—Ц–±</option><option value="D4.1">D4.1 вАФ –Ж–љ—В–µ—А–љ–µ—В (—Б–Ї–ї–∞–і)</option>
-          <option value="D4.2">D4.2 вАФ Dropshipping</option><option value="D5">D5 вАФ –Я—А–Њ–µ–Ї—В–љ—Ц</option>
-          <option value="D5 Partner">D5 Partner вАФ –Ж–љ—Б—В–∞–ї—П—В–Њ—А–Є</option><option value="D6">D6 вАФ –†–µ–≥—Ц–Њ–љ. –і–Є—Б—В.</option>
+          <option value="">&#8212; &#1074;&#1080;&#1073;&#1088;&#1072;&#1090;&#1080; &#8212;</option>
+          <option value="D1">D1 &#8212; &#1053;&#1072;&#1094;. &#1084;&#1077;&#1088;&#1077;&#1078;&#1110;</option><option value="D2">D2 &#8212; &#1056;&#1077;&#1075;&#1110;&#1086;&#1085;./B2B</option>
+          <option value="D3">D3 &#8212; &#1056;&#1086;&#1079;&#1076;&#1088;&#1110;&#1073;</option><option value="D4.1">D4.1 &#8212; &#1030;&#1085;&#1090;&#1077;&#1088;&#1085;&#1077;&#1090; (&#1089;&#1082;&#1083;&#1072;&#1076;)</option>
+          <option value="D4.2">D4.2 &#8212; Dropshipping</option><option value="D5">D5 &#8212; &#1055;&#1088;&#1086;&#1077;&#1082;&#1090;&#1085;&#1110;</option>
+          <option value="D5 Partner">D5 Partner &#8212; &#1030;&#1085;&#1089;&#1090;&#1072;&#1083;&#1103;&#1090;&#1086;&#1088;&#1080;</option><option value="D6">D6 &#8212; &#1056;&#1077;&#1075;&#1110;&#1086;&#1085;. &#1076;&#1080;&#1089;&#1090;.</option>
         </select>
       </div>
-      <div class="form-group"><label class="form-label">–°—В–∞—В—Г—Б</label>
+      <div class="form-group"><label class="form-label">&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</label>
         <select class="form-control" id="d-status">
           <option>New</option><option>Contacted</option><option>Warm</option>
           <option>Meeting scheduled</option><option>Offer sent</option>
           <option>Won</option><option>Lost</option><option>Recycle</option>
         </select>
       </div>
-      <div class="form-group"><label class="form-label">–Ф–∞—В–∞ –Ї–Њ–љ—В–∞–Ї—В—Г</label><input type="date" class="form-control" id="d-contactdate"></div>
-      <div class="form-group"><label class="form-label">–Ф–∞—В–∞ –љ–∞—Б—В—Г–њ–љ–Њ–≥–Њ –Ї—А–Њ–Ї—Г</label><input type="date" class="form-control" id="d-stepdate"></div>
-      <div class="form-group full"><label class="form-label">–Э–∞—Б—В—Г–њ–љ–Є–є –Ї—А–Њ–Ї</label><input type="text" class="form-control" id="d-nextstep" placeholder="–©–Њ –њ–ї–∞–љ—Г—Ф—В–µ –Ј—А–Њ–±–Є—В–Є?"></div>
-      <div class="form-group"><label class="form-label">–†–µ–Ј—Г–ї—М—В–∞—В</label>
+      <div class="form-group"><label class="form-label">&#1044;&#1072;&#1090;&#1072; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</label><input type="date" class="form-control" id="d-contactdate"></div>
+      <div class="form-group"><label class="form-label">&#1044;&#1072;&#1090;&#1072; &#1085;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1086;&#1075;&#1086; &#1082;&#1088;&#1086;&#1082;&#1091;</label><input type="date" class="form-control" id="d-stepdate"></div>
+      <div class="form-group full"><label class="form-label">&#1053;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1080;&#1081; &#1082;&#1088;&#1086;&#1082;</label><input type="text" class="form-control" id="d-nextstep" placeholder="&#1065;&#1086; &#1087;&#1083;&#1072;&#1085;&#1091;&#1108;&#1090;&#1077; &#1079;&#1088;&#1086;&#1073;&#1080;&#1090;&#1080;?"></div>
+      <div class="form-group"><label class="form-label">&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;</label>
         <select class="form-control" id="d-result">
-          <option value="">вАФ</option><option>–Ч—Г—Б—В—А—Ц—З –њ—А–Њ–≤–µ–і–µ–љ–∞</option>
-          <option>–Ъ–Я –≤—Ц–і–њ—А–∞–≤–ї–µ–љ–Њ</option><option>–Ґ–µ—Б—В / –і–µ–Љ–Њ</option><option>–Ю–њ–ї–∞—В–∞</option>
+          <option value="">&#8212;</option><option>&#1047;&#1091;&#1089;&#1090;&#1088;&#1110;&#1095; &#1087;&#1088;&#1086;&#1074;&#1077;&#1076;&#1077;&#1085;&#1072;</option>
+          <option>&#1050;&#1055; &#1074;&#1110;&#1076;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1086;</option><option>&#1058;&#1077;&#1089;&#1090; / &#1076;&#1077;&#1084;&#1086;</option><option>&#1054;&#1087;&#1083;&#1072;&#1090;&#1072;</option>
         </select>
       </div>
-      <div class="form-group"><label class="form-label">–Я—А–Є—З–Є–љ–∞ –≤—Ц–і–Љ–Њ–≤–Є</label><input type="text" class="form-control" id="d-reject" placeholder="—П–Ї—Й–Њ —Б—В–∞—В—Г—Б Lost..."></div>
-      <div class="form-group full"><label class="form-label">–Ъ–Њ–Љ–µ–љ—В–∞—А</label><textarea class="form-control" id="d-comment" rows="3" placeholder="–Э–Њ—В–∞—В–Ї–Є, –і–µ—В–∞–ї—Ц..."></textarea></div>
+      <div class="form-group"><label class="form-label">&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080;</label><input type="text" class="form-control" id="d-reject" placeholder="&#1103;&#1082;&#1097;&#1086; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089; Lost..."></div>
+      <div class="form-group full"><label class="form-label">&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</label><textarea class="form-control" id="d-comment" rows="3" placeholder="&#1053;&#1086;&#1090;&#1072;&#1090;&#1082;&#1080;, &#1076;&#1077;&#1090;&#1072;&#1083;&#1110;..."></textarea></div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('dealModal')">–°–Ї–∞—Б—Г–≤–∞—В–Є</button>
-      <button class="btn btn-primary" onclick="saveDeal()">рЯТЊ –Ч–±–µ—А–µ–≥—В–Є</button>
+      <button class="btn btn-ghost" onclick="closeModal('dealModal')">&#1057;&#1082;&#1072;&#1089;&#1091;&#1074;&#1072;&#1090;&#1080;</button>
+      <button class="btn btn-primary" onclick="saveDeal()">&#128190; &#1047;&#1073;&#1077;&#1088;&#1077;&#1075;&#1090;&#1080;</button>
     </div>
   </div>
 </div>
@@ -512,22 +512,22 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 <!-- ===== ACTIVITY MODAL ===== -->
 <div class="modal-overlay" id="actModal">
   <div class="modal">
-    <div class="modal-title">рЯУК –Ч–∞–њ–Є—Б –∞–Ї—В–Є–≤–љ–Њ—Б—В—Ц</div>
+    <div class="modal-title">&#128202; &#1047;&#1072;&#1087;&#1080;&#1089; &#1072;&#1082;&#1090;&#1080;&#1074;&#1085;&#1086;&#1089;&#1090;&#1110;</div>
     <div class="form-grid">
-      <div class="form-group"><label class="form-label">–Ф–∞—В–∞ *</label><input type="date" class="form-control" id="a-date"></div>
-      <div class="form-group"><label class="form-label">–Э–Њ–≤–Є—Е –Ї–ї—Ц—Ф–љ—В—Ц–≤ <span style="color:#1565C0">(—Ж—Ц–ї—М 10+)</span></label><input type="number" class="form-control" id="a-new" min="0" value="0"></div>
-      <div class="form-group"><label class="form-label">–Ф–Ј–≤—Ц–љ–Ї–Є</label><input type="number" class="form-control" id="a-calls" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">&#1044;&#1072;&#1090;&#1072; *</label><input type="date" class="form-control" id="a-date"></div>
+      <div class="form-group"><label class="form-label">&#1053;&#1086;&#1074;&#1080;&#1093; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074; <span style="color:#1565C0">(&#1094;&#1110;&#1083;&#1100; 10+)</span></label><input type="number" class="form-control" id="a-new" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">&#1044;&#1079;&#1074;&#1110;&#1085;&#1082;&#1080;</label><input type="number" class="form-control" id="a-calls" min="0" value="0"></div>
       <div class="form-group"><label class="form-label">WhatsApp / Viber</label><input type="number" class="form-control" id="a-msg" min="0" value="0"></div>
-      <div class="form-group"><label class="form-label">–Ф—Ц–∞–ї–Њ–≥—Ц–≤ <span style="color:#1565C0">(—Ж—Ц–ї—М 5+)</span></label><input type="number" class="form-control" id="a-dialogs" min="0" value="0" placeholder="–∞–≤—В–Њ = –і–Ј–≤—Ц–љ–Ї–Є+WA"></div>
-      <div class="form-group"><label class="form-label">–Ф–µ–Љ–Њ / –Ґ–µ—Б—В</label><input type="number" class="form-control" id="a-demo" min="0" value="0"></div>
-      <div class="form-group"><label class="form-label">–Ч—Г—Б—В—А—Ц—З—Ц <span style="color:#1565C0">(—Ж—Ц–ї—М 2+)</span></label><input type="number" class="form-control" id="a-meet" min="0" value="0"></div>
-      <div class="form-group"><label class="form-label">–Ъ–Я –≤—Ц–і–њ—А–∞–≤–ї–µ–љ–Њ</label><input type="number" class="form-control" id="a-prop" min="0" value="0"></div>
-      <div class="form-group"><label class="form-label">–Ю–њ–ї–∞—В–Є</label><input type="number" class="form-control" id="a-pay" min="0" value="0"></div>
-      <div class="form-group full"><label class="form-label">–Ъ–Њ–Љ–µ–љ—В–∞—А</label><textarea class="form-control" id="a-comment" rows="2"></textarea></div>
+      <div class="form-group"><label class="form-label">&#1044;&#1110;&#1072;&#1083;&#1086;&#1075;&#1110;&#1074; <span style="color:#1565C0">(&#1094;&#1110;&#1083;&#1100; 5+)</span></label><input type="number" class="form-control" id="a-dialogs" min="0" value="0" placeholder="&#1072;&#1074;&#1090;&#1086; = &#1076;&#1079;&#1074;&#1110;&#1085;&#1082;&#1080;+WA"></div>
+      <div class="form-group"><label class="form-label">&#1044;&#1077;&#1084;&#1086; / &#1058;&#1077;&#1089;&#1090;</label><input type="number" class="form-control" id="a-demo" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">&#1047;&#1091;&#1089;&#1090;&#1088;&#1110;&#1095;&#1110; <span style="color:#1565C0">(&#1094;&#1110;&#1083;&#1100; 2+)</span></label><input type="number" class="form-control" id="a-meet" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">&#1050;&#1055; &#1074;&#1110;&#1076;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1086;</label><input type="number" class="form-control" id="a-prop" min="0" value="0"></div>
+      <div class="form-group"><label class="form-label">&#1054;&#1087;&#1083;&#1072;&#1090;&#1080;</label><input type="number" class="form-control" id="a-pay" min="0" value="0"></div>
+      <div class="form-group full"><label class="form-label">&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</label><textarea class="form-control" id="a-comment" rows="2"></textarea></div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('actModal')">–°–Ї–∞—Б—Г–≤–∞—В–Є</button>
-      <button class="btn btn-primary" onclick="saveActivity()">рЯТЊ –Ч–±–µ—А–µ–≥—В–Є</button>
+      <button class="btn btn-ghost" onclick="closeModal('actModal')">&#1057;&#1082;&#1072;&#1089;&#1091;&#1074;&#1072;&#1090;&#1080;</button>
+      <button class="btn btn-primary" onclick="saveActivity()">&#128190; &#1047;&#1073;&#1077;&#1088;&#1077;&#1075;&#1090;&#1080;</button>
     </div>
   </div>
 </div>
@@ -546,7 +546,7 @@ function saveActs(){  localStorage.setItem(actsKey(currentMgrId), JSON.stringify
 // ============================================================
 // CONSTANTS
 // ============================================================
-const CH_TYPES={'D1':'–Э–∞—Ж. –Љ–µ—А–µ–ґ—Ц','D2':'–†–µ–≥—Ц–Њ–љ./B2B','D3':'–†–Њ–Ј–і—А—Ц–±','D4.1':'–Ж–љ—В–µ—А–љ–µ—В(—Б–Ї–ї–∞–і)','D4.2':'Dropshipping','D5':'–Я—А–Њ–µ–Ї—В–љ—Ц','D5 Partner':'–Ж–љ—Б—В–∞–ї—П—В–Њ—А–Є','D6':'–†–µ–≥—Ц–Њ–љ. –і–Є—Б—В.'};
+const CH_TYPES={'D1':'\u041D\u0430\u0446. \u043C\u0435\u0440\u0435\u0436\u0456','D2':'\u0420\u0435\u0433\u0456\u043E\u043D./B2B','D3':'\u0420\u043E\u0437\u0434\u0440\u0456\u0431','D4.1':'\u0406\u043D\u0442\u0435\u0440\u043D\u0435\u0442(\u0441\u043A\u043B\u0430\u0434)','D4.2':'Dropshipping','D5':'\u041F\u0440\u043E\u0435\u043A\u0442\u043D\u0456','D5 Partner':'\u0406\u043D\u0441\u0442\u0430\u043B\u044F\u0442\u043E\u0440\u0438','D6':'\u0420\u0435\u0433\u0456\u043E\u043D. \u0434\u0438\u0441\u0442.'};
 const S_CLASS={'New':'s-New','Contacted':'s-Contacted','Warm':'s-Warm','Meeting scheduled':'s-Meeting','Offer sent':'s-Offer','Won':'s-Won','Lost':'s-Lost','Recycle':'s-Recycle'};
 const FCOLORS={'New':'#1565C0','Contacted':'#1976D2','Warm':'#FB8C00','Meeting scheduled':'#7B1FA2','Offer sent':'#00838F','Won':'#2E7D32','Lost':'#C62828','Recycle':'#757575'};
 
@@ -568,17 +568,17 @@ function calcDeal(d){
   const daysInact=contD?diffDays(contD,now):null;
   let ctrl,ctrlCls;
   if(!d.company){ctrl='';ctrlCls='';}
-  else if(overdue||noStep){ctrl='рЯФі –Ъ–†–Ш–Ґ–Ш–І–Э–Ю';ctrlCls='ctrl-crit';}
-  else if(daysInact!==null&&daysInact>3&&active){ctrl='рЯЯ° –†–Ш–Ч–Ш–Ъ';ctrlCls='ctrl-risk';}
-  else{ctrl='рЯЯҐ OK';ctrlCls='ctrl-ok';}
+  else if(overdue||noStep){ctrl='\uD83D\uDD34 \u041A\u0420\u0418\u0422\u0418\u0427\u041D\u041E';ctrlCls='ctrl-crit';}
+  else if(daysInact!==null&&daysInact>3&&active){ctrl='\uD83D\uDFE1 \u0420\u0418\u0417\u0418\u041A';ctrlCls='ctrl-risk';}
+  else{ctrl='\uD83D\uDFE2 OK';ctrlCls='ctrl-ok';}
   return{overdue,noStep,daysInact,ctrl,ctrlCls};
 }
 
 function kpiBadge(v,t){
   if(!v&&v!==0)return'';
-  if(v>=t)return`<span class="kpi-ok">вЬЕ ${v}/${t}+</span>`;
-  if(v>=t*.7)return`<span class="kpi-warn">вЪ†пЄП ${v}/${t}+</span>`;
-  return`<span class="kpi-bad">рЯФі ${v}/${t}+</span>`;
+  if(v>=t)return`<span class="kpi-ok">\u2705 ${v}/${t}+</span>`;
+  if(v>=t*.7)return`<span class="kpi-warn">\u26A0\uFE0F ${v}/${t}+</span>`;
+  return`<span class="kpi-bad">\uD83D\uDD34 ${v}/${t}+</span>`;
 }
 
 // ============================================================
@@ -592,15 +592,15 @@ async function sha256(s){
 async function initAuth(){
   const stored=localStorage.getItem('hsm_pass');
   if(!stored){
-    document.getElementById('loginSubtitle').textContent='–Т–њ–µ—А—И–µ? –Ч–∞–і–∞–є—В–µ —Б–≤—Ц–є –њ–∞—А–Њ–ї—М';
-    document.getElementById('loginHint').textContent='–Т–≤–µ–і—Ц—В—М –±—Г–і—М-—П–Ї–Є–є –њ–∞—А–Њ–ї—М вАФ –≤—Ц–љ —Б—В–∞–љ–µ –≤–∞—И–Є–Љ';
+    document.getElementById('loginSubtitle').textContent='\u0412\u043F\u0435\u0440\u0448\u0435? \u0417\u0430\u0434\u0430\u0439\u0442\u0435 \u0441\u0432\u0456\u0439 \u043F\u0430\u0440\u043E\u043B\u044C';
+    document.getElementById('loginHint').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u0431\u0443\u0434\u044C-\u044F\u043A\u0438\u0439 \u043F\u0430\u0440\u043E\u043B\u044C \u2014 \u0432\u0456\u043D \u0441\u0442\u0430\u043D\u0435 \u0432\u0430\u0448\u0438\u043C';
     document.getElementById('loginScreen').style.display='flex';
     document.getElementById('appMain').style.display='none';
   } else {
     const sess=sessionStorage.getItem('hsm_session');
     if(sess==='admin'||sess==='manager'){showApp(sess);}
     else{
-      document.getElementById('loginSubtitle').textContent='–Т–≤–µ–і—Ц—В—М –њ–∞—А–Њ–ї—М –і–ї—П –і–Њ—Б—В—Г–њ—Г';
+      document.getElementById('loginSubtitle').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C \u0434\u043B\u044F \u0434\u043E\u0441\u0442\u0443\u043F\u0443';
       document.getElementById('loginHint').textContent='';
       document.getElementById('loginScreen').style.display='flex';
       document.getElementById('appMain').style.display='none';
@@ -610,10 +610,10 @@ async function initAuth(){
 
 async function doLogin(){
   const pass=document.getElementById('loginPass').value;
-  if(!pass){document.getElementById('loginErr').textContent='–Т–≤–µ–і—Ц—В—М –њ–∞—А–Њ–ї—М';return;}
+  if(!pass){document.getElementById('loginErr').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C';return;}
   const stored=localStorage.getItem('hsm_pass');
   if(!stored){
-    if(pass.length<3){document.getElementById('loginErr').textContent='–Я–∞—А–Њ–ї—М –Љ—Ц–љ—Ц–Љ—Г–Љ 3 —Б–Є–Љ–≤–Њ–ї–Є';return;}
+    if(pass.length<3){document.getElementById('loginErr').textContent='\u041F\u0430\u0440\u043E\u043B\u044C \u043C\u0456\u043D\u0456\u043C\u0443\u043C 3 \u0441\u0438\u043C\u0432\u043E\u043B\u0438';return;}
     const h=await sha256(pass);
     localStorage.setItem('hsm_pass',h);
     sessionStorage.setItem('hsm_session','admin');
@@ -634,7 +634,7 @@ async function doLogin(){
     sessionStorage.setItem('hsm_mgr_name',matched.name);
     showApp('manager');return;
   }
-  document.getElementById('loginErr').textContent='вЭМ –Э–µ–≤—Ц—А–љ–Є–є –њ–∞—А–Њ–ї—М';
+  document.getElementById('loginErr').textContent='\u274C \u041D\u0435\u0432\u0456\u0440\u043D\u0438\u0439 \u043F\u0430\u0440\u043E\u043B\u044C';
   document.getElementById('loginPass').value='';
   document.getElementById('loginPass').focus();
 }
@@ -665,7 +665,7 @@ function applyRole(role){
     body.classList.add('manager-mode');
     document.getElementById('mgr-banner').style.display='block';
     document.getElementById('mgr-name-display').textContent=mgrName;
-    document.getElementById('role-badge').textContent='рЯСЈ '+mgrName;
+    document.getElementById('role-badge').textContent='\uD83D\uDC77 '+mgrName;
     document.getElementById('role-badge').className='role-badge role-manager';
     const dashTab=document.querySelector('.nav-tab[onclick*="dashboard"]');
     if(dashTab) dashTab.style.display=perms.dashboard?'':'none';
@@ -676,7 +676,7 @@ function applyRole(role){
     currentMgrId=null;
     body.classList.remove('manager-mode');
     document.getElementById('mgr-banner').style.display='none';
-    document.getElementById('role-badge').textContent='рЯСС –Р–і–Љ—Ц–љ';
+    document.getElementById('role-badge').textContent='\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D';
     document.getElementById('role-badge').className='role-badge role-admin';
     updateDashMgrFilter();
   }
@@ -688,7 +688,7 @@ function doLogout(){
   sessionStorage.removeItem('hsm_session');
   document.getElementById('loginPass').value='';
   document.getElementById('loginErr').textContent='';
-  document.getElementById('loginSubtitle').textContent='–Т–≤–µ–і—Ц—В—М –њ–∞—А–Њ–ї—М –і–ї—П –і–Њ—Б—В—Г–њ—Г';
+  document.getElementById('loginSubtitle').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C \u0434\u043B\u044F \u0434\u043E\u0441\u0442\u0443\u043F\u0443';
   document.getElementById('loginHint').textContent='';
   document.getElementById('loginScreen').style.display='flex';
   document.getElementById('appMain').style.display='none';
@@ -699,18 +699,18 @@ async function changePassword(){
   const newP=document.getElementById('s-newpass').value;
   const newP2=document.getElementById('s-newpass2').value;
   const el=document.getElementById('pass-status');
-  if(!oldP||!newP||!newP2){showStatus(el,'–Ч–∞–њ–Њ–≤–љ—Ц—В—М –≤—Б—Ц –њ–Њ–ї—П','err');return;}
-  if(newP!==newP2){showStatus(el,'–Э–Њ–≤—Ц –њ–∞—А–Њ–ї—Ц –љ–µ —Б–њ—Ц–≤–њ–∞–і–∞—О—В—М','err');return;}
-  if(newP.length<3){showStatus(el,'–Ь—Ц–љ—Ц–Љ—Г–Љ 3 —Б–Є–Љ–≤–Њ–ї–Є','err');return;}
+  if(!oldP||!newP||!newP2){showStatus(el,'\u0417\u0430\u043F\u043E\u0432\u043D\u0456\u0442\u044C \u0432\u0441\u0456 \u043F\u043E\u043B\u044F','err');return;}
+  if(newP!==newP2){showStatus(el,'\u041D\u043E\u0432\u0456 \u043F\u0430\u0440\u043E\u043B\u0456 \u043D\u0435 \u0441\u043F\u0456\u0432\u043F\u0430\u0434\u0430\u044E\u0442\u044C','err');return;}
+  if(newP.length<3){showStatus(el,'\u041C\u0456\u043D\u0456\u043C\u0443\u043C 3 \u0441\u0438\u043C\u0432\u043E\u043B\u0438','err');return;}
   const stored=localStorage.getItem('hsm_pass');
   const oldH=await sha256(oldP);
-  if(oldH!==stored){showStatus(el,'–Я–Њ—В–Њ—З–љ–Є–є –њ–∞—А–Њ–ї—М –љ–µ–≤—Ц—А–љ–Є–є','err');return;}
+  if(oldH!==stored){showStatus(el,'\u041F\u043E\u0442\u043E\u0447\u043D\u0438\u0439 \u043F\u0430\u0440\u043E\u043B\u044C \u043D\u0435\u0432\u0456\u0440\u043D\u0438\u0439','err');return;}
   const newH=await sha256(newP);
   localStorage.setItem('hsm_pass',newH);
   document.getElementById('s-oldpass').value='';
   document.getElementById('s-newpass').value='';
   document.getElementById('s-newpass2').value='';
-  showStatus(el,'вЬЕ –Я–∞—А–Њ–ї—М —Г—Б–њ—Ц—И–љ–Њ –Ј–Љ—Ц–љ–µ–љ–Њ','ok');
+  showStatus(el,'\u2705 \u041F\u0430\u0440\u043E\u043B\u044C \u0443\u0441\u043F\u0456\u0448\u043D\u043E \u0437\u043C\u0456\u043D\u0435\u043D\u043E','ok');
 }
 
 // ============================================================
@@ -757,13 +757,13 @@ function renderPipeline(){
   const crits=deals.filter(d=>calcDeal(d).ctrlCls==='ctrl-crit').length;
   const risks=deals.filter(d=>calcDeal(d).ctrlCls==='ctrl-risk').length;
   document.getElementById('pipe-stats').innerHTML=`
-    <div class="stat-chip">–Т—Б—М–Њ–≥–Њ: <strong>${deals.length}</strong></div>
-    <div class="stat-chip">вЬЕ Won: <strong style="color:#2e7d32">${won}</strong></div>
-    <div class="stat-chip">рЯФі –Ъ—А–Є—В–Є—З–љ–Є—Е: <strong style="color:#b71c1c">${crits}</strong></div>
-    <div class="stat-chip">рЯЯ° –†–Є–Ј–Є–Ї: <strong style="color:#e65100">${risks}</strong></div>
-    <div class="stat-chip">–Я–Њ–Ї–∞–Ј–∞–љ–Њ: <strong>${rows.length}</strong></div>`;
+    <div class="stat-chip">\u0412\u0441\u044C\u043E\u0433\u043E: <strong>${deals.length}</strong></div>
+    <div class="stat-chip">\u2705 Won: <strong style="color:#2e7d32">${won}</strong></div>
+    <div class="stat-chip">\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445: <strong style="color:#b71c1c">${crits}</strong></div>
+    <div class="stat-chip">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A: <strong style="color:#e65100">${risks}</strong></div>
+    <div class="stat-chip">\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E: <strong>${rows.length}</strong></div>`;
   const tbody=document.getElementById('pipe-body');
-  if(!rows.length){tbody.innerHTML=`<tr><td colspan="21"><div class="empty"><div class="empty-icon">рЯУЛ</div>–Э–µ–Љ–∞—Ф –Ј–∞–њ–Є—Б—Ц–≤. –Ф–Њ–і–∞–є—В–µ –њ–µ—А—И–Њ–≥–Њ –Ї–ї—Ц—Ф–љ—В–∞!</div></td></tr>`;return;}
+  if(!rows.length){tbody.innerHTML=`<tr><td colspan="21"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
   tbody.innerHTML=rows.map((d,i)=>{
     const{overdue,noStep,daysInact,ctrl,ctrlCls}=calcDeal(d);
     const rCls=ctrlCls==='ctrl-crit'?'row-crit':ctrlCls==='ctrl-risk'?'row-risk':'';
@@ -784,13 +784,13 @@ function renderPipeline(){
       <td style="font-size:11px">${esc(d.result)}</td>
       <td style="color:#b71c1c;font-size:11px">${esc(d.reject)}</td>
       <td style="color:#888;font-size:11px;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(d.comment)}">${esc(d.comment)}</td>
-      <td style="color:#b71c1c;font-weight:700;font-size:11px">${overdue?'–Я–†–Ю–°–Ґ–†–Ю–І–Х–Э–Ю':''}</td>
-      <td style="color:#b71c1c;font-weight:700;font-size:11px">${noStep?'–С–Х–Ч –Ъ–†–Ю–Ъ–£!':''}</td>
+      <td style="color:#b71c1c;font-weight:700;font-size:11px">${overdue?'\u041F\u0420\u041E\u0421\u0422\u0420\u041E\u0427\u0415\u041D\u041E':''}</td>
+      <td style="color:#b71c1c;font-weight:700;font-size:11px">${noStep?'\u0411\u0415\u0417 \u041A\u0420\u041E\u041A\u0423!':''}</td>
       <td style="text-align:center;font-weight:600">${daysInact!==null?daysInact:''}</td>
       <td class="${ctrlCls}">${ctrl}</td>
       <td style="white-space:nowrap">
-        ${(role!=='manager'||perms.edit)?`<button class="btn btn-sm btn-primary" onclick="openDeal(${d.id})">вЬПпЄП</button>`:''}
-        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">рЯЧС</button>
+        ${(role!=='manager'||perms.edit)?`<button class="btn btn-sm btn-primary" onclick="openDeal(${d.id})">\u270F\uFE0F</button>`:''}
+        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">\uD83D\uDDD1</button>
       </td></tr>`;
   }).join('');
 }
@@ -798,7 +798,7 @@ function renderPipeline(){
 function openDeal(id){
   editDealId=id;
   if(id===null){
-    document.getElementById('deal-modal-title').textContent='вЮХ –Э–Њ–≤–Є–є –Ї–ї—Ц—Ф–љ—В';
+    document.getElementById('deal-modal-title').textContent='\u2795 \u041D\u043E\u0432\u0438\u0439 \u043A\u043B\u0456\u0454\u043D\u0442';
     ['company','contact','position','phone','email','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value='');
     document.getElementById('d-date').value=todayStr();
     document.getElementById('d-contactdate').value='';
@@ -808,7 +808,7 @@ function openDeal(id){
     document.getElementById('d-result').value='';
   } else {
     const d=deals.find(x=>x.id===id);if(!d)return;
-    document.getElementById('deal-modal-title').textContent='вЬПпЄП –†–µ–і–∞–≥—Г–≤–∞—В–Є –Ї–ї—Ц—Ф–љ—В–∞';
+    document.getElementById('deal-modal-title').textContent='\u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u043A\u043B\u0456\u0454\u043D\u0442\u0430';
     ['company','contact','position','phone','email','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value=d[f]||'');
     document.getElementById('d-date').value=d.date||'';
     document.getElementById('d-contactdate').value=d.contactdate||'';
@@ -822,7 +822,7 @@ function openDeal(id){
 
 function saveDeal(){
   const company=document.getElementById('d-company').value.trim();
-  if(!company){alert('–Т–≤–µ–і—Ц—В—М –љ–∞–Ј–≤—Г –Ї–Њ–Љ–њ–∞–љ—Ц—Ч!');return;}
+  if(!company){alert('\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043D\u0430\u0437\u0432\u0443 \u043A\u043E\u043C\u043F\u0430\u043D\u0456\u0457!');return;}
   const deal={
     id:editDealId||Date.now(),
     date:document.getElementById('d-date').value,
@@ -846,7 +846,7 @@ function saveDeal(){
 }
 
 function delDeal(id){
-  if(!confirm('–Т–Є–і–∞–ї–Є—В–Є —Ж–µ–є –Ј–∞–њ–Є—Б?'))return;
+  if(!confirm('\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u0446\u0435\u0439 \u0437\u0430\u043F\u0438\u0441?'))return;
   deals=deals.filter(x=>x.id!==id);saveDeals();renderPipeline();
 }
 
@@ -859,7 +859,7 @@ function renderActivity(){
   const actAddBtn=document.querySelector('#tab-activity .toolbar .btn-primary');
   if(actAddBtn) actAddBtn.style.display=(role==='manager'&&!perms.activity)?'none':'';
   const tbody=document.getElementById('act-body');
-  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">рЯУК</div>–Э–µ–Љ–∞—Ф –Ј–∞–њ–Є—Б—Ц–≤. –Ф–Њ–і–∞–є—В–µ –њ–µ—А—И–Є–є –і–µ–љ—М!</div></td></tr>`;return;}
+  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">\uD83D\uDCCA</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u0438\u0439 \u0434\u0435\u043D\u044C!</div></td></tr>`;return;}
   tbody.innerHTML=acts.map(a=>`<tr>
     <td style="font-weight:600;white-space:nowrap">${fmtDate(a.date)}</td>
     <td style="text-align:center">${a.newc}</td><td style="text-align:center">${a.calls}</td>
@@ -869,8 +869,8 @@ function renderActivity(){
     <td style="color:#888;font-size:12px">${esc(a.comment)}</td>
     <td>${kpiBadge(a.newc,10)}</td><td>${kpiBadge(a.dialogs,5)}</td><td>${kpiBadge(a.meet,2)}</td>
     <td style="white-space:nowrap">
-      <button class="btn btn-sm btn-primary" onclick="openActivity(${a.id})">вЬПпЄП</button>
-      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">рЯЧС</button>
+      <button class="btn btn-sm btn-primary" onclick="openActivity(${a.id})">\u270F\uFE0F</button>
+      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">\uD83D\uDDD1</button>
     </td></tr>`).join('');
 }
 
@@ -898,7 +898,7 @@ function openActivity(id){
 
 function saveActivity(){
   const date=document.getElementById('a-date').value;
-  if(!date){alert('–Т–Ї–∞–ґ—Ц—В—М –і–∞—В—Г!');return;}
+  if(!date){alert('\u0412\u043A\u0430\u0436\u0456\u0442\u044C \u0434\u0430\u0442\u0443!');return;}
   const calls=+document.getElementById('a-calls').value||0;
   const msg=+document.getElementById('a-msg').value||0;
   const di=+document.getElementById('a-dialogs').value||0;
@@ -918,7 +918,7 @@ function saveActivity(){
   saveActs();closeModal('actModal');renderActivity();
 }
 
-function delAct(id){if(!confirm('–Т–Є–і–∞–ї–Є—В–Є?'))return;acts=acts.filter(x=>x.id!==id);saveActs();renderActivity();}
+function delAct(id){if(!confirm('\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438?'))return;acts=acts.filter(x=>x.id!==id);saveActs();renderActivity();}
 
 // ============================================================
 // DASHBOARD
@@ -967,19 +967,19 @@ function renderDashboard(){
   const wNew=wActs.reduce((s,a)=>s+a.newc,0);
   const wDial=wActs.reduce((s,a)=>s+a.dialogs,0);
   const wMeet=wActs.reduce((s,a)=>s+a.meet,0);
-  const cr=(f,t)=>{const n=cnt[f];if(!n)return'вАФ';return Math.round(cnt[t]/n*100)+'%';};
+  const cr=(f,t)=>{const n=cnt[f];if(!n)return'\u2014';return Math.round(cnt[t]/n*100)+'%';};
   document.getElementById('dash-content').innerHTML=`
   <div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-value">${total}</div><div class="kpi-label">–Т—Б—М–Њ–≥–Њ –≤ –±–∞–Ј—Ц</div></div>
-    <div class="kpi-card" style="border-top-color:#2e7d32"><div class="kpi-value" style="color:#2e7d32">${won}</div><div class="kpi-label">вЬЕ Won вАФ –Ј–∞–Ї—А–Є—В–Њ</div></div>
-    <div class="kpi-card" style="border-top-color:#00838F"><div class="kpi-value" style="color:#00838F">${conv}%</div><div class="kpi-label">–Ъ–Њ–љ–≤–µ—А—Б—Ц—П</div></div>
-    <div class="kpi-card" style="border-top-color:#7B1FA2"><div class="kpi-value" style="color:#7B1FA2">${active}</div><div class="kpi-label">–Р–Ї—В–Є–≤–љ–Є—Е —Г–≥–Њ–і</div></div>
-    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">рЯФі –Ъ—А–Є—В–Є—З–љ–Є—Е</div></div>
-    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">рЯЯ° –†–Є–Ј–Є–Ї—Ц–≤</div></div>
+    <div class="kpi-card"><div class="kpi-value">${total}</div><div class="kpi-label">\u0412\u0441\u044C\u043E\u0433\u043E \u0432 \u0431\u0430\u0437\u0456</div></div>
+    <div class="kpi-card" style="border-top-color:#2e7d32"><div class="kpi-value" style="color:#2e7d32">${won}</div><div class="kpi-label">\u2705 Won \u2014 \u0437\u0430\u043A\u0440\u0438\u0442\u043E</div></div>
+    <div class="kpi-card" style="border-top-color:#00838F"><div class="kpi-value" style="color:#00838F">${conv}%</div><div class="kpi-label">\u041A\u043E\u043D\u0432\u0435\u0440\u0441\u0456\u044F</div></div>
+    <div class="kpi-card" style="border-top-color:#7B1FA2"><div class="kpi-value" style="color:#7B1FA2">${active}</div><div class="kpi-label">\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445 \u0443\u0433\u043E\u0434</div></div>
+    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</div></div>
+    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A\u0456\u0432</div></div>
   </div>
   <div class="grid2">
     <div class="card">
-      <div class="card-title">рЯУК –Т–Њ—А–Њ–љ–Ї–∞ –њ—А–Њ–і–∞–ґ—Ц–≤</div>
+      <div class="card-title">\uD83D\uDCCA \u0412\u043E\u0440\u043E\u043D\u043A\u0430 \u043F\u0440\u043E\u0434\u0430\u0436\u0456\u0432</div>
       <div class="funnel">
         ${fStages.map(s=>`<div class="funnel-row">
           <div class="funnel-label">${s}</div>
@@ -990,36 +990,36 @@ function renderDashboard(){
           <div class="funnel-bar-wrap"><div class="funnel-bar" style="background:#C62828;width:${Math.max(cnt['Lost']/maxC*100,3)}%">${cnt['Lost']>0?cnt['Lost']:''}</div></div>
           <div class="funnel-num">${cnt['Lost']}</div></div>
       </div>
-      <div style="margin-top:16px"><div class="section-title">–Ъ–Њ–љ–≤–µ—А—Б—Ц—П –Љ—Ц–ґ –µ—В–∞–њ–∞–Љ–Є</div>
+      <div style="margin-top:16px"><div class="section-title">\u041A\u043E\u043D\u0432\u0435\u0440\u0441\u0456\u044F \u043C\u0456\u0436 \u0435\u0442\u0430\u043F\u0430\u043C\u0438</div>
         <table class="conv-table">
           ${[['New','Contacted'],['Contacted','Warm'],['Warm','Meeting scheduled'],['Offer sent','Won']].map(([f,t])=>`
-          <tr><td>${f} вЖТ ${t.replace('Meeting scheduled','Meeting')}</td>
+          <tr><td>${f} \u2192 ${t.replace('Meeting scheduled','Meeting')}</td>
           <td><div class="conv-bar" style="width:${Math.min(parseInt(cr(f,t))||0,100)*0.55}px"></div><strong>${cr(f,t)}</strong></td></tr>`).join('')}
         </table>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">рЯЪ® –Ъ–Њ–љ—В—А–Њ–ї—М</div>
+      <div class="card-title">\uD83D\uDEA8 \u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C</div>
       <div class="alert-box">
-        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>рЯФі –Ъ—А–Є—В–Є—З–љ—Ц (–њ—А–Њ—Б—В—А–Њ—З–µ–љ–Њ/–±–µ–Ј –Ї—А–Њ–Ї—Г)</span><strong>${crits}</strong></div>
-        <div class="alert-item ${overdues>0?'al-red':'al-green'}"><span>вП∞ –Я—А–Њ—Б—В—А–Њ—З–µ–љ–Є–є –Ї—А–Њ–Ї</span><strong>${overdues}</strong></div>
-        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>рЯЪ® –С–µ–Ј –љ–∞—Б—В—Г–њ–љ–Њ–≥–Њ –Ї—А–Њ–Ї—Г</span><strong>${noSteps}</strong></div>
-        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>рЯЯ° –С–µ–Ј –∞–Ї—В–Є–≤–љ–Њ—Б—В—Ц 3+ –і–љ—Ц</span><strong>${risks}</strong></div>
-        <div class="alert-item al-blue"><span>вЩїпЄП Recycle</span><strong>${cnt['Recycle']}</strong></div>
-        <div class="alert-item al-blue"><span>вЭМ Lost</span><strong>${lost}</strong></div>
+        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0456 (\u043F\u0440\u043E\u0441\u0442\u0440\u043E\u0447\u0435\u043D\u043E/\u0431\u0435\u0437 \u043A\u0440\u043E\u043A\u0443)</span><strong>${crits}</strong></div>
+        <div class="alert-item ${overdues>0?'al-red':'al-green'}"><span>\u23F0 \u041F\u0440\u043E\u0441\u0442\u0440\u043E\u0447\u0435\u043D\u0438\u0439 \u043A\u0440\u043E\u043A</span><strong>${overdues}</strong></div>
+        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>\uD83D\uDEA8 \u0411\u0435\u0437 \u043D\u0430\u0441\u0442\u0443\u043F\u043D\u043E\u0433\u043E \u043A\u0440\u043E\u043A\u0443</span><strong>${noSteps}</strong></div>
+        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>\uD83D\uDFE1 \u0411\u0435\u0437 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0456 3+ \u0434\u043D\u0456</span><strong>${risks}</strong></div>
+        <div class="alert-item al-blue"><span>\u267B\uFE0F Recycle</span><strong>${cnt['Recycle']}</strong></div>
+        <div class="alert-item al-blue"><span>\u274C Lost</span><strong>${lost}</strong></div>
       </div>
-      <div style="margin-top:18px"><div class="section-title">рЯУЕ KPI –Ј–∞ 7 –і–љ—Ц–≤</div>
-        ${_acts.length===0?`<div style="color:#bbb;text-align:center;padding:14px;font-size:13px">–Ф–Њ–і–∞–є—В–µ –і–∞–љ—Ц –≤ Activity Log</div>`:`
+      <div style="margin-top:18px"><div class="section-title">\uD83D\uDCC5 KPI \u0437\u0430 7 \u0434\u043D\u0456\u0432</div>
+        ${_acts.length===0?`<div style="color:#bbb;text-align:center;padding:14px;font-size:13px">\u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u0434\u0430\u043D\u0456 \u0432 Activity Log</div>`:`
         <div class="alert-box">
-          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>рЯЖХ –Э–Њ–≤–Є—Е –Ї–ї—Ц—Ф–љ—В—Ц–≤ (—Ж—Ц–ї—М 70+)</span><strong>${wNew}</strong></div>
-          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>рЯТђ –Ф—Ц–∞–ї–Њ–≥—Ц–≤ (—Ж—Ц–ї—М 35+)</span><strong>${wDial}</strong></div>
-          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>рЯ§Э –Ч—Г—Б—В—А—Ц—З–µ–є (—Ж—Ц–ї—М 14+)</span><strong>${wMeet}</strong></div>
+          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>\uD83C\uDD95 \u041D\u043E\u0432\u0438\u0445 \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 (\u0446\u0456\u043B\u044C 70+)</span><strong>${wNew}</strong></div>
+          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>\uD83D\uDCAC \u0414\u0456\u0430\u043B\u043E\u0433\u0456\u0432 (\u0446\u0456\u043B\u044C 35+)</span><strong>${wDial}</strong></div>
+          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>\uD83E\uDD1D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0435\u0439 (\u0446\u0456\u043B\u044C 14+)</span><strong>${wMeet}</strong></div>
         </div>`}
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">рЯЧВ –†–Њ–Ј–±–Є–≤–Ї–∞ –њ–Њ –Ї–∞–љ–∞–ї–∞—Е</div>
+    <div class="card-title">\uD83D\uDDC2 \u0420\u043E\u0437\u0431\u0438\u0432\u043A\u0430 \u043F\u043E \u043A\u0430\u043D\u0430\u043B\u0430\u0445</div>
     <div class="ch-grid">
       ${CHS.map(ch=>{
         const n=_deals.filter(d=>d.channel===ch).length;
@@ -1028,8 +1028,8 @@ function renderDashboard(){
         return`<div class="ch-card">
           <div class="ch-name">${ch}</div><div class="ch-count">${n}</div>
           <div class="ch-type">${CH_TYPES[ch]||''}</div>
-          <div style="font-size:11px;color:#2e7d32;font-weight:600;margin-top:4px">вЬЕ Won: ${w}</div>
-          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">рЯФі –Ъ—А–Є—В: ${c}</div>`:''}
+          <div style="font-size:11px;color:#2e7d32;font-weight:600;margin-top:4px">\u2705 Won: ${w}</div>
+          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">\uD83D\uDD34 \u041A\u0440\u0438\u0442: ${c}</div>`:''}
         </div>`;}).join('')}
     </div>
   </div>`;
@@ -1059,17 +1059,17 @@ async function addManager(){
   const name=document.getElementById('s-mgrname').value.trim();
   const p1=document.getElementById('s-mgrpass').value;
   const p2=document.getElementById('s-mgrpass2').value;
-  if(!name){showStatus(el,'вЭМ –Т–≤–µ–і—Ц—В—М —Ц–Љ\'—П –Љ–µ–љ–µ–і–ґ–µ—А–∞','err');return;}
-  if(!p1){showStatus(el,'вЭМ –Т–≤–µ–і—Ц—В—М –њ–∞—А–Њ–ї—М','err');return;}
-  if(p1!==p2){showStatus(el,'вЭМ –Я–∞—А–Њ–ї—Ц –љ–µ —Б–њ—Ц–≤–њ–∞–і–∞—О—В—М','err');return;}
-  if(p1.length<3){showStatus(el,'вЭМ –Ь—Ц–љ—Ц–Љ—Г–Љ 3 —Б–Є–Љ–≤–Њ–ї–Є','err');return;}
+  if(!name){showStatus(el,'\u274C \u0412\u0432\u0435\u0434\u0456\u0442\u044C \u0456\u043C\'\u044F \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430','err');return;}
+  if(!p1){showStatus(el,'\u274C \u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C','err');return;}
+  if(p1!==p2){showStatus(el,'\u274C \u041F\u0430\u0440\u043E\u043B\u0456 \u043D\u0435 \u0441\u043F\u0456\u0432\u043F\u0430\u0434\u0430\u044E\u0442\u044C','err');return;}
+  if(p1.length<3){showStatus(el,'\u274C \u041C\u0456\u043D\u0456\u043C\u0443\u043C 3 \u0441\u0438\u043C\u0432\u043E\u043B\u0438','err');return;}
   const h=await sha256(p1);
   const adminHash=localStorage.getItem('hsm_pass');
-  if(h===adminHash){showStatus(el,'вЭМ –Я–∞—А–Њ–ї—М –љ–µ –Љ–Њ–ґ–µ —Б–њ—Ц–≤–њ–∞–і–∞—В–Є –Ј –њ–∞—А–Њ–ї–µ–Љ –∞–і–Љ—Ц–љ–∞','err');return;}
+  if(h===adminHash){showStatus(el,'\u274C \u041F\u0430\u0440\u043E\u043B\u044C \u043D\u0435 \u043C\u043E\u0436\u0435 \u0441\u043F\u0456\u0432\u043F\u0430\u0434\u0430\u0442\u0438 \u0437 \u043F\u0430\u0440\u043E\u043B\u0435\u043C \u0430\u0434\u043C\u0456\u043D\u0430','err');return;}
   const managers=getManagers();
-  if(managers.find(m=>m.name.toLowerCase()===name.toLowerCase())){showStatus(el,'вЭМ –Ь–µ–љ–µ–і–ґ–µ—А –Ј —В–∞–Ї–Є–Љ —Ц–Љ\'—П–Љ –≤–ґ–µ —Ц—Б–љ—Г—Ф','err');return;}
+  if(managers.find(m=>m.name.toLowerCase()===name.toLowerCase())){showStatus(el,'\u274C \u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440 \u0437 \u0442\u0430\u043A\u0438\u043C \u0456\u043C\'\u044F\u043C \u0432\u0436\u0435 \u0456\u0441\u043D\u0443\u0454','err');return;}
   // Check no duplicate passwords
-  if(managers.find(m=>m.passHash===h)){showStatus(el,'вЭМ –Ґ–∞–Ї–Є–є –њ–∞—А–Њ–ї—М –≤–ґ–µ –≤–Є–Ї–Њ—А–Є—Б—В–Њ–≤—Г—Ф—В—М—Б—П —Ц–љ—И–Є–Љ –Љ–µ–љ–µ–і–ґ–µ—А–Њ–Љ','err');return;}
+  if(managers.find(m=>m.passHash===h)){showStatus(el,'\u274C \u0422\u0430\u043A\u0438\u0439 \u043F\u0430\u0440\u043E\u043B\u044C \u0432\u0436\u0435 \u0432\u0438\u043A\u043E\u0440\u0438\u0441\u0442\u043E\u0432\u0443\u0454\u0442\u044C\u0441\u044F \u0456\u043D\u0448\u0438\u043C \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u043E\u043C','err');return;}
   const perms={
     add:    document.getElementById('perm-add').checked,
     edit:   document.getElementById('perm-edit').checked,
@@ -1082,7 +1082,7 @@ async function addManager(){
   document.getElementById('s-mgrname').value='';
   document.getElementById('s-mgrpass').value='';
   document.getElementById('s-mgrpass2').value='';
-  showStatus(el,`вЬЕ –Ь–µ–љ–µ–і–ґ–µ—А "${name}" –і–Њ–і–∞–љ–Є–є! –Я–∞—А–Њ–ї—М –≤—Б—В–∞–љ–Њ–≤–ї–µ–љ–Њ.`,'ok');
+  showStatus(el,`\u2705 \u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440 "${name}" \u0434\u043E\u0434\u0430\u043D\u0438\u0439! \u041F\u0430\u0440\u043E\u043B\u044C \u0432\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u043E.`,'ok');
   renderMgrList();
   updateDashMgrFilter();
 }
@@ -1090,37 +1090,37 @@ async function addManager(){
 function deleteMgr(id){
   const mgr=getManagers().find(m=>m.id===id);
   if(!mgr)return;
-  if(!confirm(`–Т–Є–і–∞–ї–Є—В–Є –Љ–µ–љ–µ–і–ґ–µ—А–∞ "${mgr.name}"?\n–Щ–Њ–≥–Њ –і–∞–љ—Ц (–Ї–ї—Ц—Ф–љ—В–Є, –∞–Ї—В–Є–≤–љ—Ц—Б—В—М) –±—Г–і—Г—В—М –Ј–±–µ—А–µ–ґ–µ–љ—Ц, –∞–ї–µ —Г–≤—Ц–є—В–Є –≤—Ц–љ –±—Ц–ї—М—И–µ –љ–µ –Ј–Љ–Њ–ґ–µ.`))return;
+  if(!confirm(`\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430 "${mgr.name}"?\n\u0419\u043E\u0433\u043E \u0434\u0430\u043D\u0456 (\u043A\u043B\u0456\u0454\u043D\u0442\u0438, \u0430\u043A\u0442\u0438\u0432\u043D\u0456\u0441\u0442\u044C) \u0431\u0443\u0434\u0443\u0442\u044C \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u0456, \u0430\u043B\u0435 \u0443\u0432\u0456\u0439\u0442\u0438 \u0432\u0456\u043D \u0431\u0456\u043B\u044C\u0448\u0435 \u043D\u0435 \u0437\u043C\u043E\u0436\u0435.`))return;
   saveManagers(getManagers().filter(m=>m.id!==id));
   renderMgrList();
   updateDashMgrFilter();
-  showStatus(document.getElementById('mgr-status'),`вЬЕ –Ь–µ–љ–µ–і–ґ–µ—А "${mgr.name}" –≤–Є–і–∞–ї–µ–љ–Є–є`,'ok');
+  showStatus(document.getElementById('mgr-status'),`\u2705 \u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440 "${mgr.name}" \u0432\u0438\u0434\u0430\u043B\u0435\u043D\u0438\u0439`,'ok');
 }
 
 function renderMgrList(){
   const managers=getManagers();
   const el=document.getElementById('mgr-list');
   if(!managers.length){
-    el.innerHTML=`<div style="color:#aaa;font-size:13px;padding:10px 0">–Ь–µ–љ–µ–і–ґ–µ—А—Ц–≤ –њ–Њ–Ї–Є –љ–µ–Љ–∞—Ф. –Ф–Њ–і–∞–є—В–µ –њ–µ—А—И–Њ–≥–Њ –љ–Є–ґ—З–µ.</div>`;
+    el.innerHTML=`<div style="color:#aaa;font-size:13px;padding:10px 0">\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0456\u0432 \u043F\u043E\u043A\u0438 \u043D\u0435\u043C\u0430\u0454. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043D\u0438\u0436\u0447\u0435.</div>`;
     return;
   }
-  el.innerHTML=`<div class="section-title">–Р–Ї—В–Є–≤–љ—Ц –Љ–µ–љ–µ–і–ґ–µ—А–Є (${managers.length})</div>`+
+  el.innerHTML=`<div class="section-title">\u0410\u043A\u0442\u0438\u0432\u043D\u0456 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length})</div>`+
   managers.map(m=>{
     const deals_count=JSON.parse(localStorage.getItem(dealsKey(m.id))||'[]').length;
     const acts_count=JSON.parse(localStorage.getItem(actsKey(m.id))||'[]').length;
     return`<div class="mgr-perm" style="margin-bottom:8px">
       <div>
-        <strong style="font-size:14px">рЯСЈ ${esc(m.name)}</strong>
-        <span style="font-size:11px;color:#999;margin-left:8px">${deals_count} –Ї–ї—Ц—Ф–љ—В—Ц–≤ ¬Ј ${acts_count} –і–љ—Ц–≤ –∞–Ї—В–Є–≤–љ–Њ—Б—В—Ц</span><br>
-        <span style="font-size:11px;color:#888">–Ф–Њ–Ј–≤–Њ–ї–Є: ${[
-          m.perms.add?'вЮХ –Ф–Њ–і–∞–≤–∞—В–Є':'',
-          m.perms.edit?'вЬПпЄП –†–µ–і–∞–≥—Г–≤–∞—В–Є':'',
-          m.perms.activity?'рЯУК Activity':'',
-          m.perms.dashboard?'рЯЪА Dashboard':'',
-          m.perms.export?'вђЗ CSV':''
-        ].filter(Boolean).join(' ¬Ј ')}</span>
+        <strong style="font-size:14px">\uD83D\uDC77 ${esc(m.name)}</strong>
+        <span style="font-size:11px;color:#999;margin-left:8px">${deals_count} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 \u00B7 ${acts_count} \u0434\u043D\u0456\u0432 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0456</span><br>
+        <span style="font-size:11px;color:#888">\u0414\u043E\u0437\u0432\u043E\u043B\u0438: ${[
+          m.perms.add?'\u2795 \u0414\u043E\u0434\u0430\u0432\u0430\u0442\u0438':'',
+          m.perms.edit?'\u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438':'',
+          m.perms.activity?'\uD83D\uDCCA Activity':'',
+          m.perms.dashboard?'\uD83D\uDE80 Dashboard':'',
+          m.perms.export?'\u2B07 CSV':''
+        ].filter(Boolean).join(' \u00B7 ')}</span>
       </div>
-      <button class="btn btn-sm btn-danger" onclick="deleteMgr('${m.id}')">рЯЧС –Т–Є–і–∞–ї–Є—В–Є</button>
+      <button class="btn btn-sm btn-danger" onclick="deleteMgr('${m.id}')">\uD83D\uDDD1 \u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438</button>
     </div>`;
   }).join('');
 }
@@ -1131,9 +1131,9 @@ function updateDashMgrFilter(){
   const sel=document.getElementById('dash-mgr-filter');
   if(!sel)return;
   const managers=getManagers();
-  sel.innerHTML=`<option value="">рЯС• –Т—Б—Ц –Љ–µ–љ–µ–і–ґ–µ—А–Є (${managers.length+1})</option>
-    <option value="__admin__">рЯСС –Р–і–Љ—Ц–љ</option>`+
-    managers.map(m=>`<option value="${m.id}">рЯСЈ ${esc(m.name)}</option>`).join('');
+  sel.innerHTML=`<option value="">\uD83D\uDC65 \u0412\u0441\u0456 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length+1})</option>
+    <option value="__admin__">\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D</option>`+
+    managers.map(m=>`<option value="${m.id}">\uD83D\uDC77 ${esc(m.name)}</option>`).join('');
 }
 
 // ============================================================
@@ -1151,7 +1151,7 @@ function saveCloudSettings(){
     binId:document.getElementById('s-binid').value.trim()
   };
   localStorage.setItem('hsm_cloud',JSON.stringify(cfg));
-  showStatus(document.getElementById('cloud-status'),'вЬЕ –Э–∞–ї–∞—И—В—Г–≤–∞–љ–љ—П –Ј–±–µ—А–µ–ґ–µ–љ–Њ','ok');
+  showStatus(document.getElementById('cloud-status'),'\u2705 \u041D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E','ok');
 }
 
 function getCloudCfg(){
@@ -1164,8 +1164,8 @@ function getCloudCfg(){
 async function cloudFirstRun(){
   const el=document.getElementById('cloud-status');
   const{apiKey}=getCloudCfg();
-  if(!apiKey){showStatus(el,'вЭМ –Т–≤–µ–і—Ц—В—М API Key!','err');return;}
-  showStatus(el,'вП≥ –°—В–≤–Њ—А—О—О —Б—Е–Њ–≤–Є—Й–µ...','loading');
+  if(!apiKey){showStatus(el,'\u274C \u0412\u0432\u0435\u0434\u0456\u0442\u044C API Key!','err');return;}
+  showStatus(el,'\u23F3 \u0421\u0442\u0432\u043E\u0440\u044E\u044E \u0441\u0445\u043E\u0432\u0438\u0449\u0435...','loading');
   try{
     const r=await fetch('https://api.jsonbin.io/v3/b',{
       method:'POST',
@@ -1177,15 +1177,15 @@ async function cloudFirstRun(){
     const binId=j.metadata.id;
     document.getElementById('s-binid').value=binId;
     localStorage.setItem('hsm_cloud',JSON.stringify({apiKey,binId}));
-    showStatus(el,`вЬЕ –°—В–≤–Њ—А–µ–љ–Њ! Bin ID: ${binId} вАФ –Ј–±–µ—А–µ–ґ—Ц—В—М –є–Њ–≥–Њ –і–ї—П —Ц–љ—И–Є—Е –њ—А–Є—Б—В—А–Њ—Ч–≤`,'ok');
-  }catch(e){showStatus(el,'вЭМ –Я–Њ–Љ–Є–ї–Ї–∞: '+e.message,'err');}
+    showStatus(el,`\u2705 \u0421\u0442\u0432\u043E\u0440\u0435\u043D\u043E! Bin ID: ${binId} \u2014 \u0437\u0431\u0435\u0440\u0435\u0436\u0456\u0442\u044C \u0439\u043E\u0433\u043E \u0434\u043B\u044F \u0456\u043D\u0448\u0438\u0445 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0457\u0432`,'ok');
+  }catch(e){showStatus(el,'\u274C \u041F\u043E\u043C\u0438\u043B\u043A\u0430: '+e.message,'err');}
 }
 
 async function cloudPush(){
   const el=document.getElementById('cloud-status');
   const{apiKey,binId}=getCloudCfg();
-  if(!apiKey||!binId){showStatus(el,'вЭМ –Т–≤–µ–і—Ц—В—М API Key —В–∞ Bin ID','err');return;}
-  showStatus(el,'вП≥ –Ч–±–µ—А—Ц–≥–∞—О –≤ —Е–Љ–∞—А—Г...','loading');
+  if(!apiKey||!binId){showStatus(el,'\u274C \u0412\u0432\u0435\u0434\u0456\u0442\u044C API Key \u0442\u0430 Bin ID','err');return;}
+  showStatus(el,'\u23F3 \u0417\u0431\u0435\u0440\u0456\u0433\u0430\u044E \u0432 \u0445\u043C\u0430\u0440\u0443...','loading');
   try{
     const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}`,{
       method:'PUT',
@@ -1194,16 +1194,16 @@ async function cloudPush(){
     });
     const j=await r.json();
     if(!r.ok)throw new Error(j.message||r.statusText);
-    showStatus(el,`вЬЕ –Ч–±–µ—А–µ–ґ–µ–љ–Њ! ${deals.length} –Ї–ї—Ц—Ф–љ—В—Ц–≤, ${acts.length} –∞–Ї—В–Є–≤–љ–Њ—Б—В–µ–є вАФ ${new Date().toLocaleTimeString('uk-UA')}`,'ok');
-  }catch(e){showStatus(el,'вЭМ –Я–Њ–Љ–Є–ї–Ї–∞: '+e.message,'err');}
+    showStatus(el,`\u2705 \u0417\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E! ${deals.length} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432, ${acts.length} \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0435\u0439 \u2014 ${new Date().toLocaleTimeString('uk-UA')}`,'ok');
+  }catch(e){showStatus(el,'\u274C \u041F\u043E\u043C\u0438\u043B\u043A\u0430: '+e.message,'err');}
 }
 
 async function cloudPull(){
   const el=document.getElementById('cloud-status');
   const{apiKey,binId}=getCloudCfg();
-  if(!apiKey||!binId){showStatus(el,'вЭМ –Т–≤–µ–і—Ц—В—М API Key —В–∞ Bin ID','err');return;}
-  if(!confirm('–Ч–∞–≤–∞–љ—В–∞–ґ–Є—В–Є –і–∞–љ—Ц –Ј —Е–Љ–∞—А–Є? –Ы–Њ–Ї–∞–ї—М–љ—Ц –і–∞–љ—Ц –±—Г–і—Г—В—М –Ј–∞–Љ—Ц–љ–µ–љ—Ц!'))return;
-  showStatus(el,'вП≥ –Ч–∞–≤–∞–љ—В–∞–ґ—Г—О –Ј —Е–Љ–∞—А–Є...','loading');
+  if(!apiKey||!binId){showStatus(el,'\u274C \u0412\u0432\u0435\u0434\u0456\u0442\u044C API Key \u0442\u0430 Bin ID','err');return;}
+  if(!confirm('\u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0438\u0442\u0438 \u0434\u0430\u043D\u0456 \u0437 \u0445\u043C\u0430\u0440\u0438? \u041B\u043E\u043A\u0430\u043B\u044C\u043D\u0456 \u0434\u0430\u043D\u0456 \u0431\u0443\u0434\u0443\u0442\u044C \u0437\u0430\u043C\u0456\u043D\u0435\u043D\u0456!'))return;
+  showStatus(el,'\u23F3 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0443\u044E \u0437 \u0445\u043C\u0430\u0440\u0438...','loading');
   try{
     const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`,{
       headers:{'X-Master-Key':apiKey}
@@ -1213,9 +1213,9 @@ async function cloudPull(){
     deals=j.record.deals||[];
     acts=j.record.acts||[];
     saveDeals();saveActs();
-    showStatus(el,`вЬЕ –Ч–∞–≤–∞–љ—В–∞–ґ–µ–љ–Њ! ${deals.length} –Ї–ї—Ц—Ф–љ—В—Ц–≤, ${acts.length} –∞–Ї—В–Є–≤–љ–Њ—Б—В–µ–є`,'ok');
+    showStatus(el,`\u2705 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043E! ${deals.length} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432, ${acts.length} \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0435\u0439`,'ok');
     renderPipeline();
-  }catch(e){showStatus(el,'вЭМ –Я–Њ–Љ–Є–ї–Ї–∞: '+e.message,'err');}
+  }catch(e){showStatus(el,'\u274C \u041F\u043E\u043C\u0438\u043B\u043A\u0430: '+e.message,'err');}
 }
 
 // ============================================================
@@ -1225,7 +1225,7 @@ function generateShareCode(){
   const data=JSON.stringify({v:2,deals,acts,ts:Date.now()});
   const code=btoa(unescape(encodeURIComponent(data)));
   document.getElementById('shareCodeOut').value=code;
-  showStatus(document.getElementById('share-status'),'вЬЕ –Ъ–Њ–і –Ј–≥–µ–љ–µ—А–Њ–≤–∞–љ–Њ! –Э–∞—В–Є—Б–љ—Ц—В—М –љ–∞ —В–µ–Ї—Б—В–Њ–≤–µ –њ–Њ–ї–µ —Й–Њ–± —Б–Ї–Њ–њ—Ц—О–≤–∞—В–Є','ok');
+  showStatus(document.getElementById('share-status'),'\u2705 \u041A\u043E\u0434 \u0437\u0433\u0435\u043D\u0435\u0440\u043E\u0432\u0430\u043D\u043E! \u041D\u0430\u0442\u0438\u0441\u043D\u0456\u0442\u044C \u043D\u0430 \u0442\u0435\u043A\u0441\u0442\u043E\u0432\u0435 \u043F\u043E\u043B\u0435 \u0449\u043E\u0431 \u0441\u043A\u043E\u043F\u0456\u044E\u0432\u0430\u0442\u0438','ok');
 }
 
 function copyShareCode(){
@@ -1233,24 +1233,24 @@ function copyShareCode(){
   if(!ta.value)return;
   ta.select();
   document.execCommand('copy');
-  showStatus(document.getElementById('share-status'),'вЬЕ –°–Ї–Њ–њ—Ц–є–Њ–≤–∞–љ–Њ –≤ –±—Г—Д–µ—А –Њ–±–Љ—Ц–љ—Г!','ok');
+  showStatus(document.getElementById('share-status'),'\u2705 \u0421\u043A\u043E\u043F\u0456\u0439\u043E\u0432\u0430\u043D\u043E \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0456\u043D\u0443!','ok');
 }
 
 function importShareCode(){
   const el=document.getElementById('share-status');
   const code=document.getElementById('shareCodeIn').value.trim();
-  if(!code){showStatus(el,'вЭМ –Т—Б—В–∞–≤—В–µ –Ї–Њ–і!','err');return;}
+  if(!code){showStatus(el,'\u274C \u0412\u0441\u0442\u0430\u0432\u0442\u0435 \u043A\u043E\u0434!','err');return;}
   try{
     const data=JSON.parse(decodeURIComponent(escape(atob(code))));
-    if(!data.deals&&!data.acts)throw new Error('–Э–µ–≤—Ц—А–љ–Є–є —Д–Њ—А–Љ–∞—В –Ї–Њ–і—Г');
-    if(!confirm(`–Ж–Љ–њ–Њ—А—В—Г–≤–∞—В–Є ${(data.deals||[]).length} –Ї–ї—Ц—Ф–љ—В—Ц–≤ —В–∞ ${(data.acts||[]).length} –∞–Ї—В–Є–≤–љ–Њ—Б—В–µ–є?\n–Я–Њ—В–Њ—З–љ—Ц –і–∞–љ—Ц –±—Г–і—Г—В—М –Ј–∞–Љ—Ц–љ–µ–љ—Ц!`))return;
+    if(!data.deals&&!data.acts)throw new Error('\u041D\u0435\u0432\u0456\u0440\u043D\u0438\u0439 \u0444\u043E\u0440\u043C\u0430\u0442 \u043A\u043E\u0434\u0443');
+    if(!confirm(`\u0406\u043C\u043F\u043E\u0440\u0442\u0443\u0432\u0430\u0442\u0438 ${(data.deals||[]).length} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 \u0442\u0430 ${(data.acts||[]).length} \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0435\u0439?\n\u041F\u043E\u0442\u043E\u0447\u043D\u0456 \u0434\u0430\u043D\u0456 \u0431\u0443\u0434\u0443\u0442\u044C \u0437\u0430\u043C\u0456\u043D\u0435\u043D\u0456!`))return;
     deals=data.deals||[];
     acts=data.acts||[];
     saveDeals();saveActs();
     document.getElementById('shareCodeIn').value='';
-    showStatus(el,`вЬЕ –Ж–Љ–њ–Њ—А—В–Њ–≤–∞–љ–Њ! ${deals.length} –Ї–ї—Ц—Ф–љ—В—Ц–≤, ${acts.length} –∞–Ї—В–Є–≤–љ–Њ—Б—В–µ–є`,'ok');
+    showStatus(el,`\u2705 \u0406\u043C\u043F\u043E\u0440\u0442\u043E\u0432\u0430\u043D\u043E! ${deals.length} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432, ${acts.length} \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0435\u0439`,'ok');
     renderPipeline();
-  }catch(e){showStatus(el,'вЭМ –Э–µ–≤—Ц—А–љ–Є–є –Ї–Њ–і. –Я–µ—А–µ–≤—Ц—А—В–µ —В–∞ —Б–њ—А–Њ–±—Г–є—В–µ –Ј–љ–Њ–≤—Г.','err');}
+  }catch(e){showStatus(el,'\u274C \u041D\u0435\u0432\u0456\u0440\u043D\u0438\u0439 \u043A\u043E\u0434. \u041F\u0435\u0440\u0435\u0432\u0456\u0440\u0442\u0435 \u0442\u0430 \u0441\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0437\u043D\u043E\u0432\u0443.','err');}
 }
 
 // ============================================================
@@ -1261,7 +1261,7 @@ function handleDrop(e){
   document.getElementById('dropZone').classList.remove('drag');
   const f=e.dataTransfer.files[0];
   if(f&&f.name.endsWith('.csv'))processCSV(f);
-  else alert('–С—Г–і—М –ї–∞—Б–Ї–∞, –Ј–∞–≤–∞–љ—В–∞–ґ—В–µ —Д–∞–є–ї .csv');
+  else alert('\u0411\u0443\u0434\u044C \u043B\u0430\u0441\u043A\u0430, \u0437\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0442\u0435 \u0444\u0430\u0439\u043B .csv');
 }
 
 function handleCSVFile(input){
@@ -1281,9 +1281,9 @@ function processCSV(file){
 function parseCSV(text){
   const el=document.getElementById('csv-status');
   // Remove BOM
-  const clean=text.replace(/^пїњ/,'');
+  const clean=text.replace(/^\uFEFF/,'');
   const lines=clean.split(/\r?\n/).filter(l=>l.trim());
-  if(lines.length<2){showStatus(el,'вЭМ –§–∞–є–ї –њ–Њ—А–Њ–ґ–љ—Ц–є –∞–±–Њ –Љ–∞—Ф –ї–Є—И–µ –Ј–∞–≥–Њ–ї–Њ–≤–Њ–Ї','err');return;}
+  if(lines.length<2){showStatus(el,'\u274C \u0424\u0430\u0439\u043B \u043F\u043E\u0440\u043E\u0436\u043D\u0456\u0439 \u0430\u0431\u043E \u043C\u0430\u0454 \u043B\u0438\u0448\u0435 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A','err');return;}
 
   // Detect delimiter
   const delim=lines[0].includes(';')?';':',';
@@ -1293,20 +1293,20 @@ function parseCSV(text){
 
   // Column map - flexible matching
   const colMap={
-    company:   findCol(headers,['–Ї–Њ–Љ–њ–∞–љ—Ц—П','company','–љ–∞–Ј–≤–∞–љ–Є–µ','–Ї–Њ–Љ–њ–∞–љ–Є—П']),
-    contact:   findCol(headers,['–Ї–Њ–љ—В–∞–Ї—В','contact','–њ–Є–±','—Д–Є–Њ','name']),
-    position:  findCol(headers,['–њ–Њ—Б–∞–і–∞','position','–і–Њ–ї–ґ–љ–Њ—Б—В—М']),
-    phone:     findCol(headers,['—В–µ–ї–µ—Д–Њ–љ','phone','tel']),
-    email:     findCol(headers,['email','–њ–Њ—И—В–∞','mail']),
-    channel:   findCol(headers,['–Ї–∞–љ–∞–ї','channel']),
-    status:    findCol(headers,['—Б—В–∞—В—Г—Б','status']),
-    date:      findCol(headers,['–і–∞—В–∞','date','–і–∞—В–∞ –і–Њ–і–∞–≤–∞–љ–љ—П']),
-    contactdate:findCol(headers,['–і–∞—В–∞ –Ї–Њ–љ—В–∞–Ї—В—Г','contact date','–і–∞—В–∞ –Ї–Њ–љ—В–∞–Ї—В–∞']),
-    stepdate:  findCol(headers,['–і–∞—В–∞ –Ї—А–Њ–Ї—Г','step date','–і–∞—В–∞ —И–∞–≥–∞']),
-    nextstep:  findCol(headers,['–љ–∞—Б—В—Г–њ–љ–Є–є –Ї—А–Њ–Ї','next step','—Б–ї–µ–і—Г—О—Й–Є–є —И–∞–≥']),
-    result:    findCol(headers,['—А–µ–Ј—Г–ї—М—В–∞—В','result']),
-    reject:    findCol(headers,['–њ—А–Є—З–Є–љ–∞ –≤—Ц–і–Љ–Њ–≤–Є','–њ—А–Є—З–Є–љ–∞ –Њ—В–Ї–∞–Ј–∞','reject']),
-    comment:   findCol(headers,['–Ї–Њ–Љ–µ–љ—В–∞—А','comment','–Ї–Њ–Љ–Љ–µ–љ—В–∞—А–Є–є'])
+    company:   findCol(headers,['\u043A\u043E\u043C\u043F\u0430\u043D\u0456\u044F','company','\u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435','\u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044F']),
+    contact:   findCol(headers,['\u043A\u043E\u043D\u0442\u0430\u043A\u0442','contact','\u043F\u0438\u0431','\u0444\u0438\u043E','name']),
+    position:  findCol(headers,['\u043F\u043E\u0441\u0430\u0434\u0430','position','\u0434\u043E\u043B\u0436\u043D\u043E\u0441\u0442\u044C']),
+    phone:     findCol(headers,['\u0442\u0435\u043B\u0435\u0444\u043E\u043D','phone','tel']),
+    email:     findCol(headers,['email','\u043F\u043E\u0448\u0442\u0430','mail']),
+    channel:   findCol(headers,['\u043A\u0430\u043D\u0430\u043B','channel']),
+    status:    findCol(headers,['\u0441\u0442\u0430\u0442\u0443\u0441','status']),
+    date:      findCol(headers,['\u0434\u0430\u0442\u0430','date','\u0434\u0430\u0442\u0430 \u0434\u043E\u0434\u0430\u0432\u0430\u043D\u043D\u044F']),
+    contactdate:findCol(headers,['\u0434\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0443','contact date','\u0434\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0430']),
+    stepdate:  findCol(headers,['\u0434\u0430\u0442\u0430 \u043A\u0440\u043E\u043A\u0443','step date','\u0434\u0430\u0442\u0430 \u0448\u0430\u0433\u0430']),
+    nextstep:  findCol(headers,['\u043D\u0430\u0441\u0442\u0443\u043F\u043D\u0438\u0439 \u043A\u0440\u043E\u043A','next step','\u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0448\u0430\u0433']),
+    result:    findCol(headers,['\u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442','result']),
+    reject:    findCol(headers,['\u043F\u0440\u0438\u0447\u0438\u043D\u0430 \u0432\u0456\u0434\u043C\u043E\u0432\u0438','\u043F\u0440\u0438\u0447\u0438\u043D\u0430 \u043E\u0442\u043A\u0430\u0437\u0430','reject']),
+    comment:   findCol(headers,['\u043A\u043E\u043C\u0435\u043D\u0442\u0430\u0440','comment','\u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439'])
   };
 
   csvParsed=[];
@@ -1335,14 +1335,14 @@ function parseCSV(text){
     });
   }
 
-  if(!csvParsed.length){showStatus(el,'вЭМ –Э–µ –Ј–љ–∞–є–і–µ–љ–Њ –Ј–∞–њ–Є—Б—Ц–≤. –Я–µ—А–µ–≤—Ц—А—В–µ —Й–Њ —Ф –Ї–Њ–ї–Њ–љ–Ї–∞ "–Ъ–Њ–Љ–њ–∞–љ—Ц—П"','err');return;}
+  if(!csvParsed.length){showStatus(el,'\u274C \u041D\u0435 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u041F\u0435\u0440\u0435\u0432\u0456\u0440\u0442\u0435 \u0449\u043E \u0454 \u043A\u043E\u043B\u043E\u043D\u043A\u0430 "\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F"','err');return;}
 
   // Show preview (first 5 rows)
   const preview=csvParsed.slice(0,5);
   document.getElementById('csv-preview-table').innerHTML=`
-    <table><thead><tr><th>–Ъ–Њ–Љ–њ–∞–љ—Ц—П</th><th>–Ъ–Њ–љ—В–∞–Ї—В</th><th>–Ъ–∞–љ–∞–ї</th><th>–°—В–∞—В—Г—Б</th><th>–Ґ–µ–ї–µ—Д–Њ–љ</th></tr></thead>
+    <table><thead><tr><th>\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F</th><th>\u041A\u043E\u043D\u0442\u0430\u043A\u0442</th><th>\u041A\u0430\u043D\u0430\u043B</th><th>\u0421\u0442\u0430\u0442\u0443\u0441</th><th>\u0422\u0435\u043B\u0435\u0444\u043E\u043D</th></tr></thead>
     <tbody>${preview.map(r=>`<tr><td>${esc(r.company)}</td><td>${esc(r.contact)}</td><td>${esc(r.channel)}</td><td>${esc(r.status)}</td><td>${esc(r.phone)}</td></tr>`).join('')}
-    ${csvParsed.length>5?`<tr><td colspan="5" style="color:#999;text-align:center">...—Ц —Й–µ ${csvParsed.length-5} —А—П–і–Ї—Ц–≤</td></tr>`:''}
+    ${csvParsed.length>5?`<tr><td colspan="5" style="color:#999;text-align:center">...\u0456 \u0449\u0435 ${csvParsed.length-5} \u0440\u044F\u0434\u043A\u0456\u0432</td></tr>`:''}
     </tbody></table>`;
   document.getElementById('csv-count').textContent=csvParsed.length;
   document.getElementById('csv-preview').style.display='block';
@@ -1388,10 +1388,10 @@ function confirmCSVImport(){
     const existing=new Set(deals.map(d=>d.company.toLowerCase()));
     const added=csvParsed.filter(r=>!existing.has(r.company.toLowerCase()));
     deals=[...deals,...added];
-    showStatus(document.getElementById('csv-status'),`вЬЕ –Ф–Њ–і–∞–љ–Њ ${added.length} –љ–Њ–≤–Є—Е –Ј–∞–њ–Є—Б—Ц–≤ (${csvParsed.length-added.length} –і—Г–±–ї—Ц–Ї–∞—В—Ц–≤ –њ—А–Њ–њ—Г—Й–µ–љ–Њ)`,'ok');
+    showStatus(document.getElementById('csv-status'),`\u2705 \u0414\u043E\u0434\u0430\u043D\u043E ${added.length} \u043D\u043E\u0432\u0438\u0445 \u0437\u0430\u043F\u0438\u0441\u0456\u0432 (${csvParsed.length-added.length} \u0434\u0443\u0431\u043B\u0456\u043A\u0430\u0442\u0456\u0432 \u043F\u0440\u043E\u043F\u0443\u0449\u0435\u043D\u043E)`,'ok');
   } else {
     deals=[...csvParsed];
-    showStatus(document.getElementById('csv-status'),`вЬЕ –Ж–Љ–њ–Њ—А—В–Њ–≤–∞–љ–Њ ${deals.length} –Ј–∞–њ–Є—Б—Ц–≤`,'ok');
+    showStatus(document.getElementById('csv-status'),`\u2705 \u0406\u043C\u043F\u043E\u0440\u0442\u043E\u0432\u0430\u043D\u043E ${deals.length} \u0437\u0430\u043F\u0438\u0441\u0456\u0432`,'ok');
   }
   saveDeals();
   document.getElementById('csv-preview').style.display='none';
@@ -1409,13 +1409,13 @@ function cancelCSVImport(){
 // EXPORT CSV
 // ============================================================
 function exportCSV(){
-  const headers=['вДЦ','–Ф–∞—В–∞','–Ъ–Њ–Љ–њ–∞–љ—Ц—П','–Ъ–Њ–љ—В–∞–Ї—В','–Я–Њ—Б–∞–і–∞','–Ґ–µ–ї–µ—Д–Њ–љ','Email','–Ъ–∞–љ–∞–ї','–Ґ–Є–њ –Ї–ї—Ц—Ф–љ—В–∞','–°—В–∞—В—Г—Б','–Ф–∞—В–∞ –Ї–Њ–љ—В–∞–Ї—В—Г','–Э–∞—Б—В—Г–њ–љ–Є–є –Ї—А–Њ–Ї','–Ф–∞—В–∞ –Ї—А–Њ–Ї—Г','–†–µ–Ј—Г–ї—М—В–∞—В','–Я—А–Є—З–Є–љ–∞ –≤—Ц–і–Љ–Њ–≤–Є','–Ъ–Њ–Љ–µ–љ—В–∞—А','–Ъ–Њ–љ—В—А–Њ–ї—М'];
+  const headers=['\u2116','\u0414\u0430\u0442\u0430','\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F','\u041A\u043E\u043D\u0442\u0430\u043A\u0442','\u041F\u043E\u0441\u0430\u0434\u0430','\u0422\u0435\u043B\u0435\u0444\u043E\u043D','Email','\u041A\u0430\u043D\u0430\u043B','\u0422\u0438\u043F \u043A\u043B\u0456\u0454\u043D\u0442\u0430','\u0421\u0442\u0430\u0442\u0443\u0441','\u0414\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0443','\u041D\u0430\u0441\u0442\u0443\u043F\u043D\u0438\u0439 \u043A\u0440\u043E\u043A','\u0414\u0430\u0442\u0430 \u043A\u0440\u043E\u043A\u0443','\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442','\u041F\u0440\u0438\u0447\u0438\u043D\u0430 \u0432\u0456\u0434\u043C\u043E\u0432\u0438','\u041A\u043E\u043C\u0435\u043D\u0442\u0430\u0440','\u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C'];
   const rows=deals.map((d,i)=>{
     const{ctrl}=calcDeal(d);
     return[i+1,fmtDate(d.date),d.company,d.contact,d.position,d.phone,d.email,d.channel,CH_TYPES[d.channel]||'',d.status,fmtDate(d.contactdate),d.nextstep,fmtDate(d.stepdate),d.result,d.reject,d.comment,ctrl]
       .map(v=>'"'+(v||'').toString().replace(/"/g,'""')+'"').join(',');
   });
-  const csv='пїњ'+[headers.join(','),...rows].join('\n');
+  const csv='\uFEFF'+[headers.join(','),...rows].join('\n');
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
   a.download='Hunter_Pipeline_'+todayStr()+'.csv';a.click();
@@ -1437,24 +1437,24 @@ function restoreFromBackup(input){
   reader.onload=e=>{
     try{
       const data=JSON.parse(e.target.result);
-      if(!data.deals)throw new Error('–Э–µ–≤—Ц—А–љ–Є–є —Д–Њ—А–Љ–∞—В —Д–∞–є–ї—Г');
-      if(!confirm(`–Т—Ц–і–љ–Њ–≤–Є—В–Є ${data.deals.length} –Ї–ї—Ц—Ф–љ—В—Ц–≤ —В–∞ ${(data.acts||[]).length} –∞–Ї—В–Є–≤–љ–Њ—Б—В–µ–є?\n–Я–Њ—В–Њ—З–љ—Ц –і–∞–љ—Ц –±—Г–і—Г—В—М –Ј–∞–Љ—Ц–љ–µ–љ—Ц!`))return;
+      if(!data.deals)throw new Error('\u041D\u0435\u0432\u0456\u0440\u043D\u0438\u0439 \u0444\u043E\u0440\u043C\u0430\u0442 \u0444\u0430\u0439\u043B\u0443');
+      if(!confirm(`\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 ${data.deals.length} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 \u0442\u0430 ${(data.acts||[]).length} \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0435\u0439?\n\u041F\u043E\u0442\u043E\u0447\u043D\u0456 \u0434\u0430\u043D\u0456 \u0431\u0443\u0434\u0443\u0442\u044C \u0437\u0430\u043C\u0456\u043D\u0435\u043D\u0456!`))return;
       deals=data.deals||[];acts=data.acts||[];
       saveDeals();saveActs();
-      alert(`вЬЕ –Т—Ц–і–љ–Њ–≤–ї–µ–љ–Њ! ${deals.length} –Ї–ї—Ц—Ф–љ—В—Ц–≤, ${acts.length} –∞–Ї—В–Є–≤–љ–Њ—Б—В–µ–є.`);
+      alert(`\u2705 \u0412\u0456\u0434\u043D\u043E\u0432\u043B\u0435\u043D\u043E! ${deals.length} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432, ${acts.length} \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0435\u0439.`);
       renderPipeline();
-    }catch(ex){alert('вЭМ –Я–Њ–Љ–Є–ї–Ї–∞: '+ex.message);}
+    }catch(ex){alert('\u274C \u041F\u043E\u043C\u0438\u043B\u043A\u0430: '+ex.message);}
   };
   reader.readAsText(f);
   input.value='';
 }
 
 function clearAllData(){
-  if(!confirm('вЪ†пЄП –£–Т–Р–У–Р!\n–Т–Є–і–∞–ї–Є—В–Є –Т–°–Ж –і–∞–љ—Ц (–Ї–ї—Ц—Ф–љ—В–Є + –∞–Ї—В–Є–≤–љ—Ц—Б—В—М)?\n–¶—О –і—Ц—О –Э–Х –Љ–Њ–ґ–љ–∞ —Б–Ї–∞—Б—Г–≤–∞—В–Є!'))return;
-  if(!confirm('–Т–Є –≤–њ–µ–≤–љ–µ–љ—Ц? –Т—Б—Ц –і–∞–љ—Ц –±—Г–і—Г—В—М –Ч–Э–Ш–©–Х–Э–Ж –љ–∞–Ј–∞–≤–ґ–і–Є.'))return;
+  if(!confirm('\u26A0\uFE0F \u0423\u0412\u0410\u0413\u0410!\n\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u0412\u0421\u0406 \u0434\u0430\u043D\u0456 (\u043A\u043B\u0456\u0454\u043D\u0442\u0438 + \u0430\u043A\u0442\u0438\u0432\u043D\u0456\u0441\u0442\u044C)?\n\u0426\u044E \u0434\u0456\u044E \u041D\u0415 \u043C\u043E\u0436\u043D\u0430 \u0441\u043A\u0430\u0441\u0443\u0432\u0430\u0442\u0438!'))return;
+  if(!confirm('\u0412\u0438 \u0432\u043F\u0435\u0432\u043D\u0435\u043D\u0456? \u0412\u0441\u0456 \u0434\u0430\u043D\u0456 \u0431\u0443\u0434\u0443\u0442\u044C \u0417\u041D\u0418\u0429\u0415\u041D\u0406 \u043D\u0430\u0437\u0430\u0432\u0436\u0434\u0438.'))return;
   deals=[];acts=[];saveDeals();saveActs();
   renderPipeline();renderActivity();
-  alert('вЬЕ –Т—Б—Ц –і–∞–љ—Ц –≤–Є–і–∞–ї–µ–љ–Њ.');
+  alert('\u2705 \u0412\u0441\u0456 \u0434\u0430\u043D\u0456 \u0432\u0438\u0434\u0430\u043B\u0435\u043D\u043E.');
 }
 
 // ============================================================
