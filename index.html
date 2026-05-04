@@ -162,6 +162,24 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 @media(max-width:900px){.grid2{grid-template-columns:1fr}.settings-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.form-grid{grid-template-columns:1fr}.content{padding:12px}.nav-brand{display:none}}
 
+/* ===== FORM SECTIONS ===== */
+.form-section{margin-bottom:18px}
+.form-section-title{font-size:11px;font-weight:800;color:#1565C0;text-transform:uppercase;letter-spacing:.8px;padding:7px 12px 7px 14px;background:linear-gradient(90deg,#e3f2fd,#f8fbff);border-radius:8px;margin-bottom:12px;border-left:4px solid #1565C0;display:flex;align-items:center;gap:6px}
+
+/* ===== MULTI-FIELD ===== */
+.multi-fields{display:flex;flex-direction:column;gap:5px}
+.multi-field-row{display:flex;gap:5px;align-items:center}
+.multi-field-row .form-control{flex:1;min-width:0}
+.btn-remove{width:28px;height:28px;border-radius:6px;border:none;background:#ffebee;color:#c62828;cursor:pointer;font-size:18px;font-weight:300;line-height:1;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;padding:0}
+.btn-remove:hover{background:#ffcdd2}
+.btn-add-field{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;border:1.5px dashed #b0bec5;background:none;color:#90a4ae;cursor:pointer;font-size:12px;margin-top:3px;transition:all .2s}
+.btn-add-field:hover{border-color:#1565C0;color:#1565C0;background:#f0f4ff}
+
+/* ===== DRAFT ===== */
+.draft-bar{background:#fff8e1;border:1px solid #ffca28;border-radius:8px;padding:8px 14px;font-size:12px;color:#795548;display:none;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.draft-bar.visible{display:flex}
+.draft-bar strong{color:#e65100}
+
 /* ===== ROLES ===== */
 .admin-only{} /* shown for admin */
 .manager-mode .admin-only{display:none!important}
@@ -238,6 +256,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
       <option value="risk">&#128993; &#1056;&#1080;&#1079;&#1080;&#1082;</option>
       <option value="ok">&#128994; OK</option>
     </select>
+    <input class="search-input" type="text" id="fCity" placeholder="&#127961; &#1052;&#1110;&#1089;&#1090;&#1086;..." style="width:130px;padding-left:12px;background-image:none" oninput="renderPipeline()">
     <button class="btn btn-ghost" onclick="exportCSV()" title="&#1047;&#1072;&#1074;&#1072;&#1085;&#1090;&#1072;&#1078;&#1080;&#1090;&#1080; &#1103;&#1082; CSV">&#11015; CSV</button>
   </div>
   <div class="stats-row" id="pipe-stats"></div>
@@ -245,7 +264,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th style="width:34px">&#8470;</th><th>&#1044;&#1072;&#1090;&#1072;</th><th>&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</th><th>&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</th><th>&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</th>
+          <th style="width:34px">&#8470;</th><th>&#1044;&#1072;&#1090;&#1072;</th><th>&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</th><th>&#1052;&#1110;&#1089;&#1090;&#1086;</th><th>&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</th><th>&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</th>
           <th>&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;</th><th>Email</th><th>&#1040;&#1076;&#1088;&#1077;&#1089;&#1072;</th><th>&#1050;&#1072;&#1085;&#1072;&#1083;</th><th>&#1058;&#1080;&#1087; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1072;</th><th>&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</th>
           <th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</th><th>&#1053;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1080;&#1081; &#1082;&#1088;&#1086;&#1082;</th><th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1088;&#1086;&#1082;&#1091;</th><th>&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;</th>
           <th>&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080;</th><th>&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</th>
@@ -467,44 +486,114 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 <div class="modal-overlay" id="dealModal">
   <div class="modal">
     <div class="modal-title" id="deal-modal-title">&#10133; &#1053;&#1086;&#1074;&#1080;&#1081; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;</div>
-    <div class="form-grid">
-      <div class="form-group"><label class="form-label">&#1044;&#1072;&#1090;&#1072;</label><input type="date" class="form-control" id="d-date"></div>
-      <div class="form-group"><label class="form-label">&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103; *</label><input type="text" class="form-control" id="d-company" placeholder="&#1053;&#1072;&#1079;&#1074;&#1072; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1111;"></div>
-      <div class="form-group"><label class="form-label">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090; (&#1055;&#1030;&#1041;)</label><input type="text" class="form-control" id="d-contact" placeholder="&#1030;&#1074;&#1072;&#1085;&#1077;&#1085;&#1082;&#1086; &#1030;&#1074;&#1072;&#1085;"></div>
-      <div class="form-group"><label class="form-label">&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</label><input type="text" class="form-control" id="d-position" placeholder="&#1044;&#1080;&#1088;&#1077;&#1082;&#1090;&#1086;&#1088;"></div>
-      <div class="form-group"><label class="form-label">&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;</label><input type="tel" class="form-control" id="d-phone" placeholder="+380501234567"></div>
-      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-control" id="d-email" placeholder="email@company.ua"></div>
-      <div class="form-group full"><label class="form-label">&#1040;&#1076;&#1088;&#1077;&#1089;&#1072;</label><input type="text" class="form-control" id="d-address" placeholder="&#1052;&#1110;&#1089;&#1090;&#1086;, &#1074;&#1091;&#1083;&#1080;&#1094;&#1103;, &#1086;&#1092;&#1110;&#1089;"></div>
-      <div class="form-group"><label class="form-label">&#1050;&#1072;&#1085;&#1072;&#1083;</label>
-        <select class="form-control" id="d-channel">
-          <option value="">&#8212; &#1074;&#1080;&#1073;&#1088;&#1072;&#1090;&#1080; &#8212;</option>
-          <option value="D1">D1 &#8212; &#1053;&#1072;&#1094;. &#1084;&#1077;&#1088;&#1077;&#1078;&#1110;</option><option value="D2">D2 &#8212; &#1056;&#1077;&#1075;&#1110;&#1086;&#1085;./B2B</option>
-          <option value="D3">D3 &#8212; &#1056;&#1086;&#1079;&#1076;&#1088;&#1110;&#1073;</option><option value="D4.1">D4.1 &#8212; &#1030;&#1085;&#1090;&#1077;&#1088;&#1085;&#1077;&#1090; (&#1089;&#1082;&#1083;&#1072;&#1076;)</option>
-          <option value="D4.2">D4.2 &#8212; Dropshipping</option><option value="D5">D5 &#8212; &#1055;&#1088;&#1086;&#1077;&#1082;&#1090;&#1085;&#1110;</option>
-          <option value="D5 Partner">D5 Partner &#8212; &#1030;&#1085;&#1089;&#1090;&#1072;&#1083;&#1103;&#1090;&#1086;&#1088;&#1080;</option><option value="D6">D6 &#8212; &#1056;&#1077;&#1075;&#1110;&#1086;&#1085;. &#1076;&#1080;&#1089;&#1090;.</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</label>
-        <select class="form-control" id="d-status">
-          <option>New</option><option>Contacted</option><option>Warm</option>
-          <option>Meeting scheduled</option><option>Offer sent</option>
-          <option>Won</option><option>Lost</option><option>Recycle</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">&#1044;&#1072;&#1090;&#1072; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</label><input type="date" class="form-control" id="d-contactdate"></div>
-      <div class="form-group"><label class="form-label">&#1044;&#1072;&#1090;&#1072; &#1085;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1086;&#1075;&#1086; &#1082;&#1088;&#1086;&#1082;&#1091;</label><input type="date" class="form-control" id="d-stepdate"></div>
-      <div class="form-group full"><label class="form-label">&#1053;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1080;&#1081; &#1082;&#1088;&#1086;&#1082;</label><input type="text" class="form-control" id="d-nextstep" placeholder="&#1065;&#1086; &#1087;&#1083;&#1072;&#1085;&#1091;&#1108;&#1090;&#1077; &#1079;&#1088;&#1086;&#1073;&#1080;&#1090;&#1080;?"></div>
-      <div class="form-group"><label class="form-label">&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;</label>
-        <select class="form-control" id="d-result">
-          <option value="">&#8212;</option><option>&#1047;&#1091;&#1089;&#1090;&#1088;&#1110;&#1095; &#1087;&#1088;&#1086;&#1074;&#1077;&#1076;&#1077;&#1085;&#1072;</option>
-          <option>&#1050;&#1055; &#1074;&#1110;&#1076;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1086;</option><option>&#1058;&#1077;&#1089;&#1090; / &#1076;&#1077;&#1084;&#1086;</option><option>&#1054;&#1087;&#1083;&#1072;&#1090;&#1072;</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080;</label><input type="text" class="form-control" id="d-reject" placeholder="&#1103;&#1082;&#1097;&#1086; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089; Lost..."></div>
-      <div class="form-group full"><label class="form-label">&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</label><textarea class="form-control" id="d-comment" rows="3" placeholder="&#1053;&#1086;&#1090;&#1072;&#1090;&#1082;&#1080;, &#1076;&#1077;&#1090;&#1072;&#1083;&#1110;..."></textarea></div>
+
+    <!-- Draft restore bar -->
+    <div class="draft-bar" id="draft-bar">
+      &#9201; <strong>&#1028; &#1085;&#1077;&#1079;&#1073;&#1077;&#1088;&#1077;&#1078;&#1077;&#1085;&#1072; &#1095;&#1077;&#1088;&#1085;&#1077;&#1090;&#1082;&#1072;</strong> &#8212; &#1074;&#1110;&#1076;&#1085;&#1086;&#1074;&#1080;&#1090;&#1080; &#1076;&#1072;&#1085;&#1110;?
+      <button class="btn btn-sm btn-orange" onclick="restoreDraft()" style="margin-left:auto">&#8617; &#1042;&#1110;&#1076;&#1085;&#1086;&#1074;&#1080;&#1090;&#1080;</button>
+      <button class="btn btn-sm btn-ghost" onclick="clearDraft()">&#1042;&#1110;&#1076;&#1093;&#1080;&#1083;&#1080;&#1090;&#1080;</button>
     </div>
+
+    <!-- SECTION 1: Contact -->
+    <div class="form-section">
+      <div class="form-section-title">&#128100; &#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1085;&#1110; &#1076;&#1072;&#1085;&#1110;</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090; (&#1055;&#1030;&#1041;)</label>
+          <input type="text" class="form-control" id="d-contact" placeholder="&#1030;&#1074;&#1072;&#1085;&#1077;&#1085;&#1082;&#1086; &#1030;&#1074;&#1072;&#1085;" oninput="saveDraft()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</label>
+          <input type="text" class="form-control" id="d-position" placeholder="&#1044;&#1080;&#1088;&#1077;&#1082;&#1090;&#1086;&#1088;" oninput="saveDraft()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;&#1080;</label>
+          <div class="multi-fields" id="phones-list"></div>
+          <button type="button" class="btn-add-field" onclick="addPhoneField()">+ &#1044;&#1086;&#1076;&#1072;&#1090;&#1080; &#1090;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;</button>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <div class="multi-fields" id="emails-list"></div>
+          <button type="button" class="btn-add-field" onclick="addEmailField()">+ &#1044;&#1086;&#1076;&#1072;&#1090;&#1080; email</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: Company -->
+    <div class="form-section">
+      <div class="form-section-title">&#127970; &#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103; *</label>
+          <input type="text" class="form-control" id="d-company" placeholder="&#1053;&#1072;&#1079;&#1074;&#1072; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1111;" oninput="saveDraft()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">&#1052;&#1110;&#1089;&#1090;&#1086;</label>
+          <input type="text" class="form-control" id="d-city" placeholder="&#1050;&#1080;&#1111;&#1074;, &#1061;&#1072;&#1088;&#1082;&#1110;&#1074;, &#1054;&#1076;&#1077;&#1089;&#1072;..." oninput="saveDraft()">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">&#1040;&#1076;&#1088;&#1077;&#1089;&#1072;</label>
+          <input type="text" class="form-control" id="d-address" placeholder="&#1042;&#1091;&#1083;&#1080;&#1094;&#1103;, &#1086;&#1092;&#1110;&#1089;, &#1087;&#1086;&#1096;&#1090;&#1086;&#1074;&#1080;&#1081; &#1110;&#1085;&#1076;&#1077;&#1082;&#1089;" oninput="saveDraft()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">&#1050;&#1072;&#1085;&#1072;&#1083;</label>
+          <select class="form-control" id="d-channel" onchange="saveDraft()">
+            <option value="">&#8212; &#1074;&#1080;&#1073;&#1088;&#1072;&#1090;&#1080; &#8212;</option>
+            <option value="D1">D1 &#8212; &#1053;&#1072;&#1094;. &#1084;&#1077;&#1088;&#1077;&#1078;&#1110;</option><option value="D2">D2 &#8212; &#1056;&#1077;&#1075;&#1110;&#1086;&#1085;./B2B</option>
+            <option value="D3">D3 &#8212; &#1056;&#1086;&#1079;&#1076;&#1088;&#1110;&#1073;</option><option value="D4.1">D4.1 &#8212; &#1030;&#1085;&#1090;&#1077;&#1088;&#1085;&#1077;&#1090; (&#1089;&#1082;&#1083;&#1072;&#1076;)</option>
+            <option value="D4.2">D4.2 &#8212; Dropshipping</option><option value="D5">D5 &#8212; &#1055;&#1088;&#1086;&#1077;&#1082;&#1090;&#1085;&#1110;</option>
+            <option value="D5 Partner">D5 Partner &#8212; &#1030;&#1085;&#1089;&#1090;&#1072;&#1083;&#1103;&#1090;&#1086;&#1088;&#1080;</option><option value="D6">D6 &#8212; &#1056;&#1077;&#1075;&#1110;&#1086;&#1085;. &#1076;&#1080;&#1089;&#1090;.</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">&#1044;&#1072;&#1090;&#1072; &#1076;&#1086;&#1076;&#1072;&#1074;&#1072;&#1085;&#1085;&#1103;</label>
+          <input type="date" class="form-control" id="d-date" onchange="saveDraft()">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Pipeline -->
+    <div class="form-section">
+      <div class="form-section-title">&#128203; &#1056;&#1086;&#1073;&#1086;&#1090;&#1072; &#1079; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1086;&#1084;</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</label>
+          <select class="form-control" id="d-status" onchange="saveDraft()">
+            <option>New</option><option>Contacted</option><option>Warm</option>
+            <option>Meeting scheduled</option><option>Offer sent</option>
+            <option>Won</option><option>Lost</option><option>Recycle</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">&#1044;&#1072;&#1090;&#1072; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</label>
+          <input type="date" class="form-control" id="d-contactdate" onchange="saveDraft()">
+        </div>
+        <div class="form-group full" style="background:#f8fbff;border-radius:8px;padding:10px 12px;border:1px solid #e3f2fd">
+          <label class="form-label" style="color:#1565C0">&#1053;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1080;&#1081; &#1082;&#1088;&#1086;&#1082;</label>
+          <input type="text" class="form-control" id="d-nextstep" placeholder="&#1065;&#1086; &#1087;&#1083;&#1072;&#1085;&#1091;&#1108;&#1090;&#1077; &#1079;&#1088;&#1086;&#1073;&#1080;&#1090;&#1080;?" oninput="saveDraft()" style="margin-bottom:8px">
+          <label class="form-label">&#1044;&#1072;&#1090;&#1072; &#1085;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1086;&#1075;&#1086; &#1082;&#1088;&#1086;&#1082;&#1091;</label>
+          <input type="date" class="form-control" id="d-stepdate" onchange="saveDraft()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;</label>
+          <select class="form-control" id="d-result" onchange="saveDraft()">
+            <option value="">&#8212;</option><option>&#1047;&#1091;&#1089;&#1090;&#1088;&#1110;&#1095; &#1087;&#1088;&#1086;&#1074;&#1077;&#1076;&#1077;&#1085;&#1072;</option>
+            <option>&#1050;&#1055; &#1074;&#1110;&#1076;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1086;</option><option>&#1058;&#1077;&#1089;&#1090; / &#1076;&#1077;&#1084;&#1086;</option><option>&#1054;&#1087;&#1083;&#1072;&#1090;&#1072;</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080;</label>
+          <input type="text" class="form-control" id="d-reject" placeholder="&#1103;&#1082;&#1097;&#1086; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089; Lost..." oninput="saveDraft()">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</label>
+          <textarea class="form-control" id="d-comment" rows="2" placeholder="&#1053;&#1086;&#1090;&#1072;&#1090;&#1082;&#1080;, &#1076;&#1077;&#1090;&#1072;&#1083;&#1110;..." oninput="saveDraft()"></textarea>
+        </div>
+      </div>
+    </div>
+
     <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('dealModal')">&#1057;&#1082;&#1072;&#1089;&#1091;&#1074;&#1072;&#1090;&#1080;</button>
+      <button class="btn btn-ghost" onclick="closeDealModal()">&#1057;&#1082;&#1072;&#1089;&#1091;&#1074;&#1072;&#1090;&#1080;</button>
       <button class="btn btn-primary" onclick="saveDeal()">&#128190; &#1047;&#1073;&#1077;&#1088;&#1077;&#1075;&#1090;&#1080;</button>
     </div>
   </div>
@@ -537,8 +626,8 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 // ============================================================
 // DATA
 // ============================================================
-let deals = JSON.parse(localStorage.getItem('hsm_deals')||'[]');
-let acts   = JSON.parse(localStorage.getItem('hsm_acts')||'[]');
+let deals = [];
+let acts   = [];
 let editDealId=null, editActId=null, csvParsed=[];
 
 function saveDeals(){ localStorage.setItem(dealsKey(currentMgrId),JSON.stringify(deals)); }
@@ -744,6 +833,7 @@ function renderPipeline(){
   const fS=document.getElementById('fStatus')?.value||'';
   const fC=document.getElementById('fChannel')?.value||'';
   const fCtrl=document.getElementById('fCtrl')?.value||'';
+  const fCity=(document.getElementById('fCity')?.value||'').toLowerCase();
   let rows=deals.filter(d=>{
     if(fS&&d.status!==fS)return false;
     if(fC&&d.channel!==fC)return false;
@@ -751,6 +841,7 @@ function renderPipeline(){
       if(fCtrl==='crit'&&ctrlCls!=='ctrl-crit')return false;
       if(fCtrl==='risk'&&ctrlCls!=='ctrl-risk')return false;
       if(fCtrl==='ok'&&ctrlCls!=='ctrl-ok')return false;}
+    if(fCity&&!(d.city||'').toLowerCase().includes(fCity))return false;
     if(srch&&!JSON.stringify(d).toLowerCase().includes(srch))return false;
     return true;
   });
@@ -764,18 +855,23 @@ function renderPipeline(){
     <div class="stat-chip">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A: <strong style="color:#e65100">${risks}</strong></div>
     <div class="stat-chip">\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E: <strong>${rows.length}</strong></div>`;
   const tbody=document.getElementById('pipe-body');
-  if(!rows.length){tbody.innerHTML=`<tr><td colspan="21"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
+  if(!rows.length){tbody.innerHTML=`<tr><td colspan="22"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
   tbody.innerHTML=rows.map((d,i)=>{
     const{overdue,noStep,daysInact,ctrl,ctrlCls}=calcDeal(d);
     const rCls=ctrlCls==='ctrl-crit'?'row-crit':ctrlCls==='ctrl-risk'?'row-risk':'';
     const sCls=S_CLASS[d.status]||'s-New';
+    const ph0=esc((d.phones&&d.phones.length?d.phones[0]:d.phone)||'');
+    const ph_extra=d.phones&&d.phones.length>1?` <span style="font-size:10px;color:#1565C0">+${d.phones.length-1}</span>`:'';
+    const em0=esc((d.emails&&d.emails.length?d.emails[0]:d.email)||'');
+    const em_extra=d.emails&&d.emails.length>1?` <span style="font-size:10px;color:#1565C0">+${d.emails.length-1}</span>`:'';
     return`<tr class="${rCls}">
       <td style="text-align:center;color:#bbb;font-size:11px">${i+1}</td>
       <td style="white-space:nowrap">${fmtDate(d.date)}</td>
       <td><strong>${esc(d.company)}</strong></td>
+      <td style="color:#555;font-size:11px;white-space:nowrap">${esc(d.city||'')}</td>
       <td>${esc(d.contact)}</td><td style="color:#999">${esc(d.position)}</td>
-      <td style="white-space:nowrap">${esc(d.phone)}</td>
-      <td style="color:#1565C0;font-size:11px">${esc(d.email)}</td>
+      <td style="white-space:nowrap">${ph0}${ph_extra}</td>
+      <td style="color:#1565C0;font-size:11px">${em0}${em_extra}</td>
       <td style="font-size:11px;color:#666;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(d.address)}">${esc(d.address)}</td>
       <td><span class="badge ch-badge">${esc(d.channel)}</span></td>
       <td style="color:#666;font-size:11px">${CH_TYPES[d.channel]||''}</td>
@@ -799,25 +895,40 @@ function renderPipeline(){
 
 function openDeal(id){
   editDealId=id;
+  clearPhoneFields();clearEmailFields();
+  document.getElementById('draft-bar').classList.remove('visible');
+
   if(id===null){
     document.getElementById('deal-modal-title').textContent='\u2795 \u041D\u043E\u0432\u0438\u0439 \u043A\u043B\u0456\u0454\u043D\u0442';
-    ['company','contact','position','phone','email','address','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value='');
+    ['company','contact','position','address','city','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value='');
     document.getElementById('d-date').value=todayStr();
     document.getElementById('d-contactdate').value='';
     document.getElementById('d-stepdate').value='';
     document.getElementById('d-channel').value='';
     document.getElementById('d-status').value='New';
     document.getElementById('d-result').value='';
+    addPhoneField();addEmailField();
+    // Check for draft
+    const draft=JSON.parse(localStorage.getItem('hsm_draft')||'null');
+    if(draft&&draft._ts&&(Date.now()-draft._ts)<86400000){
+      document.getElementById('draft-bar').classList.add('visible');
+    }
   } else {
     const d=deals.find(x=>x.id===id);if(!d)return;
     document.getElementById('deal-modal-title').textContent='\u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u043A\u043B\u0456\u0454\u043D\u0442\u0430';
-    ['company','contact','position','phone','email','address','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value=d[f]||'');
+    ['company','contact','position','address','city','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value=d[f]||'');
     document.getElementById('d-date').value=d.date||'';
     document.getElementById('d-contactdate').value=d.contactdate||'';
     document.getElementById('d-stepdate').value=d.stepdate||'';
     document.getElementById('d-channel').value=d.channel||'';
     document.getElementById('d-status').value=d.status||'New';
     document.getElementById('d-result').value=d.result||'';
+    // Multi-phones
+    const phones=d.phones&&d.phones.length?d.phones:(d.phone?[d.phone]:[]);
+    if(phones.length){phones.forEach(p=>addPhoneField(p));}else{addPhoneField();}
+    // Multi-emails
+    const emails=d.emails&&d.emails.length?d.emails:(d.email?[d.email]:[]);
+    if(emails.length){emails.forEach(e=>addEmailField(e));}else{addEmailField();}
   }
   document.getElementById('dealModal').classList.add('open');
 }
@@ -831,8 +942,12 @@ function saveDeal(){
     company,
     contact:document.getElementById('d-contact').value.trim(),
     position:document.getElementById('d-position').value.trim(),
-    phone:document.getElementById('d-phone').value.trim(),
-    email:document.getElementById('d-email').value.trim(),
+    phones:getPhoneValues(),
+    emails:getEmailValues(),
+    // legacy compat fields
+    phone:getPhoneValues()[0]||'',
+    email:getEmailValues()[0]||'',
+    city:document.getElementById('d-city').value.trim(),
     address:document.getElementById('d-address').value.trim(),
     channel:document.getElementById('d-channel').value,
     status:document.getElementById('d-status').value,
@@ -845,7 +960,10 @@ function saveDeal(){
   };
   if(editDealId){const i=deals.findIndex(x=>x.id===editDealId);deals[i]=deal;}
   else deals.push(deal);
-  saveDeals();closeModal('dealModal');renderPipeline();
+  saveDeals();
+  clearDraft();
+  document.getElementById('dealModal').classList.remove('open');
+  renderPipeline();
 }
 
 function delDeal(id){
@@ -1052,8 +1170,15 @@ function saveManagers(m){ localStorage.setItem('hsm_managers',JSON.stringify(m))
 function dealsKey(id){ return id?`hsm_deals_${id}`:'hsm_deals'; }
 function actsKey(id){  return id?`hsm_acts_${id}`:'hsm_acts'; }
 
+function migrateDeal(d){
+  if(!Array.isArray(d.phones)) d.phones=d.phone?[d.phone]:[];
+  if(!Array.isArray(d.emails)) d.emails=d.email?[d.email]:[];
+  if(d.city===undefined) d.city='';
+  return d;
+}
+
 function loadDataForUser(id){
-  deals=JSON.parse(localStorage.getItem(dealsKey(id))||'[]');
+  deals=JSON.parse(localStorage.getItem(dealsKey(id))||'[]').map(migrateDeal);
   acts=JSON.parse(localStorage.getItem(actsKey(id))||'[]');
 }
 
@@ -1412,10 +1537,12 @@ function cancelCSVImport(){
 // EXPORT CSV
 // ============================================================
 function exportCSV(){
-  const headers=['\u2116','\u0414\u0430\u0442\u0430','\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F','\u041A\u043E\u043D\u0442\u0430\u043A\u0442','\u041F\u043E\u0441\u0430\u0434\u0430','\u0422\u0435\u043B\u0435\u0444\u043E\u043D','Email','\u0410\u0434\u0440\u0435\u0441\u0430','\u041A\u0430\u043D\u0430\u043B','\u0422\u0438\u043F \u043A\u043B\u0456\u0454\u043D\u0442\u0430','\u0421\u0442\u0430\u0442\u0443\u0441','\u0414\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0443','\u041D\u0430\u0441\u0442\u0443\u043F\u043D\u0438\u0439 \u043A\u0440\u043E\u043A','\u0414\u0430\u0442\u0430 \u043A\u0440\u043E\u043A\u0443','\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442','\u041F\u0440\u0438\u0447\u0438\u043D\u0430 \u0432\u0456\u0434\u043C\u043E\u0432\u0438','\u041A\u043E\u043C\u0435\u043D\u0442\u0430\u0440','\u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C'];
+  const headers=['\u2116','\u0414\u0430\u0442\u0430','\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F','\u041C\u0456\u0441\u0442\u043E','\u041A\u043E\u043D\u0442\u0430\u043A\u0442','\u041F\u043E\u0441\u0430\u0434\u0430','\u0422\u0435\u043B\u0435\u0444\u043E\u043D\u0438','Email','\u0410\u0434\u0440\u0435\u0441\u0430','\u041A\u0430\u043D\u0430\u043B','\u0422\u0438\u043F \u043A\u043B\u0456\u0454\u043D\u0442\u0430','\u0421\u0442\u0430\u0442\u0443\u0441','\u0414\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0443','\u041D\u0430\u0441\u0442\u0443\u043F\u043D\u0438\u0439 \u043A\u0440\u043E\u043A','\u0414\u0430\u0442\u0430 \u043A\u0440\u043E\u043A\u0443','\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442','\u041F\u0440\u0438\u0447\u0438\u043D\u0430 \u0432\u0456\u0434\u043C\u043E\u0432\u0438','\u041A\u043E\u043C\u0435\u043D\u0442\u0430\u0440','\u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C'];
   const rows=deals.map((d,i)=>{
     const{ctrl}=calcDeal(d);
-    return[i+1,fmtDate(d.date),d.company,d.contact,d.position,d.phone,d.email,d.address||'',d.channel,CH_TYPES[d.channel]||'',d.status,fmtDate(d.contactdate),d.nextstep,fmtDate(d.stepdate),d.result,d.reject,d.comment,ctrl]
+    const phones=(d.phones&&d.phones.length?d.phones:[d.phone||'']).filter(Boolean).join('; ');
+    const emails=(d.emails&&d.emails.length?d.emails:[d.email||'']).filter(Boolean).join('; ');
+    return[i+1,fmtDate(d.date),d.company,d.city||'',d.contact,d.position,phones,emails,d.address||'',d.channel,CH_TYPES[d.channel]||'',d.status,fmtDate(d.contactdate),d.nextstep,fmtDate(d.stepdate),d.result,d.reject,d.comment,ctrl]
       .map(v=>'"'+(v||'').toString().replace(/"/g,'""')+'"').join(',');
   });
   const csv='\uFEFF'+[headers.join(','),...rows].join('\n');
@@ -1464,7 +1591,102 @@ function clearAllData(){
 // MODAL & STATUS HELPERS
 // ============================================================
 function closeModal(id){document.getElementById(id).classList.remove('open');}
-document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');}));
+
+// Close deal modal \u2014 confirm if draft exists
+function closeDealModal(){
+  const hasDraft=!!localStorage.getItem('hsm_draft');
+  const hasContent=document.getElementById('d-company').value.trim()||
+    document.getElementById('d-contact').value.trim()||
+    getPhoneValues().length||getEmailValues().length;
+  if(hasContent||hasDraft){
+    if(!confirm('\u0404 \u043D\u0435\u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u0456 \u0437\u043C\u0456\u043D\u0438. \u0417\u0430\u043A\u0440\u0438\u0442\u0438 \u0444\u043E\u0440\u043C\u0443? \u0414\u0430\u043D\u0456 \u0431\u0443\u0434\u0443\u0442\u044C \u0432\u0442\u0440\u0430\u0447\u0435\u043D\u0456.'))return;
+  }
+  clearDraft();
+  document.getElementById('dealModal').classList.remove('open');
+}
+
+// Overlay click: safe close for dealModal, instant for others
+document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',function(e){
+  if(e.target!==this)return;
+  if(this.id==='dealModal'){closeDealModal();}
+  else{this.classList.remove('open');}
+}));
+
+// ============================================================
+// DRAFT AUTOSAVE
+// ============================================================
+function saveDraft(){
+  const draft={
+    company:document.getElementById('d-company').value,
+    contact:document.getElementById('d-contact').value,
+    position:document.getElementById('d-position').value,
+    phones:getPhoneValues(),emails:getEmailValues(),
+    city:document.getElementById('d-city').value,
+    address:document.getElementById('d-address').value,
+    channel:document.getElementById('d-channel').value,
+    status:document.getElementById('d-status').value,
+    date:document.getElementById('d-date').value,
+    contactdate:document.getElementById('d-contactdate').value,
+    stepdate:document.getElementById('d-stepdate').value,
+    nextstep:document.getElementById('d-nextstep').value,
+    result:document.getElementById('d-result').value,
+    reject:document.getElementById('d-reject').value,
+    comment:document.getElementById('d-comment').value,
+    _ts:Date.now()
+  };
+  localStorage.setItem('hsm_draft',JSON.stringify(draft));
+}
+
+function clearDraft(){
+  localStorage.removeItem('hsm_draft');
+  document.getElementById('draft-bar').classList.remove('visible');
+}
+
+function restoreDraft(){
+  const draft=JSON.parse(localStorage.getItem('hsm_draft')||'null');
+  if(!draft)return;
+  clearPhoneFields();clearEmailFields();
+  ['company','contact','position','city','address','nextstep','reject','comment'].forEach(f=>{
+    const el=document.getElementById('d-'+f);if(el)el.value=draft[f]||'';
+  });
+  ['channel','status','date','contactdate','stepdate','result'].forEach(f=>{
+    const el=document.getElementById('d-'+f);if(el)el.value=draft[f]||'';
+  });
+  (draft.phones&&draft.phones.length?draft.phones:[''] ).forEach(p=>addPhoneField(p));
+  (draft.emails&&draft.emails.length?draft.emails:[''] ).forEach(e=>addEmailField(e));
+  document.getElementById('draft-bar').classList.remove('visible');
+}
+
+// ============================================================
+// MULTI-FIELD HELPERS
+// ============================================================
+function addPhoneField(val=''){
+  const div=document.createElement('div');
+  div.className='multi-field-row';
+  div.innerHTML=`<input type="tel" class="form-control mf-input" placeholder="+380..." value="${val.replace(/"/g,'&quot;')}" oninput="saveDraft()">
+    <button type="button" class="btn-remove" onclick="this.parentElement.remove();saveDraft()" title="\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438">\u00D7</button>`;
+  document.getElementById('phones-list').appendChild(div);
+}
+
+function addEmailField(val=''){
+  const div=document.createElement('div');
+  div.className='multi-field-row';
+  div.innerHTML=`<input type="email" class="form-control mf-input" placeholder="email@..." value="${val.replace(/"/g,'&quot;')}" oninput="saveDraft()">
+    <button type="button" class="btn-remove" onclick="this.parentElement.remove();saveDraft()" title="\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438">\u00D7</button>`;
+  document.getElementById('emails-list').appendChild(div);
+}
+
+function clearPhoneFields(){document.getElementById('phones-list').innerHTML='';}
+function clearEmailFields(){document.getElementById('emails-list').innerHTML='';}
+
+function getPhoneValues(){
+  return Array.from(document.querySelectorAll('#phones-list .mf-input'))
+    .map(i=>i.value.trim()).filter(Boolean);
+}
+function getEmailValues(){
+  return Array.from(document.querySelectorAll('#emails-list .mf-input'))
+    .map(i=>i.value.trim()).filter(Boolean);
+}
 
 function showStatus(el,msg,type){
   el.textContent=msg;
