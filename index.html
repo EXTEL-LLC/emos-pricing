@@ -180,6 +180,25 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 .draft-bar.visible{display:flex}
 .draft-bar strong{color:#e65100}
 
+/* ===== CATEGORIES ===== */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:4px;padding:4px 0}
+.cat-item{display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:6px;cursor:pointer;transition:background .15s;font-size:12px;color:#444;user-select:none}
+.cat-item:hover{background:#f0f4f8}
+.cat-item input[type=checkbox]{width:14px;height:14px;accent-color:#1565C0;cursor:pointer;flex-shrink:0}
+.cat-item.is-checked{background:#e3f2fd;color:#1565C0;font-weight:600}
+.cat-badge{display:inline-block;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:700;background:#e3f2fd;color:#1565C0;white-space:nowrap}
+.cat-badge-pot{background:#e8f5e9;color:#2e7d32}
+
+/* ===== STATUS FLOW ===== */
+.status-flow{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.sf-step{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid #e0e6ed;color:#888;background:#fff;transition:all .2s;white-space:nowrap}
+.sf-step:hover{border-color:#1565C0;color:#1565C0}
+.sf-step.sf-active{border-color:transparent;color:#fff}
+.sf-New.sf-active{background:#1565C0}.sf-Contacted.sf-active{background:#1976D2}
+.sf-Warm.sf-active{background:#FB8C00}.sf-Meeting.sf-active{background:#7B1FA2}
+.sf-Offer.sf-active{background:#00838F}.sf-Won.sf-active{background:#2E7D32}
+.sf-Lost.sf-active{background:#C62828}.sf-Recycle.sf-active{background:#757575}
+
 /* ===== ROLES ===== */
 .admin-only{} /* shown for admin */
 .manager-mode .admin-only{display:none!important}
@@ -256,7 +275,10 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
       <option value="risk">&#128993; &#1056;&#1080;&#1079;&#1080;&#1082;</option>
       <option value="ok">&#128994; OK</option>
     </select>
-    <input class="search-input" type="text" id="fCity" placeholder="&#127961; &#1052;&#1110;&#1089;&#1090;&#1086;..." style="width:130px;padding-left:12px;background-image:none" oninput="renderPipeline()">
+    <input class="search-input" type="text" id="fCity" placeholder="&#127961; &#1052;&#1110;&#1089;&#1090;&#1086;..." style="width:120px;padding-left:12px;background-image:none" oninput="renderPipeline()">
+    <select class="filter-select" id="fCat" onchange="renderPipeline()" style="max-width:200px">
+      <option value="">&#128230; &#1042;&#1089;&#1110; &#1082;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1110;&#1111;</option>
+    </select>
     <button class="btn btn-ghost" onclick="exportCSV()" title="&#1047;&#1072;&#1074;&#1072;&#1085;&#1090;&#1072;&#1078;&#1080;&#1090;&#1080; &#1103;&#1082; CSV">&#11015; CSV</button>
   </div>
   <div class="stats-row" id="pipe-stats"></div>
@@ -268,6 +290,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
           <th>&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;</th><th>Email</th><th>&#1040;&#1076;&#1088;&#1077;&#1089;&#1072;</th><th>&#1050;&#1072;&#1085;&#1072;&#1083;</th><th>&#1058;&#1080;&#1087; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1072;</th><th>&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</th>
           <th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</th><th>&#1053;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1080;&#1081; &#1082;&#1088;&#1086;&#1082;</th><th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1088;&#1086;&#1082;&#1091;</th><th>&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;</th>
           <th>&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080;</th><th>&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</th>
+          <th>&#1050;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1110;&#1111;</th>
           <th>&#9888; &#1055;&#1088;&#1086;&#1089;&#1090;&#1088;.</th><th>&#128680; &#1041;&#1077;&#1079; &#1082;&#1088;&#1086;&#1082;&#1091;</th><th>&#1044;&#1085;&#1110;&#1074;</th><th>&#128308; &#1050;&#1086;&#1085;&#1090;&#1088;&#1086;&#1083;&#1100;</th>
           <th style="width:72px">&#1044;&#1110;&#1111;</th>
         </tr></thead>
@@ -555,39 +578,64 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
     <!-- SECTION 3: Pipeline -->
     <div class="form-section">
       <div class="form-section-title">&#128203; &#1056;&#1086;&#1073;&#1086;&#1090;&#1072; &#1079; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1086;&#1084;</div>
-      <div class="form-grid">
-        <div class="form-group">
-          <label class="form-label">&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</label>
-          <select class="form-control" id="d-status" onchange="saveDraft()">
-            <option>New</option><option>Contacted</option><option>Warm</option>
-            <option>Meeting scheduled</option><option>Offer sent</option>
-            <option>Won</option><option>Lost</option><option>Recycle</option>
-          </select>
+      <!-- Status Flow -->
+      <div style="margin-bottom:10px">
+        <div class="form-label" style="margin-bottom:6px">&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</div>
+        <div class="status-flow" id="status-flow">
+          <div class="sf-step sf-New"     onclick="setStatus('New')"               data-s="New">New</div>
+          <div class="sf-step sf-Contacted" onclick="setStatus('Contacted')"       data-s="Contacted">Contacted</div>
+          <div class="sf-step sf-Warm"    onclick="setStatus('Warm')"              data-s="Warm">Warm</div>
+          <div class="sf-step sf-Meeting" onclick="setStatus('Meeting scheduled')" data-s="Meeting scheduled">Meeting</div>
+          <div class="sf-step sf-Offer"   onclick="setStatus('Offer sent')"        data-s="Offer sent">Offer sent</div>
+          <div class="sf-step sf-Won"     onclick="setStatus('Won')"               data-s="Won">&#9989; Won</div>
+          <div class="sf-step sf-Lost"    onclick="setStatus('Lost')"              data-s="Lost">&#10060; Lost</div>
+          <div class="sf-step sf-Recycle" onclick="setStatus('Recycle')"           data-s="Recycle">&#9851;&#65039; Recycle</div>
         </div>
+        <input type="hidden" id="d-status" value="New">
+      </div>
+      <div class="form-grid">
         <div class="form-group">
           <label class="form-label">&#1044;&#1072;&#1090;&#1072; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</label>
           <input type="date" class="form-control" id="d-contactdate" onchange="saveDraft()">
         </div>
-        <div class="form-group full" style="background:#f8fbff;border-radius:8px;padding:10px 12px;border:1px solid #e3f2fd">
-          <label class="form-label" style="color:#1565C0">&#1053;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1080;&#1081; &#1082;&#1088;&#1086;&#1082;</label>
-          <input type="text" class="form-control" id="d-nextstep" placeholder="&#1065;&#1086; &#1087;&#1083;&#1072;&#1085;&#1091;&#1108;&#1090;&#1077; &#1079;&#1088;&#1086;&#1073;&#1080;&#1090;&#1080;?" oninput="saveDraft()" style="margin-bottom:8px">
-          <label class="form-label">&#1044;&#1072;&#1090;&#1072; &#1085;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1086;&#1075;&#1086; &#1082;&#1088;&#1086;&#1082;&#1091;</label>
-          <input type="date" class="form-control" id="d-stepdate" onchange="saveDraft()">
-        </div>
         <div class="form-group">
-          <label class="form-label">&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;</label>
+          <label class="form-label">&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090; &#1086;&#1089;&#1090;&#1072;&#1085;&#1085;&#1100;&#1086;&#1075;&#1086; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</label>
           <select class="form-control" id="d-result" onchange="saveDraft()">
             <option value="">&#8212;</option><option>&#1047;&#1091;&#1089;&#1090;&#1088;&#1110;&#1095; &#1087;&#1088;&#1086;&#1074;&#1077;&#1076;&#1077;&#1085;&#1072;</option>
             <option>&#1050;&#1055; &#1074;&#1110;&#1076;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1086;</option><option>&#1058;&#1077;&#1089;&#1090; / &#1076;&#1077;&#1084;&#1086;</option><option>&#1054;&#1087;&#1083;&#1072;&#1090;&#1072;</option>
           </select>
         </div>
-        <div class="form-group">
-          <label class="form-label">&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080;</label>
-          <input type="text" class="form-control" id="d-reject" placeholder="&#1103;&#1082;&#1097;&#1086; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089; Lost..." oninput="saveDraft()">
+        <div class="form-group full" style="background:#f0f7ff;border-radius:10px;padding:12px 14px;border:1px solid #bbdefb">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:16px">&#127919;</span>
+            <span class="form-label" style="color:#1565C0;font-size:12px">&#1053;&#1040;&#1057;&#1058;&#1059;&#1055;&#1053;&#1048;&#1049; &#1050;&#1056;&#1054;&#1050;</span>
+          </div>
+          <input type="text" class="form-control" id="d-nextstep" placeholder="&#1065;&#1086; &#1087;&#1083;&#1072;&#1085;&#1091;&#1108;&#1090;&#1077; &#1079;&#1088;&#1086;&#1073;&#1080;&#1090;&#1080;? (&#1079;&#1072;&#1090;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;&#1091;&#1074;&#1072;&#1090;&#1080;, &#1085;&#1072;&#1076;&#1110;&#1089;&#1083;&#1072;&#1090;&#1080; &#1050;&#1055;, &#1079;&#1091;&#1089;&#1090;&#1088;&#1110;&#1095;...)" oninput="saveDraft()" style="margin-bottom:8px">
+          <label class="form-label">&#1044;&#1072;&#1090;&#1072; &#1074;&#1080;&#1082;&#1086;&#1085;&#1072;&#1085;&#1085;&#1103;</label>
+          <input type="date" class="form-control" id="d-stepdate" onchange="saveDraft()">
         </div>
         <div class="form-group full">
-          <label class="form-label">&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</label>
-          <textarea class="form-control" id="d-comment" rows="2" placeholder="&#1053;&#1086;&#1090;&#1072;&#1090;&#1082;&#1080;, &#1076;&#1077;&#1090;&#1072;&#1083;&#1110;..." oninput="saveDraft()"></textarea>
+          <label class="form-label">&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080; <span style="color:#bbb;font-weight:400">(&#1103;&#1082;&#1097;&#1086; Lost)</span></label>
+          <input type="text" class="form-control" id="d-reject" placeholder="&#1062;&#1110;&#1085;&#1072;, &#1082;&#1086;&#1085;&#1082;&#1091;&#1088;&#1077;&#1085;&#1090;, &#1085;&#1077; &#1087;&#1086;&#1090;&#1088;&#1110;&#1073;&#1085;&#1086;..." oninput="saveDraft()">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088; / &#1085;&#1086;&#1090;&#1072;&#1090;&#1082;&#1080;</label>
+          <textarea class="form-control" id="d-comment" rows="2" placeholder="&#1044;&#1077;&#1090;&#1072;&#1083;&#1110; &#1088;&#1086;&#1079;&#1084;&#1086;&#1074;&#1080;, &#1087;&#1086;&#1073;&#1072;&#1078;&#1072;&#1085;&#1085;&#1103; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1072;..." oninput="saveDraft()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: Commerce / Categories -->
+    <div class="form-section">
+      <div class="form-section-title">&#128230; &#1058;&#1086;&#1074;&#1072;&#1088;&#1085;&#1110; &#1082;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1110;&#1111;</div>
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label" style="margin-bottom:6px">&#1055;&#1086;&#1090;&#1086;&#1095;&#1085;&#1110; &#1082;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1110;&#1111; <span style="color:#aaa;font-weight:400">(&#1079; &#1095;&#1080;&#1084; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090; &#1074;&#1078;&#1077; &#1087;&#1088;&#1072;&#1094;&#1102;&#1108;)</span></label>
+          <div class="cat-grid" id="categories-grid"></div>
+        </div>
+        <div class="form-group full" style="margin-top:6px">
+          <label class="form-label" style="margin-bottom:6px;color:#2e7d32">&#1055;&#1086;&#1090;&#1077;&#1085;&#1094;&#1110;&#1081;&#1085;&#1110; &#1082;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1110;&#1111; <span style="color:#aaa;font-weight:400">(&#1084;&#1086;&#1078;&#1085;&#1072; &#1079;&#1072;&#1087;&#1088;&#1086;&#1087;&#1086;&#1085;&#1091;&#1074;&#1072;&#1090;&#1080;)</span></label>
+          <div class="cat-grid" id="potential-grid"></div>
         </div>
       </div>
     </div>
@@ -639,6 +687,14 @@ function saveActs(){  localStorage.setItem(actsKey(currentMgrId), JSON.stringify
 const CH_TYPES={'D1':'\u041D\u0430\u0446. \u043C\u0435\u0440\u0435\u0436\u0456','D2':'\u0420\u0435\u0433\u0456\u043E\u043D./B2B','D3':'\u0420\u043E\u0437\u0434\u0440\u0456\u0431','D4.1':'\u0406\u043D\u0442\u0435\u0440\u043D\u0435\u0442(\u0441\u043A\u043B\u0430\u0434)','D4.2':'Dropshipping','D5':'\u041F\u0440\u043E\u0435\u043A\u0442\u043D\u0456','D5 Partner':'\u0406\u043D\u0441\u0442\u0430\u043B\u044F\u0442\u043E\u0440\u0438','D6':'\u0420\u0435\u0433\u0456\u043E\u043D. \u0434\u0438\u0441\u0442.'};
 const S_CLASS={'New':'s-New','Contacted':'s-Contacted','Warm':'s-Warm','Meeting scheduled':'s-Meeting','Offer sent':'s-Offer','Won':'s-Won','Lost':'s-Lost','Recycle':'s-Recycle'};
 const FCOLORS={'New':'#1565C0','Contacted':'#1976D2','Warm':'#FB8C00','Meeting scheduled':'#7B1FA2','Offer sent':'#00838F','Won':'#2E7D32','Lost':'#C62828','Recycle':'#757575'};
+const CATEGORIES=[
+  '\u0415\u043B\u0435\u043C\u0435\u043D\u0442\u0438 \u0436\u0438\u0432\u043B\u0435\u043D\u043D\u044F','\u041B\u0456\u0445\u0442\u0430\u0440\u0438\u043A\u0438','\u0414\u0430\u0442\u0447\u0438\u043A\u0438','\u041B\u0430\u043C\u043F\u043E\u0447\u043A\u0438','\u041F\u0440\u043E\u0436\u0435\u043A\u0442\u043E\u0440\u0438',
+  '\u0421\u0432\u0456\u0442\u043B\u043E\u0434\u0456\u043E\u0434\u043D\u0435 \u0434\u0435\u043A\u043E\u0440\u0430\u0442\u0438\u0432\u043D\u0435 \u043E\u0441\u0432\u0456\u0442\u043B\u0435\u043D\u043D\u044F','\u0421\u0432\u0456\u0442\u0438\u043B\u044C\u043D\u0438\u043A\u0438','\u041C\u043E\u043D\u0442\u0430\u0436\u043D\u0456 \u043C\u0430\u0442\u0435\u0440\u0456\u0430\u043B\u0438',
+  '\u0417\u0430\u0440\u044F\u0434\u043D\u0456 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0457, \u0430\u0434\u0430\u043F\u0442\u0435\u0440\u0438, \u0456\u043D\u0432\u0435\u0440\u0442\u043E\u0440\u0438','\u0421\u0432\u0438\u043D\u0446\u0435\u0432\u043E-\u043A\u0438\u0441\u043B\u043E\u0442\u043D\u0456 \u0430\u043A\u0443\u043C\u0443\u043B\u044F\u0442\u043E\u0440\u0438',
+  '\u0417\'\u0454\u0434\u043D\u0443\u0432\u0430\u0447\u0456','\u0410\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442 Schuko','\u0422\u0435\u0440\u043C\u043E\u0441\u0442\u0430\u0442\u0438, \u0441\u0438\u0433\u043D\u0430\u043B\u0456\u0437\u0430\u0446\u0456\u044F','\u041A\u0430\u0431\u0435\u043B\u0456',
+  '\u041A\u043B\u0435\u043C\u043D\u0456 \u043A\u043E\u043B\u043E\u0434\u043A\u0438','\u0413\u043D\u0443\u0447\u043A\u0456 \u0448\u043D\u0443\u0440\u0438','\u0422\u0435\u0441\u0442\u0435\u0440\u0438, \u043C\u0443\u043B\u044C\u0442\u0438\u043C\u0435\u0442\u0440\u0438','\u0421\u0442\u0440\u0456\u0447\u043A\u0438',
+  '\u0410\u043D\u0442\u0435\u043D\u0438','LCD-\u043F\u0440\u043E\u0434\u0443\u043A\u0446\u0456\u044F','\u0414\u0437\u0432\u0456\u043D\u043A\u0438','\u0414\u043E\u043C\u0430\u0448\u043D\u0456 \u0432\u0456\u0434\u0435\u043E\u0441\u0438\u0441\u0442\u0435\u043C\u0438','\u0422\u043E\u0432\u0430\u0440\u0438 \u0434\u043B\u044F \u0434\u043E\u043C\u0430\u0448\u043D\u0456\u0445 \u0442\u0432\u0430\u0440\u0438\u043D'
+];
 
 // ============================================================
 // UTILS
@@ -735,6 +791,7 @@ function showApp(role){
   document.getElementById('appMain').style.display='block';
   document.getElementById('nav-date').textContent=new Date().toLocaleDateString('uk-UA',{weekday:'short',day:'numeric',month:'long'});
   applyRole(role);
+  initCatFilter();
   renderPipeline();
 }
 
@@ -811,7 +868,7 @@ function showTab(name,el){
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   if(el)el.classList.add('active');
-  if(name==='pipeline')renderPipeline();
+  if(name==='pipeline'){initCatFilter();renderPipeline();}
   if(name==='activity')renderActivity();
   if(name==='dashboard')renderDashboard();
   if(name==='settings'){loadCloudSettings();loadMgrSettings();}
@@ -834,6 +891,7 @@ function renderPipeline(){
   const fC=document.getElementById('fChannel')?.value||'';
   const fCtrl=document.getElementById('fCtrl')?.value||'';
   const fCity=(document.getElementById('fCity')?.value||'').toLowerCase();
+  const fCat=document.getElementById('fCat')?.value||'';
   let rows=deals.filter(d=>{
     if(fS&&d.status!==fS)return false;
     if(fC&&d.channel!==fC)return false;
@@ -842,6 +900,11 @@ function renderPipeline(){
       if(fCtrl==='risk'&&ctrlCls!=='ctrl-risk')return false;
       if(fCtrl==='ok'&&ctrlCls!=='ctrl-ok')return false;}
     if(fCity&&!(d.city||'').toLowerCase().includes(fCity))return false;
+    if(fCat){
+      const inCur=(d.categories||[]).includes(fCat);
+      const inPot=(d.potentialCategories||[]).includes(fCat);
+      if(!inCur&&!inPot)return false;
+    }
     if(srch&&!JSON.stringify(d).toLowerCase().includes(srch))return false;
     return true;
   });
@@ -855,7 +918,7 @@ function renderPipeline(){
     <div class="stat-chip">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A: <strong style="color:#e65100">${risks}</strong></div>
     <div class="stat-chip">\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E: <strong>${rows.length}</strong></div>`;
   const tbody=document.getElementById('pipe-body');
-  if(!rows.length){tbody.innerHTML=`<tr><td colspan="22"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
+  if(!rows.length){tbody.innerHTML=`<tr><td colspan="23"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
   tbody.innerHTML=rows.map((d,i)=>{
     const{overdue,noStep,daysInact,ctrl,ctrlCls}=calcDeal(d);
     const rCls=ctrlCls==='ctrl-crit'?'row-crit':ctrlCls==='ctrl-risk'?'row-risk':'';
@@ -882,6 +945,7 @@ function renderPipeline(){
       <td style="font-size:11px">${esc(d.result)}</td>
       <td style="color:#b71c1c;font-size:11px">${esc(d.reject)}</td>
       <td style="color:#888;font-size:11px;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(d.comment)}">${esc(d.comment)}</td>
+      <td style="max-width:130px;font-size:10px;line-height:1.6">${renderCatBadges(d)}</td>
       <td style="color:#b71c1c;font-weight:700;font-size:11px">${overdue?'\u041F\u0420\u041E\u0421\u0422\u0420\u041E\u0427\u0415\u041D\u041E':''}</td>
       <td style="color:#b71c1c;font-weight:700;font-size:11px">${noStep?'\u0411\u0415\u0417 \u041A\u0420\u041E\u041A\u0423!':''}</td>
       <td style="text-align:center;font-weight:600">${daysInact!==null?daysInact:''}</td>
@@ -908,6 +972,9 @@ function openDeal(id){
     document.getElementById('d-status').value='New';
     document.getElementById('d-result').value='';
     addPhoneField();addEmailField();
+    buildCatGrid('categories-grid',[]);
+    buildCatGrid('potential-grid',[]);
+    initStatusFlow('New');
     // Check for draft
     const draft=JSON.parse(localStorage.getItem('hsm_draft')||'null');
     if(draft&&draft._ts&&(Date.now()-draft._ts)<86400000){
@@ -921,7 +988,6 @@ function openDeal(id){
     document.getElementById('d-contactdate').value=d.contactdate||'';
     document.getElementById('d-stepdate').value=d.stepdate||'';
     document.getElementById('d-channel').value=d.channel||'';
-    document.getElementById('d-status').value=d.status||'New';
     document.getElementById('d-result').value=d.result||'';
     // Multi-phones
     const phones=d.phones&&d.phones.length?d.phones:(d.phone?[d.phone]:[]);
@@ -929,6 +995,11 @@ function openDeal(id){
     // Multi-emails
     const emails=d.emails&&d.emails.length?d.emails:(d.email?[d.email]:[]);
     if(emails.length){emails.forEach(e=>addEmailField(e));}else{addEmailField();}
+    // Categories
+    buildCatGrid('categories-grid', d.categories||[]);
+    buildCatGrid('potential-grid', d.potentialCategories||[]);
+    // Status flow
+    initStatusFlow(d.status||'New');
   }
   document.getElementById('dealModal').classList.add('open');
 }
@@ -949,6 +1020,8 @@ function saveDeal(){
     email:getEmailValues()[0]||'',
     city:document.getElementById('d-city').value.trim(),
     address:document.getElementById('d-address').value.trim(),
+    categories:getCatValues('categories-grid'),
+    potentialCategories:getCatValues('potential-grid'),
     channel:document.getElementById('d-channel').value,
     status:document.getElementById('d-status').value,
     contactdate:document.getElementById('d-contactdate').value,
@@ -1174,6 +1247,8 @@ function migrateDeal(d){
   if(!Array.isArray(d.phones)) d.phones=d.phone?[d.phone]:[];
   if(!Array.isArray(d.emails)) d.emails=d.email?[d.email]:[];
   if(d.city===undefined) d.city='';
+  if(!Array.isArray(d.categories)) d.categories=[];
+  if(!Array.isArray(d.potentialCategories)) d.potentialCategories=[];
   return d;
 }
 
@@ -1537,12 +1612,14 @@ function cancelCSVImport(){
 // EXPORT CSV
 // ============================================================
 function exportCSV(){
-  const headers=['\u2116','\u0414\u0430\u0442\u0430','\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F','\u041C\u0456\u0441\u0442\u043E','\u041A\u043E\u043D\u0442\u0430\u043A\u0442','\u041F\u043E\u0441\u0430\u0434\u0430','\u0422\u0435\u043B\u0435\u0444\u043E\u043D\u0438','Email','\u0410\u0434\u0440\u0435\u0441\u0430','\u041A\u0430\u043D\u0430\u043B','\u0422\u0438\u043F \u043A\u043B\u0456\u0454\u043D\u0442\u0430','\u0421\u0442\u0430\u0442\u0443\u0441','\u0414\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0443','\u041D\u0430\u0441\u0442\u0443\u043F\u043D\u0438\u0439 \u043A\u0440\u043E\u043A','\u0414\u0430\u0442\u0430 \u043A\u0440\u043E\u043A\u0443','\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442','\u041F\u0440\u0438\u0447\u0438\u043D\u0430 \u0432\u0456\u0434\u043C\u043E\u0432\u0438','\u041A\u043E\u043C\u0435\u043D\u0442\u0430\u0440','\u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C'];
+  const headers=['\u2116','\u0414\u0430\u0442\u0430','\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F','\u041C\u0456\u0441\u0442\u043E','\u041A\u043E\u043D\u0442\u0430\u043A\u0442','\u041F\u043E\u0441\u0430\u0434\u0430','\u0422\u0435\u043B\u0435\u0444\u043E\u043D\u0438','Email','\u0410\u0434\u0440\u0435\u0441\u0430','\u041A\u0430\u043D\u0430\u043B','\u0422\u0438\u043F \u043A\u043B\u0456\u0454\u043D\u0442\u0430','\u0421\u0442\u0430\u0442\u0443\u0441','\u0414\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0443','\u041D\u0430\u0441\u0442\u0443\u043F\u043D\u0438\u0439 \u043A\u0440\u043E\u043A','\u0414\u0430\u0442\u0430 \u043A\u0440\u043E\u043A\u0443','\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442','\u041F\u0440\u0438\u0447\u0438\u043D\u0430 \u0432\u0456\u0434\u043C\u043E\u0432\u0438','\u041A\u043E\u043C\u0435\u043D\u0442\u0430\u0440','\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457','\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0456 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457','\u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C'];
   const rows=deals.map((d,i)=>{
     const{ctrl}=calcDeal(d);
     const phones=(d.phones&&d.phones.length?d.phones:[d.phone||'']).filter(Boolean).join('; ');
     const emails=(d.emails&&d.emails.length?d.emails:[d.email||'']).filter(Boolean).join('; ');
-    return[i+1,fmtDate(d.date),d.company,d.city||'',d.contact,d.position,phones,emails,d.address||'',d.channel,CH_TYPES[d.channel]||'',d.status,fmtDate(d.contactdate),d.nextstep,fmtDate(d.stepdate),d.result,d.reject,d.comment,ctrl]
+    const cats=(d.categories||[]).join('; ');
+    const pots=(d.potentialCategories||[]).join('; ');
+    return[i+1,fmtDate(d.date),d.company,d.city||'',d.contact,d.position,phones,emails,d.address||'',d.channel,CH_TYPES[d.channel]||'',d.status,fmtDate(d.contactdate),d.nextstep,fmtDate(d.stepdate),d.result,d.reject,d.comment,cats,pots,ctrl]
       .map(v=>'"'+(v||'').toString().replace(/"/g,'""')+'"').join(',');
   });
   const csv='\uFEFF'+[headers.join(','),...rows].join('\n');
@@ -1623,6 +1700,8 @@ function saveDraft(){
     phones:getPhoneValues(),emails:getEmailValues(),
     city:document.getElementById('d-city').value,
     address:document.getElementById('d-address').value,
+    categories:getCatValues('categories-grid'),
+    potentialCategories:getCatValues('potential-grid'),
     channel:document.getElementById('d-channel').value,
     status:document.getElementById('d-status').value,
     date:document.getElementById('d-date').value,
@@ -1649,11 +1728,14 @@ function restoreDraft(){
   ['company','contact','position','city','address','nextstep','reject','comment'].forEach(f=>{
     const el=document.getElementById('d-'+f);if(el)el.value=draft[f]||'';
   });
-  ['channel','status','date','contactdate','stepdate','result'].forEach(f=>{
+  ['channel','date','contactdate','stepdate','result'].forEach(f=>{
     const el=document.getElementById('d-'+f);if(el)el.value=draft[f]||'';
   });
   (draft.phones&&draft.phones.length?draft.phones:[''] ).forEach(p=>addPhoneField(p));
   (draft.emails&&draft.emails.length?draft.emails:[''] ).forEach(e=>addEmailField(e));
+  buildCatGrid('categories-grid', draft.categories||[]);
+  buildCatGrid('potential-grid', draft.potentialCategories||[]);
+  initStatusFlow(draft.status||'New');
   document.getElementById('draft-bar').classList.remove('visible');
 }
 
@@ -1686,6 +1768,71 @@ function getPhoneValues(){
 function getEmailValues(){
   return Array.from(document.querySelectorAll('#emails-list .mf-input'))
     .map(i=>i.value.trim()).filter(Boolean);
+}
+
+// ============================================================
+// CATEGORIES HELPERS
+// ============================================================
+function buildCatGrid(containerId, selected, accentClass){
+  const el=document.getElementById(containerId);
+  el.innerHTML=CATEGORIES.map(cat=>{
+    const checked=selected.includes(cat);
+    const id=containerId+'_'+cat.replace(/[^a-zA-Z0-9]/g,'_');
+    return`<label class="cat-item${checked?' is-checked':''}" id="lbl_${id}">
+      <input type="checkbox" id="${id}" value="${esc(cat)}" ${checked?'checked':''}
+        onchange="toggleCatItem(this,'${containerId}')">
+      ${esc(cat)}</label>`;
+  }).join('');
+}
+
+function toggleCatItem(cb, containerId){
+  const lbl=cb.closest('.cat-item');
+  if(cb.checked) lbl.classList.add('is-checked');
+  else lbl.classList.remove('is-checked');
+  saveDraft();
+}
+
+function getCatValues(containerId){
+  return Array.from(document.querySelectorAll('#'+containerId+' input[type=checkbox]:checked'))
+    .map(cb=>cb.value);
+}
+
+function renderCatBadges(d){
+  const cats=d.categories||[];
+  const pots=d.potentialCategories||[];
+  let out='';
+  cats.slice(0,2).forEach(c=>{ out+=`<span class="cat-badge">${esc(c)}</span> `; });
+  if(cats.length>2) out+=`<span class="cat-badge">+${cats.length-2}</span> `;
+  pots.slice(0,1).forEach(c=>{ out+=`<span class="cat-badge cat-badge-pot">${esc(c)}</span> `; });
+  if(pots.length>1) out+=`<span class="cat-badge cat-badge-pot">+${pots.length-1}</span>`;
+  return out;
+}
+
+// ============================================================
+// STATUS FLOW HELPER
+// ============================================================
+function setStatus(val){
+  document.getElementById('d-status').value=val;
+  document.querySelectorAll('#status-flow .sf-step').forEach(el=>{
+    const s=el.getAttribute('data-s');
+    el.classList.toggle('sf-active', s===val);
+  });
+  saveDraft();
+}
+
+function initStatusFlow(val){
+  setStatus(val||'New');
+}
+
+// ============================================================
+// CATEGORY FILTER INIT
+// ============================================================
+function initCatFilter(){
+  const sel=document.getElementById('fCat');
+  if(!sel)return;
+  const cur=sel.value;
+  sel.innerHTML=`<option value="">\uD83D\uDCE6 \u0412\u0441\u0456 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457</option>`+
+    CATEGORIES.map(c=>`<option value="${esc(c)}"${cur===c?' selected':''}>${esc(c)}</option>`).join('');
 }
 
 function showStatus(el,msg,type){
