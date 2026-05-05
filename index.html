@@ -80,17 +80,28 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 .stat-chip{background:#fff;border-radius:8px;padding:7px 14px;font-size:13px;box-shadow:0 1px 4px rgba(0,0,0,.08);white-space:nowrap}
 
 /* ===== MODAL ===== */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
 .modal-overlay.open{display:flex}
-.modal{background:#fff;border-radius:16px;padding:28px;width:700px;max-width:96vw;max-height:92vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.3)}
-.modal-title{font-size:18px;font-weight:700;color:#1565C0;margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid #f0f4f8}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.modal{background:#fff;border-radius:18px;padding:0;width:820px;max-width:97vw;max-height:94vh;display:flex;flex-direction:column;box-shadow:0 28px 72px rgba(0,0,0,.32)}
+.modal-header{padding:22px 28px 16px;border-bottom:2px solid #f0f4f8;flex-shrink:0}
+.modal-title{font-size:18px;font-weight:800;color:#1565C0;display:flex;align-items:center;gap:10px}
+.modal-body{padding:20px 28px;overflow-y:auto;flex:1}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form-group{display:flex;flex-direction:column;gap:5px}
 .form-group.full{grid-column:1/-1}
 .form-label{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px}
 .form-control{padding:9px 12px;border:1.5px solid #e0e6ed;border-radius:8px;font-size:13px;transition:border-color .2s;font-family:inherit;color:#333}
 .form-control:focus{outline:none;border-color:#1565C0;box-shadow:0 0 0 3px rgba(21,101,192,.1)}
-.modal-footer{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:2px solid #f0f4f8}
+.form-control.required-field{border-color:#90caf9;background:#fafcff}
+.form-control.required-field:focus{border-color:#1565C0}
+.modal-footer{display:flex;gap:10px;justify-content:flex-end;padding:14px 28px 18px;border-top:2px solid #f0f4f8;flex-shrink:0;background:#fff;border-radius:0 0 18px 18px}
+/* Section step numbers */
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#1565C0;color:#fff;font-size:11px;font-weight:800;flex-shrink:0}
+/* URL field */
+.url-field-wrap{display:flex;align-items:center;gap:6px}
+.url-field-wrap .form-control{flex:1;min-width:0}
+.url-open-btn{padding:8px 10px;border-radius:8px;border:1.5px solid #e0e6ed;background:#f8f9ff;color:#1565C0;cursor:pointer;font-size:14px;text-decoration:none;display:flex;align-items:center;flex-shrink:0;transition:all .2s}
+.url-open-btn:hover{background:#e3f2fd;border-color:#1565C0}
 
 /* ===== KPI ===== */
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:20px}
@@ -286,7 +297,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th style="width:34px">&#8470;</th><th>&#1044;&#1072;&#1090;&#1072;</th><th>&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</th><th>&#1052;&#1110;&#1089;&#1090;&#1086;</th><th>&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</th><th>&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</th>
+          <th style="width:34px">&#8470;</th><th>&#1044;&#1072;&#1090;&#1072;</th><th>&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</th><th>&#1052;&#1110;&#1089;&#1090;&#1086;</th><th>&#1057;&#1072;&#1081;&#1090;</th><th>&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</th><th>&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</th>
           <th>&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;</th><th>Email</th><th>&#1040;&#1076;&#1088;&#1077;&#1089;&#1072;</th><th>&#1050;&#1072;&#1085;&#1072;&#1083;</th><th>&#1058;&#1080;&#1087; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1072;</th><th>&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</th>
           <th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</th><th>&#1053;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1080;&#1081; &#1082;&#1088;&#1086;&#1082;</th><th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1088;&#1086;&#1082;&#1091;</th><th>&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;</th>
           <th>&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080;</th><th>&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</th>
@@ -508,8 +519,11 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 <!-- ===== DEAL MODAL ===== -->
 <div class="modal-overlay" id="dealModal">
   <div class="modal">
-    <div class="modal-title" id="deal-modal-title">&#10133; &#1053;&#1086;&#1074;&#1080;&#1081; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;</div>
+    <div class="modal-header">
+      <div class="modal-title" id="deal-modal-title">&#10133; &#1053;&#1086;&#1074;&#1080;&#1081; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;</div>
+    </div>
 
+    <div class="modal-body">
     <!-- Draft restore bar -->
     <div class="draft-bar" id="draft-bar">
       &#9201; <strong>&#1028; &#1085;&#1077;&#1079;&#1073;&#1077;&#1088;&#1077;&#1078;&#1077;&#1085;&#1072; &#1095;&#1077;&#1088;&#1085;&#1077;&#1090;&#1082;&#1072;</strong> &#8212; &#1074;&#1110;&#1076;&#1085;&#1086;&#1074;&#1080;&#1090;&#1080; &#1076;&#1072;&#1085;&#1110;?
@@ -519,7 +533,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 
     <!-- SECTION 1: Contact -->
     <div class="form-section">
-      <div class="form-section-title">&#128100; &#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1085;&#1110; &#1076;&#1072;&#1085;&#1110;</div>
+      <div class="form-section-title"><span class="step-num">1</span> &#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1085;&#1110; &#1076;&#1072;&#1085;&#1110;</div>
       <div class="form-grid">
         <div class="form-group">
           <label class="form-label">&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090; (&#1055;&#1030;&#1041;)</label>
@@ -544,15 +558,22 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 
     <!-- SECTION 2: Company -->
     <div class="form-section">
-      <div class="form-section-title">&#127970; &#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</div>
+      <div class="form-section-title"><span class="step-num">2</span> &#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</div>
       <div class="form-grid">
         <div class="form-group">
-          <label class="form-label">&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103; *</label>
-          <input type="text" class="form-control" id="d-company" placeholder="&#1053;&#1072;&#1079;&#1074;&#1072; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1111;" oninput="saveDraft()">
+          <label class="form-label">&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103; <span style="color:#e53935">*</span></label>
+          <input type="text" class="form-control required-field" id="d-company" placeholder="&#1053;&#1072;&#1079;&#1074;&#1072; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1111;" oninput="saveDraft()">
         </div>
         <div class="form-group">
           <label class="form-label">&#1052;&#1110;&#1089;&#1090;&#1086;</label>
           <input type="text" class="form-control" id="d-city" placeholder="&#1050;&#1080;&#1111;&#1074;, &#1061;&#1072;&#1088;&#1082;&#1110;&#1074;, &#1054;&#1076;&#1077;&#1089;&#1072;..." oninput="saveDraft()">
+        </div>
+        <div class="form-group full">
+          <label class="form-label">&#1057;&#1072;&#1081;&#1090; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1111;</label>
+          <div class="url-field-wrap">
+            <input type="text" class="form-control" id="d-website" placeholder="https://company.ua" oninput="saveDraft()" onblur="normalizeWebsite(this)">
+            <a id="d-website-link" href="#" target="_blank" class="url-open-btn" title="&#1042;&#1110;&#1076;&#1082;&#1088;&#1080;&#1090;&#1080; &#1089;&#1072;&#1081;&#1090;" onclick="return openWebsite(event)">&#127760;</a>
+          </div>
         </div>
         <div class="form-group full">
           <label class="form-label">&#1040;&#1076;&#1088;&#1077;&#1089;&#1072;</label>
@@ -577,7 +598,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 
     <!-- SECTION 3: Pipeline -->
     <div class="form-section">
-      <div class="form-section-title">&#128203; &#1056;&#1086;&#1073;&#1086;&#1090;&#1072; &#1079; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1086;&#1084;</div>
+      <div class="form-section-title"><span class="step-num">3</span> &#1056;&#1086;&#1073;&#1086;&#1090;&#1072; &#1079; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1086;&#1084;</div>
       <!-- Status Flow -->
       <div style="margin-bottom:10px">
         <div class="form-label" style="margin-bottom:6px">&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</div>
@@ -627,7 +648,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 
     <!-- SECTION 4: Commerce / Categories -->
     <div class="form-section">
-      <div class="form-section-title">&#128230; &#1058;&#1086;&#1074;&#1072;&#1088;&#1085;&#1110; &#1082;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1110;&#1111;</div>
+      <div class="form-section-title"><span class="step-num">4</span> &#1058;&#1086;&#1074;&#1072;&#1088;&#1085;&#1110; &#1082;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1110;&#1111;</div>
       <div class="form-grid">
         <div class="form-group full">
           <label class="form-label" style="margin-bottom:6px">&#1055;&#1086;&#1090;&#1086;&#1095;&#1085;&#1110; &#1082;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1110;&#1111; <span style="color:#aaa;font-weight:400">(&#1079; &#1095;&#1080;&#1084; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090; &#1074;&#1078;&#1077; &#1087;&#1088;&#1072;&#1094;&#1102;&#1108;)</span></label>
@@ -640,9 +661,10 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
       </div>
     </div>
 
+    </div><!-- /modal-body -->
     <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeDealModal()">&#1057;&#1082;&#1072;&#1089;&#1091;&#1074;&#1072;&#1090;&#1080;</button>
-      <button class="btn btn-primary" onclick="saveDeal()">&#128190; &#1047;&#1073;&#1077;&#1088;&#1077;&#1075;&#1090;&#1080;</button>
+      <button class="btn btn-ghost" onclick="closeDealModal()">&#10005; &#1057;&#1082;&#1072;&#1089;&#1091;&#1074;&#1072;&#1090;&#1080;</button>
+      <button class="btn btn-primary" onclick="saveDeal()" style="padding:10px 24px;font-size:14px">&#128190; &#1047;&#1073;&#1077;&#1088;&#1077;&#1075;&#1090;&#1080; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1072;</button>
     </div>
   </div>
 </div>
@@ -918,7 +940,7 @@ function renderPipeline(){
     <div class="stat-chip">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A: <strong style="color:#e65100">${risks}</strong></div>
     <div class="stat-chip">\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E: <strong>${rows.length}</strong></div>`;
   const tbody=document.getElementById('pipe-body');
-  if(!rows.length){tbody.innerHTML=`<tr><td colspan="23"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
+  if(!rows.length){tbody.innerHTML=`<tr><td colspan="24"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
   tbody.innerHTML=rows.map((d,i)=>{
     const{overdue,noStep,daysInact,ctrl,ctrlCls}=calcDeal(d);
     const rCls=ctrlCls==='ctrl-crit'?'row-crit':ctrlCls==='ctrl-risk'?'row-risk':'';
@@ -932,6 +954,7 @@ function renderPipeline(){
       <td style="white-space:nowrap">${fmtDate(d.date)}</td>
       <td><strong>${esc(d.company)}</strong></td>
       <td style="color:#555;font-size:11px;white-space:nowrap">${esc(d.city||'')}</td>
+      <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\uD83C\uDF10</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
       <td>${esc(d.contact)}</td><td style="color:#999">${esc(d.position)}</td>
       <td style="white-space:nowrap">${ph0}${ph_extra}</td>
       <td style="color:#1565C0;font-size:11px">${em0}${em_extra}</td>
@@ -964,7 +987,8 @@ function openDeal(id){
 
   if(id===null){
     document.getElementById('deal-modal-title').textContent='\u2795 \u041D\u043E\u0432\u0438\u0439 \u043A\u043B\u0456\u0454\u043D\u0442';
-    ['company','contact','position','address','city','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value='');
+    ['company','contact','position','address','city','website','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value='');
+    updateWebsiteLink('');
     document.getElementById('d-date').value=todayStr();
     document.getElementById('d-contactdate').value='';
     document.getElementById('d-stepdate').value='';
@@ -983,7 +1007,8 @@ function openDeal(id){
   } else {
     const d=deals.find(x=>x.id===id);if(!d)return;
     document.getElementById('deal-modal-title').textContent='\u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u043A\u043B\u0456\u0454\u043D\u0442\u0430';
-    ['company','contact','position','address','city','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value=d[f]||'');
+    ['company','contact','position','address','city','website','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value=d[f]||'');
+    updateWebsiteLink(d.website||'');
     document.getElementById('d-date').value=d.date||'';
     document.getElementById('d-contactdate').value=d.contactdate||'';
     document.getElementById('d-stepdate').value=d.stepdate||'';
@@ -1019,6 +1044,7 @@ function saveDeal(){
     phone:getPhoneValues()[0]||'',
     email:getEmailValues()[0]||'',
     city:document.getElementById('d-city').value.trim(),
+    website:(()=>{let w=document.getElementById('d-website').value.trim();if(w&&!/^https?:\/\//i.test(w))w='https://'+w;return w;})(),
     address:document.getElementById('d-address').value.trim(),
     categories:getCatValues('categories-grid'),
     potentialCategories:getCatValues('potential-grid'),
@@ -1247,9 +1273,36 @@ function migrateDeal(d){
   if(!Array.isArray(d.phones)) d.phones=d.phone?[d.phone]:[];
   if(!Array.isArray(d.emails)) d.emails=d.email?[d.email]:[];
   if(d.city===undefined) d.city='';
+  if(d.website===undefined) d.website='';
   if(!Array.isArray(d.categories)) d.categories=[];
   if(!Array.isArray(d.potentialCategories)) d.potentialCategories=[];
   return d;
+}
+
+// ============================================================
+// WEBSITE HELPERS
+// ============================================================
+function normalizeWebsite(input){
+  let v=input.value.trim();
+  if(!v){input.value='';updateWebsiteLink('');return;}
+  if(!/^https?:\/\//i.test(v)) v='https://'+v;
+  input.value=v;
+  updateWebsiteLink(v);
+  saveDraft();
+}
+
+function updateWebsiteLink(url){
+  const btn=document.getElementById('d-website-link');
+  if(!btn)return;
+  btn.href=url||'#';
+  btn.style.opacity=url?'1':'0.35';
+  btn.style.pointerEvents=url?'auto':'none';
+}
+
+function openWebsite(e){
+  const url=document.getElementById('d-website').value.trim();
+  if(!url){e.preventDefault();return false;}
+  return true;
 }
 
 function loadDataForUser(id){
@@ -1612,14 +1665,14 @@ function cancelCSVImport(){
 // EXPORT CSV
 // ============================================================
 function exportCSV(){
-  const headers=['\u2116','\u0414\u0430\u0442\u0430','\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F','\u041C\u0456\u0441\u0442\u043E','\u041A\u043E\u043D\u0442\u0430\u043A\u0442','\u041F\u043E\u0441\u0430\u0434\u0430','\u0422\u0435\u043B\u0435\u0444\u043E\u043D\u0438','Email','\u0410\u0434\u0440\u0435\u0441\u0430','\u041A\u0430\u043D\u0430\u043B','\u0422\u0438\u043F \u043A\u043B\u0456\u0454\u043D\u0442\u0430','\u0421\u0442\u0430\u0442\u0443\u0441','\u0414\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0443','\u041D\u0430\u0441\u0442\u0443\u043F\u043D\u0438\u0439 \u043A\u0440\u043E\u043A','\u0414\u0430\u0442\u0430 \u043A\u0440\u043E\u043A\u0443','\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442','\u041F\u0440\u0438\u0447\u0438\u043D\u0430 \u0432\u0456\u0434\u043C\u043E\u0432\u0438','\u041A\u043E\u043C\u0435\u043D\u0442\u0430\u0440','\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457','\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0456 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457','\u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C'];
+  const headers=['\u2116','\u0414\u0430\u0442\u0430','\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F','\u041C\u0456\u0441\u0442\u043E','\u0421\u0430\u0439\u0442','\u041A\u043E\u043D\u0442\u0430\u043A\u0442','\u041F\u043E\u0441\u0430\u0434\u0430','\u0422\u0435\u043B\u0435\u0444\u043E\u043D\u0438','Email','\u0410\u0434\u0440\u0435\u0441\u0430','\u041A\u0430\u043D\u0430\u043B','\u0422\u0438\u043F \u043A\u043B\u0456\u0454\u043D\u0442\u0430','\u0421\u0442\u0430\u0442\u0443\u0441','\u0414\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0443','\u041D\u0430\u0441\u0442\u0443\u043F\u043D\u0438\u0439 \u043A\u0440\u043E\u043A','\u0414\u0430\u0442\u0430 \u043A\u0440\u043E\u043A\u0443','\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442','\u041F\u0440\u0438\u0447\u0438\u043D\u0430 \u0432\u0456\u0434\u043C\u043E\u0432\u0438','\u041A\u043E\u043C\u0435\u043D\u0442\u0430\u0440','\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457','\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0456 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457','\u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C'];
   const rows=deals.map((d,i)=>{
     const{ctrl}=calcDeal(d);
     const phones=(d.phones&&d.phones.length?d.phones:[d.phone||'']).filter(Boolean).join('; ');
     const emails=(d.emails&&d.emails.length?d.emails:[d.email||'']).filter(Boolean).join('; ');
     const cats=(d.categories||[]).join('; ');
     const pots=(d.potentialCategories||[]).join('; ');
-    return[i+1,fmtDate(d.date),d.company,d.city||'',d.contact,d.position,phones,emails,d.address||'',d.channel,CH_TYPES[d.channel]||'',d.status,fmtDate(d.contactdate),d.nextstep,fmtDate(d.stepdate),d.result,d.reject,d.comment,cats,pots,ctrl]
+    return[i+1,fmtDate(d.date),d.company,d.city||'',d.website||'',d.contact,d.position,phones,emails,d.address||'',d.channel,CH_TYPES[d.channel]||'',d.status,fmtDate(d.contactdate),d.nextstep,fmtDate(d.stepdate),d.result,d.reject,d.comment,cats,pots,ctrl]
       .map(v=>'"'+(v||'').toString().replace(/"/g,'""')+'"').join(',');
   });
   const csv='\uFEFF'+[headers.join(','),...rows].join('\n');
@@ -1699,6 +1752,7 @@ function saveDraft(){
     position:document.getElementById('d-position').value,
     phones:getPhoneValues(),emails:getEmailValues(),
     city:document.getElementById('d-city').value,
+    website:document.getElementById('d-website').value,
     address:document.getElementById('d-address').value,
     categories:getCatValues('categories-grid'),
     potentialCategories:getCatValues('potential-grid'),
@@ -1725,9 +1779,10 @@ function restoreDraft(){
   const draft=JSON.parse(localStorage.getItem('hsm_draft')||'null');
   if(!draft)return;
   clearPhoneFields();clearEmailFields();
-  ['company','contact','position','city','address','nextstep','reject','comment'].forEach(f=>{
+  ['company','contact','position','city','website','address','nextstep','reject','comment'].forEach(f=>{
     const el=document.getElementById('d-'+f);if(el)el.value=draft[f]||'';
   });
+  updateWebsiteLink(draft.website||'');
   ['channel','date','contactdate','stepdate','result'].forEach(f=>{
     const el=document.getElementById('d-'+f);if(el)el.value=draft[f]||'';
   });
