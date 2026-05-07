@@ -211,6 +211,21 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 .cat-badge{display:inline-block;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:700;background:#e3f2fd;color:#1565C0;white-space:nowrap}
 .cat-badge-pot{background:#e8f5e9;color:#2e7d32}
 
+/* ===== DUPLICATE WARNING ===== */
+.dup-panel{display:none;background:#fff8e1;border:1.5px solid #ffb300;border-radius:10px;padding:12px 14px;margin-bottom:14px}
+.dup-panel.visible{display:block}
+.dup-panel-title{font-size:13px;font-weight:700;color:#e65100;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.dup-list{display:flex;flex-direction:column;gap:6px}
+.dup-item{background:#fff;border:1px solid #ffe082;border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:background .15s}
+.dup-item:hover{background:#fff3cd}
+.dup-item-info{flex:1;min-width:0}
+.dup-item-company{font-size:13px;font-weight:700;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dup-item-meta{font-size:11px;color:#888;margin-top:2px}
+.dup-match-tag{display:inline-block;padding:1px 6px;border-radius:8px;font-size:10px;font-weight:700;background:#ffe082;color:#7a4f00;margin-left:4px}
+.dup-open-btn{flex-shrink:0;padding:5px 10px;border-radius:6px;border:1.5px solid #ffb300;background:#fff;color:#e65100;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.dup-open-btn:hover{background:#ffb300;color:#fff}
+.dup-force-row{margin-top:10px;padding-top:10px;border-top:1px solid #ffe082;font-size:12px;color:#888;display:flex;align-items:center;gap:8px}
+
 /* ===== STATUS FLOW ===== */
 .status-flow{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
 .sf-step{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid #e0e6ed;color:#888;background:#fff;transition:all .2s;white-space:nowrap}
@@ -535,6 +550,16 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
     </div>
 
     <div class="modal-body">
+    <!-- Duplicate warning panel -->
+    <div class="dup-panel" id="dup-panel">
+      <div class="dup-panel-title">&#9888;&#65039; &#1047;&#1085;&#1072;&#1081;&#1076;&#1077;&#1085;&#1086; &#1089;&#1093;&#1086;&#1078;&#1080;&#1093; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074; &#1091; &#1073;&#1072;&#1079;&#1110;</div>
+      <div class="dup-list" id="dup-list"></div>
+      <div class="dup-force-row" id="dup-force-row" style="display:none">
+        <input type="checkbox" id="dup-force-cb" onchange="updateDupForce()">
+        <label for="dup-force-cb" style="cursor:pointer">&#1071; &#1074;&#1087;&#1077;&#1074;&#1085;&#1077;&#1085;&#1080;&#1081; &#8212; &#1094;&#1077; &#1085;&#1086;&#1074;&#1080;&#1081; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090; (&#1110;&#1075;&#1085;&#1086;&#1088;&#1091;&#1074;&#1072;&#1090;&#1080; &#1087;&#1086;&#1087;&#1077;&#1088;&#1077;&#1076;&#1078;&#1077;&#1085;&#1085;&#1103;)</label>
+      </div>
+    </div>
+
     <!-- Draft restore bar -->
     <div class="draft-bar" id="draft-bar">
       &#9201; <strong>&#1028; &#1085;&#1077;&#1079;&#1073;&#1077;&#1088;&#1077;&#1078;&#1077;&#1085;&#1072; &#1095;&#1077;&#1088;&#1085;&#1077;&#1090;&#1082;&#1072;</strong> &#8212; &#1074;&#1110;&#1076;&#1085;&#1086;&#1074;&#1080;&#1090;&#1080; &#1076;&#1072;&#1085;&#1110;?
@@ -573,7 +598,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
       <div class="form-grid">
         <div class="form-group">
           <label class="form-label">&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103; <span style="color:#e53935">*</span></label>
-          <input type="text" class="form-control required-field" id="d-company" placeholder="&#1053;&#1072;&#1079;&#1074;&#1072; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1111;" oninput="saveDraft()">
+          <input type="text" class="form-control required-field" id="d-company" placeholder="&#1053;&#1072;&#1079;&#1074;&#1072; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1111;" oninput="saveDraft();checkDuplicates()">
         </div>
         <div class="form-group">
           <label class="form-label">&#1052;&#1110;&#1089;&#1090;&#1086;</label>
@@ -582,7 +607,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
         <div class="form-group full">
           <label class="form-label">&#1057;&#1072;&#1081;&#1090; &#1082;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1111;</label>
           <div class="url-field-wrap">
-            <input type="text" class="form-control" id="d-website" placeholder="https://company.ua" oninput="saveDraft()" onblur="normalizeWebsite(this)">
+            <input type="text" class="form-control" id="d-website" placeholder="https://company.ua" oninput="saveDraft()" onblur="normalizeWebsite(this);checkDuplicates()">
             <a id="d-website-link" href="#" target="_blank" class="url-open-btn" title="&#1042;&#1110;&#1076;&#1082;&#1088;&#1080;&#1090;&#1080; &#1089;&#1072;&#1081;&#1090;" onclick="return openWebsite(event)">&#127760;</a>
           </div>
         </div>
@@ -994,6 +1019,7 @@ function renderPipeline(){
 function openDeal(id){
   editDealId=id;
   clearPhoneFields();clearEmailFields();
+  resetDupPanel();
   document.getElementById('draft-bar').classList.remove('visible');
 
   if(id===null){
@@ -1043,6 +1069,20 @@ function openDeal(id){
 function saveDeal(){
   const company=document.getElementById('d-company').value.trim();
   if(!company){alert('\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043D\u0430\u0437\u0432\u0443 \u043A\u043E\u043C\u043F\u0430\u043D\u0456\u0457!');return;}
+  // Duplicate guard
+  const dupVisible=document.getElementById('dup-panel').classList.contains('visible');
+  if(dupVisible){
+    const isAdmin=getRole()==='admin';
+    const forced=document.getElementById('dup-force-cb')?.checked;
+    if(isAdmin&&!forced){
+      alert('\u26A0\uFE0F \u0417\u043D\u0430\u0439\u0434\u0435\u043D\u043E \u0441\u0445\u043E\u0436\u0438\u0445 \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432!\n\u041F\u043E\u0441\u0442\u0430\u0432\u0442\u0435 \u0433\u0430\u043B\u043E\u0447\u043A\u0443 "\u042F \u0432\u043F\u0435\u0432\u043D\u0435\u043D\u0438\u0439 \u2014 \u0446\u0435 \u043D\u043E\u0432\u0438\u0439 \u043A\u043B\u0456\u0454\u043D\u0442" \u0449\u043E\u0431 \u0437\u0431\u0435\u0440\u0435\u0433\u0442\u0438.');
+      return;
+    }
+    if(!isAdmin){
+      alert('\u26A0\uFE0F \u0422\u0430\u043A\u0438\u0439 \u043A\u043B\u0456\u0454\u043D\u0442 \u0432\u0436\u0435 \u0454 \u0432 \u0431\u0430\u0437\u0456!\n\u0417\u0432\u0435\u0440\u043D\u0456\u0442\u044C\u0441\u044F \u0434\u043E \u0430\u0434\u043C\u0456\u043D\u0456\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u0430 \u0430\u0431\u043E \u0432\u0456\u0434\u043A\u0440\u0438\u0439\u0442\u0435 \u0456\u0441\u043D\u0443\u044E\u0447\u0443 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443.');
+      return;
+    }
+  }
   const deal={
     id:editDealId||Date.now(),
     date:document.getElementById('d-date').value,
@@ -1811,16 +1851,16 @@ function restoreDraft(){
 function addPhoneField(val=''){
   const div=document.createElement('div');
   div.className='multi-field-row';
-  div.innerHTML=`<input type="tel" class="form-control mf-input" placeholder="+380..." value="${val.replace(/"/g,'&quot;')}" oninput="saveDraft()">
-    <button type="button" class="btn-remove" onclick="this.parentElement.remove();saveDraft()" title="\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438">\u00D7</button>`;
+  div.innerHTML=`<input type="tel" class="form-control mf-input" placeholder="+380..." value="${val.replace(/"/g,'&quot;')}" oninput="saveDraft();checkDuplicates()">
+    <button type="button" class="btn-remove" onclick="this.parentElement.remove();saveDraft();checkDuplicates()" title="\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438">\u00D7</button>`;
   document.getElementById('phones-list').appendChild(div);
 }
 
 function addEmailField(val=''){
   const div=document.createElement('div');
   div.className='multi-field-row';
-  div.innerHTML=`<input type="email" class="form-control mf-input" placeholder="email@..." value="${val.replace(/"/g,'&quot;')}" oninput="saveDraft()">
-    <button type="button" class="btn-remove" onclick="this.parentElement.remove();saveDraft()" title="\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438">\u00D7</button>`;
+  div.innerHTML=`<input type="email" class="form-control mf-input" placeholder="email@..." value="${val.replace(/"/g,'&quot;')}" oninput="saveDraft();checkDuplicates()">
+    <button type="button" class="btn-remove" onclick="this.parentElement.remove();saveDraft();checkDuplicates()" title="\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438">\u00D7</button>`;
   document.getElementById('emails-list').appendChild(div);
 }
 
@@ -1908,6 +1948,118 @@ function showStatus(el,msg,type){
   else if(type==='err')el.classList.add('sync-err');
   else if(type==='loading')el.classList.add('sync-loading');
   if(type==='ok')setTimeout(()=>{el.className='sync-status';},4000);
+}
+
+// ============================================================
+// DUPLICATE DETECTION
+// ============================================================
+function normPhone(p){return(p||'').replace(/\D/g,'').slice(-9);}
+function normDomain(url){
+  try{
+    let u=url.trim();
+    if(!/^https?:\/\//i.test(u))u='https://'+u;
+    return new URL(u).hostname.replace(/^www\./,'').toLowerCase();
+  }catch(e){return'';}
+}
+function normCompany(s){
+  return(s||'').toLowerCase()
+    .replace(/\u0442\u043E\u0432|\u0444\u043E\u043F|\u043F\u0430\u0442|\u043F\u043F|llc|ltd|gmbh|inc|\u043E\u043E\u043E|\u0438\u043F|\u043F\u0430\u043E/g,'')
+    .replace(/[\u00AB\u00BB"'.,\-()]/g,'').replace(/\s+/g,' ').trim();
+}
+
+let _dupCheckTimer=null;
+function checkDuplicates(){
+  clearTimeout(_dupCheckTimer);
+  _dupCheckTimer=setTimeout(_runDupCheck, 300);
+}
+
+function _runDupCheck(){
+  // Only check when adding new (or editing \u2014 skip self)
+  const panel=document.getElementById('dup-panel');
+  const list=document.getElementById('dup-list');
+
+  const company=normCompany(document.getElementById('d-company').value);
+  const website=normDomain(document.getElementById('d-website').value);
+  const phones=getPhoneValues().map(normPhone).filter(Boolean);
+  const emails=getEmailValues().map(e=>e.toLowerCase().trim()).filter(Boolean);
+
+  if(!company&&!website&&!phones.length&&!emails.length){
+    panel.classList.remove('visible');return;
+  }
+
+  const matches=[];
+  deals.forEach(d=>{
+    if(editDealId&&d.id===editDealId)return; // skip self when editing
+    const reasons=[];
+    // Company name
+    const dc=normCompany(d.company);
+    if(company&&dc&&(dc.includes(company)||company.includes(dc)))
+      reasons.push('\u043D\u0430\u0437\u0432\u0430 \u043A\u043E\u043C\u043F\u0430\u043D\u0456\u0457');
+    // Website domain
+    const dw=normDomain(d.website||'');
+    if(website&&dw&&dw===website)
+      reasons.push('\u0441\u0430\u0439\u0442');
+    // Phones
+    const dPhones=(d.phones&&d.phones.length?d.phones:[d.phone||'']).map(normPhone).filter(Boolean);
+    phones.forEach(p=>{if(p.length>=7&&dPhones.includes(p))reasons.push('\u0442\u0435\u043B\u0435\u0444\u043E\u043D');});
+    // Emails
+    const dEmails=(d.emails&&d.emails.length?d.emails:[d.email||'']).map(e=>(e||'').toLowerCase().trim()).filter(Boolean);
+    emails.forEach(e=>{if(e&&dEmails.includes(e))reasons.push('email');});
+
+    if(reasons.length){
+      const unique=[...new Set(reasons)];
+      matches.push({d,reasons:unique});
+    }
+  });
+
+  if(!matches.length){
+    panel.classList.remove('visible');
+    document.getElementById('dup-force-row').style.display='none';
+    return;
+  }
+
+  list.innerHTML=matches.slice(0,5).map(({d,reasons})=>`
+    <div class="dup-item" onclick="openDupClient(${d.id})">
+      <div class="dup-item-info">
+        <div class="dup-item-company">${esc(d.company)}
+          ${reasons.map(r=>`<span class="dup-match-tag">${r}</span>`).join('')}
+        </div>
+        <div class="dup-item-meta">
+          ${d.city?'\uD83C\uDFD9 '+esc(d.city)+' \u00B7 ':''}
+          ${(d.phones&&d.phones[0])||d.phone?'\uD83D\uDCDE '+esc((d.phones&&d.phones[0])||d.phone||'')+' \u00B7 ':''}
+          <span class="badge ${S_CLASS[d.status]||'s-New'}" style="font-size:10px;padding:1px 6px">${d.status}</span>
+        </div>
+      </div>
+      <button class="dup-open-btn" onclick="event.stopPropagation();openDupClient(${d.id})">\u0412\u0456\u0434\u043A\u0440\u0438\u0442\u0438 \u2192</button>
+    </div>`).join('');
+
+  const forceRow=document.getElementById('dup-force-row');
+  const isAdmin=getRole()==='admin';
+  forceRow.style.display=isAdmin?'flex':'none';
+  panel.classList.add('visible');
+}
+
+function openDupClient(id){
+  // Close current modal and open the existing client
+  clearDraft();
+  document.getElementById('dealModal').classList.remove('open');
+  setTimeout(()=>openDeal(id),100);
+}
+
+function updateDupForce(){
+  // When checkbox changes, re-validate save button state (visual only)
+  const cb=document.getElementById('dup-force-cb');
+  const btn=document.querySelector('.modal-footer .btn-primary');
+  if(btn) btn.style.opacity=cb&&cb.checked?'1':'1'; // always allow click, logic in saveDeal
+}
+
+// Reset dup panel on modal open
+function resetDupPanel(){
+  document.getElementById('dup-panel').classList.remove('visible');
+  document.getElementById('dup-list').innerHTML='';
+  const cb=document.getElementById('dup-force-cb');
+  if(cb)cb.checked=false;
+  document.getElementById('dup-force-row').style.display='none';
 }
 
 // ============================================================
