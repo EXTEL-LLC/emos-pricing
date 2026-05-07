@@ -43,12 +43,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .section-title{font-size:12px;font-weight:700;color:#1565C0;text-transform:uppercase;letter-spacing:.8px;padding:4px 0 10px;border-bottom:2px solid #e3f2fd;margin-bottom:14px}
 
 /* ===== TABLE ===== */
-.table-wrap{overflow-x:auto;border-radius:8px}
+.table-wrap{overflow-x:auto;border-radius:8px;position:relative}
 table{width:100%;border-collapse:collapse;font-size:13px;min-width:800px}
 thead th{background:#1565C0;color:#fff;padding:10px 8px;text-align:left;white-space:nowrap;font-weight:500;font-size:12px}
 tbody td{padding:9px 8px;border-bottom:1px solid #f0f4f8;vertical-align:middle;font-size:12px}
 tbody tr:hover td{background:#f8f9ff}
 tbody tr:last-child td{border-bottom:none}
+/* Sticky columns */
+.col-company{position:sticky;left:0;z-index:3;background:#fff;box-shadow:2px 0 6px rgba(0,0,0,.08)}
+thead .col-company{background:#1565C0;box-shadow:2px 0 6px rgba(0,0,0,.2)}
+tbody tr:hover .col-company{background:#f8f9ff}
+tbody tr.row-crit .col-company{background:rgba(255,235,238,.6)}
+tbody tr.row-risk .col-company{background:rgba(255,248,225,.6)}
+.col-actions{position:sticky;right:0;z-index:3;background:#fff;box-shadow:-2px 0 6px rgba(0,0,0,.08)}
+thead .col-actions{background:#1565C0;box-shadow:-2px 0 6px rgba(0,0,0,.2)}
+tbody tr:hover .col-actions{background:#f8f9ff}
+tbody tr.row-crit .col-actions{background:rgba(255,235,238,.6)}
+tbody tr.row-risk .col-actions{background:rgba(255,248,225,.6)}
 
 /* ===== BADGES ===== */
 .badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
@@ -297,13 +308,13 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th style="width:34px">&#8470;</th><th>&#1044;&#1072;&#1090;&#1072;</th><th>&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</th><th>&#1052;&#1110;&#1089;&#1090;&#1086;</th><th>&#1057;&#1072;&#1081;&#1090;</th><th>&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</th><th>&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</th>
+          <th style="width:34px">&#8470;</th><th>&#1044;&#1072;&#1090;&#1072;</th><th class="col-company">&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</th><th>&#1052;&#1110;&#1089;&#1090;&#1086;</th><th>&#1057;&#1072;&#1081;&#1090;</th><th>&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</th><th>&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</th>
           <th>&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;</th><th>Email</th><th>&#1040;&#1076;&#1088;&#1077;&#1089;&#1072;</th><th>&#1050;&#1072;&#1085;&#1072;&#1083;</th><th>&#1058;&#1080;&#1087; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1072;</th><th>&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</th>
           <th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</th><th>&#1053;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1080;&#1081; &#1082;&#1088;&#1086;&#1082;</th><th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1088;&#1086;&#1082;&#1091;</th><th>&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;</th>
           <th>&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080;</th><th>&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</th>
           <th>&#1050;&#1072;&#1090;&#1077;&#1075;&#1086;&#1088;&#1110;&#1111;</th>
           <th>&#9888; &#1055;&#1088;&#1086;&#1089;&#1090;&#1088;.</th><th>&#128680; &#1041;&#1077;&#1079; &#1082;&#1088;&#1086;&#1082;&#1091;</th><th>&#1044;&#1085;&#1110;&#1074;</th><th>&#128308; &#1050;&#1086;&#1085;&#1090;&#1088;&#1086;&#1083;&#1100;</th>
-          <th style="width:72px">&#1044;&#1110;&#1111;</th>
+          <th class="col-actions" style="width:72px">&#1044;&#1110;&#1111;</th>
         </tr></thead>
         <tbody id="pipe-body"></tbody>
       </table>
@@ -952,7 +963,7 @@ function renderPipeline(){
     return`<tr class="${rCls}">
       <td style="text-align:center;color:#bbb;font-size:11px">${i+1}</td>
       <td style="white-space:nowrap">${fmtDate(d.date)}</td>
-      <td><strong>${esc(d.company)}</strong></td>
+      <td class="col-company"><strong>${esc(d.company)}</strong></td>
       <td style="color:#555;font-size:11px;white-space:nowrap">${esc(d.city||'')}</td>
       <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\uD83C\uDF10</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
       <td>${esc(d.contact)}</td><td style="color:#999">${esc(d.position)}</td>
@@ -973,7 +984,7 @@ function renderPipeline(){
       <td style="color:#b71c1c;font-weight:700;font-size:11px">${noStep?'\u0411\u0415\u0417 \u041A\u0420\u041E\u041A\u0423!':''}</td>
       <td style="text-align:center;font-weight:600">${daysInact!==null?daysInact:''}</td>
       <td class="${ctrlCls}">${ctrl}</td>
-      <td style="white-space:nowrap">
+      <td class="col-actions" style="white-space:nowrap">
         ${(role!=='manager'||perms.edit)?`<button class="btn btn-sm btn-primary" onclick="openDeal(${d.id})">\u270F\uFE0F</button>`:''}
         <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">\uD83D\uDDD1</button>
       </td></tr>`;
