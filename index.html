@@ -6,7 +6,9 @@
 <title>&#127919; Hunter Sales Manager</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f8;color:#1a1a2e;min-height:100vh}
+html,body{height:100%;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f8;color:#1a1a2e}
+#appMain{height:100%;display:flex;flex-direction:column}
 
 /* ===== LOGIN ===== */
 .login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#1565C0 0%,#0d47a1 60%,#01579B 100%);display:flex;align-items:center;justify-content:center;z-index:9999}
@@ -33,7 +35,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .logout-btn:hover{background:rgba(255,255,255,.25)}
 
 /* ===== CONTENT ===== */
-.content{padding:0;max-width:100%;display:flex;flex-direction:column;height:calc(100vh - 56px);overflow:hidden}
+.content{padding:0;max-width:100%;display:flex;flex-direction:column;flex:1;overflow:hidden;min-height:0}
 .tab-pane{display:none;flex:1;flex-direction:column;overflow:auto;min-height:0}
 .tab-pane.active{display:flex}
 .tab-pane:not(#tab-pipeline){padding:20px 22px}
