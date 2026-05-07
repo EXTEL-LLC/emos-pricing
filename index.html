@@ -877,7 +877,7 @@ async function doLogin(){
 function showApp(role){
   role=role||sessionStorage.getItem('hsm_session')||'admin';
   document.getElementById('loginScreen').style.display='none';
-  document.getElementById('appMain').style.display='block';
+  document.getElementById('appMain').style.display='flex';
   document.getElementById('nav-date').textContent=new Date().toLocaleDateString('uk-UA',{weekday:'short',day:'numeric',month:'long'});
   applyRole(role);
   initCatFilter();
