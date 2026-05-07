@@ -1715,7 +1715,8 @@ function scheduleAutoSync(){
 }
 
 async function autoCloudPush(){
-  const cfg=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
+  const _saved=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
+  const cfg={apiKey:_saved.apiKey||_DEFAULT_CLOUD.apiKey,binId:_saved.binId||_DEFAULT_CLOUD.binId};
   if(!cfg.apiKey||!cfg.binId)return;
   const role=getRole();
   try{
@@ -1745,7 +1746,8 @@ async function autoCloudPush(){
 }
 
 async function autoCloudPull(){
-  const cfg=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
+  const _saved=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
+  const cfg={apiKey:_saved.apiKey||_DEFAULT_CLOUD.apiKey,binId:_saved.binId||_DEFAULT_CLOUD.binId};
   if(!cfg.apiKey||!cfg.binId)return;
   try{
     _showSyncBadge('\u2601\ufe0f\u2026');
@@ -1781,21 +1783,24 @@ function _showSyncBadge(text){
 // ============================================================
 // MANAGER CLOUD SYNC
 // ============================================================
+const _DEFAULT_CLOUD={
+  apiKey:'$2a$10$K9AOXHyZ3CFLts/Dt3s.Iedrfl1pKZ6niNRfHPJH81m7ytPnqwQ4i',
+  binId:'69fc6a69adc21f119a674b89'
+};
 function toggleMgrCloud(){
   const panel=document.getElementById('mgr-cloud-panel');
   const visible=panel.style.display!=='none'&&panel.style.display!=='';
   panel.style.display=visible?'none':'flex';
   if(!visible){
-    // Pre-fill from saved settings
     const cfg=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
-    if(cfg.apiKey) document.getElementById('mgr-apikey').value=cfg.apiKey;
-    if(cfg.binId)  document.getElementById('mgr-binid').value=cfg.binId;
+    document.getElementById('mgr-apikey').value=cfg.apiKey||_DEFAULT_CLOUD.apiKey;
+    document.getElementById('mgr-binid').value=cfg.binId||_DEFAULT_CLOUD.binId;
   }
 }
 
 function _getMgrCloudCfg(){
-  const apiKey=document.getElementById('mgr-apikey').value.trim();
-  const binId=document.getElementById('mgr-binid').value.trim();
+  const apiKey=document.getElementById('mgr-apikey').value.trim()||_DEFAULT_CLOUD.apiKey;
+  const binId=document.getElementById('mgr-binid').value.trim()||_DEFAULT_CLOUD.binId;
   if(apiKey&&binId) localStorage.setItem('hsm_cloud',JSON.stringify({apiKey,binId}));
   return{apiKey,binId};
 }
