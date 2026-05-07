@@ -6,9 +6,7 @@
 <title>&#127919; Hunter Sales Manager</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f8;color:#1a1a2e}
-#appMain{height:100%;display:flex;flex-direction:column}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f8;color:#1a1a2e;min-height:100vh}
 
 /* ===== LOGIN ===== */
 .login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#1565C0 0%,#0d47a1 60%,#01579B 100%);display:flex;align-items:center;justify-content:center;z-index:9999}
@@ -35,14 +33,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .logout-btn:hover{background:rgba(255,255,255,.25)}
 
 /* ===== CONTENT ===== */
-.content{padding:0;max-width:100%;display:flex;flex-direction:column;flex:1;overflow:hidden;min-height:0}
-.tab-pane{display:none;flex:1;flex-direction:column;overflow:auto;min-height:0}
-.tab-pane.active{display:flex}
-.tab-pane:not(#tab-pipeline){padding:20px 22px}
-/* Pipeline specific &#8212; table fills remaining height */
-#tab-pipeline{overflow:hidden;padding:20px 22px 0}
-#tab-pipeline .card{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;padding:0;margin-bottom:0}
-#tab-pipeline .table-wrap{flex:1;overflow:auto;max-height:none;border-radius:8px}
+.content{padding:20px 22px;max-width:100%}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+/* Pipeline &#8212; &#1090;&#1072;&#1073;&#1083;&#1080;&#1094;&#1103; &#1079; &#1092;&#1110;&#1082;&#1089;&#1086;&#1074;&#1072;&#1085;&#1086;&#1102; &#1074;&#1080;&#1089;&#1086;&#1090;&#1086;&#1102;, &#1097;&#1086;&#1073; &#1075;&#1086;&#1088;&#1080;&#1079;&#1086;&#1085;&#1090;&#1072;&#1083;&#1100;&#1085;&#1080;&#1081; &#1089;&#1082;&#1088;&#1086;&#1083; &#1073;&#1091;&#1074; &#1074;&#1080;&#1076;&#1080;&#1084;&#1080;&#1081; &#1086;&#1076;&#1088;&#1072;&#1079;&#1091; */
+#tab-pipeline .table-wrap{overflow:auto;max-height:calc(100vh - 190px);border-radius:8px}
 
 /* ===== CARD ===== */
 .card{background:#fff;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.08);padding:20px;margin-bottom:20px}
@@ -877,7 +872,7 @@ async function doLogin(){
 function showApp(role){
   role=role||sessionStorage.getItem('hsm_session')||'admin';
   document.getElementById('loginScreen').style.display='none';
-  document.getElementById('appMain').style.display='flex';
+  document.getElementById('appMain').style.display='block';
   document.getElementById('nav-date').textContent=new Date().toLocaleDateString('uk-UA',{weekday:'short',day:'numeric',month:'long'});
   applyRole(role);
   initCatFilter();
