@@ -798,9 +798,9 @@ function calcDeal(d){
   const daysInact=contD?diffDays(contD,now):null;
   let ctrl,ctrlCls;
   if(!d.company){ctrl='';ctrlCls='';}
-  else if(overdue||noStep){ctrl='\u1f534 \u041a\u0420\u0418\u0422\u0418\u0427\u041d\u041e';ctrlCls='ctrl-crit';}
-  else if(daysInact!==null&&daysInact>3&&active){ctrl='\u1f7e1 \u0420\u0418\u0417\u0418\u041a';ctrlCls='ctrl-risk';}
-  else{ctrl='\u1f7e2 OK';ctrlCls='ctrl-ok';}
+  else if(overdue||noStep){ctrl='\ud83d\udd34 \u041a\u0420\u0418\u0422\u0418\u0427\u041d\u041e';ctrlCls='ctrl-crit';}
+  else if(daysInact!==null&&daysInact>3&&active){ctrl='\ud83d\udfe1 \u0420\u0418\u0417\u0418\u041a';ctrlCls='ctrl-risk';}
+  else{ctrl='\ud83d\udfe2 OK';ctrlCls='ctrl-ok';}
   return{overdue,noStep,daysInact,ctrl,ctrlCls};
 }
 
@@ -808,7 +808,7 @@ function kpiBadge(v,t){
   if(!v&&v!==0)return'';
   if(v>=t)return`<span class="kpi-ok">\u2705 ${v}/${t}+</span>`;
   if(v>=t*.7)return`<span class="kpi-warn">\u26a0\ufe0f ${v}/${t}+</span>`;
-  return`<span class="kpi-bad">\u1f534 ${v}/${t}+</span>`;
+  return`<span class="kpi-bad">\ud83d\udd34 ${v}/${t}+</span>`;
 }
 
 // ============================================================
@@ -896,7 +896,7 @@ function applyRole(role){
     body.classList.add('manager-mode');
     document.getElementById('mgr-banner').style.display='block';
     document.getElementById('mgr-name-display').textContent=mgrName;
-    document.getElementById('role-badge').textContent='\u1f477 '+mgrName;
+    document.getElementById('role-badge').textContent='\ud83d\udc77 '+mgrName;
     document.getElementById('role-badge').className='role-badge role-manager';
     const dashTab=document.querySelector('.nav-tab[onclick*="dashboard"]');
     if(dashTab) dashTab.style.display=perms.dashboard?'':'none';
@@ -907,7 +907,7 @@ function applyRole(role){
     currentMgrId=null;
     body.classList.remove('manager-mode');
     document.getElementById('mgr-banner').style.display='none';
-    document.getElementById('role-badge').textContent='\u1f451 \u0410\u0434\u043c\u0456\u043d';
+    document.getElementById('role-badge').textContent='\ud83d\udc51 \u0410\u0434\u043c\u0456\u043d';
     document.getElementById('role-badge').className='role-badge role-admin';
     updateDashMgrFilter();
     initPipeMgrFilter();
@@ -981,8 +981,8 @@ function initPipeMgrFilter(){
   if(!sel||getRole()!=='admin')return;
   const cur=sel.value;
   const mgrs=getManagers();
-  sel.innerHTML=`<option value="">\u1f465 \u0412\u0441\u0456 (${mgrs.length+1})</option>
-    <option value="__admin__"${cur==='__admin__'?' selected':''}>\u1f451 \u0410\u0434\u043c\u0456\u043d</option>`+
+  sel.innerHTML=`<option value="">\ud83d\udc65 \u0412\u0441\u0456 (${mgrs.length+1})</option>
+    <option value="__admin__"${cur==='__admin__'?' selected':''}>\ud83d\udc51 \u0410\u0434\u043c\u0456\u043d</option>`+
     mgrs.map(m=>`<option value="${m.id}"${cur===m.id?' selected':''}>${esc(m.name)}</option>`).join('');
 }
 
@@ -1025,11 +1025,11 @@ function renderPipeline(){
   document.getElementById('pipe-stats').innerHTML=`
     <div class="stat-chip">\u0412\u0441\u044c\u043e\u0433\u043e: <strong>${allPipe.length}</strong></div>
     <div class="stat-chip">\u2705 Won: <strong style="color:#2e7d32">${won}</strong></div>
-    <div class="stat-chip">\u1f534 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0438\u0445: <strong style="color:#b71c1c">${crits}</strong></div>
-    <div class="stat-chip">\u1f7e1 \u0420\u0438\u0437\u0438\u043a: <strong style="color:#e65100">${risks}</strong></div>
+    <div class="stat-chip">\ud83d\udd34 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0438\u0445: <strong style="color:#b71c1c">${crits}</strong></div>
+    <div class="stat-chip">\ud83d\udfe1 \u0420\u0438\u0437\u0438\u043a: <strong style="color:#e65100">${risks}</strong></div>
     <div class="stat-chip">\u041f\u043e\u043a\u0430\u0437\u0430\u043d\u043e: <strong>${rows.length}</strong></div>`;
   const tbody=document.getElementById('pipe-body');
-  if(!rows.length){tbody.innerHTML=`<tr><td colspan="25"><div class="empty"><div class="empty-icon">\u1f4cb</div>\u041d\u0435\u043c\u0430\u0454 \u0437\u0430\u043f\u0438\u0441\u0456\u0432. \u0414\u043e\u0434\u0430\u0439\u0442\u0435 \u043f\u0435\u0440\u0448\u043e\u0433\u043e \u043a\u043b\u0456\u0454\u043d\u0442\u0430!</div></td></tr>`;return;}
+  if(!rows.length){tbody.innerHTML=`<tr><td colspan="25"><div class="empty"><div class="empty-icon">\ud83d\udccb</div>\u041d\u0435\u043c\u0430\u0454 \u0437\u0430\u043f\u0438\u0441\u0456\u0432. \u0414\u043e\u0434\u0430\u0439\u0442\u0435 \u043f\u0435\u0440\u0448\u043e\u0433\u043e \u043a\u043b\u0456\u0454\u043d\u0442\u0430!</div></td></tr>`;return;}
   tbody.innerHTML=rows.map((d,i)=>{
     const{overdue,noStep,daysInact,ctrl,ctrlCls}=calcDeal(d);
     const rCls=ctrlCls==='ctrl-crit'?'row-crit':ctrlCls==='ctrl-risk'?'row-risk':'';
@@ -1044,7 +1044,7 @@ function renderPipeline(){
       <td class="col-company"><strong>${esc(d.company)}</strong></td>
       <td class="admin-only"><span class="owner-badge ${d._ownerId==='__admin__'?'owner-admin':''}">${esc(d._owner||d.addedBy?.name||'\u2014')}</span></td>
       <td style="color:#555;font-size:11px;white-space:nowrap">${esc(d.city||'')}</td>
-      <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\u1f310</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
+      <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\ud83c\udf10</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
       <td>${esc(d.contact)}</td><td style="color:#999">${esc(d.position)}</td>
       <td style="white-space:nowrap">${ph0}${ph_extra}</td>
       <td style="color:#1565C0;font-size:11px">${em0}${em_extra}</td>
@@ -1065,7 +1065,7 @@ function renderPipeline(){
       <td class="${ctrlCls}">${ctrl}</td>
       <td class="col-actions" style="white-space:nowrap">
         ${(role!=='manager'||perms.edit)?`<button class="btn btn-sm btn-primary" onclick="openDeal(${d.id})">\u270f\ufe0f</button>`:''}
-        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">\u1f5d1</button>
+        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">\ud83d\uddd1</button>
       </td></tr>`;
   }).join('');
 }
@@ -1191,7 +1191,7 @@ function renderActivity(){
   const actAddBtn=document.querySelector('#tab-activity .toolbar .btn-primary');
   if(actAddBtn) actAddBtn.style.display=(role==='manager'&&!perms.activity)?'none':'';
   const tbody=document.getElementById('act-body');
-  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">\u1f4ca</div>\u041d\u0435\u043c\u0430\u0454 \u0437\u0430\u043f\u0438\u0441\u0456\u0432. \u0414\u043e\u0434\u0430\u0439\u0442\u0435 \u043f\u0435\u0440\u0448\u0438\u0439 \u0434\u0435\u043d\u044c!</div></td></tr>`;return;}
+  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">\ud83d\udcca</div>\u041d\u0435\u043c\u0430\u0454 \u0437\u0430\u043f\u0438\u0441\u0456\u0432. \u0414\u043e\u0434\u0430\u0439\u0442\u0435 \u043f\u0435\u0440\u0448\u0438\u0439 \u0434\u0435\u043d\u044c!</div></td></tr>`;return;}
   tbody.innerHTML=acts.map(a=>`<tr>
     <td style="font-weight:600;white-space:nowrap">${fmtDate(a.date)}</td>
     <td style="text-align:center">${a.newc}</td><td style="text-align:center">${a.calls}</td>
@@ -1202,7 +1202,7 @@ function renderActivity(){
     <td>${kpiBadge(a.newc,10)}</td><td>${kpiBadge(a.dialogs,5)}</td><td>${kpiBadge(a.meet,2)}</td>
     <td style="white-space:nowrap">
       <button class="btn btn-sm btn-primary" onclick="openActivity(${a.id})">\u270f\ufe0f</button>
-      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">\u1f5d1</button>
+      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">\ud83d\uddd1</button>
     </td></tr>`).join('');
 }
 
@@ -1306,12 +1306,12 @@ function renderDashboard(){
     <div class="kpi-card" style="border-top-color:#2e7d32"><div class="kpi-value" style="color:#2e7d32">${won}</div><div class="kpi-label">\u2705 Won \u2014 \u0437\u0430\u043a\u0440\u0438\u0442\u043e</div></div>
     <div class="kpi-card" style="border-top-color:#00838F"><div class="kpi-value" style="color:#00838F">${conv}%</div><div class="kpi-label">\u041a\u043e\u043d\u0432\u0435\u0440\u0441\u0456\u044f</div></div>
     <div class="kpi-card" style="border-top-color:#7B1FA2"><div class="kpi-value" style="color:#7B1FA2">${active}</div><div class="kpi-label">\u0410\u043a\u0442\u0438\u0432\u043d\u0438\u0445 \u0443\u0433\u043e\u0434</div></div>
-    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">\u1f534 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0438\u0445</div></div>
-    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">\u1f7e1 \u0420\u0438\u0437\u0438\u043a\u0456\u0432</div></div>
+    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">\ud83d\udd34 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0438\u0445</div></div>
+    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">\ud83d\udfe1 \u0420\u0438\u0437\u0438\u043a\u0456\u0432</div></div>
   </div>
   <div class="grid2">
     <div class="card">
-      <div class="card-title">\u1f4ca \u0412\u043e\u0440\u043e\u043d\u043a\u0430 \u043f\u0440\u043e\u0434\u0430\u0436\u0456\u0432</div>
+      <div class="card-title">\ud83d\udcca \u0412\u043e\u0440\u043e\u043d\u043a\u0430 \u043f\u0440\u043e\u0434\u0430\u0436\u0456\u0432</div>
       <div class="funnel">
         ${fStages.map(s=>`<div class="funnel-row">
           <div class="funnel-label">${s}</div>
@@ -1331,27 +1331,27 @@ function renderDashboard(){
       </div>
     </div>
     <div class="card">
-      <div class="card-title">\u1f6a8 \u041a\u043e\u043d\u0442\u0440\u043e\u043b\u044c</div>
+      <div class="card-title">\ud83d\udea8 \u041a\u043e\u043d\u0442\u0440\u043e\u043b\u044c</div>
       <div class="alert-box">
-        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>\u1f534 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0456 (\u043f\u0440\u043e\u0441\u0442\u0440\u043e\u0447\u0435\u043d\u043e/\u0431\u0435\u0437 \u043a\u0440\u043e\u043a\u0443)</span><strong>${crits}</strong></div>
+        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>\ud83d\udd34 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0456 (\u043f\u0440\u043e\u0441\u0442\u0440\u043e\u0447\u0435\u043d\u043e/\u0431\u0435\u0437 \u043a\u0440\u043e\u043a\u0443)</span><strong>${crits}</strong></div>
         <div class="alert-item ${overdues>0?'al-red':'al-green'}"><span>\u23f0 \u041f\u0440\u043e\u0441\u0442\u0440\u043e\u0447\u0435\u043d\u0438\u0439 \u043a\u0440\u043e\u043a</span><strong>${overdues}</strong></div>
-        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>\u1f6a8 \u0411\u0435\u0437 \u043d\u0430\u0441\u0442\u0443\u043f\u043d\u043e\u0433\u043e \u043a\u0440\u043e\u043a\u0443</span><strong>${noSteps}</strong></div>
-        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>\u1f7e1 \u0411\u0435\u0437 \u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0456 3+ \u0434\u043d\u0456</span><strong>${risks}</strong></div>
+        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>\ud83d\udea8 \u0411\u0435\u0437 \u043d\u0430\u0441\u0442\u0443\u043f\u043d\u043e\u0433\u043e \u043a\u0440\u043e\u043a\u0443</span><strong>${noSteps}</strong></div>
+        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>\ud83d\udfe1 \u0411\u0435\u0437 \u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0456 3+ \u0434\u043d\u0456</span><strong>${risks}</strong></div>
         <div class="alert-item al-blue"><span>\u267b\ufe0f Recycle</span><strong>${cnt['Recycle']}</strong></div>
         <div class="alert-item al-blue"><span>\u274c Lost</span><strong>${lost}</strong></div>
       </div>
-      <div style="margin-top:18px"><div class="section-title">\u1f4c5 KPI \u0437\u0430 7 \u0434\u043d\u0456\u0432</div>
+      <div style="margin-top:18px"><div class="section-title">\ud83d\udcc5 KPI \u0437\u0430 7 \u0434\u043d\u0456\u0432</div>
         ${_acts.length===0?`<div style="color:#bbb;text-align:center;padding:14px;font-size:13px">\u0414\u043e\u0434\u0430\u0439\u0442\u0435 \u0434\u0430\u043d\u0456 \u0432 Activity Log</div>`:`
         <div class="alert-box">
-          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>\u1f195 \u041d\u043e\u0432\u0438\u0445 \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432 (\u0446\u0456\u043b\u044c 70+)</span><strong>${wNew}</strong></div>
-          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>\u1f4ac \u0414\u0456\u0430\u043b\u043e\u0433\u0456\u0432 (\u0446\u0456\u043b\u044c 35+)</span><strong>${wDial}</strong></div>
-          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>\u1f91d \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0435\u0439 (\u0446\u0456\u043b\u044c 14+)</span><strong>${wMeet}</strong></div>
+          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>\ud83c\udd95 \u041d\u043e\u0432\u0438\u0445 \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432 (\u0446\u0456\u043b\u044c 70+)</span><strong>${wNew}</strong></div>
+          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>\ud83d\udcac \u0414\u0456\u0430\u043b\u043e\u0433\u0456\u0432 (\u0446\u0456\u043b\u044c 35+)</span><strong>${wDial}</strong></div>
+          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>\ud83e\udd1d \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0435\u0439 (\u0446\u0456\u043b\u044c 14+)</span><strong>${wMeet}</strong></div>
         </div>`}
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">\u1f5c2 \u0420\u043e\u0437\u0431\u0438\u0432\u043a\u0430 \u043f\u043e \u043a\u0430\u043d\u0430\u043b\u0430\u0445</div>
+    <div class="card-title">\ud83d\uddc2 \u0420\u043e\u0437\u0431\u0438\u0432\u043a\u0430 \u043f\u043e \u043a\u0430\u043d\u0430\u043b\u0430\u0445</div>
     <div class="ch-grid">
       ${CHS.map(ch=>{
         const n=_deals.filter(d=>d.channel===ch).length;
@@ -1361,7 +1361,7 @@ function renderDashboard(){
           <div class="ch-name">${ch}</div><div class="ch-count">${n}</div>
           <div class="ch-type">${CH_TYPES[ch]||''}</div>
           <div style="font-size:11px;color:#2e7d32;font-weight:600;margin-top:4px">\u2705 Won: ${w}</div>
-          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">\u1f534 \u041a\u0440\u0438\u0442: ${c}</div>`:''}
+          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">\ud83d\udd34 \u041a\u0440\u0438\u0442: ${c}</div>`:''}
         </div>`;}).join('')}
     </div>
   </div>
@@ -1371,11 +1371,11 @@ function renderDashboard(){
 function renderMgrStatsTable(){
   const allMgrs=getManagers();
   const sources=[
-    {label:'\u1f451 \u0410\u0434\u043c\u0456\u043d', id:'__admin__',
+    {label:'\ud83d\udc51 \u0410\u0434\u043c\u0456\u043d', id:'__admin__',
      deals:JSON.parse(localStorage.getItem('hsm_deals')||'[]').map(migrateDeal),
      acts:JSON.parse(localStorage.getItem('hsm_acts')||'[]')},
     ...allMgrs.map(m=>({
-      label:'\u1f477 '+m.name, id:m.id,
+      label:'\ud83d\udc77 '+m.name, id:m.id,
       deals:JSON.parse(localStorage.getItem(dealsKey(m.id))||'[]').map(migrateDeal),
       acts:JSON.parse(localStorage.getItem(actsKey(m.id))||'[]')
     }))
@@ -1398,13 +1398,13 @@ function renderMgrStatsTable(){
   }).filter(Boolean);
   if(!rows.length)return'';
   return`<div class="card">
-    <div class="card-title">\u1f465 \u0417\u0432\u0456\u0442 \u043f\u043e \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430\u0445</div>
+    <div class="card-title">\ud83d\udc65 \u0417\u0432\u0456\u0442 \u043f\u043e \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430\u0445</div>
     <div style="overflow-x:auto">
     <table class="mgr-stats-table">
       <thead><tr>
-        <th>\u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440</th><th>\u041a\u043b\u0456\u0454\u043d\u0442\u0456\u0432</th><th>\u0410\u043a\u0442\u0438\u0432\u043d\u0438\u0445</th><th>\u1f525 Warm+</th>
-        <th>\u2705 Won</th><th>\u274c Lost</th><th>\u1f534 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0438\u0445</th>
-        <th>\u1f4de \u0414\u0437\u0432\u0456\u043d\u043a\u0438 (7\u0434)</th><th>\u1f91d \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0456 (7\u0434)</th><th>\u041e\u0441\u0442\u0430\u043d\u043d\u044f \u0430\u043a\u0442\u0438\u0432\u043d\u0456\u0441\u0442\u044c</th>
+        <th>\u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440</th><th>\u041a\u043b\u0456\u0454\u043d\u0442\u0456\u0432</th><th>\u0410\u043a\u0442\u0438\u0432\u043d\u0438\u0445</th><th>\ud83d\udd25 Warm+</th>
+        <th>\u2705 Won</th><th>\u274c Lost</th><th>\ud83d\udd34 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0438\u0445</th>
+        <th>\ud83d\udcde \u0414\u0437\u0432\u0456\u043d\u043a\u0438 (7\u0434)</th><th>\ud83e\udd1d \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0456 (7\u0434)</th><th>\u041e\u0441\u0442\u0430\u043d\u043d\u044f \u0430\u043a\u0442\u0438\u0432\u043d\u0456\u0441\u0442\u044c</th>
       </tr></thead>
       <tbody>${rows.map(r=>`<tr>
         <td><strong>${esc(r.label)}</strong></td>
@@ -1535,17 +1535,17 @@ function renderMgrList(){
     const acts_count=JSON.parse(localStorage.getItem(actsKey(m.id))||'[]').length;
     return`<div class="mgr-perm" style="margin-bottom:8px">
       <div>
-        <strong style="font-size:14px">\u1f477 ${esc(m.name)}</strong>
+        <strong style="font-size:14px">\ud83d\udc77 ${esc(m.name)}</strong>
         <span style="font-size:11px;color:#999;margin-left:8px">${deals_count} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432 \u00b7 ${acts_count} \u0434\u043d\u0456\u0432 \u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0456</span><br>
         <span style="font-size:11px;color:#888">\u0414\u043e\u0437\u0432\u043e\u043b\u0438: ${[
           m.perms.add?'\u2795 \u0414\u043e\u0434\u0430\u0432\u0430\u0442\u0438':'',
           m.perms.edit?'\u270f\ufe0f \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438':'',
-          m.perms.activity?'\u1f4ca Activity':'',
-          m.perms.dashboard?'\u1f680 Dashboard':'',
+          m.perms.activity?'\ud83d\udcca Activity':'',
+          m.perms.dashboard?'\ud83d\ude80 Dashboard':'',
           m.perms.export?'\u2b07 CSV':''
         ].filter(Boolean).join(' \u00b7 ')}</span>
       </div>
-      <button class="btn btn-sm btn-danger" onclick="deleteMgr('${m.id}')">\u1f5d1 \u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438</button>
+      <button class="btn btn-sm btn-danger" onclick="deleteMgr('${m.id}')">\ud83d\uddd1 \u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438</button>
     </div>`;
   }).join('');
 }
@@ -1556,9 +1556,9 @@ function updateDashMgrFilter(){
   const sel=document.getElementById('dash-mgr-filter');
   if(!sel)return;
   const managers=getManagers();
-  sel.innerHTML=`<option value="">\u1f465 \u0412\u0441\u0456 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length+1})</option>
-    <option value="__admin__">\u1f451 \u0410\u0434\u043c\u0456\u043d</option>`+
-    managers.map(m=>`<option value="${m.id}">\u1f477 ${esc(m.name)}</option>`).join('');
+  sel.innerHTML=`<option value="">\ud83d\udc65 \u0412\u0441\u0456 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length+1})</option>
+    <option value="__admin__">\ud83d\udc51 \u0410\u0434\u043c\u0456\u043d</option>`+
+    managers.map(m=>`<option value="${m.id}">\ud83d\udc77 ${esc(m.name)}</option>`).join('');
 }
 
 // ============================================================
@@ -2168,7 +2168,7 @@ function initCatFilter(){
   const sel=document.getElementById('fCat');
   if(!sel)return;
   const cur=sel.value;
-  sel.innerHTML=`<option value="">\u1f4e6 \u0412\u0441\u0456 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0456\u0457</option>`+
+  sel.innerHTML=`<option value="">\ud83d\udce6 \u0412\u0441\u0456 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0456\u0457</option>`+
     CATEGORIES.map(c=>`<option value="${esc(c)}"${cur===c?' selected':''}>${esc(c)}</option>`).join('');
 }
 
@@ -2256,8 +2256,8 @@ function _runDupCheck(){
           ${reasons.map(r=>`<span class="dup-match-tag">${r}</span>`).join('')}
         </div>
         <div class="dup-item-meta">
-          ${d.city?'\u1f3d9 '+esc(d.city)+' \u00b7 ':''}
-          ${(d.phones&&d.phones[0])||d.phone?'\u1f4de '+esc((d.phones&&d.phones[0])||d.phone||'')+' \u00b7 ':''}
+          ${d.city?'\ud83c\udfd9 '+esc(d.city)+' \u00b7 ':''}
+          ${(d.phones&&d.phones[0])||d.phone?'\ud83d\udcde '+esc((d.phones&&d.phones[0])||d.phone||'')+' \u00b7 ':''}
           <span class="badge ${S_CLASS[d.status]||'s-New'}" style="font-size:10px;padding:1px 6px">${d.status}</span>
         </div>
       </div>
