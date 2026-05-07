@@ -211,6 +211,15 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 .cat-badge{display:inline-block;padding:2px 6px;border-radius:10px;font-size:10px;font-weight:700;background:#e3f2fd;color:#1565C0;white-space:nowrap}
 .cat-badge-pot{background:#e8f5e9;color:#2e7d32}
 
+/* ===== MANAGER ATTRIBUTION ===== */
+.owner-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:10px;font-size:10px;font-weight:700;background:#e8eaf6;color:#283593;white-space:nowrap}
+.owner-admin{background:#e3f2fd;color:#1565C0}
+.mgr-stats-table{width:100%;border-collapse:collapse;font-size:13px}
+.mgr-stats-table th{background:#1565C0;color:#fff;padding:8px 10px;text-align:left;font-weight:600;font-size:12px}
+.mgr-stats-table td{padding:8px 10px;border-bottom:1px solid #f0f4f8;vertical-align:middle}
+.mgr-stats-table tr:hover td{background:#f8f9ff}
+.mgr-stats-table tr:last-child td{border-bottom:none}
+
 /* ===== DUPLICATE WARNING ===== */
 .dup-panel{display:none;background:#fff8e1;border:1.5px solid #ffb300;border-radius:10px;padding:12px 14px;margin-bottom:14px}
 .dup-panel.visible{display:block}
@@ -293,6 +302,9 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 <div class="tab-pane active" id="tab-pipeline">
   <div class="toolbar">
     <button class="btn btn-primary" onclick="openDeal(null)">&#10133; &#1053;&#1086;&#1074;&#1080;&#1081; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;</button>
+    <select class="filter-select admin-only" id="fMgr" onchange="renderPipeline()" style="font-weight:600">
+      <option value="">&#128101; &#1042;&#1089;&#1110; &#1084;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;&#1080;</option>
+    </select>
     <input class="search-input" type="text" placeholder="&#1055;&#1086;&#1096;&#1091;&#1082;..." id="srch" oninput="renderPipeline()">
     <select class="filter-select" id="fStatus" onchange="renderPipeline()">
       <option value="">&#1042;&#1089;&#1110; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089;&#1080;</option>
@@ -323,7 +335,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th style="width:34px">&#8470;</th><th>&#1044;&#1072;&#1090;&#1072;</th><th class="col-company">&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</th><th>&#1052;&#1110;&#1089;&#1090;&#1086;</th><th>&#1057;&#1072;&#1081;&#1090;</th><th>&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</th><th>&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</th>
+          <th style="width:34px">&#8470;</th><th>&#1044;&#1072;&#1090;&#1072;</th><th class="col-company">&#1050;&#1086;&#1084;&#1087;&#1072;&#1085;&#1110;&#1103;</th><th class="admin-only">&#1052;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;</th><th>&#1052;&#1110;&#1089;&#1090;&#1086;</th><th>&#1057;&#1072;&#1081;&#1090;</th><th>&#1050;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</th><th>&#1055;&#1086;&#1089;&#1072;&#1076;&#1072;</th>
           <th>&#1058;&#1077;&#1083;&#1077;&#1092;&#1086;&#1085;</th><th>Email</th><th>&#1040;&#1076;&#1088;&#1077;&#1089;&#1072;</th><th>&#1050;&#1072;&#1085;&#1072;&#1083;</th><th>&#1058;&#1080;&#1087; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1072;</th><th>&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</th>
           <th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;&#1091;</th><th>&#1053;&#1072;&#1089;&#1090;&#1091;&#1087;&#1085;&#1080;&#1081; &#1082;&#1088;&#1086;&#1082;</th><th>&#1044;&#1072;&#1090;&#1072; &#1082;&#1088;&#1086;&#1082;&#1091;</th><th>&#1056;&#1077;&#1079;&#1091;&#1083;&#1100;&#1090;&#1072;&#1090;</th>
           <th>&#1055;&#1088;&#1080;&#1095;&#1080;&#1085;&#1072; &#1074;&#1110;&#1076;&#1084;&#1086;&#1074;&#1080;</th><th>&#1050;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1088;</th>
@@ -884,6 +896,7 @@ function applyRole(role){
     document.getElementById('role-badge').textContent='\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D';
     document.getElementById('role-badge').className='role-badge role-admin';
     updateDashMgrFilter();
+    initPipeMgrFilter();
   }
 }
 
@@ -935,6 +948,30 @@ function showTab(name,el){
 // ============================================================
 // PIPELINE
 // ============================================================
+function getPipelineDeals(){
+  // Admin: can see everyone; manager: only own
+  const role=getRole();
+  if(role!=='admin') return deals.map(d=>({...d,_owner:sessionStorage.getItem('hsm_mgr_name')||'\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440',_ownerId:currentMgrId}));
+  const fMgr=document.getElementById('fMgr')?.value||'';
+  const allMgrs=getManagers();
+  const adminDeals=JSON.parse(localStorage.getItem('hsm_deals')||'[]').map(d=>({...migrateDeal(d),_owner:'\u0410\u0434\u043C\u0456\u043D',_ownerId:'__admin__'}));
+  const mgrDeals=allMgrs.flatMap(m=>JSON.parse(localStorage.getItem(dealsKey(m.id))||'[]').map(d=>({...migrateDeal(d),_owner:m.name,_ownerId:m.id})));
+  const all=[...adminDeals,...mgrDeals];
+  if(!fMgr) return all;
+  if(fMgr==='__admin__') return adminDeals;
+  return mgrDeals.filter(d=>d._ownerId===fMgr);
+}
+
+function initPipeMgrFilter(){
+  const sel=document.getElementById('fMgr');
+  if(!sel||getRole()!=='admin')return;
+  const cur=sel.value;
+  const mgrs=getManagers();
+  sel.innerHTML=`<option value="">\uD83D\uDC65 \u0412\u0441\u0456 (${mgrs.length+1})</option>
+    <option value="__admin__"${cur==='__admin__'?' selected':''}>\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D</option>`+
+    mgrs.map(m=>`<option value="${m.id}"${cur===m.id?' selected':''}>${esc(m.name)}</option>`).join('');
+}
+
 function renderPipeline(){
   // Apply manager permission to toolbar buttons
   const role=getRole();
@@ -943,6 +980,7 @@ function renderPipeline(){
   if(addBtn) addBtn.style.display=(role==='manager'&&!perms.add)?'none':'';
   const expBtn=document.querySelector('#tab-pipeline .toolbar .btn-ghost');
   if(expBtn) expBtn.style.display=(role==='manager'&&!perms.export)?'none':'';
+  initPipeMgrFilter();
 
   const srch=(document.getElementById('srch')?.value||'').toLowerCase();
   const fS=document.getElementById('fStatus')?.value||'';
@@ -950,7 +988,8 @@ function renderPipeline(){
   const fCtrl=document.getElementById('fCtrl')?.value||'';
   const fCity=(document.getElementById('fCity')?.value||'').toLowerCase();
   const fCat=document.getElementById('fCat')?.value||'';
-  let rows=deals.filter(d=>{
+  const allPipe=getPipelineDeals();
+  let rows=allPipe.filter(d=>{
     if(fS&&d.status!==fS)return false;
     if(fC&&d.channel!==fC)return false;
     if(fCtrl){const{ctrlCls}=calcDeal(d);
@@ -966,17 +1005,17 @@ function renderPipeline(){
     if(srch&&!JSON.stringify(d).toLowerCase().includes(srch))return false;
     return true;
   });
-  const won=deals.filter(d=>d.status==='Won').length;
-  const crits=deals.filter(d=>calcDeal(d).ctrlCls==='ctrl-crit').length;
-  const risks=deals.filter(d=>calcDeal(d).ctrlCls==='ctrl-risk').length;
+  const won=allPipe.filter(d=>d.status==='Won').length;
+  const crits=allPipe.filter(d=>calcDeal(d).ctrlCls==='ctrl-crit').length;
+  const risks=allPipe.filter(d=>calcDeal(d).ctrlCls==='ctrl-risk').length;
   document.getElementById('pipe-stats').innerHTML=`
-    <div class="stat-chip">\u0412\u0441\u044C\u043E\u0433\u043E: <strong>${deals.length}</strong></div>
+    <div class="stat-chip">\u0412\u0441\u044C\u043E\u0433\u043E: <strong>${allPipe.length}</strong></div>
     <div class="stat-chip">\u2705 Won: <strong style="color:#2e7d32">${won}</strong></div>
     <div class="stat-chip">\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445: <strong style="color:#b71c1c">${crits}</strong></div>
     <div class="stat-chip">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A: <strong style="color:#e65100">${risks}</strong></div>
     <div class="stat-chip">\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E: <strong>${rows.length}</strong></div>`;
   const tbody=document.getElementById('pipe-body');
-  if(!rows.length){tbody.innerHTML=`<tr><td colspan="24"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
+  if(!rows.length){tbody.innerHTML=`<tr><td colspan="25"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
   tbody.innerHTML=rows.map((d,i)=>{
     const{overdue,noStep,daysInact,ctrl,ctrlCls}=calcDeal(d);
     const rCls=ctrlCls==='ctrl-crit'?'row-crit':ctrlCls==='ctrl-risk'?'row-risk':'';
@@ -989,6 +1028,7 @@ function renderPipeline(){
       <td style="text-align:center;color:#bbb;font-size:11px">${i+1}</td>
       <td style="white-space:nowrap">${fmtDate(d.date)}</td>
       <td class="col-company"><strong>${esc(d.company)}</strong></td>
+      <td class="admin-only"><span class="owner-badge ${d._ownerId==='__admin__'?'owner-admin':''}">${esc(d._owner||d.addedBy?.name||'\u2014')}</span></td>
       <td style="color:#555;font-size:11px;white-space:nowrap">${esc(d.city||'')}</td>
       <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\uD83C\uDF10</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
       <td>${esc(d.contact)}</td><td style="color:#999">${esc(d.position)}</td>
@@ -1083,10 +1123,17 @@ function saveDeal(){
       return;
     }
   }
+  const isNew=!editDealId;
+  const existingDeal=editDealId?deals.find(x=>x.id===editDealId):null;
   const deal={
     id:editDealId||Date.now(),
     date:document.getElementById('d-date').value,
     company,
+    addedBy: isNew
+      ? (getRole()==='manager'
+          ? {id:currentMgrId, name:sessionStorage.getItem('hsm_mgr_name')||'\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440'}
+          : {id:'__admin__', name:'\u0410\u0434\u043C\u0456\u043D'})
+      : (existingDeal?.addedBy||{id:'__admin__',name:'\u0410\u0434\u043C\u0456\u043D'}),
     contact:document.getElementById('d-contact').value.trim(),
     position:document.getElementById('d-position').value.trim(),
     phones:getPhoneValues(),
@@ -1303,6 +1350,62 @@ function renderDashboard(){
           ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">\uD83D\uDD34 \u041A\u0440\u0438\u0442: ${c}</div>`:''}
         </div>`;}).join('')}
     </div>
+  </div>
+  ${getRole()==='admin'?renderMgrStatsTable():''}`;
+}
+
+function renderMgrStatsTable(){
+  const allMgrs=getManagers();
+  const sources=[
+    {label:'\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D', id:'__admin__',
+     deals:JSON.parse(localStorage.getItem('hsm_deals')||'[]').map(migrateDeal),
+     acts:JSON.parse(localStorage.getItem('hsm_acts')||'[]')},
+    ...allMgrs.map(m=>({
+      label:'\uD83D\uDC77 '+m.name, id:m.id,
+      deals:JSON.parse(localStorage.getItem(dealsKey(m.id))||'[]').map(migrateDeal),
+      acts:JSON.parse(localStorage.getItem(actsKey(m.id))||'[]')
+    }))
+  ];
+  const wDates=Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-i);return d.toISOString().split('T')[0];});
+  const rows=sources.map(s=>{
+    const d=s.deals, a=s.acts;
+    const total=d.length;
+    if(!total&&!a.length)return null;
+    const active=d.filter(x=>x.status!=='Won'&&x.status!=='Lost'&&x.status!=='Recycle').length;
+    const won=d.filter(x=>x.status==='Won').length;
+    const warm=d.filter(x=>['Warm','Meeting scheduled','Offer sent'].includes(x.status)).length;
+    const lost=d.filter(x=>x.status==='Lost').length;
+    const crits=d.filter(x=>calcDeal(x).ctrlCls==='ctrl-crit').length;
+    const wActs=a.filter(x=>wDates.includes(x.date));
+    const calls7=wActs.reduce((s,x)=>s+x.calls,0);
+    const meet7=wActs.reduce((s,x)=>s+x.meet,0);
+    const lastAct=a.length?a.reduce((mx,x)=>x.date>mx?x.date:mx,''):null;
+    return{label:s.label,total,active,won,warm,lost,crits,calls7,meet7,lastAct};
+  }).filter(Boolean);
+  if(!rows.length)return'';
+  return`<div class="card">
+    <div class="card-title">\uD83D\uDC65 \u0417\u0432\u0456\u0442 \u043F\u043E \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430\u0445</div>
+    <div style="overflow-x:auto">
+    <table class="mgr-stats-table">
+      <thead><tr>
+        <th>\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440</th><th>\u041A\u043B\u0456\u0454\u043D\u0442\u0456\u0432</th><th>\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445</th><th>\uD83D\uDD25 Warm+</th>
+        <th>\u2705 Won</th><th>\u274C Lost</th><th>\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</th>
+        <th>\uD83D\uDCDE \u0414\u0437\u0432\u0456\u043D\u043A\u0438 (7\u0434)</th><th>\uD83E\uDD1D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0456 (7\u0434)</th><th>\u041E\u0441\u0442\u0430\u043D\u043D\u044F \u0430\u043A\u0442\u0438\u0432\u043D\u0456\u0441\u0442\u044C</th>
+      </tr></thead>
+      <tbody>${rows.map(r=>`<tr>
+        <td><strong>${esc(r.label)}</strong></td>
+        <td style="text-align:center;font-weight:700">${r.total}</td>
+        <td style="text-align:center">${r.active}</td>
+        <td style="text-align:center;color:#FB8C00;font-weight:600">${r.warm}</td>
+        <td style="text-align:center;color:#2e7d32;font-weight:700">${r.won}</td>
+        <td style="text-align:center;color:#b71c1c">${r.lost}</td>
+        <td style="text-align:center;color:${r.crits>0?'#b71c1c':'#2e7d32'};font-weight:${r.crits>0?'700':'400'}">${r.crits}</td>
+        <td style="text-align:center">${r.calls7}</td>
+        <td style="text-align:center">${r.meet7}</td>
+        <td style="font-size:11px;color:#888">${r.lastAct?fmtDate(r.lastAct):'\u2014'}</td>
+      </tr>`).join('')}</tbody>
+    </table>
+    </div>
   </div>`;
 }
 
@@ -1327,6 +1430,7 @@ function migrateDeal(d){
   if(d.website===undefined) d.website='';
   if(!Array.isArray(d.categories)) d.categories=[];
   if(!Array.isArray(d.potentialCategories)) d.potentialCategories=[];
+  if(!d.addedBy) d.addedBy={id:'__admin__',name:'\u0410\u0434\u043C\u0456\u043D'};
   return d;
 }
 
