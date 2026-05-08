@@ -288,11 +288,10 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
   </span>
 </div>
 <div id="mgr-cloud-panel" style="display:none;background:#e3f2fd;border-bottom:2px solid #90caf9;padding:10px 20px;font-size:13px;align-items:center;gap:10px;flex-wrap:wrap">
-  <span style="font-weight:600;color:#1565C0">&#9729;&#65039; &#1061;&#1084;&#1072;&#1088;&#1085;&#1072; &#1089;&#1080;&#1085;&#1093;&#1088;&#1086;&#1085;&#1110;&#1079;&#1072;&#1094;&#1110;&#1103;</span>
-  <input type="password" id="mgr-apikey" class="form-control" placeholder="API Key (&#1074;&#1110;&#1076; &#1072;&#1076;&#1084;&#1110;&#1085;&#1072;)" style="width:220px;padding:5px 10px;font-size:12px">
-  <input type="text" id="mgr-binid" class="form-control" placeholder="Bin ID (&#1074;&#1110;&#1076; &#1072;&#1076;&#1084;&#1110;&#1085;&#1072;)" style="width:220px;padding:5px 10px;font-size:12px">
-  <button class="btn btn-primary" style="padding:5px 14px;font-size:12px" onclick="mgrCloudPull()">&#11015; &#1047;&#1072;&#1074;&#1072;&#1085;&#1090;&#1072;&#1078;&#1080;&#1090;&#1080;</button>
-  <button class="btn btn-success" style="padding:5px 14px;font-size:12px" onclick="mgrCloudPush()">&#11014; &#1047;&#1073;&#1077;&#1088;&#1077;&#1075;&#1090;&#1080; &#1084;&#1086;&#1111; &#1076;&#1072;&#1085;&#1110;</button>
+  <input type="password" id="mgr-apikey" style="display:none">
+  <input type="text" id="mgr-binid" style="display:none">
+  <button class="btn btn-primary" style="padding:5px 14px;font-size:12px" onclick="mgrCloudPull()">&#11015; &#1042;&#1110;&#1076;&#1085;&#1086;&#1074;&#1080;&#1090;&#1080; &#1079; &#1093;&#1084;&#1072;&#1088;&#1080;</button>
+  <button class="btn btn-success" style="padding:5px 14px;font-size:12px" onclick="mgrCloudPush()">&#11014; &#1047;&#1073;&#1077;&#1088;&#1077;&#1075;&#1090;&#1080; &#1074; &#1093;&#1084;&#1072;&#1088;&#1091;</button>
   <span id="mgr-cloud-status" style="font-size:12px;color:#1565C0"></span>
 </div>
 <nav class="nav">
