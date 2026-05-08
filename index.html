@@ -1745,6 +1745,8 @@ async function autoCloudPush(){
 }
 
 async function autoCloudPull(){
+  // Only admin auto-pulls \u2014 managers are authoritative for their own data
+  if(getRole()!=='admin')return;
   const _saved=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
   const cfg={apiKey:_saved.apiKey||_DEFAULT_CLOUD.apiKey,binId:_saved.binId||_DEFAULT_CLOUD.binId};
   if(!cfg.apiKey||!cfg.binId)return;
