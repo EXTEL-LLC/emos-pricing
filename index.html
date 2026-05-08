@@ -855,21 +855,8 @@ async function initAuth(){
 async function doLogin(){
   const pass=document.getElementById('loginPass').value;
   if(!pass){document.getElementById('loginErr').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c';return;}
-  const stored=localStorage.getItem('hsm_pass');
-  if(!stored){
-    if(pass.length<3){document.getElementById('loginErr').textContent='\u041f\u0430\u0440\u043e\u043b\u044c \u043c\u0456\u043d\u0456\u043c\u0443\u043c 3 \u0441\u0438\u043c\u0432\u043e\u043b\u0438';return;}
-    const h=await sha256(pass);
-    localStorage.setItem('hsm_pass',h);
-    sessionStorage.setItem('hsm_session','admin');
-    showApp('admin');return;
-  }
   const h=await sha256(pass);
-  if(h===stored){
-    sessionStorage.setItem('hsm_session','admin');
-    sessionStorage.removeItem('hsm_mgr_id');
-    showApp('admin');return;
-  }
-  // Check all managers
+  // Always check managers first \u2014 prevents manager password from becoming admin on new device
   const managers=getManagers();
   const matched=managers.find(m=>m.passHash===h);
   if(matched){
@@ -877,6 +864,18 @@ async function doLogin(){
     sessionStorage.setItem('hsm_mgr_id',matched.id);
     sessionStorage.setItem('hsm_mgr_name',matched.name);
     showApp('manager');return;
+  }
+  const stored=localStorage.getItem('hsm_pass');
+  if(!stored){
+    if(pass.length<3){document.getElementById('loginErr').textContent='\u041f\u0430\u0440\u043e\u043b\u044c \u043c\u0456\u043d\u0456\u043c\u0443\u043c 3 \u0441\u0438\u043c\u0432\u043e\u043b\u0438';return;}
+    localStorage.setItem('hsm_pass',h);
+    sessionStorage.setItem('hsm_session','admin');
+    showApp('admin');return;
+  }
+  if(h===stored){
+    sessionStorage.setItem('hsm_session','admin');
+    sessionStorage.removeItem('hsm_mgr_id');
+    showApp('admin');return;
   }
   document.getElementById('loginErr').textContent='\u274c \u041d\u0435\u0432\u0456\u0440\u043d\u0438\u0439 \u043f\u0430\u0440\u043e\u043b\u044c';
   document.getElementById('loginPass').value='';
