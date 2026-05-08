@@ -890,6 +890,7 @@ function showApp(role){
   initCatFilter();
   renderPipeline();
   autoCloudPull();
+  startAutoPull();
 }
 
 function applyRole(role){
@@ -1739,9 +1740,16 @@ async function cloudPull(){
 // AUTO CLOUD SYNC
 // ============================================================
 let _autoSyncTimer=null;
+let _autoPullInterval=null;
 function scheduleAutoSync(){
   clearTimeout(_autoSyncTimer);
   _autoSyncTimer=setTimeout(autoCloudPush,2000); // debounce 2s
+}
+function startAutoPull(){
+  if(_autoPullInterval)return;
+  _autoPullInterval=setInterval(async()=>{
+    if(getRole()==='admin'){await autoCloudPull();}
+  },5*60*1000); // every 5 minutes
 }
 
 async function autoCloudPush(){
