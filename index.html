@@ -1807,7 +1807,7 @@ async function _createMgrBin(mgrId){
   const mgrs=getManagers();const m=mgrs.find(x=>x.id===mgrId);
   if(!m)throw new Error('\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440 \u043D\u0435 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u0438\u0439');
   const payload={mgrId,deals:JSON.parse(localStorage.getItem(dealsKey(mgrId))||'[]'),acts:JSON.parse(localStorage.getItem(actsKey(mgrId))||'[]'),savedAt:new Date().toISOString()};
-  const r=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':apiKey,'X-Bin-Name':'HSM-'+m.name,'X-Bin-Private':'true'},body:JSON.stringify(payload)});
+  const r=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':apiKey,'X-Bin-Name':'HSM-'+mgrId,'X-Bin-Private':'true'},body:JSON.stringify(payload)});
   const j=await r.json();if(!r.ok)throw new Error(j.message||r.statusText);
   m.binId=j.metadata.id;saveManagers(mgrs);await _pushMainBin();return m.binId;
 }
