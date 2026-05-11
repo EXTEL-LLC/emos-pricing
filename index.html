@@ -271,10 +271,17 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
   <div class="login-box">
     <div class="login-logo">&#127919;</div>
     <div class="login-title">Hunter Sales Manager</div>
-    <div class="login-sub" id="loginSubtitle">&#1042;&#1074;&#1077;&#1076;&#1110;&#1090;&#1100; &#1087;&#1072;&#1088;&#1086;&#1083;&#1100; &#1076;&#1083;&#1103; &#1076;&#1086;&#1089;&#1090;&#1091;&#1087;&#1091;</div>
-    <input type="password" class="login-input" id="loginPass" placeholder="&#8226;&#8226;&#8226;&#8226;" maxlength="32"
-           onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" onclick="doLogin()">&#8594; &#1059;&#1074;&#1110;&#1081;&#1090;&#1080;</button>
+    <div id="loginRoleSelect" style="display:flex;gap:10px;margin-bottom:16px;width:100%">
+      <button class="btn btn-primary" style="flex:1;padding:10px" onclick="showLoginForm('manager')">&#128119; &#1052;&#1077;&#1085;&#1077;&#1076;&#1078;&#1077;&#1088;</button>
+      <button class="btn" style="flex:1;padding:10px;background:#e8eaf6;color:#3949ab" onclick="showLoginForm('admin')">&#128081; &#1040;&#1076;&#1084;&#1110;&#1085;</button>
+    </div>
+    <div id="loginFormWrap" style="display:none;width:100%">
+      <div class="login-sub" id="loginSubtitle"></div>
+      <input type="password" class="login-input" id="loginPass" placeholder="&#8226;&#8226;&#8226;&#8226;" maxlength="32"
+             onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="login-btn" onclick="doLogin()">&#8594; &#1059;&#1074;&#1110;&#1081;&#1090;&#1080;</button>
+      <button style="background:none;border:none;color:#999;cursor:pointer;margin-top:8px;font-size:12px" onclick="document.getElementById('loginRoleSelect').style.display='flex';document.getElementById('loginFormWrap').style.display='none'">&#8592; &#1053;&#1072;&#1079;&#1072;&#1076;</button>
+    </div>
     <div class="login-err" id="loginErr"></div>
     <div class="login-hint" id="loginHint"></div>
   </div>
@@ -851,19 +858,35 @@ async function initAuth(){
   }
 }
 
+let _loginRole='manager';
+function showLoginForm(role){
+  _loginRole=role;
+  document.getElementById('loginRoleSelect').style.display='none';
+  document.getElementById('loginFormWrap').style.display='block';
+  document.getElementById('loginSubtitle').textContent=role==='admin'?'\ud83d\udc51 \u041f\u0430\u0440\u043e\u043b\u044c \u0430\u0434\u043c\u0456\u043d\u0456\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0430':'\ud83d\udc77 \u041f\u0430\u0440\u043e\u043b\u044c \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430';
+  document.getElementById('loginPass').value='';
+  document.getElementById('loginErr').textContent='';
+  document.getElementById('loginPass').focus();
+}
+
 async function doLogin(){
   const pass=document.getElementById('loginPass').value;
   if(!pass){document.getElementById('loginErr').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c';return;}
   const h=await sha256(pass);
-  // Always check managers first \u2014 prevents manager password from becoming admin on new device
-  const managers=getManagers();
-  const matched=managers.find(m=>m.passHash===h);
-  if(matched){
-    sessionStorage.setItem('hsm_session','manager');
-    sessionStorage.setItem('hsm_mgr_id',matched.id);
-    sessionStorage.setItem('hsm_mgr_name',matched.name);
-    showApp('manager');return;
+  if(_loginRole==='manager'){
+    const managers=getManagers();
+    const matched=managers.find(m=>m.passHash===h);
+    if(matched){
+      sessionStorage.setItem('hsm_session','manager');
+      sessionStorage.setItem('hsm_mgr_id',matched.id);
+      sessionStorage.setItem('hsm_mgr_name',matched.name);
+      showApp('manager');return;
+    }
+    document.getElementById('loginErr').textContent='\u274c \u041d\u0435\u0432\u0456\u0440\u043d\u0438\u0439 \u043f\u0430\u0440\u043e\u043b\u044c \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430';
+    document.getElementById('loginPass').value='';
+    document.getElementById('loginPass').focus();return;
   }
+  // Admin login
   const stored=localStorage.getItem('hsm_pass');
   if(!stored){
     if(pass.length<3){document.getElementById('loginErr').textContent='\u041f\u0430\u0440\u043e\u043b\u044c \u043c\u0456\u043d\u0456\u043c\u0443\u043c 3 \u0441\u0438\u043c\u0432\u043e\u043b\u0438';return;}
@@ -1825,7 +1848,7 @@ function _showSyncBadge(text){
 // ============================================================
 const _DEFAULT_CLOUD={
   apiKey:'$2a$10$K9AOXHyZ3CFLts/Dt3s.Iedrfl1pKZ6niNRfHPJH81m7ytPnqwQ4i',
-  binId:'69fc6a69adc21f119a674b89'
+  binId:'69fd7c4a250b1311c31dcbb9'
 };
 function toggleMgrCloud(){
   const panel=document.getElementById('mgr-cloud-panel');
