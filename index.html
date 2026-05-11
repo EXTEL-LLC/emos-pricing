@@ -36,7 +36,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .content{padding:20px 22px;max-width:100%}
 .tab-pane{display:none}
 .tab-pane.active{display:block}
-/* Pipeline &#8212; &#1090;&#1072;&#1073;&#1083;&#1080;&#1094;&#1103; &#1079; &#1092;&#1110;&#1082;&#1089;&#1086;&#1074;&#1072;&#1085;&#1086;&#1102; &#1074;&#1080;&#1089;&#1086;&#1090;&#1086;&#1102;, &#1097;&#1086;&#1073; &#1075;&#1086;&#1088;&#1080;&#1079;&#1086;&#1085;&#1090;&#1072;&#1083;&#1100;&#1085;&#1080;&#1081; &#1089;&#1082;&#1088;&#1086;&#1083; &#1073;&#1091;&#1074; &#1074;&#1080;&#1076;&#1080;&#1084;&#1080;&#1081; &#1086;&#1076;&#1088;&#1072;&#1079;&#1091; */
+/* Pipeline \u2014 \u0442\u0430\u0431\u043B\u0438\u0446\u044F \u0437 \u0444\u0456\u043A\u0441\u043E\u0432\u0430\u043D\u043E\u044E \u0432\u0438\u0441\u043E\u0442\u043E\u044E, \u0449\u043E\u0431 \u0433\u043E\u0440\u0438\u0437\u043E\u043D\u0442\u0430\u043B\u044C\u043D\u0438\u0439 \u0441\u043A\u0440\u043E\u043B \u0431\u0443\u0432 \u0432\u0438\u0434\u0438\u043C\u0438\u0439 \u043E\u0434\u0440\u0430\u0437\u0443 */
 #tab-pipeline .table-wrap{overflow:auto;max-height:calc(100vh - 190px);border-radius:8px}
 
 /* ===== CARD ===== */
@@ -788,16 +788,16 @@ function saveActs(){  localStorage.setItem(actsKey(currentMgrId), JSON.stringify
 // ============================================================
 // CONSTANTS
 // ============================================================
-const CH_TYPES={'D1':'\u041d\u0430\u0446. \u043c\u0435\u0440\u0435\u0436\u0456','D2':'\u0420\u0435\u0433\u0456\u043e\u043d./B2B','D3':'\u0420\u043e\u0437\u0434\u0440\u0456\u0431','D4.1':'\u0406\u043d\u0442\u0435\u0440\u043d\u0435\u0442(\u0441\u043a\u043b\u0430\u0434)','D4.2':'Dropshipping','D5':'\u041f\u0440\u043e\u0435\u043a\u0442\u043d\u0456','D5 Partner':'\u0406\u043d\u0441\u0442\u0430\u043b\u044f\u0442\u043e\u0440\u0438','D6':'\u0420\u0435\u0433\u0456\u043e\u043d. \u0434\u0438\u0441\u0442.'};
+const CH_TYPES={'D1':'\u041D\u0430\u0446. \u043C\u0435\u0440\u0435\u0436\u0456','D2':'\u0420\u0435\u0433\u0456\u043E\u043D./B2B','D3':'\u0420\u043E\u0437\u0434\u0440\u0456\u0431','D4.1':'\u0406\u043D\u0442\u0435\u0440\u043D\u0435\u0442(\u0441\u043A\u043B\u0430\u0434)','D4.2':'Dropshipping','D5':'\u041F\u0440\u043E\u0435\u043A\u0442\u043D\u0456','D5 Partner':'\u0406\u043D\u0441\u0442\u0430\u043B\u044F\u0442\u043E\u0440\u0438','D6':'\u0420\u0435\u0433\u0456\u043E\u043D. \u0434\u0438\u0441\u0442.'};
 const S_CLASS={'New':'s-New','Contacted':'s-Contacted','Warm':'s-Warm','Meeting scheduled':'s-Meeting','Offer sent':'s-Offer','Won':'s-Won','Lost':'s-Lost','Recycle':'s-Recycle'};
 const FCOLORS={'New':'#1565C0','Contacted':'#1976D2','Warm':'#FB8C00','Meeting scheduled':'#7B1FA2','Offer sent':'#00838F','Won':'#2E7D32','Lost':'#C62828','Recycle':'#757575'};
 const CATEGORIES=[
-  '\u0415\u043b\u0435\u043c\u0435\u043d\u0442\u0438 \u0436\u0438\u0432\u043b\u0435\u043d\u043d\u044f','\u041b\u0456\u0445\u0442\u0430\u0440\u0438\u043a\u0438','\u0414\u0430\u0442\u0447\u0438\u043a\u0438','\u041b\u0430\u043c\u043f\u043e\u0447\u043a\u0438','\u041f\u0440\u043e\u0436\u0435\u043a\u0442\u043e\u0440\u0438',
-  '\u0421\u0432\u0456\u0442\u043b\u043e\u0434\u0456\u043e\u0434\u043d\u0435 \u0434\u0435\u043a\u043e\u0440\u0430\u0442\u0438\u0432\u043d\u0435 \u043e\u0441\u0432\u0456\u0442\u043b\u0435\u043d\u043d\u044f','\u0421\u0432\u0456\u0442\u0438\u043b\u044c\u043d\u0438\u043a\u0438','\u041c\u043e\u043d\u0442\u0430\u0436\u043d\u0456 \u043c\u0430\u0442\u0435\u0440\u0456\u0430\u043b\u0438',
-  '\u0417\u0430\u0440\u044f\u0434\u043d\u0456 \u043f\u0440\u0438\u0441\u0442\u0440\u043e\u0457, \u0430\u0434\u0430\u043f\u0442\u0435\u0440\u0438, \u0456\u043d\u0432\u0435\u0440\u0442\u043e\u0440\u0438','\u0421\u0432\u0438\u043d\u0446\u0435\u0432\u043e-\u043a\u0438\u0441\u043b\u043e\u0442\u043d\u0456 \u0430\u043a\u0443\u043c\u0443\u043b\u044f\u0442\u043e\u0440\u0438',
-  '\u0417\'\u0454\u0434\u043d\u0443\u0432\u0430\u0447\u0456','\u0410\u0441\u043e\u0440\u0442\u0438\u043c\u0435\u043d\u0442 Schuko','\u0422\u0435\u0440\u043c\u043e\u0441\u0442\u0430\u0442\u0438, \u0441\u0438\u0433\u043d\u0430\u043b\u0456\u0437\u0430\u0446\u0456\u044f','\u041a\u0430\u0431\u0435\u043b\u0456',
-  '\u041a\u043b\u0435\u043c\u043d\u0456 \u043a\u043e\u043b\u043e\u0434\u043a\u0438','\u0413\u043d\u0443\u0447\u043a\u0456 \u0448\u043d\u0443\u0440\u0438','\u0422\u0435\u0441\u0442\u0435\u0440\u0438, \u043c\u0443\u043b\u044c\u0442\u0438\u043c\u0435\u0442\u0440\u0438','\u0421\u0442\u0440\u0456\u0447\u043a\u0438',
-  '\u0410\u043d\u0442\u0435\u043d\u0438','LCD-\u043f\u0440\u043e\u0434\u0443\u043a\u0446\u0456\u044f','\u0414\u0437\u0432\u0456\u043d\u043a\u0438','\u0414\u043e\u043c\u0430\u0448\u043d\u0456 \u0432\u0456\u0434\u0435\u043e\u0441\u0438\u0441\u0442\u0435\u043c\u0438','\u0422\u043e\u0432\u0430\u0440\u0438 \u0434\u043b\u044f \u0434\u043e\u043c\u0430\u0448\u043d\u0456\u0445 \u0442\u0432\u0430\u0440\u0438\u043d'
+  '\u0415\u043B\u0435\u043C\u0435\u043D\u0442\u0438 \u0436\u0438\u0432\u043B\u0435\u043D\u043D\u044F','\u041B\u0456\u0445\u0442\u0430\u0440\u0438\u043A\u0438','\u0414\u0430\u0442\u0447\u0438\u043A\u0438','\u041B\u0430\u043C\u043F\u043E\u0447\u043A\u0438','\u041F\u0440\u043E\u0436\u0435\u043A\u0442\u043E\u0440\u0438',
+  '\u0421\u0432\u0456\u0442\u043B\u043E\u0434\u0456\u043E\u0434\u043D\u0435 \u0434\u0435\u043A\u043E\u0440\u0430\u0442\u0438\u0432\u043D\u0435 \u043E\u0441\u0432\u0456\u0442\u043B\u0435\u043D\u043D\u044F','\u0421\u0432\u0456\u0442\u0438\u043B\u044C\u043D\u0438\u043A\u0438','\u041C\u043E\u043D\u0442\u0430\u0436\u043D\u0456 \u043C\u0430\u0442\u0435\u0440\u0456\u0430\u043B\u0438',
+  '\u0417\u0430\u0440\u044F\u0434\u043D\u0456 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0457, \u0430\u0434\u0430\u043F\u0442\u0435\u0440\u0438, \u0456\u043D\u0432\u0435\u0440\u0442\u043E\u0440\u0438','\u0421\u0432\u0438\u043D\u0446\u0435\u0432\u043E-\u043A\u0438\u0441\u043B\u043E\u0442\u043D\u0456 \u0430\u043A\u0443\u043C\u0443\u043B\u044F\u0442\u043E\u0440\u0438',
+  '\u0417\'\u0454\u0434\u043D\u0443\u0432\u0430\u0447\u0456','\u0410\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442 Schuko','\u0422\u0435\u0440\u043C\u043E\u0441\u0442\u0430\u0442\u0438, \u0441\u0438\u0433\u043D\u0430\u043B\u0456\u0437\u0430\u0446\u0456\u044F','\u041A\u0430\u0431\u0435\u043B\u0456',
+  '\u041A\u043B\u0435\u043C\u043D\u0456 \u043A\u043E\u043B\u043E\u0434\u043A\u0438','\u0413\u043D\u0443\u0447\u043A\u0456 \u0448\u043D\u0443\u0440\u0438','\u0422\u0435\u0441\u0442\u0435\u0440\u0438, \u043C\u0443\u043B\u044C\u0442\u0438\u043C\u0435\u0442\u0440\u0438','\u0421\u0442\u0440\u0456\u0447\u043A\u0438',
+  '\u0410\u043D\u0442\u0435\u043D\u0438','LCD-\u043F\u0440\u043E\u0434\u0443\u043A\u0446\u0456\u044F','\u0414\u0437\u0432\u0456\u043D\u043A\u0438','\u0414\u043E\u043C\u0430\u0448\u043D\u0456 \u0432\u0456\u0434\u0435\u043E\u0441\u0438\u0441\u0442\u0435\u043C\u0438','\u0422\u043E\u0432\u0430\u0440\u0438 \u0434\u043B\u044F \u0434\u043E\u043C\u0430\u0448\u043D\u0456\u0445 \u0442\u0432\u0430\u0440\u0438\u043D'
 ];
 
 // ============================================================
@@ -818,17 +818,17 @@ function calcDeal(d){
   const daysInact=contD?diffDays(contD,now):null;
   let ctrl,ctrlCls;
   if(!d.company){ctrl='';ctrlCls='';}
-  else if(overdue||noStep){ctrl='\ud83d\udd34 \u041a\u0420\u0418\u0422\u0418\u0427\u041d\u041e';ctrlCls='ctrl-crit';}
-  else if(daysInact!==null&&daysInact>3&&active){ctrl='\ud83d\udfe1 \u0420\u0418\u0417\u0418\u041a';ctrlCls='ctrl-risk';}
-  else{ctrl='\ud83d\udfe2 OK';ctrlCls='ctrl-ok';}
+  else if(overdue||noStep){ctrl='\uD83D\uDD34 \u041A\u0420\u0418\u0422\u0418\u0427\u041D\u041E';ctrlCls='ctrl-crit';}
+  else if(daysInact!==null&&daysInact>3&&active){ctrl='\uD83D\uDFE1 \u0420\u0418\u0417\u0418\u041A';ctrlCls='ctrl-risk';}
+  else{ctrl='\uD83D\uDFE2 OK';ctrlCls='ctrl-ok';}
   return{overdue,noStep,daysInact,ctrl,ctrlCls};
 }
 
 function kpiBadge(v,t){
   if(!v&&v!==0)return'';
   if(v>=t)return`<span class="kpi-ok">\u2705 ${v}/${t}+</span>`;
-  if(v>=t*.7)return`<span class="kpi-warn">\u26a0\ufe0f ${v}/${t}+</span>`;
-  return`<span class="kpi-bad">\ud83d\udd34 ${v}/${t}+</span>`;
+  if(v>=t*.7)return`<span class="kpi-warn">\u26A0\uFE0F ${v}/${t}+</span>`;
+  return`<span class="kpi-bad">\uD83D\uDD34 ${v}/${t}+</span>`;
 }
 
 // ============================================================
@@ -842,15 +842,15 @@ async function sha256(s){
 async function initAuth(){
   const stored=localStorage.getItem('hsm_pass');
   if(!stored){
-    document.getElementById('loginSubtitle').textContent='\u0412\u043f\u0435\u0440\u0448\u0435? \u0417\u0430\u0434\u0430\u0439\u0442\u0435 \u0441\u0432\u0456\u0439 \u043f\u0430\u0440\u043e\u043b\u044c';
-    document.getElementById('loginHint').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044c \u0431\u0443\u0434\u044c-\u044f\u043a\u0438\u0439 \u043f\u0430\u0440\u043e\u043b\u044c \u2014 \u0432\u0456\u043d \u0441\u0442\u0430\u043d\u0435 \u0432\u0430\u0448\u0438\u043c';
+    document.getElementById('loginSubtitle').textContent='\u0412\u043F\u0435\u0440\u0448\u0435? \u0417\u0430\u0434\u0430\u0439\u0442\u0435 \u0441\u0432\u0456\u0439 \u043F\u0430\u0440\u043E\u043B\u044C';
+    document.getElementById('loginHint').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u0431\u0443\u0434\u044C-\u044F\u043A\u0438\u0439 \u043F\u0430\u0440\u043E\u043B\u044C \u2014 \u0432\u0456\u043D \u0441\u0442\u0430\u043D\u0435 \u0432\u0430\u0448\u0438\u043C';
     document.getElementById('loginScreen').style.display='flex';
     document.getElementById('appMain').style.display='none';
   } else {
     const sess=sessionStorage.getItem('hsm_session');
     if(sess==='admin'||sess==='manager'){showApp(sess);}
     else{
-      document.getElementById('loginSubtitle').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c \u0434\u043b\u044f \u0434\u043e\u0441\u0442\u0443\u043f\u0443';
+      document.getElementById('loginSubtitle').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C \u0434\u043B\u044F \u0434\u043E\u0441\u0442\u0443\u043F\u0443';
       document.getElementById('loginHint').textContent='';
       document.getElementById('loginScreen').style.display='flex';
       document.getElementById('appMain').style.display='none';
@@ -863,7 +863,7 @@ async function showLoginForm(role){
   _loginRole=role;
   document.getElementById('loginRoleSelect').style.display='none';
   document.getElementById('loginFormWrap').style.display='block';
-  document.getElementById('loginSubtitle').textContent=role==='admin'?'\ud83d\udc51 \u041f\u0430\u0440\u043e\u043b\u044c \u0430\u0434\u043c\u0456\u043d\u0456\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0430':'\ud83d\udc77 \u0417\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0435\u043d\u043d\u044f...';
+  document.getElementById('loginSubtitle').textContent=role==='admin'?'\uD83D\uDC51 \u041F\u0430\u0440\u043E\u043B\u044C \u0430\u0434\u043C\u0456\u043D\u0456\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u0430':'\uD83D\uDC77 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043D\u044F...';
   document.getElementById('loginErr').textContent='';
   if(role==='manager'){
     try{
@@ -873,7 +873,7 @@ async function showLoginForm(role){
         localStorage.setItem('hsm_managers',JSON.stringify(j.record.managers));
       }
     }catch(e){}
-    document.getElementById('loginSubtitle').textContent='\ud83d\udc77 \u041f\u0430\u0440\u043e\u043b\u044c \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430';
+    document.getElementById('loginSubtitle').textContent='\uD83D\uDC77 \u041F\u0430\u0440\u043E\u043B\u044C \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430';
   }
   document.getElementById('loginPass').value='';
   document.getElementById('loginPass').focus();
@@ -881,7 +881,7 @@ async function showLoginForm(role){
 
 async function doLogin(){
   const pass=document.getElementById('loginPass').value;
-  if(!pass){document.getElementById('loginErr').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c';return;}
+  if(!pass){document.getElementById('loginErr').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C';return;}
   const h=await sha256(pass);
   if(_loginRole==='manager'){
     const managers=getManagers();
@@ -892,14 +892,14 @@ async function doLogin(){
       sessionStorage.setItem('hsm_mgr_name',matched.name);
       showApp('manager');return;
     }
-    document.getElementById('loginErr').textContent='\u274c \u041d\u0435\u0432\u0456\u0440\u043d\u0438\u0439 \u043f\u0430\u0440\u043e\u043b\u044c \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430';
+    document.getElementById('loginErr').textContent='\u274C \u041D\u0435\u0432\u0456\u0440\u043D\u0438\u0439 \u043F\u0430\u0440\u043E\u043B\u044C \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430';
     document.getElementById('loginPass').value='';
     document.getElementById('loginPass').focus();return;
   }
   // Admin login
   const stored=localStorage.getItem('hsm_pass');
   if(!stored){
-    if(pass.length<3){document.getElementById('loginErr').textContent='\u041f\u0430\u0440\u043e\u043b\u044c \u043c\u0456\u043d\u0456\u043c\u0443\u043c 3 \u0441\u0438\u043c\u0432\u043e\u043b\u0438';return;}
+    if(pass.length<3){document.getElementById('loginErr').textContent='\u041F\u0430\u0440\u043E\u043B\u044C \u043C\u0456\u043D\u0456\u043C\u0443\u043C 3 \u0441\u0438\u043C\u0432\u043E\u043B\u0438';return;}
     localStorage.setItem('hsm_pass',h);
     sessionStorage.setItem('hsm_session','admin');
     showApp('admin');return;
@@ -909,7 +909,7 @@ async function doLogin(){
     sessionStorage.removeItem('hsm_mgr_id');
     showApp('admin');return;
   }
-  document.getElementById('loginErr').textContent='\u274c \u041d\u0435\u0432\u0456\u0440\u043d\u0438\u0439 \u043f\u0430\u0440\u043e\u043b\u044c';
+  document.getElementById('loginErr').textContent='\u274C \u041D\u0435\u0432\u0456\u0440\u043D\u0438\u0439 \u043F\u0430\u0440\u043E\u043B\u044C';
   document.getElementById('loginPass').value='';
   document.getElementById('loginPass').focus();
 }
@@ -943,7 +943,7 @@ function applyRole(role){
     body.classList.add('manager-mode');
     document.getElementById('mgr-banner').style.display='block';
     document.getElementById('mgr-name-display').textContent=mgrName;
-    document.getElementById('role-badge').textContent='\ud83d\udc77 '+mgrName;
+    document.getElementById('role-badge').textContent='\uD83D\uDC77 '+mgrName;
     document.getElementById('role-badge').className='role-badge role-manager';
     const dashTab=document.querySelector('.nav-tab[onclick*="dashboard"]');
     if(dashTab) dashTab.style.display=perms.dashboard?'':'none';
@@ -954,7 +954,7 @@ function applyRole(role){
     currentMgrId=null;
     body.classList.remove('manager-mode');
     document.getElementById('mgr-banner').style.display='none';
-    document.getElementById('role-badge').textContent='\ud83d\udc51 \u0410\u0434\u043c\u0456\u043d';
+    document.getElementById('role-badge').textContent='\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D';
     document.getElementById('role-badge').className='role-badge role-admin';
     updateDashMgrFilter();
     initPipeMgrFilter();
@@ -967,7 +967,7 @@ function doLogout(){
   sessionStorage.removeItem('hsm_session');
   document.getElementById('loginPass').value='';
   document.getElementById('loginErr').textContent='';
-  document.getElementById('loginSubtitle').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c \u0434\u043b\u044f \u0434\u043e\u0441\u0442\u0443\u043f\u0443';
+  document.getElementById('loginSubtitle').textContent='\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C \u0434\u043B\u044F \u0434\u043E\u0441\u0442\u0443\u043F\u0443';
   document.getElementById('loginHint').textContent='';
   document.getElementById('loginScreen').style.display='flex';
   document.getElementById('appMain').style.display='none';
@@ -978,18 +978,18 @@ async function changePassword(){
   const newP=document.getElementById('s-newpass').value;
   const newP2=document.getElementById('s-newpass2').value;
   const el=document.getElementById('pass-status');
-  if(!oldP||!newP||!newP2){showStatus(el,'\u0417\u0430\u043f\u043e\u0432\u043d\u0456\u0442\u044c \u0432\u0441\u0456 \u043f\u043e\u043b\u044f','err');return;}
-  if(newP!==newP2){showStatus(el,'\u041d\u043e\u0432\u0456 \u043f\u0430\u0440\u043e\u043b\u0456 \u043d\u0435 \u0441\u043f\u0456\u0432\u043f\u0430\u0434\u0430\u044e\u0442\u044c','err');return;}
-  if(newP.length<3){showStatus(el,'\u041c\u0456\u043d\u0456\u043c\u0443\u043c 3 \u0441\u0438\u043c\u0432\u043e\u043b\u0438','err');return;}
+  if(!oldP||!newP||!newP2){showStatus(el,'\u0417\u0430\u043F\u043E\u0432\u043D\u0456\u0442\u044C \u0432\u0441\u0456 \u043F\u043E\u043B\u044F','err');return;}
+  if(newP!==newP2){showStatus(el,'\u041D\u043E\u0432\u0456 \u043F\u0430\u0440\u043E\u043B\u0456 \u043D\u0435 \u0441\u043F\u0456\u0432\u043F\u0430\u0434\u0430\u044E\u0442\u044C','err');return;}
+  if(newP.length<3){showStatus(el,'\u041C\u0456\u043D\u0456\u043C\u0443\u043C 3 \u0441\u0438\u043C\u0432\u043E\u043B\u0438','err');return;}
   const stored=localStorage.getItem('hsm_pass');
   const oldH=await sha256(oldP);
-  if(oldH!==stored){showStatus(el,'\u041f\u043e\u0442\u043e\u0447\u043d\u0438\u0439 \u043f\u0430\u0440\u043e\u043b\u044c \u043d\u0435\u0432\u0456\u0440\u043d\u0438\u0439','err');return;}
+  if(oldH!==stored){showStatus(el,'\u041F\u043E\u0442\u043E\u0447\u043D\u0438\u0439 \u043F\u0430\u0440\u043E\u043B\u044C \u043D\u0435\u0432\u0456\u0440\u043D\u0438\u0439','err');return;}
   const newH=await sha256(newP);
   localStorage.setItem('hsm_pass',newH);
   document.getElementById('s-oldpass').value='';
   document.getElementById('s-newpass').value='';
   document.getElementById('s-newpass2').value='';
-  showStatus(el,'\u2705 \u041f\u0430\u0440\u043e\u043b\u044c \u0443\u0441\u043f\u0456\u0448\u043d\u043e \u0437\u043c\u0456\u043d\u0435\u043d\u043e','ok');
+  showStatus(el,'\u2705 \u041F\u0430\u0440\u043E\u043B\u044C \u0443\u0441\u043F\u0456\u0448\u043D\u043E \u0437\u043C\u0456\u043D\u0435\u043D\u043E','ok');
 }
 
 // ============================================================
@@ -1012,10 +1012,10 @@ function showTab(name,el){
 function getPipelineDeals(){
   // Admin: can see everyone; manager: only own
   const role=getRole();
-  if(role!=='admin') return deals.map(d=>({...d,_owner:sessionStorage.getItem('hsm_mgr_name')||'\u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440',_ownerId:currentMgrId}));
+  if(role!=='admin') return deals.map(d=>({...d,_owner:sessionStorage.getItem('hsm_mgr_name')||'\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440',_ownerId:currentMgrId}));
   const fMgr=document.getElementById('fMgr')?.value||'';
   const allMgrs=getManagers();
-  const adminDeals=JSON.parse(localStorage.getItem('hsm_deals')||'[]').map(d=>({...migrateDeal(d),_owner:'\u0410\u0434\u043c\u0456\u043d',_ownerId:'__admin__'}));
+  const adminDeals=JSON.parse(localStorage.getItem('hsm_deals')||'[]').map(d=>({...migrateDeal(d),_owner:'\u0410\u0434\u043C\u0456\u043D',_ownerId:'__admin__'}));
   const mgrDeals=allMgrs.flatMap(m=>JSON.parse(localStorage.getItem(dealsKey(m.id))||'[]').map(d=>({...migrateDeal(d),_owner:m.name,_ownerId:m.id})));
   const all=[...adminDeals,...mgrDeals];
   if(!fMgr) return all;
@@ -1028,8 +1028,8 @@ function initPipeMgrFilter(){
   if(!sel||getRole()!=='admin')return;
   const cur=sel.value;
   const mgrs=getManagers();
-  sel.innerHTML=`<option value="">\ud83d\udc65 \u0412\u0441\u0456 (${mgrs.length+1})</option>
-    <option value="__admin__"${cur==='__admin__'?' selected':''}>\ud83d\udc51 \u0410\u0434\u043c\u0456\u043d</option>`+
+  sel.innerHTML=`<option value="">\uD83D\uDC65 \u0412\u0441\u0456 (${mgrs.length+1})</option>
+    <option value="__admin__"${cur==='__admin__'?' selected':''}>\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D</option>`+
     mgrs.map(m=>`<option value="${m.id}"${cur===m.id?' selected':''}>${esc(m.name)}</option>`).join('');
 }
 
@@ -1070,13 +1070,13 @@ function renderPipeline(){
   const crits=allPipe.filter(d=>calcDeal(d).ctrlCls==='ctrl-crit').length;
   const risks=allPipe.filter(d=>calcDeal(d).ctrlCls==='ctrl-risk').length;
   document.getElementById('pipe-stats').innerHTML=`
-    <div class="stat-chip">\u0412\u0441\u044c\u043e\u0433\u043e: <strong>${allPipe.length}</strong></div>
+    <div class="stat-chip">\u0412\u0441\u044C\u043E\u0433\u043E: <strong>${allPipe.length}</strong></div>
     <div class="stat-chip">\u2705 Won: <strong style="color:#2e7d32">${won}</strong></div>
-    <div class="stat-chip">\ud83d\udd34 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0438\u0445: <strong style="color:#b71c1c">${crits}</strong></div>
-    <div class="stat-chip">\ud83d\udfe1 \u0420\u0438\u0437\u0438\u043a: <strong style="color:#e65100">${risks}</strong></div>
-    <div class="stat-chip">\u041f\u043e\u043a\u0430\u0437\u0430\u043d\u043e: <strong>${rows.length}</strong></div>`;
+    <div class="stat-chip">\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445: <strong style="color:#b71c1c">${crits}</strong></div>
+    <div class="stat-chip">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A: <strong style="color:#e65100">${risks}</strong></div>
+    <div class="stat-chip">\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E: <strong>${rows.length}</strong></div>`;
   const tbody=document.getElementById('pipe-body');
-  if(!rows.length){tbody.innerHTML=`<tr><td colspan="25"><div class="empty"><div class="empty-icon">\ud83d\udccb</div>\u041d\u0435\u043c\u0430\u0454 \u0437\u0430\u043f\u0438\u0441\u0456\u0432. \u0414\u043e\u0434\u0430\u0439\u0442\u0435 \u043f\u0435\u0440\u0448\u043e\u0433\u043e \u043a\u043b\u0456\u0454\u043d\u0442\u0430!</div></td></tr>`;return;}
+  if(!rows.length){tbody.innerHTML=`<tr><td colspan="25"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
   tbody.innerHTML=rows.map((d,i)=>{
     const{overdue,noStep,daysInact,ctrl,ctrlCls}=calcDeal(d);
     const rCls=ctrlCls==='ctrl-crit'?'row-crit':ctrlCls==='ctrl-risk'?'row-risk':'';
@@ -1091,7 +1091,7 @@ function renderPipeline(){
       <td class="col-company"><strong>${esc(d.company)}</strong></td>
       <td class="admin-only"><span class="owner-badge ${d._ownerId==='__admin__'?'owner-admin':''}">${esc(d._owner||d.addedBy?.name||'\u2014')}</span></td>
       <td style="color:#555;font-size:11px;white-space:nowrap">${esc(d.city||'')}</td>
-      <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\ud83c\udf10</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
+      <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\uD83C\uDF10</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
       <td>${esc(d.contact)}</td><td style="color:#999">${esc(d.position)}</td>
       <td style="white-space:nowrap">${ph0}${ph_extra}</td>
       <td style="color:#1565C0;font-size:11px">${em0}${em_extra}</td>
@@ -1106,13 +1106,13 @@ function renderPipeline(){
       <td style="color:#b71c1c;font-size:11px">${esc(d.reject)}</td>
       <td style="color:#888;font-size:11px;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(d.comment)}">${esc(d.comment)}</td>
       <td style="max-width:130px;font-size:10px;line-height:1.6">${renderCatBadges(d)}</td>
-      <td style="color:#b71c1c;font-weight:700;font-size:11px">${overdue?'\u041f\u0420\u041e\u0421\u0422\u0420\u041e\u0427\u0415\u041d\u041e':''}</td>
-      <td style="color:#b71c1c;font-weight:700;font-size:11px">${noStep?'\u0411\u0415\u0417 \u041a\u0420\u041e\u041a\u0423!':''}</td>
+      <td style="color:#b71c1c;font-weight:700;font-size:11px">${overdue?'\u041F\u0420\u041E\u0421\u0422\u0420\u041E\u0427\u0415\u041D\u041E':''}</td>
+      <td style="color:#b71c1c;font-weight:700;font-size:11px">${noStep?'\u0411\u0415\u0417 \u041A\u0420\u041E\u041A\u0423!':''}</td>
       <td style="text-align:center;font-weight:600">${daysInact!==null?daysInact:''}</td>
       <td class="${ctrlCls}">${ctrl}</td>
       <td class="col-actions" style="white-space:nowrap">
-        ${(role!=='manager'||perms.edit)?`<button class="btn btn-sm btn-primary" onclick="openDeal(${d.id})">\u270f\ufe0f</button>`:''}
-        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">\ud83d\uddd1</button>
+        ${(role!=='manager'||perms.edit)?`<button class="btn btn-sm btn-primary" onclick="openDeal(${d.id})">\u270F\uFE0F</button>`:''}
+        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">\uD83D\uDDD1</button>
       </td></tr>`;
   }).join('');
 }
@@ -1124,7 +1124,7 @@ function openDeal(id){
   document.getElementById('draft-bar').classList.remove('visible');
 
   if(id===null){
-    document.getElementById('deal-modal-title').textContent='\u2795 \u041d\u043e\u0432\u0438\u0439 \u043a\u043b\u0456\u0454\u043d\u0442';
+    document.getElementById('deal-modal-title').textContent='\u2795 \u041D\u043E\u0432\u0438\u0439 \u043A\u043B\u0456\u0454\u043D\u0442';
     ['company','contact','position','address','city','website','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value='');
     updateWebsiteLink('');
     document.getElementById('d-date').value=todayStr();
@@ -1144,7 +1144,7 @@ function openDeal(id){
     }
   } else {
     const d=deals.find(x=>x.id===id);if(!d)return;
-    document.getElementById('deal-modal-title').textContent='\u270f\ufe0f \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u043a\u043b\u0456\u0454\u043d\u0442\u0430';
+    document.getElementById('deal-modal-title').textContent='\u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u043A\u043B\u0456\u0454\u043D\u0442\u0430';
     ['company','contact','position','address','city','website','nextstep','reject','comment'].forEach(f=>document.getElementById('d-'+f).value=d[f]||'');
     updateWebsiteLink(d.website||'');
     document.getElementById('d-date').value=d.date||'';
@@ -1169,18 +1169,18 @@ function openDeal(id){
 
 function saveDeal(){
   const company=document.getElementById('d-company').value.trim();
-  if(!company){alert('\u0412\u0432\u0435\u0434\u0456\u0442\u044c \u043d\u0430\u0437\u0432\u0443 \u043a\u043e\u043c\u043f\u0430\u043d\u0456\u0457!');return;}
+  if(!company){alert('\u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043D\u0430\u0437\u0432\u0443 \u043A\u043E\u043C\u043F\u0430\u043D\u0456\u0457!');return;}
   // Duplicate guard
   const dupVisible=document.getElementById('dup-panel').classList.contains('visible');
   if(dupVisible){
     const isAdmin=getRole()==='admin';
     const forced=document.getElementById('dup-force-cb')?.checked;
     if(isAdmin&&!forced){
-      alert('\u26a0\ufe0f \u0417\u043d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u0445\u043e\u0436\u0438\u0445 \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432!\n\u041f\u043e\u0441\u0442\u0430\u0432\u0442\u0435 \u0433\u0430\u043b\u043e\u0447\u043a\u0443 "\u042f \u0432\u043f\u0435\u0432\u043d\u0435\u043d\u0438\u0439 \u2014 \u0446\u0435 \u043d\u043e\u0432\u0438\u0439 \u043a\u043b\u0456\u0454\u043d\u0442" \u0449\u043e\u0431 \u0437\u0431\u0435\u0440\u0435\u0433\u0442\u0438.');
+      alert('\u26A0\uFE0F \u0417\u043D\u0430\u0439\u0434\u0435\u043D\u043E \u0441\u0445\u043E\u0436\u0438\u0445 \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432!\n\u041F\u043E\u0441\u0442\u0430\u0432\u0442\u0435 \u0433\u0430\u043B\u043E\u0447\u043A\u0443 "\u042F \u0432\u043F\u0435\u0432\u043D\u0435\u043D\u0438\u0439 \u2014 \u0446\u0435 \u043D\u043E\u0432\u0438\u0439 \u043A\u043B\u0456\u0454\u043D\u0442" \u0449\u043E\u0431 \u0437\u0431\u0435\u0440\u0435\u0433\u0442\u0438.');
       return;
     }
     if(!isAdmin){
-      alert('\u26a0\ufe0f \u0422\u0430\u043a\u0438\u0439 \u043a\u043b\u0456\u0454\u043d\u0442 \u0432\u0436\u0435 \u0454 \u0432 \u0431\u0430\u0437\u0456!\n\u0417\u0432\u0435\u0440\u043d\u0456\u0442\u044c\u0441\u044f \u0434\u043e \u0430\u0434\u043c\u0456\u043d\u0456\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0430 \u0430\u0431\u043e \u0432\u0456\u0434\u043a\u0440\u0438\u0439\u0442\u0435 \u0456\u0441\u043d\u0443\u044e\u0447\u0443 \u043a\u0430\u0440\u0442\u043e\u0447\u043a\u0443.');
+      alert('\u26A0\uFE0F \u0422\u0430\u043A\u0438\u0439 \u043A\u043B\u0456\u0454\u043D\u0442 \u0432\u0436\u0435 \u0454 \u0432 \u0431\u0430\u0437\u0456!\n\u0417\u0432\u0435\u0440\u043D\u0456\u0442\u044C\u0441\u044F \u0434\u043E \u0430\u0434\u043C\u0456\u043D\u0456\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u0430 \u0430\u0431\u043E \u0432\u0456\u0434\u043A\u0440\u0438\u0439\u0442\u0435 \u0456\u0441\u043D\u0443\u044E\u0447\u0443 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0443.');
       return;
     }
   }
@@ -1192,9 +1192,9 @@ function saveDeal(){
     company,
     addedBy: isNew
       ? (getRole()==='manager'
-          ? {id:currentMgrId, name:sessionStorage.getItem('hsm_mgr_name')||'\u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440'}
-          : {id:'__admin__', name:'\u0410\u0434\u043c\u0456\u043d'})
-      : (existingDeal?.addedBy||{id:'__admin__',name:'\u0410\u0434\u043c\u0456\u043d'}),
+          ? {id:currentMgrId, name:sessionStorage.getItem('hsm_mgr_name')||'\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440'}
+          : {id:'__admin__', name:'\u0410\u0434\u043C\u0456\u043D'})
+      : (existingDeal?.addedBy||{id:'__admin__',name:'\u0410\u0434\u043C\u0456\u043D'}),
     contact:document.getElementById('d-contact').value.trim(),
     position:document.getElementById('d-position').value.trim(),
     phones:getPhoneValues(),
@@ -1226,7 +1226,7 @@ function saveDeal(){
 }
 
 function delDeal(id){
-  if(!confirm('\u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438 \u0446\u0435\u0439 \u0437\u0430\u043f\u0438\u0441?'))return;
+  if(!confirm('\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u0446\u0435\u0439 \u0437\u0430\u043F\u0438\u0441?'))return;
   deals=deals.filter(x=>x.id!==id);saveDeals();renderPipeline();scheduleAutoSync();
 }
 
@@ -1239,7 +1239,7 @@ function renderActivity(){
   const actAddBtn=document.querySelector('#tab-activity .toolbar .btn-primary');
   if(actAddBtn) actAddBtn.style.display=(role==='manager'&&!perms.activity)?'none':'';
   const tbody=document.getElementById('act-body');
-  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">\ud83d\udcca</div>\u041d\u0435\u043c\u0430\u0454 \u0437\u0430\u043f\u0438\u0441\u0456\u0432. \u0414\u043e\u0434\u0430\u0439\u0442\u0435 \u043f\u0435\u0440\u0448\u0438\u0439 \u0434\u0435\u043d\u044c!</div></td></tr>`;return;}
+  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">\uD83D\uDCCA</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u0438\u0439 \u0434\u0435\u043D\u044C!</div></td></tr>`;return;}
   tbody.innerHTML=acts.map(a=>`<tr>
     <td style="font-weight:600;white-space:nowrap">${fmtDate(a.date)}</td>
     <td style="text-align:center">${a.newc}</td><td style="text-align:center">${a.calls}</td>
@@ -1249,8 +1249,8 @@ function renderActivity(){
     <td style="color:#888;font-size:12px">${esc(a.comment)}</td>
     <td>${kpiBadge(a.newc,10)}</td><td>${kpiBadge(a.dialogs,5)}</td><td>${kpiBadge(a.meet,2)}</td>
     <td style="white-space:nowrap">
-      <button class="btn btn-sm btn-primary" onclick="openActivity(${a.id})">\u270f\ufe0f</button>
-      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">\ud83d\uddd1</button>
+      <button class="btn btn-sm btn-primary" onclick="openActivity(${a.id})">\u270F\uFE0F</button>
+      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">\uD83D\uDDD1</button>
     </td></tr>`).join('');
 }
 
@@ -1278,7 +1278,7 @@ function openActivity(id){
 
 function saveActivity(){
   const date=document.getElementById('a-date').value;
-  if(!date){alert('\u0412\u043a\u0430\u0436\u0456\u0442\u044c \u0434\u0430\u0442\u0443!');return;}
+  if(!date){alert('\u0412\u043A\u0430\u0436\u0456\u0442\u044C \u0434\u0430\u0442\u0443!');return;}
   const calls=+document.getElementById('a-calls').value||0;
   const msg=+document.getElementById('a-msg').value||0;
   const di=+document.getElementById('a-dialogs').value||0;
@@ -1298,7 +1298,7 @@ function saveActivity(){
   saveActs();closeModal('actModal');renderActivity();
 }
 
-function delAct(id){if(!confirm('\u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438?'))return;acts=acts.filter(x=>x.id!==id);saveActs();renderActivity();}
+function delAct(id){if(!confirm('\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438?'))return;acts=acts.filter(x=>x.id!==id);saveActs();renderActivity();}
 
 // ============================================================
 // DASHBOARD
@@ -1350,16 +1350,16 @@ function renderDashboard(){
   const cr=(f,t)=>{const n=cnt[f];if(!n)return'\u2014';return Math.round(cnt[t]/n*100)+'%';};
   document.getElementById('dash-content').innerHTML=`
   <div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-value">${total}</div><div class="kpi-label">\u0412\u0441\u044c\u043e\u0433\u043e \u0432 \u0431\u0430\u0437\u0456</div></div>
-    <div class="kpi-card" style="border-top-color:#2e7d32"><div class="kpi-value" style="color:#2e7d32">${won}</div><div class="kpi-label">\u2705 Won \u2014 \u0437\u0430\u043a\u0440\u0438\u0442\u043e</div></div>
-    <div class="kpi-card" style="border-top-color:#00838F"><div class="kpi-value" style="color:#00838F">${conv}%</div><div class="kpi-label">\u041a\u043e\u043d\u0432\u0435\u0440\u0441\u0456\u044f</div></div>
-    <div class="kpi-card" style="border-top-color:#7B1FA2"><div class="kpi-value" style="color:#7B1FA2">${active}</div><div class="kpi-label">\u0410\u043a\u0442\u0438\u0432\u043d\u0438\u0445 \u0443\u0433\u043e\u0434</div></div>
-    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">\ud83d\udd34 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0438\u0445</div></div>
-    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">\ud83d\udfe1 \u0420\u0438\u0437\u0438\u043a\u0456\u0432</div></div>
+    <div class="kpi-card"><div class="kpi-value">${total}</div><div class="kpi-label">\u0412\u0441\u044C\u043E\u0433\u043E \u0432 \u0431\u0430\u0437\u0456</div></div>
+    <div class="kpi-card" style="border-top-color:#2e7d32"><div class="kpi-value" style="color:#2e7d32">${won}</div><div class="kpi-label">\u2705 Won \u2014 \u0437\u0430\u043A\u0440\u0438\u0442\u043E</div></div>
+    <div class="kpi-card" style="border-top-color:#00838F"><div class="kpi-value" style="color:#00838F">${conv}%</div><div class="kpi-label">\u041A\u043E\u043D\u0432\u0435\u0440\u0441\u0456\u044F</div></div>
+    <div class="kpi-card" style="border-top-color:#7B1FA2"><div class="kpi-value" style="color:#7B1FA2">${active}</div><div class="kpi-label">\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445 \u0443\u0433\u043E\u0434</div></div>
+    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</div></div>
+    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A\u0456\u0432</div></div>
   </div>
   <div class="grid2">
     <div class="card">
-      <div class="card-title">\ud83d\udcca \u0412\u043e\u0440\u043e\u043d\u043a\u0430 \u043f\u0440\u043e\u0434\u0430\u0436\u0456\u0432</div>
+      <div class="card-title">\uD83D\uDCCA \u0412\u043E\u0440\u043E\u043D\u043A\u0430 \u043F\u0440\u043E\u0434\u0430\u0436\u0456\u0432</div>
       <div class="funnel">
         ${fStages.map(s=>`<div class="funnel-row">
           <div class="funnel-label">${s}</div>
@@ -1370,7 +1370,7 @@ function renderDashboard(){
           <div class="funnel-bar-wrap"><div class="funnel-bar" style="background:#C62828;width:${Math.max(cnt['Lost']/maxC*100,3)}%">${cnt['Lost']>0?cnt['Lost']:''}</div></div>
           <div class="funnel-num">${cnt['Lost']}</div></div>
       </div>
-      <div style="margin-top:16px"><div class="section-title">\u041a\u043e\u043d\u0432\u0435\u0440\u0441\u0456\u044f \u043c\u0456\u0436 \u0435\u0442\u0430\u043f\u0430\u043c\u0438</div>
+      <div style="margin-top:16px"><div class="section-title">\u041A\u043E\u043D\u0432\u0435\u0440\u0441\u0456\u044F \u043C\u0456\u0436 \u0435\u0442\u0430\u043F\u0430\u043C\u0438</div>
         <table class="conv-table">
           ${[['New','Contacted'],['Contacted','Warm'],['Warm','Meeting scheduled'],['Offer sent','Won']].map(([f,t])=>`
           <tr><td>${f} \u2192 ${t.replace('Meeting scheduled','Meeting')}</td>
@@ -1379,27 +1379,27 @@ function renderDashboard(){
       </div>
     </div>
     <div class="card">
-      <div class="card-title">\ud83d\udea8 \u041a\u043e\u043d\u0442\u0440\u043e\u043b\u044c</div>
+      <div class="card-title">\uD83D\uDEA8 \u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C</div>
       <div class="alert-box">
-        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>\ud83d\udd34 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0456 (\u043f\u0440\u043e\u0441\u0442\u0440\u043e\u0447\u0435\u043d\u043e/\u0431\u0435\u0437 \u043a\u0440\u043e\u043a\u0443)</span><strong>${crits}</strong></div>
-        <div class="alert-item ${overdues>0?'al-red':'al-green'}"><span>\u23f0 \u041f\u0440\u043e\u0441\u0442\u0440\u043e\u0447\u0435\u043d\u0438\u0439 \u043a\u0440\u043e\u043a</span><strong>${overdues}</strong></div>
-        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>\ud83d\udea8 \u0411\u0435\u0437 \u043d\u0430\u0441\u0442\u0443\u043f\u043d\u043e\u0433\u043e \u043a\u0440\u043e\u043a\u0443</span><strong>${noSteps}</strong></div>
-        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>\ud83d\udfe1 \u0411\u0435\u0437 \u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0456 3+ \u0434\u043d\u0456</span><strong>${risks}</strong></div>
-        <div class="alert-item al-blue"><span>\u267b\ufe0f Recycle</span><strong>${cnt['Recycle']}</strong></div>
-        <div class="alert-item al-blue"><span>\u274c Lost</span><strong>${lost}</strong></div>
+        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0456 (\u043F\u0440\u043E\u0441\u0442\u0440\u043E\u0447\u0435\u043D\u043E/\u0431\u0435\u0437 \u043A\u0440\u043E\u043A\u0443)</span><strong>${crits}</strong></div>
+        <div class="alert-item ${overdues>0?'al-red':'al-green'}"><span>\u23F0 \u041F\u0440\u043E\u0441\u0442\u0440\u043E\u0447\u0435\u043D\u0438\u0439 \u043A\u0440\u043E\u043A</span><strong>${overdues}</strong></div>
+        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>\uD83D\uDEA8 \u0411\u0435\u0437 \u043D\u0430\u0441\u0442\u0443\u043F\u043D\u043E\u0433\u043E \u043A\u0440\u043E\u043A\u0443</span><strong>${noSteps}</strong></div>
+        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>\uD83D\uDFE1 \u0411\u0435\u0437 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0456 3+ \u0434\u043D\u0456</span><strong>${risks}</strong></div>
+        <div class="alert-item al-blue"><span>\u267B\uFE0F Recycle</span><strong>${cnt['Recycle']}</strong></div>
+        <div class="alert-item al-blue"><span>\u274C Lost</span><strong>${lost}</strong></div>
       </div>
-      <div style="margin-top:18px"><div class="section-title">\ud83d\udcc5 KPI \u0437\u0430 7 \u0434\u043d\u0456\u0432</div>
-        ${_acts.length===0?`<div style="color:#bbb;text-align:center;padding:14px;font-size:13px">\u0414\u043e\u0434\u0430\u0439\u0442\u0435 \u0434\u0430\u043d\u0456 \u0432 Activity Log</div>`:`
+      <div style="margin-top:18px"><div class="section-title">\uD83D\uDCC5 KPI \u0437\u0430 7 \u0434\u043D\u0456\u0432</div>
+        ${_acts.length===0?`<div style="color:#bbb;text-align:center;padding:14px;font-size:13px">\u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u0434\u0430\u043D\u0456 \u0432 Activity Log</div>`:`
         <div class="alert-box">
-          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>\ud83c\udd95 \u041d\u043e\u0432\u0438\u0445 \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432 (\u0446\u0456\u043b\u044c 70+)</span><strong>${wNew}</strong></div>
-          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>\ud83d\udcac \u0414\u0456\u0430\u043b\u043e\u0433\u0456\u0432 (\u0446\u0456\u043b\u044c 35+)</span><strong>${wDial}</strong></div>
-          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>\ud83e\udd1d \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0435\u0439 (\u0446\u0456\u043b\u044c 14+)</span><strong>${wMeet}</strong></div>
+          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>\uD83C\uDD95 \u041D\u043E\u0432\u0438\u0445 \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 (\u0446\u0456\u043B\u044C 70+)</span><strong>${wNew}</strong></div>
+          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>\uD83D\uDCAC \u0414\u0456\u0430\u043B\u043E\u0433\u0456\u0432 (\u0446\u0456\u043B\u044C 35+)</span><strong>${wDial}</strong></div>
+          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>\uD83E\uDD1D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0435\u0439 (\u0446\u0456\u043B\u044C 14+)</span><strong>${wMeet}</strong></div>
         </div>`}
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">\ud83d\uddc2 \u0420\u043e\u0437\u0431\u0438\u0432\u043a\u0430 \u043f\u043e \u043a\u0430\u043d\u0430\u043b\u0430\u0445</div>
+    <div class="card-title">\uD83D\uDDC2 \u0420\u043E\u0437\u0431\u0438\u0432\u043A\u0430 \u043F\u043E \u043A\u0430\u043D\u0430\u043B\u0430\u0445</div>
     <div class="ch-grid">
       ${CHS.map(ch=>{
         const n=_deals.filter(d=>d.channel===ch).length;
@@ -1409,7 +1409,7 @@ function renderDashboard(){
           <div class="ch-name">${ch}</div><div class="ch-count">${n}</div>
           <div class="ch-type">${CH_TYPES[ch]||''}</div>
           <div style="font-size:11px;color:#2e7d32;font-weight:600;margin-top:4px">\u2705 Won: ${w}</div>
-          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">\ud83d\udd34 \u041a\u0440\u0438\u0442: ${c}</div>`:''}
+          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">\uD83D\uDD34 \u041A\u0440\u0438\u0442: ${c}</div>`:''}
         </div>`;}).join('')}
     </div>
   </div>
@@ -1419,11 +1419,11 @@ function renderDashboard(){
 function renderMgrStatsTable(){
   const allMgrs=getManagers();
   const sources=[
-    {label:'\ud83d\udc51 \u0410\u0434\u043c\u0456\u043d', id:'__admin__',
+    {label:'\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D', id:'__admin__',
      deals:JSON.parse(localStorage.getItem('hsm_deals')||'[]').map(migrateDeal),
      acts:JSON.parse(localStorage.getItem('hsm_acts')||'[]')},
     ...allMgrs.map(m=>({
-      label:'\ud83d\udc77 '+m.name, id:m.id,
+      label:'\uD83D\uDC77 '+m.name, id:m.id,
       deals:JSON.parse(localStorage.getItem(dealsKey(m.id))||'[]').map(migrateDeal),
       acts:JSON.parse(localStorage.getItem(actsKey(m.id))||'[]')
     }))
@@ -1446,13 +1446,13 @@ function renderMgrStatsTable(){
   }).filter(Boolean);
   if(!rows.length)return'';
   return`<div class="card">
-    <div class="card-title">\ud83d\udc65 \u0417\u0432\u0456\u0442 \u043f\u043e \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430\u0445</div>
+    <div class="card-title">\uD83D\uDC65 \u0417\u0432\u0456\u0442 \u043F\u043E \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430\u0445</div>
     <div style="overflow-x:auto">
     <table class="mgr-stats-table">
       <thead><tr>
-        <th>\u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440</th><th>\u041a\u043b\u0456\u0454\u043d\u0442\u0456\u0432</th><th>\u0410\u043a\u0442\u0438\u0432\u043d\u0438\u0445</th><th>\ud83d\udd25 Warm+</th>
-        <th>\u2705 Won</th><th>\u274c Lost</th><th>\ud83d\udd34 \u041a\u0440\u0438\u0442\u0438\u0447\u043d\u0438\u0445</th>
-        <th>\ud83d\udcde \u0414\u0437\u0432\u0456\u043d\u043a\u0438 (7\u0434)</th><th>\ud83e\udd1d \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0456 (7\u0434)</th><th>\u041e\u0441\u0442\u0430\u043d\u043d\u044f \u0430\u043a\u0442\u0438\u0432\u043d\u0456\u0441\u0442\u044c</th>
+        <th>\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440</th><th>\u041A\u043B\u0456\u0454\u043D\u0442\u0456\u0432</th><th>\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445</th><th>\uD83D\uDD25 Warm+</th>
+        <th>\u2705 Won</th><th>\u274C Lost</th><th>\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</th>
+        <th>\uD83D\uDCDE \u0414\u0437\u0432\u0456\u043D\u043A\u0438 (7\u0434)</th><th>\uD83E\uDD1D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0456 (7\u0434)</th><th>\u041E\u0441\u0442\u0430\u043D\u043D\u044F \u0430\u043A\u0442\u0438\u0432\u043D\u0456\u0441\u0442\u044C</th>
       </tr></thead>
       <tbody>${rows.map(r=>`<tr>
         <td><strong>${esc(r.label)}</strong></td>
@@ -1492,7 +1492,7 @@ function migrateDeal(d){
   if(d.website===undefined) d.website='';
   if(!Array.isArray(d.categories)) d.categories=[];
   if(!Array.isArray(d.potentialCategories)) d.potentialCategories=[];
-  if(!d.addedBy) d.addedBy={id:'__admin__',name:'\u0410\u0434\u043c\u0456\u043d'};
+  if(!d.addedBy) d.addedBy={id:'__admin__',name:'\u0410\u0434\u043C\u0456\u043D'};
   return d;
 }
 
@@ -1532,17 +1532,17 @@ async function addManager(){
   const name=document.getElementById('s-mgrname').value.trim();
   const p1=document.getElementById('s-mgrpass').value;
   const p2=document.getElementById('s-mgrpass2').value;
-  if(!name){showStatus(el,'\u274c \u0412\u0432\u0435\u0434\u0456\u0442\u044c \u0456\u043c\'\u044f \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430','err');return;}
-  if(!p1){showStatus(el,'\u274c \u0412\u0432\u0435\u0434\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c','err');return;}
-  if(p1!==p2){showStatus(el,'\u274c \u041f\u0430\u0440\u043e\u043b\u0456 \u043d\u0435 \u0441\u043f\u0456\u0432\u043f\u0430\u0434\u0430\u044e\u0442\u044c','err');return;}
-  if(p1.length<3){showStatus(el,'\u274c \u041c\u0456\u043d\u0456\u043c\u0443\u043c 3 \u0441\u0438\u043c\u0432\u043e\u043b\u0438','err');return;}
+  if(!name){showStatus(el,'\u274C \u0412\u0432\u0435\u0434\u0456\u0442\u044C \u0456\u043C\'\u044F \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430','err');return;}
+  if(!p1){showStatus(el,'\u274C \u0412\u0432\u0435\u0434\u0456\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C','err');return;}
+  if(p1!==p2){showStatus(el,'\u274C \u041F\u0430\u0440\u043E\u043B\u0456 \u043D\u0435 \u0441\u043F\u0456\u0432\u043F\u0430\u0434\u0430\u044E\u0442\u044C','err');return;}
+  if(p1.length<3){showStatus(el,'\u274C \u041C\u0456\u043D\u0456\u043C\u0443\u043C 3 \u0441\u0438\u043C\u0432\u043E\u043B\u0438','err');return;}
   const h=await sha256(p1);
   const adminHash=localStorage.getItem('hsm_pass');
-  if(h===adminHash){showStatus(el,'\u274c \u041f\u0430\u0440\u043e\u043b\u044c \u043d\u0435 \u043c\u043e\u0436\u0435 \u0441\u043f\u0456\u0432\u043f\u0430\u0434\u0430\u0442\u0438 \u0437 \u043f\u0430\u0440\u043e\u043b\u0435\u043c \u0430\u0434\u043c\u0456\u043d\u0430','err');return;}
+  if(h===adminHash){showStatus(el,'\u274C \u041F\u0430\u0440\u043E\u043B\u044C \u043D\u0435 \u043C\u043E\u0436\u0435 \u0441\u043F\u0456\u0432\u043F\u0430\u0434\u0430\u0442\u0438 \u0437 \u043F\u0430\u0440\u043E\u043B\u0435\u043C \u0430\u0434\u043C\u0456\u043D\u0430','err');return;}
   const managers=getManagers();
-  if(managers.find(m=>m.name.toLowerCase()===name.toLowerCase())){showStatus(el,'\u274c \u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440 \u0437 \u0442\u0430\u043a\u0438\u043c \u0456\u043c\'\u044f\u043c \u0432\u0436\u0435 \u0456\u0441\u043d\u0443\u0454','err');return;}
+  if(managers.find(m=>m.name.toLowerCase()===name.toLowerCase())){showStatus(el,'\u274C \u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440 \u0437 \u0442\u0430\u043A\u0438\u043C \u0456\u043C\'\u044F\u043C \u0432\u0436\u0435 \u0456\u0441\u043D\u0443\u0454','err');return;}
   // Check no duplicate passwords
-  if(managers.find(m=>m.passHash===h)){showStatus(el,'\u274c \u0422\u0430\u043a\u0438\u0439 \u043f\u0430\u0440\u043e\u043b\u044c \u0432\u0436\u0435 \u0432\u0438\u043a\u043e\u0440\u0438\u0441\u0442\u043e\u0432\u0443\u0454\u0442\u044c\u0441\u044f \u0456\u043d\u0448\u0438\u043c \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u043e\u043c','err');return;}
+  if(managers.find(m=>m.passHash===h)){showStatus(el,'\u274C \u0422\u0430\u043A\u0438\u0439 \u043F\u0430\u0440\u043E\u043B\u044C \u0432\u0436\u0435 \u0432\u0438\u043A\u043E\u0440\u0438\u0441\u0442\u043E\u0432\u0443\u0454\u0442\u044C\u0441\u044F \u0456\u043D\u0448\u0438\u043C \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u043E\u043C','err');return;}
   const perms={
     add:    document.getElementById('perm-add').checked,
     edit:   document.getElementById('perm-edit').checked,
@@ -1555,7 +1555,7 @@ async function addManager(){
   document.getElementById('s-mgrname').value='';
   document.getElementById('s-mgrpass').value='';
   document.getElementById('s-mgrpass2').value='';
-  showStatus(el,`\u2705 \u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440 "${name}" \u0434\u043e\u0434\u0430\u043d\u0438\u0439! \u041f\u0430\u0440\u043e\u043b\u044c \u0432\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u043e.`,'ok');
+  showStatus(el,`\u2705 \u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440 "${name}" \u0434\u043E\u0434\u0430\u043D\u0438\u0439! \u041F\u0430\u0440\u043E\u043B\u044C \u0432\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u043E.`,'ok');
   renderMgrList();
   updateDashMgrFilter();
 }
@@ -1563,48 +1563,48 @@ async function addManager(){
 function deleteMgr(id){
   const mgr=getManagers().find(m=>m.id===id);
   if(!mgr)return;
-  if(!confirm(`\u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430 "${mgr.name}"?\n\u0419\u043e\u0433\u043e \u0434\u0430\u043d\u0456 (\u043a\u043b\u0456\u0454\u043d\u0442\u0438, \u0430\u043a\u0442\u0438\u0432\u043d\u0456\u0441\u0442\u044c) \u0431\u0443\u0434\u0443\u0442\u044c \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043d\u0456, \u0430\u043b\u0435 \u0443\u0432\u0456\u0439\u0442\u0438 \u0432\u0456\u043d \u0431\u0456\u043b\u044c\u0448\u0435 \u043d\u0435 \u0437\u043c\u043e\u0436\u0435.`))return;
+  if(!confirm(`\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430 "${mgr.name}"?\n\u0419\u043E\u0433\u043E \u0434\u0430\u043D\u0456 (\u043A\u043B\u0456\u0454\u043D\u0442\u0438, \u0430\u043A\u0442\u0438\u0432\u043D\u0456\u0441\u0442\u044C) \u0431\u0443\u0434\u0443\u0442\u044C \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u0456, \u0430\u043B\u0435 \u0443\u0432\u0456\u0439\u0442\u0438 \u0432\u0456\u043D \u0431\u0456\u043B\u044C\u0448\u0435 \u043D\u0435 \u0437\u043C\u043E\u0436\u0435.`))return;
   saveManagers(getManagers().filter(m=>m.id!==id));
   renderMgrList();
   updateDashMgrFilter();
-  showStatus(document.getElementById('mgr-status'),`\u2705 \u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440 "${mgr.name}" \u0432\u0438\u0434\u0430\u043b\u0435\u043d\u0438\u0439`,'ok');
+  showStatus(document.getElementById('mgr-status'),`\u2705 \u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440 "${mgr.name}" \u0432\u0438\u0434\u0430\u043B\u0435\u043D\u0438\u0439`,'ok');
 }
 
 function renderMgrList(){
   const managers=getManagers();
   const el=document.getElementById('mgr-list');
   if(!managers.length){
-    el.innerHTML=`<div style="color:#aaa;font-size:13px;padding:10px 0">\u041c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0456\u0432 \u043f\u043e\u043a\u0438 \u043d\u0435\u043c\u0430\u0454. \u0414\u043e\u0434\u0430\u0439\u0442\u0435 \u043f\u0435\u0440\u0448\u043e\u0433\u043e \u043d\u0438\u0436\u0447\u0435.</div>`;
+    el.innerHTML=`<div style="color:#aaa;font-size:13px;padding:10px 0">\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0456\u0432 \u043F\u043E\u043A\u0438 \u043D\u0435\u043C\u0430\u0454. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043D\u0438\u0436\u0447\u0435.</div>`;
     return;
   }
-  el.innerHTML=`<div class="section-title">\u0410\u043a\u0442\u0438\u0432\u043d\u0456 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length})</div>`+
+  el.innerHTML=`<div class="section-title">\u0410\u043A\u0442\u0438\u0432\u043D\u0456 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length})</div>`+
   managers.map(m=>{
     const deals_count=JSON.parse(localStorage.getItem(dealsKey(m.id))||'[]').length;
     const acts_count=JSON.parse(localStorage.getItem(actsKey(m.id))||'[]').length;
     return`<div class="mgr-perm" style="margin-bottom:8px">
       <div>
-        <strong style="font-size:14px">\ud83d\udc77 ${esc(m.name)}</strong>
-        <span style="font-size:11px;color:#999;margin-left:8px">${deals_count} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432 \u00b7 ${acts_count} \u0434\u043d\u0456\u0432 \u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0456</span><br>
-        <span style="font-size:11px;color:#888">\u0414\u043e\u0437\u0432\u043e\u043b\u0438: ${[
-          m.perms.add?'\u2795 \u0414\u043e\u0434\u0430\u0432\u0430\u0442\u0438':'',
-          m.perms.edit?'\u270f\ufe0f \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438':'',
-          m.perms.activity?'\ud83d\udcca Activity':'',
-          m.perms.dashboard?'\ud83d\ude80 Dashboard':'',
-          m.perms.export?'\u2b07 CSV':''
-        ].filter(Boolean).join(' \u00b7 ')}</span>
+        <strong style="font-size:14px">\uD83D\uDC77 ${esc(m.name)}</strong>
+        <span style="font-size:11px;color:#999;margin-left:8px">${deals_count} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 \u00B7 ${acts_count} \u0434\u043D\u0456\u0432 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0456</span><br>
+        <span style="font-size:11px;color:#888">\u0414\u043E\u0437\u0432\u043E\u043B\u0438: ${[
+          m.perms.add?'\u2795 \u0414\u043E\u0434\u0430\u0432\u0430\u0442\u0438':'',
+          m.perms.edit?'\u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438':'',
+          m.perms.activity?'\uD83D\uDCCA Activity':'',
+          m.perms.dashboard?'\uD83D\uDE80 Dashboard':'',
+          m.perms.export?'\u2B07 CSV':''
+        ].filter(Boolean).join(' \u00B7 ')}</span>
       </div>
       <div style="display:flex;gap:6px">
-        <button class="btn btn-sm btn-primary" onclick="openMgrEdit('${m.id}')">\u270f\ufe0f \u041f\u0440\u0430\u0432\u0430</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteMgr('${m.id}')">\ud83d\uddd1 \u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438</button>
+        <button class="btn btn-sm btn-primary" onclick="openMgrEdit('${m.id}')">\u270F\uFE0F \u041F\u0440\u0430\u0432\u0430</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteMgr('${m.id}')">\uD83D\uDDD1 \u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438</button>
       </div>
     </div>
     <div id="mgr-edit-${m.id}" style="display:none;margin-top:8px;padding:10px;background:#f5f7fa;border-radius:8px;font-size:13px">
-      <label style="margin-right:12px"><input type="checkbox" id="ep-add-${m.id}" ${m.perms.add?'checked':''}> \u2795 \u0414\u043e\u0434\u0430\u0432\u0430\u0442\u0438</label>
-      <label style="margin-right:12px"><input type="checkbox" id="ep-edit-${m.id}" ${m.perms.edit?'checked':''}> \u270f\ufe0f \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438</label>
-      <label style="margin-right:12px"><input type="checkbox" id="ep-activity-${m.id}" ${m.perms.activity?'checked':''}> \ud83d\udcca Activity</label>
-      <label style="margin-right:12px"><input type="checkbox" id="ep-dashboard-${m.id}" ${m.perms.dashboard?'checked':''}> \ud83d\ude80 Dashboard</label>
-      <label style="margin-right:12px"><input type="checkbox" id="ep-export-${m.id}" ${m.perms.export?'checked':''}> \u2b07 CSV</label>
-      <br><button class="btn btn-sm btn-success" style="margin-top:8px" onclick="saveMgrPerms('${m.id}')">\ud83d\udcbe \u0417\u0431\u0435\u0440\u0435\u0433\u0442\u0438</button>
+      <label style="margin-right:12px"><input type="checkbox" id="ep-add-${m.id}" ${m.perms.add?'checked':''}> \u2795 \u0414\u043E\u0434\u0430\u0432\u0430\u0442\u0438</label>
+      <label style="margin-right:12px"><input type="checkbox" id="ep-edit-${m.id}" ${m.perms.edit?'checked':''}> \u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438</label>
+      <label style="margin-right:12px"><input type="checkbox" id="ep-activity-${m.id}" ${m.perms.activity?'checked':''}> \uD83D\uDCCA Activity</label>
+      <label style="margin-right:12px"><input type="checkbox" id="ep-dashboard-${m.id}" ${m.perms.dashboard?'checked':''}> \uD83D\uDE80 Dashboard</label>
+      <label style="margin-right:12px"><input type="checkbox" id="ep-export-${m.id}" ${m.perms.export?'checked':''}> \u2B07 CSV</label>
+      <br><button class="btn btn-sm btn-success" style="margin-top:8px" onclick="saveMgrPerms('${m.id}')">\uD83D\uDCBE \u0417\u0431\u0435\u0440\u0435\u0433\u0442\u0438</button>
     </div>`;
   }).join('');
 }
@@ -1636,9 +1636,9 @@ function updateDashMgrFilter(){
   const sel=document.getElementById('dash-mgr-filter');
   if(!sel)return;
   const managers=getManagers();
-  sel.innerHTML=`<option value="">\ud83d\udc65 \u0412\u0441\u0456 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length+1})</option>
-    <option value="__admin__">\ud83d\udc51 \u0410\u0434\u043c\u0456\u043d</option>`+
-    managers.map(m=>`<option value="${m.id}">\ud83d\udc77 ${esc(m.name)}</option>`).join('');
+  sel.innerHTML=`<option value="">\uD83D\uDC65 \u0412\u0441\u0456 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length+1})</option>
+    <option value="__admin__">\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D</option>`+
+    managers.map(m=>`<option value="${m.id}">\uD83D\uDC77 ${esc(m.name)}</option>`).join('');
 }
 
 // ============================================================
@@ -1656,7 +1656,7 @@ function saveCloudSettings(){
     binId:document.getElementById('s-binid').value.trim()
   };
   localStorage.setItem('hsm_cloud',JSON.stringify(cfg));
-  showStatus(document.getElementById('cloud-status'),'\u2705 \u041d\u0430\u043b\u0430\u0448\u0442\u0443\u0432\u0430\u043d\u043d\u044f \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043d\u043e','ok');
+  showStatus(document.getElementById('cloud-status'),'\u2705 \u041D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E','ok');
 }
 
 function getCloudCfg(){
@@ -1715,8 +1715,8 @@ function _countAllDeals(rec){
 async function cloudFirstRun(){
   const el=document.getElementById('cloud-status');
   const{apiKey}=getCloudCfg();
-  if(!apiKey){showStatus(el,'\u274c \u0412\u0432\u0435\u0434\u0456\u0442\u044c API Key!','err');return;}
-  showStatus(el,'\u23f3 \u0421\u0442\u0432\u043e\u0440\u044e\u044e \u0441\u0445\u043e\u0432\u0438\u0449\u0435...','loading');
+  if(!apiKey){showStatus(el,'\u274C \u0412\u0432\u0435\u0434\u0456\u0442\u044C API Key!','err');return;}
+  showStatus(el,'\u23F3 \u0421\u0442\u0432\u043E\u0440\u044E\u044E \u0441\u0445\u043E\u0432\u0438\u0449\u0435...','loading');
   try{
     const r=await fetch('https://api.jsonbin.io/v3/b',{
       method:'POST',
@@ -1728,45 +1728,62 @@ async function cloudFirstRun(){
     const binId=j.metadata.id;
     document.getElementById('s-binid').value=binId;
     localStorage.setItem('hsm_cloud',JSON.stringify({apiKey,binId}));
-    showStatus(el,`\u2705 \u0421\u0442\u0432\u043e\u0440\u0435\u043d\u043e! Bin ID: ${binId}<br><small>\u0417\u0431\u0435\u0440\u0435\u0436\u0456\u0442\u044c \u0446\u0435\u0439 ID \u2014 \u0432\u0456\u043d \u043f\u043e\u0442\u0440\u0456\u0431\u0435\u043d \u043d\u0430 \u043a\u043e\u0436\u043d\u043e\u043c\u0443 \u043f\u0440\u0438\u0441\u0442\u0440\u043e\u0457 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430</small>`,'ok');
-  }catch(e){showStatus(el,'\u274c \u041f\u043e\u043c\u0438\u043b\u043a\u0430: '+e.message,'err');}
+    showStatus(el,`\u2705 \u0421\u0442\u0432\u043E\u0440\u0435\u043D\u043E! Bin ID: ${binId}<br><small>\u0417\u0431\u0435\u0440\u0435\u0436\u0456\u0442\u044C \u0446\u0435\u0439 ID \u2014 \u0432\u0456\u043D \u043F\u043E\u0442\u0440\u0456\u0431\u0435\u043D \u043D\u0430 \u043A\u043E\u0436\u043D\u043E\u043C\u0443 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0457 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430</small>`,'ok');
+  }catch(e){showStatus(el,'\u274C \u041F\u043E\u043C\u0438\u043B\u043A\u0430: '+e.message,'err');}
 }
 
 async function cloudPush(){
   const el=document.getElementById('cloud-status');
-  const{apiKey,binId}=getCloudCfg();
-  if(!apiKey||!binId){showStatus(el,'\u274c \u0412\u0432\u0435\u0434\u0456\u0442\u044c API Key \u0442\u0430 Bin ID','err');return;}
-  showStatus(el,'\u23f3 \u0417\u0431\u0435\u0440\u0456\u0433\u0430\u044e \u0432 \u0445\u043c\u0430\u0440\u0443...','loading');
+  const apiKey=_getApiKey();const binId=_getMainBinId();
+  if(!apiKey||!binId){showStatus(el,'\u274C \u0412\u0432\u0435\u0434\u0456\u0442\u044C API Key \u0442\u0430 Bin ID','err');return;}
+  showStatus(el,'\u23F3 \u0417\u0431\u0435\u0440\u0456\u0433\u0430\u044E \u0432 \u0445\u043C\u0430\u0440\u0443...','loading');
   try{
-    const payload=getAllData();
-    const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}`,{
-      method:'PUT',
-      headers:{'Content-Type':'application/json','X-Master-Key':apiKey},
-      body:JSON.stringify(payload)
-    });
-    const j=await r.json();
-    if(!r.ok)throw new Error(j.message||r.statusText);
-    showStatus(el,`\u2705 \u0417\u0431\u0435\u0440\u0435\u0436\u0435\u043d\u043e! ${_countAllDeals(payload)} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432 (\u0443\u0441\u0456 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0438) \u2014 ${new Date().toLocaleTimeString('uk-UA')}`,'ok');
-  }catch(e){showStatus(el,'\u274c \u041f\u043e\u043c\u0438\u043b\u043a\u0430: '+e.message,'err');}
+    await _pushMainBin();
+    const managers=getManagers();
+    let totalMgr=0;
+    for(const m of managers){
+      if(!m.binId)continue;
+      const payload={mgrId:m.id,deals:JSON.parse(localStorage.getItem(dealsKey(m.id))||'[]'),acts:JSON.parse(localStorage.getItem(actsKey(m.id))||'[]'),savedAt:new Date().toISOString()};
+      await fetch(`https://api.jsonbin.io/v3/b/${m.binId}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':apiKey},body:JSON.stringify(payload)});
+      totalMgr+=(payload.deals||[]).length;
+    }
+    const adminCount=JSON.parse(localStorage.getItem('hsm_deals')||'[]').length;
+    showStatus(el,`\u2705 \u0417\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E! ${adminCount} \u0430\u0434\u043C\u0456\u043D + ${totalMgr} \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438 \u2014 ${new Date().toLocaleTimeString('uk-UA')}`,'ok');
+  }catch(e){showStatus(el,'\u274C \u041F\u043E\u043C\u0438\u043B\u043A\u0430: '+e.message,'err');}
 }
 
 async function cloudPull(){
   const el=document.getElementById('cloud-status');
-  const{apiKey,binId}=getCloudCfg();
-  if(!apiKey||!binId){showStatus(el,'\u274c \u0412\u0432\u0435\u0434\u0456\u0442\u044c API Key \u0442\u0430 Bin ID','err');return;}
-  if(!confirm('\u0417\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0438\u0442\u0438 \u0434\u0430\u043d\u0456 \u0437 \u0445\u043c\u0430\u0440\u0438?\n\u041b\u043e\u043a\u0430\u043b\u044c\u043d\u0456 \u0434\u0430\u043d\u0456 \u0431\u0443\u0434\u0443\u0442\u044c \u0437\u0430\u043c\u0456\u043d\u0435\u043d\u0456!'))return;
-  showStatus(el,'\u23f3 \u0417\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0443\u044e \u0437 \u0445\u043c\u0430\u0440\u0438...','loading');
+  const apiKey=_getApiKey();const binId=_getMainBinId();
+  if(!apiKey||!binId){showStatus(el,'\u274C \u0412\u0432\u0435\u0434\u0456\u0442\u044C API Key \u0442\u0430 Bin ID','err');return;}
+  if(!confirm('\u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0438\u0442\u0438 \u0434\u0430\u043D\u0456 \u0437 \u0445\u043C\u0430\u0440\u0438?\n\u041B\u043E\u043A\u0430\u043B\u044C\u043D\u0456 \u0434\u0430\u043D\u0456 \u0431\u0443\u0434\u0443\u0442\u044C \u0437\u0430\u043C\u0456\u043D\u0435\u043D\u0456!'))return;
+  showStatus(el,'\u23F3 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0443\u044E \u0437 \u0445\u043C\u0430\u0440\u0438...','loading');
   try{
-    const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`,{
-      headers:{'X-Master-Key':apiKey}
-    });
+    const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`,{headers:{'X-Master-Key':apiKey}});
     const j=await r.json();
     if(!r.ok)throw new Error(j.message||r.statusText);
-    restoreAllData(j.record);
-    const total=_countAllDeals(j.record);
-    showStatus(el,`\u2705 \u0417\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0435\u043d\u043e! ${total} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432 (\u0443\u0441\u0456 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0438)`,'ok');
-    renderPipeline();
-  }catch(e){showStatus(el,'\u274c \u041f\u043e\u043c\u0438\u043b\u043a\u0430: '+e.message,'err');}
+    const rec=j.record||{};
+    if(rec.managers)saveManagers(rec.managers);
+    localStorage.setItem('hsm_deals',JSON.stringify(rec.adminDeals||rec.deals||[]));
+    localStorage.setItem('hsm_acts',JSON.stringify(rec.adminActs||rec.acts||[]));
+    // Backwards compat: old format stored all manager data in main bin
+    if(rec.mgrData){Object.entries(rec.mgrData).forEach(([id,d])=>{localStorage.setItem(dealsKey(id),JSON.stringify(d.deals||[]));localStorage.setItem(actsKey(id),JSON.stringify(d.acts||[]));}); }
+    const managers=getManagers();let totalMgr=0;
+    for(const m of managers){
+      if(!m.binId)continue;
+      try{
+        const mr=await fetch(`https://api.jsonbin.io/v3/b/${m.binId}/latest`,{headers:{'X-Master-Key':apiKey}});
+        const mj=await mr.json();if(!mr.ok)continue;
+        const md=mj.record||{};
+        localStorage.setItem(dealsKey(m.id),JSON.stringify(md.deals||[]));
+        localStorage.setItem(actsKey(m.id),JSON.stringify(md.acts||[]));
+        totalMgr+=(md.deals||[]).length;
+      }catch(e){}
+    }
+    loadDataForUser(currentMgrId);renderPipeline();
+    const adminCount=JSON.parse(localStorage.getItem('hsm_deals')||'[]').length;
+    showStatus(el,`\u2705 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043E! ${adminCount} \u0430\u0434\u043C\u0456\u043D + ${totalMgr} \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438`,'ok');
+  }catch(e){showStatus(el,'\u274C \u041F\u043E\u043C\u0438\u043B\u043A\u0430: '+e.message,'err');}
 }
 
 // ============================================================
@@ -1774,67 +1791,88 @@ async function cloudPull(){
 // ============================================================
 let _autoSyncTimer=null;
 let _autoPullInterval=null;
+
+function _getApiKey(){const s=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');return s.apiKey||_DEFAULT_CLOUD.apiKey;}
+function _getMainBinId(){const s=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');return s.binId||_DEFAULT_CLOUD.binId;}
+
+async function _pushMainBin(){
+  const apiKey=_getApiKey();const binId=_getMainBinId();
+  const payload={version:3,savedAt:new Date().toISOString(),managers:getManagers(),adminDeals:JSON.parse(localStorage.getItem('hsm_deals')||'[]'),adminActs:JSON.parse(localStorage.getItem('hsm_acts')||'[]')};
+  const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':apiKey},body:JSON.stringify(payload)});
+  const j=await r.json();if(!r.ok)throw new Error(j.message||r.statusText);return j;
+}
+
+async function _createMgrBin(mgrId){
+  const apiKey=_getApiKey();
+  const mgrs=getManagers();const m=mgrs.find(x=>x.id===mgrId);
+  if(!m)throw new Error('\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440 \u043D\u0435 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u0438\u0439');
+  const payload={mgrId,deals:JSON.parse(localStorage.getItem(dealsKey(mgrId))||'[]'),acts:JSON.parse(localStorage.getItem(actsKey(mgrId))||'[]'),savedAt:new Date().toISOString()};
+  const r=await fetch('https://api.jsonbin.io/v3/b',{method:'POST',headers:{'Content-Type':'application/json','X-Master-Key':apiKey,'X-Bin-Name':'HSM-'+m.name,'X-Bin-Private':'true'},body:JSON.stringify(payload)});
+  const j=await r.json();if(!r.ok)throw new Error(j.message||r.statusText);
+  m.binId=j.metadata.id;saveManagers(mgrs);await _pushMainBin();return m.binId;
+}
+
+async function _autoMgrPush(){
+  if(!currentMgrId)return;
+  const m=getManagers().find(x=>x.id===currentMgrId);
+  if(!m||!m.binId)return;
+  try{
+    const apiKey=_getApiKey();
+    const payload={mgrId:currentMgrId,deals:JSON.parse(localStorage.getItem(dealsKey(currentMgrId))||'[]'),acts:JSON.parse(localStorage.getItem(actsKey(currentMgrId))||'[]'),savedAt:new Date().toISOString()};
+    await fetch(`https://api.jsonbin.io/v3/b/${m.binId}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':apiKey},body:JSON.stringify(payload)});
+    _showSyncBadge('\u2601\uFE0F\u2713');
+  }catch(e){_showSyncBadge('\u2601\uFE0F\u2717');}
+}
+
 function scheduleAutoSync(){
   clearTimeout(_autoSyncTimer);
-  _autoSyncTimer=setTimeout(autoCloudPush,2000); // debounce 2s
+  _autoSyncTimer=setTimeout(async()=>{
+    if(getRole()==='admin')await autoCloudPush();
+    else if(getRole()==='manager')await _autoMgrPush();
+  },2000);
 }
 function startAutoPull(){
   if(_autoPullInterval)return;
   _autoPullInterval=setInterval(async()=>{
     if(getRole()==='admin'){await autoCloudPull();}
-  },5*60*1000); // every 5 minutes
+  },5*60*1000);
 }
 
 async function autoCloudPush(){
-  const _saved=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
-  const cfg={apiKey:_saved.apiKey||_DEFAULT_CLOUD.apiKey,binId:_saved.binId||_DEFAULT_CLOUD.binId};
-  if(!cfg.apiKey||!cfg.binId)return;
-  const role=getRole();
-  try{
-    let payload;
-    if(role==='manager'&&currentMgrId){
-      const r0=await fetch(`https://api.jsonbin.io/v3/b/${cfg.binId}/latest`,{headers:{'X-Master-Key':cfg.apiKey}});
-      const j0=await r0.json();
-      if(!r0.ok)return;
-      const base=j0.record||{};
-      if(!base.mgrData)base.mgrData={};
-      base.mgrData[currentMgrId]={
-        deals:JSON.parse(localStorage.getItem(dealsKey(currentMgrId))||'[]'),
-        acts:JSON.parse(localStorage.getItem(actsKey(currentMgrId))||'[]')
-      };
-      base.savedAt=new Date().toISOString();
-      payload=base;
-    } else {
-      payload=getAllData();
-    }
-    await fetch(`https://api.jsonbin.io/v3/b/${cfg.binId}`,{
-      method:'PUT',
-      headers:{'Content-Type':'application/json','X-Master-Key':cfg.apiKey},
-      body:JSON.stringify(payload)
-    });
-    _showSyncBadge('\u2601\ufe0f\u2713');
-  }catch(e){_showSyncBadge('\u2601\ufe0f\u2717');}
+  if(getRole()!=='admin')return;
+  const apiKey=_getApiKey();const binId=_getMainBinId();
+  if(!apiKey||!binId)return;
+  try{await _pushMainBin();_showSyncBadge('\u2601\uFE0F\u2713');}catch(e){_showSyncBadge('\u2601\uFE0F\u2717');}
 }
 
 async function autoCloudPull(){
-  // Only admin auto-pulls \u2014 managers are authoritative for their own data
   if(getRole()!=='admin')return;
-  const _saved=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
-  const cfg={apiKey:_saved.apiKey||_DEFAULT_CLOUD.apiKey,binId:_saved.binId||_DEFAULT_CLOUD.binId};
-  if(!cfg.apiKey||!cfg.binId)return;
+  const apiKey=_getApiKey();const binId=_getMainBinId();
+  if(!apiKey||!binId)return;
   try{
-    _showSyncBadge('\u2601\ufe0f\u2026');
-    const r=await fetch(`https://api.jsonbin.io/v3/b/${cfg.binId}/latest`,{headers:{'X-Master-Key':cfg.apiKey}});
-    const j=await r.json();
-    if(!r.ok)return;
-    const cloudCount=_countAllDeals(j.record||{});
-    const localCount=_countAllDeals(getAllData());
-    if(cloudCount===0&&localCount>0){_showSyncBadge('\u2601\ufe0f\u2713');return;}
-    if(cloudCount<localCount){_showSyncBadge('\u2601\ufe0f\u2713');return;}
-    restoreAllData(j.record);
-    renderPipeline();
-    _showSyncBadge('\u2601\ufe0f\u2713');
-  }catch(e){_showSyncBadge('\u2601\ufe0f\u2717');}
+    _showSyncBadge('\u2601\uFE0F\u2026');
+    const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`,{headers:{'X-Master-Key':apiKey}});
+    const j=await r.json();if(!r.ok)return;
+    const rec=j.record||{};
+    if(rec.managers)saveManagers(rec.managers);
+    localStorage.setItem('hsm_deals',JSON.stringify(rec.adminDeals||rec.deals||[]));
+    localStorage.setItem('hsm_acts',JSON.stringify(rec.adminActs||rec.acts||[]));
+    // Backwards compat: old format stored all manager data in main bin
+    if(rec.mgrData){Object.entries(rec.mgrData).forEach(([id,d])=>{localStorage.setItem(dealsKey(id),JSON.stringify(d.deals||[]));localStorage.setItem(actsKey(id),JSON.stringify(d.acts||[]));}); }
+    const managers=getManagers();
+    for(const m of managers){
+      if(!m.binId)continue;
+      try{
+        const mr=await fetch(`https://api.jsonbin.io/v3/b/${m.binId}/latest`,{headers:{'X-Master-Key':apiKey}});
+        const mj=await mr.json();if(!mr.ok)continue;
+        const md=mj.record||{};
+        localStorage.setItem(dealsKey(m.id),JSON.stringify(md.deals||[]));
+        localStorage.setItem(actsKey(m.id),JSON.stringify(md.acts||[]));
+      }catch(e){}
+    }
+    loadDataForUser(currentMgrId);renderPipeline();
+    _showSyncBadge('\u2601\uFE0F\u2713');
+  }catch(e){_showSyncBadge('\u2601\uFE0F\u2717');}
 }
 
 let _syncBadgeTimer=null;
@@ -1864,64 +1902,45 @@ function toggleMgrCloud(){
   const panel=document.getElementById('mgr-cloud-panel');
   const visible=panel.style.display!=='none'&&panel.style.display!=='';
   panel.style.display=visible?'none':'flex';
-  if(!visible){
-    const cfg=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');
-    document.getElementById('mgr-apikey').value=cfg.apiKey||_DEFAULT_CLOUD.apiKey;
-    document.getElementById('mgr-binid').value=cfg.binId||_DEFAULT_CLOUD.binId;
-  }
-}
-
-function _getMgrCloudCfg(){
-  const apiKey=document.getElementById('mgr-apikey').value.trim()||_DEFAULT_CLOUD.apiKey;
-  const binId=document.getElementById('mgr-binid').value.trim()||_DEFAULT_CLOUD.binId;
-  if(apiKey&&binId) localStorage.setItem('hsm_cloud',JSON.stringify({apiKey,binId}));
-  return{apiKey,binId};
 }
 
 async function mgrCloudPull(){
   const el=document.getElementById('mgr-cloud-status');
-  const{apiKey,binId}=_getMgrCloudCfg();
-  if(!apiKey||!binId){el.textContent='\u274c \u0412\u0432\u0435\u0434\u0456\u0442\u044c API Key \u0442\u0430 Bin ID';el.style.color='#b71c1c';return;}
-  el.textContent='\u23f3 \u0417\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0443\u044e...';el.style.color='#1565C0';
+  el.textContent='\u23F3 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0443\u044E...';el.style.color='#1565C0';
   try{
-    const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`,{headers:{'X-Master-Key':apiKey}});
+    const m=getManagers().find(x=>x.id===currentMgrId);
+    if(!m||!m.binId){el.textContent='\u26A0\uFE0F \u0421\u043F\u043E\u0447\u0430\u0442\u043A\u0443 \u0437\u0431\u0435\u0440\u0435\u0436\u0456\u0442\u044C \u0432 \u0445\u043C\u0430\u0440\u0443';el.style.color='#e65100';return;}
+    const apiKey=_getApiKey();
+    const r=await fetch(`https://api.jsonbin.io/v3/b/${m.binId}/latest`,{headers:{'X-Master-Key':apiKey}});
     const j=await r.json();
     if(!r.ok)throw new Error(j.message||r.statusText);
-    restoreAllData(j.record);
-    const total=_countAllDeals(j.record);
-    el.textContent=`\u2705 \u0417\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0435\u043d\u043e! ${total} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432`;el.style.color='#2e7d32';
-    renderPipeline();
-  }catch(e){el.textContent='\u274c '+e.message;el.style.color='#b71c1c';}
+    const rec=j.record||{};
+    localStorage.setItem(dealsKey(currentMgrId),JSON.stringify(rec.deals||[]));
+    localStorage.setItem(actsKey(currentMgrId),JSON.stringify(rec.acts||[]));
+    loadDataForUser(currentMgrId);renderPipeline();
+    el.textContent=`\u2705 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043E! ${(rec.deals||[]).length} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432`;el.style.color='#2e7d32';
+  }catch(e){el.textContent='\u274C '+e.message;el.style.color='#b71c1c';}
 }
 
 async function mgrCloudPush(){
   const el=document.getElementById('mgr-cloud-status');
-  const{apiKey,binId}=_getMgrCloudCfg();
-  if(!apiKey||!binId){el.textContent='\u274c \u0412\u0432\u0435\u0434\u0456\u0442\u044c API Key \u0442\u0430 Bin ID';el.style.color='#b71c1c';return;}
-  el.textContent='\u23f3 \u0417\u0431\u0435\u0440\u0456\u0433\u0430\u044e...';el.style.color='#1565C0';
+  el.textContent='\u23F3 \u0417\u0431\u0435\u0440\u0456\u0433\u0430\u044E...';el.style.color='#1565C0';
   try{
-    // Manager pushes only their own data merged into existing cloud snapshot
-    const r0=await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`,{headers:{'X-Master-Key':apiKey}});
-    const j0=await r0.json();
-    if(!r0.ok)throw new Error(j0.message||r0.statusText);
-    const base=j0.record;
-    // Overwrite only this manager's slice
-    if(!base.mgrData)base.mgrData={};
-    base.mgrData[currentMgrId]={
-      deals:JSON.parse(localStorage.getItem(dealsKey(currentMgrId))||'[]'),
-      acts:JSON.parse(localStorage.getItem(actsKey(currentMgrId))||'[]')
-    };
-    base.savedAt=new Date().toISOString();
-    const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}`,{
-      method:'PUT',
-      headers:{'Content-Type':'application/json','X-Master-Key':apiKey},
-      body:JSON.stringify(base)
-    });
-    const j=await r.json();
-    if(!r.ok)throw new Error(j.message||r.statusText);
-    const myCount=(base.mgrData[currentMgrId].deals||[]).length;
-    el.textContent=`\u2705 \u0417\u0431\u0435\u0440\u0435\u0436\u0435\u043d\u043e! ${myCount} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432`;el.style.color='#2e7d32';
-  }catch(e){el.textContent='\u274c '+e.message;el.style.color='#b71c1c';}
+    const mgrs=getManagers();const m=mgrs.find(x=>x.id===currentMgrId);
+    if(!m)throw new Error('\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440 \u043D\u0435 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u0438\u0439');
+    let binId=m.binId;
+    if(!binId){
+      el.textContent='\u23F3 \u0421\u0442\u0432\u043E\u0440\u044E\u044E \u0441\u0445\u043E\u0432\u0438\u0449\u0435...';el.style.color='#1565C0';
+      binId=await _createMgrBin(currentMgrId);
+    } else {
+      const apiKey=_getApiKey();
+      const payload={mgrId:currentMgrId,deals:JSON.parse(localStorage.getItem(dealsKey(currentMgrId))||'[]'),acts:JSON.parse(localStorage.getItem(actsKey(currentMgrId))||'[]'),savedAt:new Date().toISOString()};
+      const r=await fetch(`https://api.jsonbin.io/v3/b/${binId}`,{method:'PUT',headers:{'Content-Type':'application/json','X-Master-Key':apiKey},body:JSON.stringify(payload)});
+      const j=await r.json();if(!r.ok)throw new Error(j.message||r.statusText);
+    }
+    const myCount=JSON.parse(localStorage.getItem(dealsKey(currentMgrId))||'[]').length;
+    el.textContent=`\u2705 \u0417\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E! ${myCount} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432`;el.style.color='#2e7d32';
+  }catch(e){el.textContent='\u274C '+e.message;el.style.color='#b71c1c';}
 }
 
 // ============================================================
@@ -1931,7 +1950,7 @@ function generateShareCode(){
   const payload=Object.assign({v:3,ts:Date.now()},getAllData());
   const code=btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
   document.getElementById('shareCodeOut').value=code;
-  showStatus(document.getElementById('share-status'),'\u2705 \u041a\u043e\u0434 \u0437\u0433\u0435\u043d\u0435\u0440\u043e\u0432\u0430\u043d\u043e! \u041d\u0430\u0442\u0438\u0441\u043d\u0456\u0442\u044c \u043d\u0430 \u0442\u0435\u043a\u0441\u0442\u043e\u0432\u0435 \u043f\u043e\u043b\u0435 \u0449\u043e\u0431 \u0441\u043a\u043e\u043f\u0456\u044e\u0432\u0430\u0442\u0438','ok');
+  showStatus(document.getElementById('share-status'),'\u2705 \u041A\u043E\u0434 \u0437\u0433\u0435\u043D\u0435\u0440\u043E\u0432\u0430\u043D\u043E! \u041D\u0430\u0442\u0438\u0441\u043D\u0456\u0442\u044C \u043D\u0430 \u0442\u0435\u043A\u0441\u0442\u043E\u0432\u0435 \u043F\u043E\u043B\u0435 \u0449\u043E\u0431 \u0441\u043A\u043E\u043F\u0456\u044E\u0432\u0430\u0442\u0438','ok');
 }
 
 function copyShareCode(){
@@ -1939,20 +1958,20 @@ function copyShareCode(){
   if(!ta.value)return;
   ta.select();
   document.execCommand('copy');
-  showStatus(document.getElementById('share-status'),'\u2705 \u0421\u043a\u043e\u043f\u0456\u0439\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440 \u043e\u0431\u043c\u0456\u043d\u0443!','ok');
+  showStatus(document.getElementById('share-status'),'\u2705 \u0421\u043A\u043E\u043F\u0456\u0439\u043E\u0432\u0430\u043D\u043E \u0432 \u0431\u0443\u0444\u0435\u0440 \u043E\u0431\u043C\u0456\u043D\u0443!','ok');
 }
 
 function initMgrImportSelect(){
   const sel=document.getElementById('mgr-import-select');
   if(!sel)return;
   const mgrs=getManagers();
-  sel.innerHTML='<option value="">-- \u041e\u0431\u0435\u0440\u0456\u0442\u044c \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430 --</option>'+
+  sel.innerHTML='<option value="">-- \u041E\u0431\u0435\u0440\u0456\u0442\u044C \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430 --</option>'+
     mgrs.map(m=>`<option value="${m.id}">${esc(m.name)}</option>`).join('');
 }
 function importMgrJsonFile(input){
   const el=document.getElementById('mgr-import-status');
   const mgrId=document.getElementById('mgr-import-select').value;
-  if(!mgrId){showStatus(el,'\u26a0\ufe0f \u0421\u043f\u043e\u0447\u0430\u0442\u043a\u0443 \u043e\u0431\u0435\u0440\u0456\u0442\u044c \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430','error');input.value='';return;}
+  if(!mgrId){showStatus(el,'\u26A0\uFE0F \u0421\u043F\u043E\u0447\u0430\u0442\u043A\u0443 \u043E\u0431\u0435\u0440\u0456\u0442\u044C \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430','error');input.value='';return;}
   const file=input.files[0];
   if(!file){return;}
   const reader=new FileReader();
@@ -1960,11 +1979,11 @@ function importMgrJsonFile(input){
     try{
       const data=JSON.parse(e.target.result);
       const arr=Array.isArray(data)?data:(Array.isArray(data.deals)?data.deals:[]);
-      if(!arr.length){showStatus(el,'\u26a0\ufe0f \u0423 \u0444\u0430\u0439\u043b\u0456 \u043d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432','error');return;}
+      if(!arr.length){showStatus(el,'\u26A0\uFE0F \u0423 \u0444\u0430\u0439\u043B\u0456 \u043D\u0435 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432','error');return;}
       localStorage.setItem('hsm_deals_'+mgrId, JSON.stringify(arr));
-      showStatus(el,`\u2705 \u0406\u043c\u043f\u043e\u0440\u0442\u043e\u0432\u0430\u043d\u043e ${arr.length} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432 \u0434\u043b\u044f \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0430`,'ok');
+      showStatus(el,`\u2705 \u0406\u043C\u043F\u043E\u0440\u0442\u043E\u0432\u0430\u043D\u043E ${arr.length} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 \u0434\u043B\u044F \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430`,'ok');
       renderPipeline();
-    }catch(err){showStatus(el,'\u274c \u041f\u043e\u043c\u0438\u043b\u043a\u0430 \u0447\u0438\u0442\u0430\u043d\u043d\u044f \u0444\u0430\u0439\u043b\u0443: '+err.message,'error');}
+    }catch(err){showStatus(el,'\u274C \u041F\u043E\u043C\u0438\u043B\u043A\u0430 \u0447\u0438\u0442\u0430\u043D\u043D\u044F \u0444\u0430\u0439\u043B\u0443: '+err.message,'error');}
     input.value='';
   };
   reader.readAsText(file);
@@ -1973,16 +1992,16 @@ function importMgrJsonFile(input){
 function importShareCode(){
   const el=document.getElementById('share-status');
   const code=document.getElementById('shareCodeIn').value.trim();
-  if(!code){showStatus(el,'\u274c \u0412\u0441\u0442\u0430\u0432\u0442\u0435 \u043a\u043e\u0434!','err');return;}
+  if(!code){showStatus(el,'\u274C \u0412\u0441\u0442\u0430\u0432\u0442\u0435 \u043A\u043E\u0434!','err');return;}
   try{
     const data=JSON.parse(decodeURIComponent(escape(atob(code))));
     const total=_countAllDeals(data);
-    if(!confirm(`\u0406\u043c\u043f\u043e\u0440\u0442\u0443\u0432\u0430\u0442\u0438 ${total} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432 (\u0443\u0441\u0456 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0438)?\n\u041f\u043e\u0442\u043e\u0447\u043d\u0456 \u0434\u0430\u043d\u0456 \u0431\u0443\u0434\u0443\u0442\u044c \u0437\u0430\u043c\u0456\u043d\u0435\u043d\u0456!`))return;
+    if(!confirm(`\u0406\u043C\u043F\u043E\u0440\u0442\u0443\u0432\u0430\u0442\u0438 ${total} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 (\u0443\u0441\u0456 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438)?\n\u041F\u043E\u0442\u043E\u0447\u043D\u0456 \u0434\u0430\u043D\u0456 \u0431\u0443\u0434\u0443\u0442\u044C \u0437\u0430\u043C\u0456\u043D\u0435\u043D\u0456!`))return;
     restoreAllData(data);
     document.getElementById('shareCodeIn').value='';
-    showStatus(el,`\u2705 \u0406\u043c\u043f\u043e\u0440\u0442\u043e\u0432\u0430\u043d\u043e! ${total} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432`,'ok');
+    showStatus(el,`\u2705 \u0406\u043C\u043F\u043E\u0440\u0442\u043E\u0432\u0430\u043D\u043E! ${total} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432`,'ok');
     renderPipeline();
-  }catch(e){showStatus(el,'\u274c \u041d\u0435\u0432\u0456\u0440\u043d\u0438\u0439 \u043a\u043e\u0434. \u041f\u0435\u0440\u0435\u0432\u0456\u0440\u0442\u0435 \u0442\u0430 \u0441\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0437\u043d\u043e\u0432\u0443.','err');}
+  }catch(e){showStatus(el,'\u274C \u041D\u0435\u0432\u0456\u0440\u043D\u0438\u0439 \u043A\u043E\u0434. \u041F\u0435\u0440\u0435\u0432\u0456\u0440\u0442\u0435 \u0442\u0430 \u0441\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0437\u043D\u043E\u0432\u0443.','err');}
 }
 
 // ============================================================
@@ -1993,7 +2012,7 @@ function handleDrop(e){
   document.getElementById('dropZone').classList.remove('drag');
   const f=e.dataTransfer.files[0];
   if(f&&f.name.endsWith('.csv'))processCSV(f);
-  else alert('\u0411\u0443\u0434\u044c \u043b\u0430\u0441\u043a\u0430, \u0437\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0442\u0435 \u0444\u0430\u0439\u043b .csv');
+  else alert('\u0411\u0443\u0434\u044C \u043B\u0430\u0441\u043A\u0430, \u0437\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0442\u0435 \u0444\u0430\u0439\u043B .csv');
 }
 
 function handleCSVFile(input){
@@ -2013,9 +2032,9 @@ function processCSV(file){
 function parseCSV(text){
   const el=document.getElementById('csv-status');
   // Remove BOM
-  const clean=text.replace(/^\ufeff/,'');
+  const clean=text.replace(/^\uFEFF/,'');
   const lines=clean.split(/\r?\n/).filter(l=>l.trim());
-  if(lines.length<2){showStatus(el,'\u274c \u0424\u0430\u0439\u043b \u043f\u043e\u0440\u043e\u0436\u043d\u0456\u0439 \u0430\u0431\u043e \u043c\u0430\u0454 \u043b\u0438\u0448\u0435 \u0437\u0430\u0433\u043e\u043b\u043e\u0432\u043e\u043a','err');return;}
+  if(lines.length<2){showStatus(el,'\u274C \u0424\u0430\u0439\u043B \u043F\u043E\u0440\u043E\u0436\u043D\u0456\u0439 \u0430\u0431\u043E \u043C\u0430\u0454 \u043B\u0438\u0448\u0435 \u0437\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A','err');return;}
 
   // Detect delimiter
   const delim=lines[0].includes(';')?';':',';
@@ -2025,20 +2044,20 @@ function parseCSV(text){
 
   // Column map - flexible matching
   const colMap={
-    company:   findCol(headers,['\u043a\u043e\u043c\u043f\u0430\u043d\u0456\u044f','company','\u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0435','\u043a\u043e\u043c\u043f\u0430\u043d\u0438\u044f']),
-    contact:   findCol(headers,['\u043a\u043e\u043d\u0442\u0430\u043a\u0442','contact','\u043f\u0438\u0431','\u0444\u0438\u043e','name']),
-    position:  findCol(headers,['\u043f\u043e\u0441\u0430\u0434\u0430','position','\u0434\u043e\u043b\u0436\u043d\u043e\u0441\u0442\u044c']),
-    phone:     findCol(headers,['\u0442\u0435\u043b\u0435\u0444\u043e\u043d','phone','tel']),
-    email:     findCol(headers,['email','\u043f\u043e\u0448\u0442\u0430','mail']),
-    channel:   findCol(headers,['\u043a\u0430\u043d\u0430\u043b','channel']),
+    company:   findCol(headers,['\u043A\u043E\u043C\u043F\u0430\u043D\u0456\u044F','company','\u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435','\u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044F']),
+    contact:   findCol(headers,['\u043A\u043E\u043D\u0442\u0430\u043A\u0442','contact','\u043F\u0438\u0431','\u0444\u0438\u043E','name']),
+    position:  findCol(headers,['\u043F\u043E\u0441\u0430\u0434\u0430','position','\u0434\u043E\u043B\u0436\u043D\u043E\u0441\u0442\u044C']),
+    phone:     findCol(headers,['\u0442\u0435\u043B\u0435\u0444\u043E\u043D','phone','tel']),
+    email:     findCol(headers,['email','\u043F\u043E\u0448\u0442\u0430','mail']),
+    channel:   findCol(headers,['\u043A\u0430\u043D\u0430\u043B','channel']),
     status:    findCol(headers,['\u0441\u0442\u0430\u0442\u0443\u0441','status']),
-    date:      findCol(headers,['\u0434\u0430\u0442\u0430','date','\u0434\u0430\u0442\u0430 \u0434\u043e\u0434\u0430\u0432\u0430\u043d\u043d\u044f']),
-    contactdate:findCol(headers,['\u0434\u0430\u0442\u0430 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0443','contact date','\u0434\u0430\u0442\u0430 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0430']),
-    stepdate:  findCol(headers,['\u0434\u0430\u0442\u0430 \u043a\u0440\u043e\u043a\u0443','step date','\u0434\u0430\u0442\u0430 \u0448\u0430\u0433\u0430']),
-    nextstep:  findCol(headers,['\u043d\u0430\u0441\u0442\u0443\u043f\u043d\u0438\u0439 \u043a\u0440\u043e\u043a','next step','\u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0448\u0430\u0433']),
-    result:    findCol(headers,['\u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442','result']),
-    reject:    findCol(headers,['\u043f\u0440\u0438\u0447\u0438\u043d\u0430 \u0432\u0456\u0434\u043c\u043e\u0432\u0438','\u043f\u0440\u0438\u0447\u0438\u043d\u0430 \u043e\u0442\u043a\u0430\u0437\u0430','reject']),
-    comment:   findCol(headers,['\u043a\u043e\u043c\u0435\u043d\u0442\u0430\u0440','comment','\u043a\u043e\u043c\u043c\u0435\u043d\u0442\u0430\u0440\u0438\u0439'])
+    date:      findCol(headers,['\u0434\u0430\u0442\u0430','date','\u0434\u0430\u0442\u0430 \u0434\u043E\u0434\u0430\u0432\u0430\u043D\u043D\u044F']),
+    contactdate:findCol(headers,['\u0434\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0443','contact date','\u0434\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0430']),
+    stepdate:  findCol(headers,['\u0434\u0430\u0442\u0430 \u043A\u0440\u043E\u043A\u0443','step date','\u0434\u0430\u0442\u0430 \u0448\u0430\u0433\u0430']),
+    nextstep:  findCol(headers,['\u043D\u0430\u0441\u0442\u0443\u043F\u043D\u0438\u0439 \u043A\u0440\u043E\u043A','next step','\u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439 \u0448\u0430\u0433']),
+    result:    findCol(headers,['\u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442','result']),
+    reject:    findCol(headers,['\u043F\u0440\u0438\u0447\u0438\u043D\u0430 \u0432\u0456\u0434\u043C\u043E\u0432\u0438','\u043F\u0440\u0438\u0447\u0438\u043D\u0430 \u043E\u0442\u043A\u0430\u0437\u0430','reject']),
+    comment:   findCol(headers,['\u043A\u043E\u043C\u0435\u043D\u0442\u0430\u0440','comment','\u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439'])
   };
 
   csvParsed=[];
@@ -2067,14 +2086,14 @@ function parseCSV(text){
     });
   }
 
-  if(!csvParsed.length){showStatus(el,'\u274c \u041d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e \u0437\u0430\u043f\u0438\u0441\u0456\u0432. \u041f\u0435\u0440\u0435\u0432\u0456\u0440\u0442\u0435 \u0449\u043e \u0454 \u043a\u043e\u043b\u043e\u043d\u043a\u0430 "\u041a\u043e\u043c\u043f\u0430\u043d\u0456\u044f"','err');return;}
+  if(!csvParsed.length){showStatus(el,'\u274C \u041D\u0435 \u0437\u043D\u0430\u0439\u0434\u0435\u043D\u043E \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u041F\u0435\u0440\u0435\u0432\u0456\u0440\u0442\u0435 \u0449\u043E \u0454 \u043A\u043E\u043B\u043E\u043D\u043A\u0430 "\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F"','err');return;}
 
   // Show preview (first 5 rows)
   const preview=csvParsed.slice(0,5);
   document.getElementById('csv-preview-table').innerHTML=`
-    <table><thead><tr><th>\u041a\u043e\u043c\u043f\u0430\u043d\u0456\u044f</th><th>\u041a\u043e\u043d\u0442\u0430\u043a\u0442</th><th>\u041a\u0430\u043d\u0430\u043b</th><th>\u0421\u0442\u0430\u0442\u0443\u0441</th><th>\u0422\u0435\u043b\u0435\u0444\u043e\u043d</th></tr></thead>
+    <table><thead><tr><th>\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F</th><th>\u041A\u043E\u043D\u0442\u0430\u043A\u0442</th><th>\u041A\u0430\u043D\u0430\u043B</th><th>\u0421\u0442\u0430\u0442\u0443\u0441</th><th>\u0422\u0435\u043B\u0435\u0444\u043E\u043D</th></tr></thead>
     <tbody>${preview.map(r=>`<tr><td>${esc(r.company)}</td><td>${esc(r.contact)}</td><td>${esc(r.channel)}</td><td>${esc(r.status)}</td><td>${esc(r.phone)}</td></tr>`).join('')}
-    ${csvParsed.length>5?`<tr><td colspan="5" style="color:#999;text-align:center">...\u0456 \u0449\u0435 ${csvParsed.length-5} \u0440\u044f\u0434\u043a\u0456\u0432</td></tr>`:''}
+    ${csvParsed.length>5?`<tr><td colspan="5" style="color:#999;text-align:center">...\u0456 \u0449\u0435 ${csvParsed.length-5} \u0440\u044F\u0434\u043A\u0456\u0432</td></tr>`:''}
     </tbody></table>`;
   document.getElementById('csv-count').textContent=csvParsed.length;
   document.getElementById('csv-preview').style.display='block';
@@ -2120,10 +2139,10 @@ function confirmCSVImport(){
     const existing=new Set(deals.map(d=>d.company.toLowerCase()));
     const added=csvParsed.filter(r=>!existing.has(r.company.toLowerCase()));
     deals=[...deals,...added];
-    showStatus(document.getElementById('csv-status'),`\u2705 \u0414\u043e\u0434\u0430\u043d\u043e ${added.length} \u043d\u043e\u0432\u0438\u0445 \u0437\u0430\u043f\u0438\u0441\u0456\u0432 (${csvParsed.length-added.length} \u0434\u0443\u0431\u043b\u0456\u043a\u0430\u0442\u0456\u0432 \u043f\u0440\u043e\u043f\u0443\u0449\u0435\u043d\u043e)`,'ok');
+    showStatus(document.getElementById('csv-status'),`\u2705 \u0414\u043E\u0434\u0430\u043D\u043E ${added.length} \u043D\u043E\u0432\u0438\u0445 \u0437\u0430\u043F\u0438\u0441\u0456\u0432 (${csvParsed.length-added.length} \u0434\u0443\u0431\u043B\u0456\u043A\u0430\u0442\u0456\u0432 \u043F\u0440\u043E\u043F\u0443\u0449\u0435\u043D\u043E)`,'ok');
   } else {
     deals=[...csvParsed];
-    showStatus(document.getElementById('csv-status'),`\u2705 \u0406\u043c\u043f\u043e\u0440\u0442\u043e\u0432\u0430\u043d\u043e ${deals.length} \u0437\u0430\u043f\u0438\u0441\u0456\u0432`,'ok');
+    showStatus(document.getElementById('csv-status'),`\u2705 \u0406\u043C\u043F\u043E\u0440\u0442\u043E\u0432\u0430\u043D\u043E ${deals.length} \u0437\u0430\u043F\u0438\u0441\u0456\u0432`,'ok');
   }
   saveDeals();
   document.getElementById('csv-preview').style.display='none';
@@ -2141,7 +2160,7 @@ function cancelCSVImport(){
 // EXPORT CSV
 // ============================================================
 function exportCSV(){
-  const headers=['\u2116','\u0414\u0430\u0442\u0430','\u041a\u043e\u043c\u043f\u0430\u043d\u0456\u044f','\u041c\u0456\u0441\u0442\u043e','\u0421\u0430\u0439\u0442','\u041a\u043e\u043d\u0442\u0430\u043a\u0442','\u041f\u043e\u0441\u0430\u0434\u0430','\u0422\u0435\u043b\u0435\u0444\u043e\u043d\u0438','Email','\u0410\u0434\u0440\u0435\u0441\u0430','\u041a\u0430\u043d\u0430\u043b','\u0422\u0438\u043f \u043a\u043b\u0456\u0454\u043d\u0442\u0430','\u0421\u0442\u0430\u0442\u0443\u0441','\u0414\u0430\u0442\u0430 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u0443','\u041d\u0430\u0441\u0442\u0443\u043f\u043d\u0438\u0439 \u043a\u0440\u043e\u043a','\u0414\u0430\u0442\u0430 \u043a\u0440\u043e\u043a\u0443','\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442','\u041f\u0440\u0438\u0447\u0438\u043d\u0430 \u0432\u0456\u0434\u043c\u043e\u0432\u0438','\u041a\u043e\u043c\u0435\u043d\u0442\u0430\u0440','\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0456\u0457','\u041f\u043e\u0442\u0435\u043d\u0446\u0456\u0439\u043d\u0456 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0456\u0457','\u041a\u043e\u043d\u0442\u0440\u043e\u043b\u044c'];
+  const headers=['\u2116','\u0414\u0430\u0442\u0430','\u041A\u043E\u043C\u043F\u0430\u043D\u0456\u044F','\u041C\u0456\u0441\u0442\u043E','\u0421\u0430\u0439\u0442','\u041A\u043E\u043D\u0442\u0430\u043A\u0442','\u041F\u043E\u0441\u0430\u0434\u0430','\u0422\u0435\u043B\u0435\u0444\u043E\u043D\u0438','Email','\u0410\u0434\u0440\u0435\u0441\u0430','\u041A\u0430\u043D\u0430\u043B','\u0422\u0438\u043F \u043A\u043B\u0456\u0454\u043D\u0442\u0430','\u0421\u0442\u0430\u0442\u0443\u0441','\u0414\u0430\u0442\u0430 \u043A\u043E\u043D\u0442\u0430\u043A\u0442\u0443','\u041D\u0430\u0441\u0442\u0443\u043F\u043D\u0438\u0439 \u043A\u0440\u043E\u043A','\u0414\u0430\u0442\u0430 \u043A\u0440\u043E\u043A\u0443','\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442','\u041F\u0440\u0438\u0447\u0438\u043D\u0430 \u0432\u0456\u0434\u043C\u043E\u0432\u0438','\u041A\u043E\u043C\u0435\u043D\u0442\u0430\u0440','\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457','\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0456 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457','\u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C'];
   const rows=deals.map((d,i)=>{
     const{ctrl}=calcDeal(d);
     const phones=(d.phones&&d.phones.length?d.phones:[d.phone||'']).filter(Boolean).join('; ');
@@ -2151,7 +2170,7 @@ function exportCSV(){
     return[i+1,fmtDate(d.date),d.company,d.city||'',d.website||'',d.contact,d.position,phones,emails,d.address||'',d.channel,CH_TYPES[d.channel]||'',d.status,fmtDate(d.contactdate),d.nextstep,fmtDate(d.stepdate),d.result,d.reject,d.comment,cats,pots,ctrl]
       .map(v=>'"'+(v||'').toString().replace(/"/g,'""')+'"').join(',');
   });
-  const csv='\ufeff'+[headers.join(','),...rows].join('\n');
+  const csv='\uFEFF'+[headers.join(','),...rows].join('\n');
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
   a.download='Hunter_Pipeline_'+todayStr()+'.csv';a.click();
@@ -2175,23 +2194,23 @@ function restoreFromBackup(input){
     try{
       const data=JSON.parse(e.target.result);
       const total=_countAllDeals(data);
-      if(total===0&&!data.deals&&!data.adminDeals)throw new Error('\u041d\u0435\u0432\u0456\u0440\u043d\u0438\u0439 \u0444\u043e\u0440\u043c\u0430\u0442 \u0444\u0430\u0439\u043b\u0443');
-      if(!confirm(`\u0412\u0456\u0434\u043d\u043e\u0432\u0438\u0442\u0438 ${total} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432 (\u0443\u0441\u0456 \u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440\u0438)?\n\u041f\u043e\u0442\u043e\u0447\u043d\u0456 \u0434\u0430\u043d\u0456 \u0431\u0443\u0434\u0443\u0442\u044c \u0437\u0430\u043c\u0456\u043d\u0435\u043d\u0456!`))return;
+      if(total===0&&!data.deals&&!data.adminDeals)throw new Error('\u041D\u0435\u0432\u0456\u0440\u043D\u0438\u0439 \u0444\u043E\u0440\u043C\u0430\u0442 \u0444\u0430\u0439\u043B\u0443');
+      if(!confirm(`\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 ${total} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 (\u0443\u0441\u0456 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438)?\n\u041F\u043E\u0442\u043E\u0447\u043D\u0456 \u0434\u0430\u043D\u0456 \u0431\u0443\u0434\u0443\u0442\u044C \u0437\u0430\u043C\u0456\u043D\u0435\u043D\u0456!`))return;
       restoreAllData(data);
-      alert(`\u2705 \u0412\u0456\u0434\u043d\u043e\u0432\u043b\u0435\u043d\u043e! ${total} \u043a\u043b\u0456\u0454\u043d\u0442\u0456\u0432.`);
+      alert(`\u2705 \u0412\u0456\u0434\u043D\u043E\u0432\u043B\u0435\u043D\u043E! ${total} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432.`);
       renderPipeline();
-    }catch(ex){alert('\u274c \u041f\u043e\u043c\u0438\u043b\u043a\u0430: '+ex.message);}
+    }catch(ex){alert('\u274C \u041F\u043E\u043C\u0438\u043B\u043A\u0430: '+ex.message);}
   };
   reader.readAsText(f);
   input.value='';
 }
 
 function clearAllData(){
-  if(!confirm('\u26a0\ufe0f \u0423\u0412\u0410\u0413\u0410!\n\u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438 \u0412\u0421\u0406 \u0434\u0430\u043d\u0456 (\u043a\u043b\u0456\u0454\u043d\u0442\u0438 + \u0430\u043a\u0442\u0438\u0432\u043d\u0456\u0441\u0442\u044c)?\n\u0426\u044e \u0434\u0456\u044e \u041d\u0415 \u043c\u043e\u0436\u043d\u0430 \u0441\u043a\u0430\u0441\u0443\u0432\u0430\u0442\u0438!'))return;
-  if(!confirm('\u0412\u0438 \u0432\u043f\u0435\u0432\u043d\u0435\u043d\u0456? \u0412\u0441\u0456 \u0434\u0430\u043d\u0456 \u0431\u0443\u0434\u0443\u0442\u044c \u0417\u041d\u0418\u0429\u0415\u041d\u0406 \u043d\u0430\u0437\u0430\u0432\u0436\u0434\u0438.'))return;
+  if(!confirm('\u26A0\uFE0F \u0423\u0412\u0410\u0413\u0410!\n\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u0412\u0421\u0406 \u0434\u0430\u043D\u0456 (\u043A\u043B\u0456\u0454\u043D\u0442\u0438 + \u0430\u043A\u0442\u0438\u0432\u043D\u0456\u0441\u0442\u044C)?\n\u0426\u044E \u0434\u0456\u044E \u041D\u0415 \u043C\u043E\u0436\u043D\u0430 \u0441\u043A\u0430\u0441\u0443\u0432\u0430\u0442\u0438!'))return;
+  if(!confirm('\u0412\u0438 \u0432\u043F\u0435\u0432\u043D\u0435\u043D\u0456? \u0412\u0441\u0456 \u0434\u0430\u043D\u0456 \u0431\u0443\u0434\u0443\u0442\u044C \u0417\u041D\u0418\u0429\u0415\u041D\u0406 \u043D\u0430\u0437\u0430\u0432\u0436\u0434\u0438.'))return;
   deals=[];acts=[];saveDeals();saveActs();
   renderPipeline();renderActivity();
-  alert('\u2705 \u0412\u0441\u0456 \u0434\u0430\u043d\u0456 \u0432\u0438\u0434\u0430\u043b\u0435\u043d\u043e.');
+  alert('\u2705 \u0412\u0441\u0456 \u0434\u0430\u043D\u0456 \u0432\u0438\u0434\u0430\u043B\u0435\u043D\u043E.');
 }
 
 // ============================================================
@@ -2206,7 +2225,7 @@ function closeDealModal(){
     document.getElementById('d-contact').value.trim()||
     getPhoneValues().length||getEmailValues().length;
   if(hasContent||hasDraft){
-    if(!confirm('\u0404 \u043d\u0435\u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043d\u0456 \u0437\u043c\u0456\u043d\u0438. \u0417\u0430\u043a\u0440\u0438\u0442\u0438 \u0444\u043e\u0440\u043c\u0443? \u0414\u0430\u043d\u0456 \u0431\u0443\u0434\u0443\u0442\u044c \u0432\u0442\u0440\u0430\u0447\u0435\u043d\u0456.'))return;
+    if(!confirm('\u0404 \u043D\u0435\u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u0456 \u0437\u043C\u0456\u043D\u0438. \u0417\u0430\u043A\u0440\u0438\u0442\u0438 \u0444\u043E\u0440\u043C\u0443? \u0414\u0430\u043D\u0456 \u0431\u0443\u0434\u0443\u0442\u044C \u0432\u0442\u0440\u0430\u0447\u0435\u043D\u0456.'))return;
   }
   clearDraft();
   document.getElementById('dealModal').classList.remove('open');
@@ -2278,7 +2297,7 @@ function addPhoneField(val=''){
   const div=document.createElement('div');
   div.className='multi-field-row';
   div.innerHTML=`<input type="tel" class="form-control mf-input" placeholder="+380..." value="${val.replace(/"/g,'&quot;')}" oninput="saveDraft();checkDuplicates()">
-    <button type="button" class="btn-remove" onclick="this.parentElement.remove();saveDraft();checkDuplicates()" title="\u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438">\u00d7</button>`;
+    <button type="button" class="btn-remove" onclick="this.parentElement.remove();saveDraft();checkDuplicates()" title="\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438">\u00D7</button>`;
   document.getElementById('phones-list').appendChild(div);
 }
 
@@ -2286,7 +2305,7 @@ function addEmailField(val=''){
   const div=document.createElement('div');
   div.className='multi-field-row';
   div.innerHTML=`<input type="email" class="form-control mf-input" placeholder="email@..." value="${val.replace(/"/g,'&quot;')}" oninput="saveDraft();checkDuplicates()">
-    <button type="button" class="btn-remove" onclick="this.parentElement.remove();saveDraft();checkDuplicates()" title="\u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438">\u00d7</button>`;
+    <button type="button" class="btn-remove" onclick="this.parentElement.remove();saveDraft();checkDuplicates()" title="\u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438">\u00D7</button>`;
   document.getElementById('emails-list').appendChild(div);
 }
 
@@ -2363,7 +2382,7 @@ function initCatFilter(){
   const sel=document.getElementById('fCat');
   if(!sel)return;
   const cur=sel.value;
-  sel.innerHTML=`<option value="">\ud83d\udce6 \u0412\u0441\u0456 \u043a\u0430\u0442\u0435\u0433\u043e\u0440\u0456\u0457</option>`+
+  sel.innerHTML=`<option value="">\uD83D\uDCE6 \u0412\u0441\u0456 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457</option>`+
     CATEGORIES.map(c=>`<option value="${esc(c)}"${cur===c?' selected':''}>${esc(c)}</option>`).join('');
 }
 
@@ -2389,8 +2408,8 @@ function normDomain(url){
 }
 function normCompany(s){
   return(s||'').toLowerCase()
-    .replace(/\u0442\u043e\u0432|\u0444\u043e\u043f|\u043f\u0430\u0442|\u043f\u043f|llc|ltd|gmbh|inc|\u043e\u043e\u043e|\u0438\u043f|\u043f\u0430\u043e/g,'')
-    .replace(/[\u00ab\u00bb"'.,\-()]/g,'').replace(/\s+/g,' ').trim();
+    .replace(/\u0442\u043E\u0432|\u0444\u043E\u043F|\u043F\u0430\u0442|\u043F\u043F|llc|ltd|gmbh|inc|\u043E\u043E\u043E|\u0438\u043F|\u043F\u0430\u043E/g,'')
+    .replace(/[\u00AB\u00BB"'.,\-()]/g,'').replace(/\s+/g,' ').trim();
 }
 
 let _dupCheckTimer=null;
@@ -2420,14 +2439,14 @@ function _runDupCheck(){
     // Company name
     const dc=normCompany(d.company);
     if(company&&dc&&(dc.includes(company)||company.includes(dc)))
-      reasons.push('\u043d\u0430\u0437\u0432\u0430 \u043a\u043e\u043c\u043f\u0430\u043d\u0456\u0457');
+      reasons.push('\u043D\u0430\u0437\u0432\u0430 \u043A\u043E\u043C\u043F\u0430\u043D\u0456\u0457');
     // Website domain
     const dw=normDomain(d.website||'');
     if(website&&dw&&dw===website)
       reasons.push('\u0441\u0430\u0439\u0442');
     // Phones
     const dPhones=(d.phones&&d.phones.length?d.phones:[d.phone||'']).map(normPhone).filter(Boolean);
-    phones.forEach(p=>{if(p.length>=7&&dPhones.includes(p))reasons.push('\u0442\u0435\u043b\u0435\u0444\u043e\u043d');});
+    phones.forEach(p=>{if(p.length>=7&&dPhones.includes(p))reasons.push('\u0442\u0435\u043B\u0435\u0444\u043E\u043D');});
     // Emails
     const dEmails=(d.emails&&d.emails.length?d.emails:[d.email||'']).map(e=>(e||'').toLowerCase().trim()).filter(Boolean);
     emails.forEach(e=>{if(e&&dEmails.includes(e))reasons.push('email');});
@@ -2451,12 +2470,12 @@ function _runDupCheck(){
           ${reasons.map(r=>`<span class="dup-match-tag">${r}</span>`).join('')}
         </div>
         <div class="dup-item-meta">
-          ${d.city?'\ud83c\udfd9 '+esc(d.city)+' \u00b7 ':''}
-          ${(d.phones&&d.phones[0])||d.phone?'\ud83d\udcde '+esc((d.phones&&d.phones[0])||d.phone||'')+' \u00b7 ':''}
+          ${d.city?'\uD83C\uDFD9 '+esc(d.city)+' \u00B7 ':''}
+          ${(d.phones&&d.phones[0])||d.phone?'\uD83D\uDCDE '+esc((d.phones&&d.phones[0])||d.phone||'')+' \u00B7 ':''}
           <span class="badge ${S_CLASS[d.status]||'s-New'}" style="font-size:10px;padding:1px 6px">${d.status}</span>
         </div>
       </div>
-      <button class="dup-open-btn" onclick="event.stopPropagation();openDupClient(${d.id})">\u0412\u0456\u0434\u043a\u0440\u0438\u0442\u0438 \u2192</button>
+      <button class="dup-open-btn" onclick="event.stopPropagation();openDupClient(${d.id})">\u0412\u0456\u0434\u043A\u0440\u0438\u0442\u0438 \u2192</button>
     </div>`).join('');
 
   const forceRow=document.getElementById('dup-force-row');
