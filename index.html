@@ -1792,8 +1792,8 @@ async function cloudPull(){
 let _autoSyncTimer=null;
 let _autoPullInterval=null;
 
-function _getApiKey(){const s=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');return s.apiKey||_DEFAULT_CLOUD.apiKey;}
-function _getMainBinId(){const s=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');return s.binId||_DEFAULT_CLOUD.binId;}
+function _getApiKey(){const s=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');const k=s.apiKey||_DEFAULT_CLOUD.apiKey;return/^[\x20-\x7E]+$/.test(k)?k:_DEFAULT_CLOUD.apiKey;}
+function _getMainBinId(){const s=JSON.parse(localStorage.getItem('hsm_cloud')||'{}');const b=s.binId||_DEFAULT_CLOUD.binId;return/^[\x20-\x7E]+$/.test(b)?b:_DEFAULT_CLOUD.binId;}
 
 async function _pushMainBin(){
   const apiKey=_getApiKey();const binId=_getMainBinId();
