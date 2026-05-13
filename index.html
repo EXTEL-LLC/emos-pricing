@@ -834,9 +834,9 @@ function calcDeal(d){
   const daysInact=contD?diffDays(contD,now):null;
   let ctrl,ctrlCls;
   if(!d.company){ctrl='';ctrlCls='';}
-  else if(overdue||noStep){ctrl='\u1F534 \u041A\u0420\u0418\u0422\u0418\u0427\u041D\u041E';ctrlCls='ctrl-crit';}
-  else if(daysInact!==null&&daysInact>3&&active){ctrl='\u1F7E1 \u0420\u0418\u0417\u0418\u041A';ctrlCls='ctrl-risk';}
-  else{ctrl='\u1F7E2 OK';ctrlCls='ctrl-ok';}
+  else if(overdue||noStep){ctrl='\uD83D\uDD34 \u041A\u0420\u0418\u0422\u0418\u0427\u041D\u041E';ctrlCls='ctrl-crit';}
+  else if(daysInact!==null&&daysInact>3&&active){ctrl='\uD83D\uDFE1 \u0420\u0418\u0417\u0418\u041A';ctrlCls='ctrl-risk';}
+  else{ctrl='\uD83D\uDFE2 OK';ctrlCls='ctrl-ok';}
   return{overdue,noStep,daysInact,ctrl,ctrlCls};
 }
 
@@ -844,7 +844,7 @@ function kpiBadge(v,t){
   if(!v&&v!==0)return'';
   if(v>=t)return`<span class="kpi-ok">\u2705 ${v}/${t}+</span>`;
   if(v>=t*.7)return`<span class="kpi-warn">\u26A0\uFE0F ${v}/${t}+</span>`;
-  return`<span class="kpi-bad">\u1F534 ${v}/${t}+</span>`;
+  return`<span class="kpi-bad">\uD83D\uDD34 ${v}/${t}+</span>`;
 }
 
 // ============================================================
@@ -879,7 +879,7 @@ async function showLoginForm(role){
   _loginRole=role;
   document.getElementById('loginRoleSelect').style.display='none';
   document.getElementById('loginFormWrap').style.display='block';
-  document.getElementById('loginSubtitle').textContent=role==='admin'?'\u1F451 \u041F\u0430\u0440\u043E\u043B\u044C \u0430\u0434\u043C\u0456\u043D\u0456\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u0430':'\u1F477 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043D\u044F...';
+  document.getElementById('loginSubtitle').textContent=role==='admin'?'\uD83D\uDC51 \u041F\u0430\u0440\u043E\u043B\u044C \u0430\u0434\u043C\u0456\u043D\u0456\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u0430':'\uD83D\uDC77 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043D\u044F...';
   document.getElementById('loginErr').textContent='';
   if(role==='manager'){
     const tok=_gistToken();
@@ -893,7 +893,7 @@ async function showLoginForm(role){
         }
       }catch(e){}
     }
-    document.getElementById('loginSubtitle').textContent='\u1F477 \u041F\u0430\u0440\u043E\u043B\u044C \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430';
+    document.getElementById('loginSubtitle').textContent='\uD83D\uDC77 \u041F\u0430\u0440\u043E\u043B\u044C \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430';
   }
   document.getElementById('loginPass').value='';
   document.getElementById('loginPass').focus();
@@ -963,7 +963,7 @@ function applyRole(role){
     body.classList.add('manager-mode');
     document.getElementById('mgr-banner').style.display='block';
     document.getElementById('mgr-name-display').textContent=mgrName;
-    document.getElementById('role-badge').textContent='\u1F477 '+mgrName;
+    document.getElementById('role-badge').textContent='\uD83D\uDC77 '+mgrName;
     document.getElementById('role-badge').className='role-badge role-manager';
     const dashTab=document.querySelector('.nav-tab[onclick*="dashboard"]');
     if(dashTab) dashTab.style.display=perms.dashboard?'':'none';
@@ -974,7 +974,7 @@ function applyRole(role){
     currentMgrId=null;
     body.classList.remove('manager-mode');
     document.getElementById('mgr-banner').style.display='none';
-    document.getElementById('role-badge').textContent='\u1F451 \u0410\u0434\u043C\u0456\u043D';
+    document.getElementById('role-badge').textContent='\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D';
     document.getElementById('role-badge').className='role-badge role-admin';
     updateDashMgrFilter();
     initPipeMgrFilter();
@@ -1048,8 +1048,8 @@ function initPipeMgrFilter(){
   if(!sel||getRole()!=='admin')return;
   const cur=sel.value;
   const mgrs=getManagers();
-  sel.innerHTML=`<option value="">\u1F465 \u0412\u0441\u0456 (${mgrs.length+1})</option>
-    <option value="__admin__"${cur==='__admin__'?' selected':''}>\u1F451 \u0410\u0434\u043C\u0456\u043D</option>`+
+  sel.innerHTML=`<option value="">\uD83D\uDC65 \u0412\u0441\u0456 (${mgrs.length+1})</option>
+    <option value="__admin__"${cur==='__admin__'?' selected':''}>\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D</option>`+
     mgrs.map(m=>`<option value="${m.id}"${cur===m.id?' selected':''}>${esc(m.name)}</option>`).join('');
 }
 
@@ -1092,11 +1092,11 @@ function renderPipeline(){
   document.getElementById('pipe-stats').innerHTML=`
     <div class="stat-chip">\u0412\u0441\u044C\u043E\u0433\u043E: <strong>${allPipe.length}</strong></div>
     <div class="stat-chip">\u2705 Won: <strong style="color:#2e7d32">${won}</strong></div>
-    <div class="stat-chip">\u1F534 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445: <strong style="color:#b71c1c">${crits}</strong></div>
-    <div class="stat-chip">\u1F7E1 \u0420\u0438\u0437\u0438\u043A: <strong style="color:#e65100">${risks}</strong></div>
+    <div class="stat-chip">\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445: <strong style="color:#b71c1c">${crits}</strong></div>
+    <div class="stat-chip">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A: <strong style="color:#e65100">${risks}</strong></div>
     <div class="stat-chip">\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E: <strong>${rows.length}</strong></div>`;
   const tbody=document.getElementById('pipe-body');
-  if(!rows.length){tbody.innerHTML=`<tr><td colspan="25"><div class="empty"><div class="empty-icon">\u1F4CB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
+  if(!rows.length){tbody.innerHTML=`<tr><td colspan="25"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
   tbody.innerHTML=rows.map((d,i)=>{
     const{overdue,noStep,daysInact,ctrl,ctrlCls}=calcDeal(d);
     const rCls=ctrlCls==='ctrl-crit'?'row-crit':ctrlCls==='ctrl-risk'?'row-risk':'';
@@ -1111,7 +1111,7 @@ function renderPipeline(){
       <td class="col-company"><strong>${esc(d.company)}</strong></td>
       <td class="admin-only"><span class="owner-badge ${d._ownerId==='__admin__'?'owner-admin':''}">${esc(d._owner||d.addedBy?.name||'\u2014')}</span></td>
       <td style="color:#555;font-size:11px;white-space:nowrap">${esc(d.city||'')}</td>
-      <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\u1F310</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
+      <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\uD83C\uDF10</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
       <td>${esc(d.contact)}</td><td style="color:#999">${esc(d.position)}</td>
       <td style="white-space:nowrap">${ph0}${ph_extra}</td>
       <td style="color:#1565C0;font-size:11px">${em0}${em_extra}</td>
@@ -1132,7 +1132,7 @@ function renderPipeline(){
       <td class="${ctrlCls}">${ctrl}</td>
       <td class="col-actions" style="white-space:nowrap">
         ${(role!=='manager'||perms.edit)?`<button class="btn btn-sm btn-primary" onclick="openDeal(${d.id})">\u270F\uFE0F</button>`:''}
-        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">\u1F5D1</button>
+        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">\uD83D\uDDD1</button>
       </td></tr>`;
   }).join('');
 }
@@ -1259,7 +1259,7 @@ function renderActivity(){
   const actAddBtn=document.querySelector('#tab-activity .toolbar .btn-primary');
   if(actAddBtn) actAddBtn.style.display=(role==='manager'&&!perms.activity)?'none':'';
   const tbody=document.getElementById('act-body');
-  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">\u1F4CA</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u0438\u0439 \u0434\u0435\u043D\u044C!</div></td></tr>`;return;}
+  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">\uD83D\uDCCA</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u0438\u0439 \u0434\u0435\u043D\u044C!</div></td></tr>`;return;}
   tbody.innerHTML=acts.map(a=>`<tr>
     <td style="font-weight:600;white-space:nowrap">${fmtDate(a.date)}</td>
     <td style="text-align:center">${a.newc}</td><td style="text-align:center">${a.calls}</td>
@@ -1270,7 +1270,7 @@ function renderActivity(){
     <td>${kpiBadge(a.newc,10)}</td><td>${kpiBadge(a.dialogs,5)}</td><td>${kpiBadge(a.meet,2)}</td>
     <td style="white-space:nowrap">
       <button class="btn btn-sm btn-primary" onclick="openActivity(${a.id})">\u270F\uFE0F</button>
-      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">\u1F5D1</button>
+      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">\uD83D\uDDD1</button>
     </td></tr>`).join('');
 }
 
@@ -1375,12 +1375,12 @@ function renderDashboard(){
     <div class="kpi-card" style="border-top-color:#2e7d32"><div class="kpi-value" style="color:#2e7d32">${won}</div><div class="kpi-label">\u2705 \u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445 \u0434\u0438\u043B\u0435\u0440\u0456\u0432</div></div>
     <div class="kpi-card" style="border-top-color:#00838F"><div class="kpi-value" style="color:#00838F">${conv}%</div><div class="kpi-label">\u041A\u043E\u043D\u0432\u0435\u0440\u0441\u0456\u044F</div></div>
     <div class="kpi-card" style="border-top-color:#7B1FA2"><div class="kpi-value" style="color:#7B1FA2">${active}</div><div class="kpi-label">\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445 \u0443\u0433\u043E\u0434</div></div>
-    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">\u1F534 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</div></div>
-    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">\u1F7E1 \u0420\u0438\u0437\u0438\u043A\u0456\u0432</div></div>
+    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</div></div>
+    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A\u0456\u0432</div></div>
   </div>
   <div class="grid2">
     <div class="card">
-      <div class="card-title">\u1F4CA \u0412\u043E\u0440\u043E\u043D\u043A\u0430 \u043F\u0440\u043E\u0434\u0430\u0436\u0456\u0432</div>
+      <div class="card-title">\uD83D\uDCCA \u0412\u043E\u0440\u043E\u043D\u043A\u0430 \u043F\u0440\u043E\u0434\u0430\u0436\u0456\u0432</div>
       <div class="funnel">
         ${STATUS_LIST.filter(s=>cnt[s.k]>0).map(s=>`<div class="funnel-row">
           <div class="funnel-label" style="font-size:11px">${s.k}</div>
@@ -1396,27 +1396,27 @@ function renderDashboard(){
       </div>
     </div>
     <div class="card">
-      <div class="card-title">\u1F6A8 \u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C</div>
+      <div class="card-title">\uD83D\uDEA8 \u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C</div>
       <div class="alert-box">
-        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>\u1F534 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0456 (\u043F\u0440\u043E\u0441\u0442\u0440\u043E\u0447\u0435\u043D\u043E/\u0431\u0435\u0437 \u043A\u0440\u043E\u043A\u0443)</span><strong>${crits}</strong></div>
+        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0456 (\u043F\u0440\u043E\u0441\u0442\u0440\u043E\u0447\u0435\u043D\u043E/\u0431\u0435\u0437 \u043A\u0440\u043E\u043A\u0443)</span><strong>${crits}</strong></div>
         <div class="alert-item ${overdues>0?'al-red':'al-green'}"><span>\u23F0 \u041F\u0440\u043E\u0441\u0442\u0440\u043E\u0447\u0435\u043D\u0438\u0439 \u043A\u0440\u043E\u043A</span><strong>${overdues}</strong></div>
-        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>\u1F6A8 \u0411\u0435\u0437 \u043D\u0430\u0441\u0442\u0443\u043F\u043D\u043E\u0433\u043E \u043A\u0440\u043E\u043A\u0443</span><strong>${noSteps}</strong></div>
-        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>\u1F7E1 \u0411\u0435\u0437 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0456 3+ \u0434\u043D\u0456</span><strong>${risks}</strong></div>
+        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>\uD83D\uDEA8 \u0411\u0435\u0437 \u043D\u0430\u0441\u0442\u0443\u043F\u043D\u043E\u0433\u043E \u043A\u0440\u043E\u043A\u0443</span><strong>${noSteps}</strong></div>
+        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>\uD83D\uDFE1 \u0411\u0435\u0437 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0456 3+ \u0434\u043D\u0456</span><strong>${risks}</strong></div>
         <div class="alert-item al-blue"><span>\u267B\uFE0F Recycle</span><strong>${cnt['Recycle']}</strong></div>
         <div class="alert-item al-blue"><span>\u274C Lost</span><strong>${lost}</strong></div>
       </div>
-      <div style="margin-top:18px"><div class="section-title">\u1F4C5 KPI \u0437\u0430 7 \u0434\u043D\u0456\u0432</div>
+      <div style="margin-top:18px"><div class="section-title">\uD83D\uDCC5 KPI \u0437\u0430 7 \u0434\u043D\u0456\u0432</div>
         ${_acts.length===0?`<div style="color:#bbb;text-align:center;padding:14px;font-size:13px">\u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u0434\u0430\u043D\u0456 \u0432 Activity Log</div>`:`
         <div class="alert-box">
-          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>\u1F195 \u041D\u043E\u0432\u0438\u0445 \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 (\u0446\u0456\u043B\u044C 70+)</span><strong>${wNew}</strong></div>
-          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>\u1F4AC \u0414\u0456\u0430\u043B\u043E\u0433\u0456\u0432 (\u0446\u0456\u043B\u044C 35+)</span><strong>${wDial}</strong></div>
-          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>\u1F91D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0435\u0439 (\u0446\u0456\u043B\u044C 14+)</span><strong>${wMeet}</strong></div>
+          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>\uD83C\uDD95 \u041D\u043E\u0432\u0438\u0445 \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 (\u0446\u0456\u043B\u044C 70+)</span><strong>${wNew}</strong></div>
+          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>\uD83D\uDCAC \u0414\u0456\u0430\u043B\u043E\u0433\u0456\u0432 (\u0446\u0456\u043B\u044C 35+)</span><strong>${wDial}</strong></div>
+          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>\uD83E\uDD1D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0435\u0439 (\u0446\u0456\u043B\u044C 14+)</span><strong>${wMeet}</strong></div>
         </div>`}
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">\u1F5C2 \u0420\u043E\u0437\u0431\u0438\u0432\u043A\u0430 \u043F\u043E \u043A\u0430\u043D\u0430\u043B\u0430\u0445</div>
+    <div class="card-title">\uD83D\uDDC2 \u0420\u043E\u0437\u0431\u0438\u0432\u043A\u0430 \u043F\u043E \u043A\u0430\u043D\u0430\u043B\u0430\u0445</div>
     <div class="ch-grid">
       ${CHS.map(ch=>{
         const n=_deals.filter(d=>d.channel===ch).length;
@@ -1426,7 +1426,7 @@ function renderDashboard(){
           <div class="ch-name">${ch}</div><div class="ch-count">${n}</div>
           <div class="ch-type">${CH_TYPES[ch]||''}</div>
           <div style="font-size:11px;color:#2e7d32;font-weight:600;margin-top:4px">\u2705 Won: ${w}</div>
-          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">\u1F534 \u041A\u0440\u0438\u0442: ${c}</div>`:''}
+          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">\uD83D\uDD34 \u041A\u0440\u0438\u0442: ${c}</div>`:''}
         </div>`;}).join('')}
     </div>
   </div>
@@ -1436,11 +1436,11 @@ function renderDashboard(){
 function renderMgrStatsTable(){
   const allMgrs=getManagers();
   const sources=[
-    {label:'\u1F451 \u0410\u0434\u043C\u0456\u043D', id:'__admin__',
+    {label:'\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D', id:'__admin__',
      deals:JSON.parse(localStorage.getItem('hsm_deals')||'[]').map(migrateDeal),
      acts:JSON.parse(localStorage.getItem('hsm_acts')||'[]')},
     ...allMgrs.map(m=>({
-      label:'\u1F477 '+m.name, id:m.id,
+      label:'\uD83D\uDC77 '+m.name, id:m.id,
       deals:JSON.parse(localStorage.getItem(dealsKey(m.id))||'[]').map(migrateDeal),
       acts:JSON.parse(localStorage.getItem(actsKey(m.id))||'[]')
     }))
@@ -1463,13 +1463,13 @@ function renderMgrStatsTable(){
   }).filter(Boolean);
   if(!rows.length)return'';
   return`<div class="card">
-    <div class="card-title">\u1F465 \u0417\u0432\u0456\u0442 \u043F\u043E \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430\u0445</div>
+    <div class="card-title">\uD83D\uDC65 \u0417\u0432\u0456\u0442 \u043F\u043E \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430\u0445</div>
     <div style="overflow-x:auto">
     <table class="mgr-stats-table">
       <thead><tr>
-        <th>\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440</th><th>\u041A\u043B\u0456\u0454\u043D\u0442\u0456\u0432</th><th>\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445</th><th>\u1F525 Warm+</th>
-        <th>\u2705 Won</th><th>\u274C Lost</th><th>\u1F534 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</th>
-        <th>\u1F4DE \u0414\u0437\u0432\u0456\u043D\u043A\u0438 (7\u0434)</th><th>\u1F91D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0456 (7\u0434)</th><th>\u041E\u0441\u0442\u0430\u043D\u043D\u044F \u0430\u043A\u0442\u0438\u0432\u043D\u0456\u0441\u0442\u044C</th>
+        <th>\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440</th><th>\u041A\u043B\u0456\u0454\u043D\u0442\u0456\u0432</th><th>\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445</th><th>\uD83D\uDD25 Warm+</th>
+        <th>\u2705 Won</th><th>\u274C Lost</th><th>\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</th>
+        <th>\uD83D\uDCDE \u0414\u0437\u0432\u0456\u043D\u043A\u0438 (7\u0434)</th><th>\uD83E\uDD1D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0456 (7\u0434)</th><th>\u041E\u0441\u0442\u0430\u043D\u043D\u044F \u0430\u043A\u0442\u0438\u0432\u043D\u0456\u0441\u0442\u044C</th>
       </tr></thead>
       <tbody>${rows.map(r=>`<tr>
         <td><strong>${esc(r.label)}</strong></td>
@@ -1600,28 +1600,28 @@ function renderMgrList(){
     const acts_count=JSON.parse(localStorage.getItem(actsKey(m.id))||'[]').length;
     return`<div class="mgr-perm" style="margin-bottom:8px">
       <div>
-        <strong style="font-size:14px">\u1F477 ${esc(m.name)}</strong>
+        <strong style="font-size:14px">\uD83D\uDC77 ${esc(m.name)}</strong>
         <span style="font-size:11px;color:#999;margin-left:8px">${deals_count} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 \u00B7 ${acts_count} \u0434\u043D\u0456\u0432 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0456</span><br>
         <span style="font-size:11px;color:#888">\u0414\u043E\u0437\u0432\u043E\u043B\u0438: ${[
           m.perms.add?'\u2795 \u0414\u043E\u0434\u0430\u0432\u0430\u0442\u0438':'',
           m.perms.edit?'\u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438':'',
-          m.perms.activity?'\u1F4CA Activity':'',
-          m.perms.dashboard?'\u1F680 Dashboard':'',
+          m.perms.activity?'\uD83D\uDCCA Activity':'',
+          m.perms.dashboard?'\uD83D\uDE80 Dashboard':'',
           m.perms.export?'\u2B07 CSV':''
         ].filter(Boolean).join(' \u00B7 ')}</span>
       </div>
       <div style="display:flex;gap:6px">
         <button class="btn btn-sm btn-primary" onclick="openMgrEdit('${m.id}')">\u270F\uFE0F \u041F\u0440\u0430\u0432\u0430</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteMgr('${m.id}')">\u1F5D1 \u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteMgr('${m.id}')">\uD83D\uDDD1 \u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438</button>
       </div>
     </div>
     <div id="mgr-edit-${m.id}" style="display:none;margin-top:8px;padding:10px;background:#f5f7fa;border-radius:8px;font-size:13px">
       <label style="margin-right:12px"><input type="checkbox" id="ep-add-${m.id}" ${m.perms.add?'checked':''}> \u2795 \u0414\u043E\u0434\u0430\u0432\u0430\u0442\u0438</label>
       <label style="margin-right:12px"><input type="checkbox" id="ep-edit-${m.id}" ${m.perms.edit?'checked':''}> \u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438</label>
-      <label style="margin-right:12px"><input type="checkbox" id="ep-activity-${m.id}" ${m.perms.activity?'checked':''}> \u1F4CA Activity</label>
-      <label style="margin-right:12px"><input type="checkbox" id="ep-dashboard-${m.id}" ${m.perms.dashboard?'checked':''}> \u1F680 Dashboard</label>
+      <label style="margin-right:12px"><input type="checkbox" id="ep-activity-${m.id}" ${m.perms.activity?'checked':''}> \uD83D\uDCCA Activity</label>
+      <label style="margin-right:12px"><input type="checkbox" id="ep-dashboard-${m.id}" ${m.perms.dashboard?'checked':''}> \uD83D\uDE80 Dashboard</label>
       <label style="margin-right:12px"><input type="checkbox" id="ep-export-${m.id}" ${m.perms.export?'checked':''}> \u2B07 CSV</label>
-      <br><button class="btn btn-sm btn-success" style="margin-top:8px" onclick="saveMgrPerms('${m.id}')">\u1F4BE \u0417\u0431\u0435\u0440\u0435\u0433\u0442\u0438</button>
+      <br><button class="btn btn-sm btn-success" style="margin-top:8px" onclick="saveMgrPerms('${m.id}')">\uD83D\uDCBE \u0417\u0431\u0435\u0440\u0435\u0433\u0442\u0438</button>
     </div>`;
   }).join('');
 }
@@ -1653,9 +1653,9 @@ function updateDashMgrFilter(){
   const sel=document.getElementById('dash-mgr-filter');
   if(!sel)return;
   const managers=getManagers();
-  sel.innerHTML=`<option value="">\u1F465 \u0412\u0441\u0456 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length+1})</option>
-    <option value="__admin__">\u1F451 \u0410\u0434\u043C\u0456\u043D</option>`+
-    managers.map(m=>`<option value="${m.id}">\u1F477 ${esc(m.name)}</option>`).join('');
+  sel.innerHTML=`<option value="">\uD83D\uDC65 \u0412\u0441\u0456 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length+1})</option>
+    <option value="__admin__">\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D</option>`+
+    managers.map(m=>`<option value="${m.id}">\uD83D\uDC77 ${esc(m.name)}</option>`).join('');
 }
 
 // ============================================================
@@ -2365,7 +2365,7 @@ function initCatFilter(){
   const sel=document.getElementById('fCat');
   if(!sel)return;
   const cur=sel.value;
-  sel.innerHTML=`<option value="">\u1F4E6 \u0412\u0441\u0456 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457</option>`+
+  sel.innerHTML=`<option value="">\uD83D\uDCE6 \u0412\u0441\u0456 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457</option>`+
     CATEGORIES.map(c=>`<option value="${esc(c)}"${cur===c?' selected':''}>${esc(c)}</option>`).join('');
 }
 
@@ -2458,8 +2458,8 @@ function _runDupCheck(){
           ${reasons.map(r=>`<span class="dup-match-tag">${r}</span>`).join('')}
         </div>
         <div class="dup-item-meta">
-          ${d.city?'\u1F3D9 '+esc(d.city)+' \u00B7 ':''}
-          ${(d.phones&&d.phones[0])||d.phone?'\u1F4DE '+esc((d.phones&&d.phones[0])||d.phone||'')+' \u00B7 ':''}
+          ${d.city?'\uD83C\uDFD9 '+esc(d.city)+' \u00B7 ':''}
+          ${(d.phones&&d.phones[0])||d.phone?'\uD83D\uDCDE '+esc((d.phones&&d.phones[0])||d.phone||'')+' \u00B7 ':''}
           <span class="badge ${S_CLASS[d.status]||'s-New'}" style="font-size:10px;padding:1px 6px">${d.status}</span>
         </div>
       </div>
