@@ -36,7 +36,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .content{padding:20px 22px;max-width:100%}
 .tab-pane{display:none}
 .tab-pane.active{display:block}
-/* Pipeline \u2014 \u0442\u0430\u0431\u043B\u0438\u0446\u044F \u0437 \u0444\u0456\u043A\u0441\u043E\u0432\u0430\u043D\u043E\u044E \u0432\u0438\u0441\u043E\u0442\u043E\u044E, \u0449\u043E\u0431 \u0433\u043E\u0440\u0438\u0437\u043E\u043D\u0442\u0430\u043B\u044C\u043D\u0438\u0439 \u0441\u043A\u0440\u043E\u043B \u0431\u0443\u0432 \u0432\u0438\u0434\u0438\u043C\u0438\u0439 \u043E\u0434\u0440\u0430\u0437\u0443 */
+/* Pipeline &#8212; &#1090;&#1072;&#1073;&#1083;&#1080;&#1094;&#1103; &#1079; &#1092;&#1110;&#1082;&#1089;&#1086;&#1074;&#1072;&#1085;&#1086;&#1102; &#1074;&#1080;&#1089;&#1086;&#1090;&#1086;&#1102;, &#1097;&#1086;&#1073; &#1075;&#1086;&#1088;&#1080;&#1079;&#1086;&#1085;&#1090;&#1072;&#1083;&#1100;&#1085;&#1080;&#1081; &#1089;&#1082;&#1088;&#1086;&#1083; &#1073;&#1091;&#1074; &#1074;&#1080;&#1076;&#1080;&#1084;&#1080;&#1081; &#1086;&#1076;&#1088;&#1072;&#1079;&#1091; */
 #tab-pipeline .table-wrap{overflow:auto;max-height:calc(100vh - 190px);border-radius:8px}
 
 /* ===== CARD ===== */
@@ -65,10 +65,16 @@ tbody tr.row-risk .col-actions{background:rgba(255,248,225,.6)}
 
 /* ===== BADGES ===== */
 .badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
-.s-New{background:#e3f2fd;color:#1565C0}.s-Contacted{background:#e8f5e9;color:#2e7d32}
-.s-Warm{background:#fff8e1;color:#f57f17}.s-Meeting{background:#f3e5f5;color:#6a1b9a}
-.s-Offer{background:#e0f7fa;color:#006064}.s-Won{background:#c8e6c9;color:#1b5e20}
-.s-Lost{background:#ffcdd2;color:#b71c1c}.s-Recycle{background:#f5f5f5;color:#616161}
+.s-p01{background:#e3f2fd;color:#1565C0}.s-p02{background:#e0f7fa;color:#006064}
+.s-p03{background:#eceff1;color:#546e7a}.s-p04{background:#e8eaf6;color:#283593}
+.s-p05{background:#f3e5f5;color:#6a1b9a}.s-p06{background:#fff8e1;color:#f57f17}
+.s-p07{background:#fff3e0;color:#e65100}.s-p08{background:#ede7f6;color:#4527a0}
+.s-p09{background:#e8eaf6;color:#1a237e}.s-p10{background:#ede7f6;color:#5c35cc}
+.s-p11{background:#f9fbe7;color:#558b2f}.s-p12{background:#e8f5e9;color:#2e7d32}
+.s-p13{background:#e0f7fa;color:#00695c}.s-p14{background:#f1f8e9;color:#33691e}
+.s-p15{background:#c8e6c9;color:#1b5e20}.s-p16{background:#a5d6a7;color:#1b5e20}
+.s-p17{background:#b9f6ca;color:#1b5e20}.s-p18{background:#f5f5f5;color:#616161}
+.s-p19{background:#ffcdd2;color:#b71c1c}.s-p20{background:#ef9a9a;color:#7f0000}
 .ch-badge{background:#e8eaf6;color:#283593;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:700}
 .ctrl-ok{color:#2e7d32;font-weight:700}.ctrl-risk{color:#e65100;font-weight:700}.ctrl-crit{color:#b71c1c;font-weight:700}
 tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230,81,0,.03)}
@@ -242,10 +248,6 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
 .sf-step{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid #e0e6ed;color:#888;background:#fff;transition:all .2s;white-space:nowrap}
 .sf-step:hover{border-color:#1565C0;color:#1565C0}
 .sf-step.sf-active{border-color:transparent;color:#fff}
-.sf-New.sf-active{background:#1565C0}.sf-Contacted.sf-active{background:#1976D2}
-.sf-Warm.sf-active{background:#FB8C00}.sf-Meeting.sf-active{background:#7B1FA2}
-.sf-Offer.sf-active{background:#00838F}.sf-Won.sf-active{background:#2E7D32}
-.sf-Lost.sf-active{background:#C62828}.sf-Recycle.sf-active{background:#757575}
 
 /* ===== ROLES ===== */
 .admin-only{} /* shown for admin */
@@ -331,9 +333,13 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
     <input class="search-input" type="text" placeholder="&#1055;&#1086;&#1096;&#1091;&#1082;..." id="srch" oninput="renderPipeline()">
     <select class="filter-select" id="fStatus" onchange="renderPipeline()">
       <option value="">&#1042;&#1089;&#1110; &#1089;&#1090;&#1072;&#1090;&#1091;&#1089;&#1080;</option>
-      <option>New</option><option>Contacted</option><option>Warm</option>
-      <option>Meeting scheduled</option><option>Offer sent</option>
-      <option>Won</option><option>Lost</option><option>Recycle</option>
+      <option>&#1055;&#1086;&#1090;&#1077;&#1085;&#1094;&#1110;&#1081;&#1085;&#1080;&#1081; &#1076;&#1080;&#1083;&#1077;&#1088;</option><option>&#1047;&#1085;&#1072;&#1081;&#1076;&#1077;&#1085;&#1086; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</option><option>&#1053;&#1077; &#1086;&#1073;&#1088;&#1086;&#1073;&#1083;&#1077;&#1085;&#1080;&#1081;</option>
+      <option>&#1055;&#1077;&#1088;&#1096;&#1080;&#1081; &#1082;&#1086;&#1085;&#1090;&#1072;&#1082;&#1090;</option><option>&#1053;&#1077;&#1084;&#1072;&#1108; &#1074;&#1110;&#1076;&#1087;&#1086;&#1074;&#1110;&#1076;&#1110;</option><option>&#1028; &#1110;&#1085;&#1090;&#1077;&#1088;&#1077;&#1089;</option>
+      <option>&#1042;&#1080;&#1103;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103; &#1087;&#1086;&#1090;&#1077;&#1085;&#1094;&#1110;&#1072;&#1083;&#1091;</option><option>&#1053;&#1072;&#1076;&#1110;&#1089;&#1083;&#1072;&#1085;&#1086; &#1087;&#1088;&#1072;&#1081;&#1089;</option><option>&#1053;&#1072;&#1076;&#1110;&#1089;&#1083;&#1072;&#1085;&#1086; &#1082;&#1072;&#1090;&#1072;&#1083;&#1086;&#1075;</option>
+      <option>&#1053;&#1072;&#1076;&#1110;&#1089;&#1083;&#1072;&#1085;&#1086; &#1050;&#1055;</option><option>&#1055;&#1077;&#1088;&#1077;&#1075;&#1086;&#1074;&#1086;&#1088;&#1080;</option><option>&#1059;&#1079;&#1075;&#1086;&#1076;&#1078;&#1077;&#1085;&#1085;&#1103; &#1091;&#1084;&#1086;&#1074;</option>
+      <option>&#1058;&#1077;&#1089;&#1090;&#1086;&#1074;&#1077; &#1079;&#1072;&#1084;&#1086;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103;</option><option>&#1054;&#1095;&#1110;&#1082;&#1091;&#1108;&#1084;&#1086; &#1079;&#1072;&#1084;&#1086;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103;</option><option>&#1055;&#1077;&#1088;&#1096;&#1077; &#1079;&#1072;&#1084;&#1086;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103;</option>
+      <option>&#1040;&#1082;&#1090;&#1080;&#1074;&#1085;&#1080;&#1081; &#1076;&#1080;&#1083;&#1077;&#1088;</option><option>&#1056;&#1086;&#1079;&#1074;&#1080;&#1090;&#1086;&#1082; &#1076;&#1080;&#1083;&#1077;&#1088;&#1072;</option><option>&#1053;&#1072; &#1087;&#1072;&#1091;&#1079;&#1110;</option>
+      <option>&#1042;&#1110;&#1076;&#1084;&#1086;&#1074;&#1072;</option><option>&#1042;&#1090;&#1088;&#1072;&#1095;&#1077;&#1085;&#1080;&#1081; &#1082;&#1086;&#1085;&#1082;&#1091;&#1088;&#1077;&#1085;&#1090;&#1091;</option>
     </select>
     <select class="filter-select" id="fChannel" onchange="renderPipeline()">
       <option value="">&#1042;&#1089;&#1110; &#1082;&#1072;&#1085;&#1072;&#1083;&#1080;</option>
@@ -683,14 +689,7 @@ tr.row-crit td{background:rgba(183,28,28,.03)}tr.row-risk td{background:rgba(230
       <div style="margin-bottom:10px">
         <div class="form-label" style="margin-bottom:6px">&#1057;&#1090;&#1072;&#1090;&#1091;&#1089;</div>
         <div class="status-flow" id="status-flow">
-          <div class="sf-step sf-New"     onclick="setStatus('New')"               data-s="New">New</div>
-          <div class="sf-step sf-Contacted" onclick="setStatus('Contacted')"       data-s="Contacted">Contacted</div>
-          <div class="sf-step sf-Warm"    onclick="setStatus('Warm')"              data-s="Warm">Warm</div>
-          <div class="sf-step sf-Meeting" onclick="setStatus('Meeting scheduled')" data-s="Meeting scheduled">Meeting</div>
-          <div class="sf-step sf-Offer"   onclick="setStatus('Offer sent')"        data-s="Offer sent">Offer sent</div>
-          <div class="sf-step sf-Won"     onclick="setStatus('Won')"               data-s="Won">&#9989; Won</div>
-          <div class="sf-step sf-Lost"    onclick="setStatus('Lost')"              data-s="Lost">&#10060; Lost</div>
-          <div class="sf-step sf-Recycle" onclick="setStatus('Recycle')"           data-s="Recycle">&#9851;&#65039; Recycle</div>
+          <!-- status buttons rendered by initStatusFlow() -->
         </div>
         <input type="hidden" id="d-status" value="New">
       </div>
@@ -787,8 +786,27 @@ function saveActs(){  localStorage.setItem(actsKey(currentMgrId), JSON.stringify
 // CONSTANTS
 // ============================================================
 const CH_TYPES={'D1':'\u041D\u0430\u0446. \u043C\u0435\u0440\u0435\u0436\u0456','D2':'\u0420\u0435\u0433\u0456\u043E\u043D./B2B','D3':'\u0420\u043E\u0437\u0434\u0440\u0456\u0431','D4.1':'\u0406\u043D\u0442\u0435\u0440\u043D\u0435\u0442(\u0441\u043A\u043B\u0430\u0434)','D4.2':'Dropshipping','D5':'\u041F\u0440\u043E\u0435\u043A\u0442\u043D\u0456','D5 Partner':'\u0406\u043D\u0441\u0442\u0430\u043B\u044F\u0442\u043E\u0440\u0438','D6':'\u0420\u0435\u0433\u0456\u043E\u043D. \u0434\u0438\u0441\u0442.'};
-const S_CLASS={'New':'s-New','Contacted':'s-Contacted','Warm':'s-Warm','Meeting scheduled':'s-Meeting','Offer sent':'s-Offer','Won':'s-Won','Lost':'s-Lost','Recycle':'s-Recycle'};
-const FCOLORS={'New':'#1565C0','Contacted':'#1976D2','Warm':'#FB8C00','Meeting scheduled':'#7B1FA2','Offer sent':'#00838F','Won':'#2E7D32','Lost':'#C62828','Recycle':'#757575'};
+const STATUS_LIST=[
+  {k:'\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440',c:'s-p01',fc:'#1565C0'},{k:'\u0417\u043D\u0430\u0439\u0434\u0435\u043D\u043E \u043A\u043E\u043D\u0442\u0430\u043A\u0442',c:'s-p02',fc:'#006064'},
+  {k:'\u041D\u0435 \u043E\u0431\u0440\u043E\u0431\u043B\u0435\u043D\u0438\u0439',c:'s-p03',fc:'#546e7a'},{k:'\u041F\u0435\u0440\u0448\u0438\u0439 \u043A\u043E\u043D\u0442\u0430\u043A\u0442',c:'s-p04',fc:'#283593'},
+  {k:'\u041D\u0435\u043C\u0430\u0454 \u0432\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u0456',c:'s-p05',fc:'#6a1b9a'},{k:'\u0404 \u0456\u043D\u0442\u0435\u0440\u0435\u0441',c:'s-p06',fc:'#f57f17'},
+  {k:'\u0412\u0438\u044F\u0432\u043B\u0435\u043D\u043D\u044F \u043F\u043E\u0442\u0435\u043D\u0446\u0456\u0430\u043B\u0443',c:'s-p07',fc:'#e65100'},{k:'\u041D\u0430\u0434\u0456\u0441\u043B\u0430\u043D\u043E \u043F\u0440\u0430\u0439\u0441',c:'s-p08',fc:'#4527a0'},
+  {k:'\u041D\u0430\u0434\u0456\u0441\u043B\u0430\u043D\u043E \u043A\u0430\u0442\u0430\u043B\u043E\u0433',c:'s-p09',fc:'#1a237e'},{k:'\u041D\u0430\u0434\u0456\u0441\u043B\u0430\u043D\u043E \u041A\u041F',c:'s-p10',fc:'#5c35cc'},
+  {k:'\u041F\u0435\u0440\u0435\u0433\u043E\u0432\u043E\u0440\u0438',c:'s-p11',fc:'#558b2f'},{k:'\u0423\u0437\u0433\u043E\u0434\u0436\u0435\u043D\u043D\u044F \u0443\u043C\u043E\u0432',c:'s-p12',fc:'#2e7d32'},
+  {k:'\u0422\u0435\u0441\u0442\u043E\u0432\u0435 \u0437\u0430\u043C\u043E\u0432\u043B\u0435\u043D\u043D\u044F',c:'s-p13',fc:'#00695c'},{k:'\u041E\u0447\u0456\u043A\u0443\u0454\u043C\u043E \u0437\u0430\u043C\u043E\u0432\u043B\u0435\u043D\u043D\u044F',c:'s-p14',fc:'#33691e'},
+  {k:'\u041F\u0435\u0440\u0448\u0435 \u0437\u0430\u043C\u043E\u0432\u043B\u0435\u043D\u043D\u044F',c:'s-p15',fc:'#1b5e20'},{k:'\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440',c:'s-p16',fc:'#1b5e20'},
+  {k:'\u0420\u043E\u0437\u0432\u0438\u0442\u043E\u043A \u0434\u0438\u043B\u0435\u0440\u0430',c:'s-p17',fc:'#1b5e20'},{k:'\u041D\u0430 \u043F\u0430\u0443\u0437\u0456',c:'s-p18',fc:'#757575'},
+  {k:'\u0412\u0456\u0434\u043C\u043E\u0432\u0430',c:'s-p19',fc:'#c62828'},{k:'\u0412\u0442\u0440\u0430\u0447\u0435\u043D\u0438\u0439 \u043A\u043E\u043D\u043A\u0443\u0440\u0435\u043D\u0442\u0443',c:'s-p20',fc:'#7f0000'},
+];
+const S_CLASS={'New':'s-p01','Contacted':'s-p04','Warm':'s-p06','Meeting scheduled':'s-p04','Offer sent':'s-p10','Won':'s-p16','Lost':'s-p19','Recycle':'s-p18'};
+const FCOLORS={'New':'#1565C0','Contacted':'#283593','Warm':'#f57f17','Meeting scheduled':'#283593','Offer sent':'#5c35cc','Won':'#1b5e20','Lost':'#c62828','Recycle':'#757575'};
+STATUS_LIST.forEach(s=>{S_CLASS[s.k]=s.c;FCOLORS[s.k]=s.fc;});
+const _WON_ST=['\u041F\u0435\u0440\u0448\u0435 \u0437\u0430\u043C\u043E\u0432\u043B\u0435\u043D\u043D\u044F','\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440','\u0420\u043E\u0437\u0432\u0438\u0442\u043E\u043A \u0434\u0438\u043B\u0435\u0440\u0430','Won'];
+const _LOST_ST=['\u0412\u0456\u0434\u043C\u043E\u0432\u0430','\u0412\u0442\u0440\u0430\u0447\u0435\u043D\u0438\u0439 \u043A\u043E\u043D\u043A\u0443\u0440\u0435\u043D\u0442\u0443','Lost'];
+const _PAUSE_ST=['\u041D\u0430 \u043F\u0430\u0443\u0437\u0456','Recycle'];
+function _isWon(s){return _WON_ST.includes(s);}
+function _isLost(s){return _LOST_ST.includes(s);}
+function _isActive(s){return!_isLost(s)&&!_PAUSE_ST.includes(s);}
 const CATEGORIES=[
   '\u0415\u043B\u0435\u043C\u0435\u043D\u0442\u0438 \u0436\u0438\u0432\u043B\u0435\u043D\u043D\u044F','\u041B\u0456\u0445\u0442\u0430\u0440\u0438\u043A\u0438','\u0414\u0430\u0442\u0447\u0438\u043A\u0438','\u041B\u0430\u043C\u043F\u043E\u0447\u043A\u0438','\u041F\u0440\u043E\u0436\u0435\u043A\u0442\u043E\u0440\u0438',
   '\u0421\u0432\u0456\u0442\u043B\u043E\u0434\u0456\u043E\u0434\u043D\u0435 \u0434\u0435\u043A\u043E\u0440\u0430\u0442\u0438\u0432\u043D\u0435 \u043E\u0441\u0432\u0456\u0442\u043B\u0435\u043D\u043D\u044F','\u0421\u0432\u0456\u0442\u0438\u043B\u044C\u043D\u0438\u043A\u0438','\u041C\u043E\u043D\u0442\u0430\u0436\u043D\u0456 \u043C\u0430\u0442\u0435\u0440\u0456\u0430\u043B\u0438',
@@ -809,16 +827,16 @@ const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&g
 
 function calcDeal(d){
   const now=new Date();now.setHours(0,0,0,0);
-  const active=d.status!=='Won'&&d.status!=='Lost';
+  const active=!_isWon(d.status)&&!_isLost(d.status);
   const stepD=parseD(d.stepdate),contD=parseD(d.contactdate);
   const overdue=active&&stepD&&stepD<now;
   const noStep=active&&d.status&&!d.nextstep;
   const daysInact=contD?diffDays(contD,now):null;
   let ctrl,ctrlCls;
   if(!d.company){ctrl='';ctrlCls='';}
-  else if(overdue||noStep){ctrl='\uD83D\uDD34 \u041A\u0420\u0418\u0422\u0418\u0427\u041D\u041E';ctrlCls='ctrl-crit';}
-  else if(daysInact!==null&&daysInact>3&&active){ctrl='\uD83D\uDFE1 \u0420\u0418\u0417\u0418\u041A';ctrlCls='ctrl-risk';}
-  else{ctrl='\uD83D\uDFE2 OK';ctrlCls='ctrl-ok';}
+  else if(overdue||noStep){ctrl='\u1F534 \u041A\u0420\u0418\u0422\u0418\u0427\u041D\u041E';ctrlCls='ctrl-crit';}
+  else if(daysInact!==null&&daysInact>3&&active){ctrl='\u1F7E1 \u0420\u0418\u0417\u0418\u041A';ctrlCls='ctrl-risk';}
+  else{ctrl='\u1F7E2 OK';ctrlCls='ctrl-ok';}
   return{overdue,noStep,daysInact,ctrl,ctrlCls};
 }
 
@@ -826,7 +844,7 @@ function kpiBadge(v,t){
   if(!v&&v!==0)return'';
   if(v>=t)return`<span class="kpi-ok">\u2705 ${v}/${t}+</span>`;
   if(v>=t*.7)return`<span class="kpi-warn">\u26A0\uFE0F ${v}/${t}+</span>`;
-  return`<span class="kpi-bad">\uD83D\uDD34 ${v}/${t}+</span>`;
+  return`<span class="kpi-bad">\u1F534 ${v}/${t}+</span>`;
 }
 
 // ============================================================
@@ -861,7 +879,7 @@ async function showLoginForm(role){
   _loginRole=role;
   document.getElementById('loginRoleSelect').style.display='none';
   document.getElementById('loginFormWrap').style.display='block';
-  document.getElementById('loginSubtitle').textContent=role==='admin'?'\uD83D\uDC51 \u041F\u0430\u0440\u043E\u043B\u044C \u0430\u0434\u043C\u0456\u043D\u0456\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u0430':'\uD83D\uDC77 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043D\u044F...';
+  document.getElementById('loginSubtitle').textContent=role==='admin'?'\u1F451 \u041F\u0430\u0440\u043E\u043B\u044C \u0430\u0434\u043C\u0456\u043D\u0456\u0441\u0442\u0440\u0430\u0442\u043E\u0440\u0430':'\u1F477 \u0417\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0435\u043D\u043D\u044F...';
   document.getElementById('loginErr').textContent='';
   if(role==='manager'){
     const tok=_gistToken();
@@ -875,7 +893,7 @@ async function showLoginForm(role){
         }
       }catch(e){}
     }
-    document.getElementById('loginSubtitle').textContent='\uD83D\uDC77 \u041F\u0430\u0440\u043E\u043B\u044C \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430';
+    document.getElementById('loginSubtitle').textContent='\u1F477 \u041F\u0430\u0440\u043E\u043B\u044C \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430';
   }
   document.getElementById('loginPass').value='';
   document.getElementById('loginPass').focus();
@@ -945,7 +963,7 @@ function applyRole(role){
     body.classList.add('manager-mode');
     document.getElementById('mgr-banner').style.display='block';
     document.getElementById('mgr-name-display').textContent=mgrName;
-    document.getElementById('role-badge').textContent='\uD83D\uDC77 '+mgrName;
+    document.getElementById('role-badge').textContent='\u1F477 '+mgrName;
     document.getElementById('role-badge').className='role-badge role-manager';
     const dashTab=document.querySelector('.nav-tab[onclick*="dashboard"]');
     if(dashTab) dashTab.style.display=perms.dashboard?'':'none';
@@ -956,7 +974,7 @@ function applyRole(role){
     currentMgrId=null;
     body.classList.remove('manager-mode');
     document.getElementById('mgr-banner').style.display='none';
-    document.getElementById('role-badge').textContent='\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D';
+    document.getElementById('role-badge').textContent='\u1F451 \u0410\u0434\u043C\u0456\u043D';
     document.getElementById('role-badge').className='role-badge role-admin';
     updateDashMgrFilter();
     initPipeMgrFilter();
@@ -1030,8 +1048,8 @@ function initPipeMgrFilter(){
   if(!sel||getRole()!=='admin')return;
   const cur=sel.value;
   const mgrs=getManagers();
-  sel.innerHTML=`<option value="">\uD83D\uDC65 \u0412\u0441\u0456 (${mgrs.length+1})</option>
-    <option value="__admin__"${cur==='__admin__'?' selected':''}>\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D</option>`+
+  sel.innerHTML=`<option value="">\u1F465 \u0412\u0441\u0456 (${mgrs.length+1})</option>
+    <option value="__admin__"${cur==='__admin__'?' selected':''}>\u1F451 \u0410\u0434\u043C\u0456\u043D</option>`+
     mgrs.map(m=>`<option value="${m.id}"${cur===m.id?' selected':''}>${esc(m.name)}</option>`).join('');
 }
 
@@ -1068,17 +1086,17 @@ function renderPipeline(){
     if(srch&&!JSON.stringify(d).toLowerCase().includes(srch))return false;
     return true;
   });
-  const won=allPipe.filter(d=>d.status==='Won').length;
+  const won=allPipe.filter(d=>_isWon(d.status)).length;
   const crits=allPipe.filter(d=>calcDeal(d).ctrlCls==='ctrl-crit').length;
   const risks=allPipe.filter(d=>calcDeal(d).ctrlCls==='ctrl-risk').length;
   document.getElementById('pipe-stats').innerHTML=`
     <div class="stat-chip">\u0412\u0441\u044C\u043E\u0433\u043E: <strong>${allPipe.length}</strong></div>
     <div class="stat-chip">\u2705 Won: <strong style="color:#2e7d32">${won}</strong></div>
-    <div class="stat-chip">\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445: <strong style="color:#b71c1c">${crits}</strong></div>
-    <div class="stat-chip">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A: <strong style="color:#e65100">${risks}</strong></div>
+    <div class="stat-chip">\u1F534 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445: <strong style="color:#b71c1c">${crits}</strong></div>
+    <div class="stat-chip">\u1F7E1 \u0420\u0438\u0437\u0438\u043A: <strong style="color:#e65100">${risks}</strong></div>
     <div class="stat-chip">\u041F\u043E\u043A\u0430\u0437\u0430\u043D\u043E: <strong>${rows.length}</strong></div>`;
   const tbody=document.getElementById('pipe-body');
-  if(!rows.length){tbody.innerHTML=`<tr><td colspan="25"><div class="empty"><div class="empty-icon">\uD83D\uDCCB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
+  if(!rows.length){tbody.innerHTML=`<tr><td colspan="25"><div class="empty"><div class="empty-icon">\u1F4CB</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u043E\u0433\u043E \u043A\u043B\u0456\u0454\u043D\u0442\u0430!</div></td></tr>`;return;}
   tbody.innerHTML=rows.map((d,i)=>{
     const{overdue,noStep,daysInact,ctrl,ctrlCls}=calcDeal(d);
     const rCls=ctrlCls==='ctrl-crit'?'row-crit':ctrlCls==='ctrl-risk'?'row-risk':'';
@@ -1093,7 +1111,7 @@ function renderPipeline(){
       <td class="col-company"><strong>${esc(d.company)}</strong></td>
       <td class="admin-only"><span class="owner-badge ${d._ownerId==='__admin__'?'owner-admin':''}">${esc(d._owner||d.addedBy?.name||'\u2014')}</span></td>
       <td style="color:#555;font-size:11px;white-space:nowrap">${esc(d.city||'')}</td>
-      <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\uD83C\uDF10</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
+      <td style="text-align:center">${d.website?`<a href="${esc(d.website)}" target="_blank" title="${esc(d.website)}" style="color:#1565C0;font-size:16px;text-decoration:none">\u1F310</a>`:'<span style="color:#ddd;font-size:12px">\u2014</span>'}</td>
       <td>${esc(d.contact)}</td><td style="color:#999">${esc(d.position)}</td>
       <td style="white-space:nowrap">${ph0}${ph_extra}</td>
       <td style="color:#1565C0;font-size:11px">${em0}${em_extra}</td>
@@ -1114,7 +1132,7 @@ function renderPipeline(){
       <td class="${ctrlCls}">${ctrl}</td>
       <td class="col-actions" style="white-space:nowrap">
         ${(role!=='manager'||perms.edit)?`<button class="btn btn-sm btn-primary" onclick="openDeal(${d.id})">\u270F\uFE0F</button>`:''}
-        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">\uD83D\uDDD1</button>
+        <button class="btn btn-sm btn-danger admin-only" onclick="delDeal(${d.id})">\u1F5D1</button>
       </td></tr>`;
   }).join('');
 }
@@ -1133,12 +1151,12 @@ function openDeal(id){
     document.getElementById('d-contactdate').value='';
     document.getElementById('d-stepdate').value='';
     document.getElementById('d-channel').value='';
-    document.getElementById('d-status').value='New';
+    document.getElementById('d-status').value='\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440';
     document.getElementById('d-result').value='';
     addPhoneField();addEmailField();
     buildCatGrid('categories-grid',[]);
     buildCatGrid('potential-grid',[]);
-    initStatusFlow('New');
+    initStatusFlow('\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440');
     // Check for draft
     const draft=JSON.parse(localStorage.getItem('hsm_draft')||'null');
     if(draft&&draft._ts&&(Date.now()-draft._ts)<86400000){
@@ -1164,7 +1182,7 @@ function openDeal(id){
     buildCatGrid('categories-grid', d.categories||[]);
     buildCatGrid('potential-grid', d.potentialCategories||[]);
     // Status flow
-    initStatusFlow(d.status||'New');
+    initStatusFlow(d.status||'\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440');
   }
   document.getElementById('dealModal').classList.add('open');
 }
@@ -1241,7 +1259,7 @@ function renderActivity(){
   const actAddBtn=document.querySelector('#tab-activity .toolbar .btn-primary');
   if(actAddBtn) actAddBtn.style.display=(role==='manager'&&!perms.activity)?'none':'';
   const tbody=document.getElementById('act-body');
-  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">\uD83D\uDCCA</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u0438\u0439 \u0434\u0435\u043D\u044C!</div></td></tr>`;return;}
+  if(!acts.length){tbody.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">\u1F4CA</div>\u041D\u0435\u043C\u0430\u0454 \u0437\u0430\u043F\u0438\u0441\u0456\u0432. \u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u043F\u0435\u0440\u0448\u0438\u0439 \u0434\u0435\u043D\u044C!</div></td></tr>`;return;}
   tbody.innerHTML=acts.map(a=>`<tr>
     <td style="font-weight:600;white-space:nowrap">${fmtDate(a.date)}</td>
     <td style="text-align:center">${a.newc}</td><td style="text-align:center">${a.calls}</td>
@@ -1252,7 +1270,7 @@ function renderActivity(){
     <td>${kpiBadge(a.newc,10)}</td><td>${kpiBadge(a.dialogs,5)}</td><td>${kpiBadge(a.meet,2)}</td>
     <td style="white-space:nowrap">
       <button class="btn btn-sm btn-primary" onclick="openActivity(${a.id})">\u270F\uFE0F</button>
-      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">\uD83D\uDDD1</button>
+      <button class="btn btn-sm btn-danger admin-only" onclick="delAct(${a.id})">\u1F5D1</button>
     </td></tr>`).join('');
 }
 
@@ -1332,17 +1350,18 @@ function renderDashboard(){
   // Use dashDeals/dashActs for all calculations below
   const _deals=dashDeals, _acts=dashActs;
 
-  const sts=['New','Contacted','Warm','Meeting scheduled','Offer sent','Won','Lost','Recycle'];
-  const cnt={};sts.forEach(s=>cnt[s]=_deals.filter(d=>d.status===s).length);
-  const total=_deals.length,won=cnt['Won'],lost=cnt['Lost'];
-  const active=_deals.filter(d=>d.status!=='Won'&&d.status!=='Lost'&&d.status!=='Recycle').length;
+  const cnt={};STATUS_LIST.forEach(s=>cnt[s.k]=_deals.filter(d=>d.status===s.k).length);
+  const total=_deals.length;
+  const won=_deals.filter(d=>_isWon(d.status)).length;
+  const lost=_deals.filter(d=>_isLost(d.status)).length;
+  const active=_deals.filter(d=>_isActive(d.status)).length;
   const crits=_deals.filter(d=>calcDeal(d).ctrlCls==='ctrl-crit').length;
   const risks=_deals.filter(d=>calcDeal(d).ctrlCls==='ctrl-risk').length;
   const noSteps=_deals.filter(d=>calcDeal(d).noStep).length;
   const overdues=_deals.filter(d=>calcDeal(d).overdue).length;
   const conv=total>0?Math.round(won/total*100):0;
-  const fStages=['New','Contacted','Warm','Meeting scheduled','Offer sent','Won'];
-  const maxC=Math.max(...fStages.map(s=>cnt[s]),1);
+  const fStages=STATUS_LIST.map(s=>s.k);
+  const maxC=Math.max(...fStages.map(s=>cnt[s]||0),1);
   const CHS=['D1','D2','D3','D4.1','D4.2','D5','D5 Partner','D6'];
   const wDates=Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-i);return d.toISOString().split('T')[0];});
   const wActs=_acts.filter(a=>wDates.includes(a.date));
@@ -1353,65 +1372,61 @@ function renderDashboard(){
   document.getElementById('dash-content').innerHTML=`
   <div class="kpi-grid">
     <div class="kpi-card"><div class="kpi-value">${total}</div><div class="kpi-label">\u0412\u0441\u044C\u043E\u0433\u043E \u0432 \u0431\u0430\u0437\u0456</div></div>
-    <div class="kpi-card" style="border-top-color:#2e7d32"><div class="kpi-value" style="color:#2e7d32">${won}</div><div class="kpi-label">\u2705 Won \u2014 \u0437\u0430\u043A\u0440\u0438\u0442\u043E</div></div>
+    <div class="kpi-card" style="border-top-color:#2e7d32"><div class="kpi-value" style="color:#2e7d32">${won}</div><div class="kpi-label">\u2705 \u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445 \u0434\u0438\u043B\u0435\u0440\u0456\u0432</div></div>
     <div class="kpi-card" style="border-top-color:#00838F"><div class="kpi-value" style="color:#00838F">${conv}%</div><div class="kpi-label">\u041A\u043E\u043D\u0432\u0435\u0440\u0441\u0456\u044F</div></div>
     <div class="kpi-card" style="border-top-color:#7B1FA2"><div class="kpi-value" style="color:#7B1FA2">${active}</div><div class="kpi-label">\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445 \u0443\u0433\u043E\u0434</div></div>
-    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</div></div>
-    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">\uD83D\uDFE1 \u0420\u0438\u0437\u0438\u043A\u0456\u0432</div></div>
+    <div class="kpi-card" style="border-top-color:#b71c1c"><div class="kpi-value" style="color:#b71c1c">${crits}</div><div class="kpi-label">\u1F534 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</div></div>
+    <div class="kpi-card" style="border-top-color:#e65100"><div class="kpi-value" style="color:#e65100">${risks}</div><div class="kpi-label">\u1F7E1 \u0420\u0438\u0437\u0438\u043A\u0456\u0432</div></div>
   </div>
   <div class="grid2">
     <div class="card">
-      <div class="card-title">\uD83D\uDCCA \u0412\u043E\u0440\u043E\u043D\u043A\u0430 \u043F\u0440\u043E\u0434\u0430\u0436\u0456\u0432</div>
+      <div class="card-title">\u1F4CA \u0412\u043E\u0440\u043E\u043D\u043A\u0430 \u043F\u0440\u043E\u0434\u0430\u0436\u0456\u0432</div>
       <div class="funnel">
-        ${fStages.map(s=>`<div class="funnel-row">
-          <div class="funnel-label">${s}</div>
-          <div class="funnel-bar-wrap"><div class="funnel-bar" style="background:${FCOLORS[s]};width:${Math.max(cnt[s]/maxC*100,3)}%">${cnt[s]>0?cnt[s]:''}</div></div>
-          <div class="funnel-num">${cnt[s]}</div></div>`).join('')}
-        <div class="funnel-row" style="opacity:.6;margin-top:6px">
-          <div class="funnel-label">Lost</div>
-          <div class="funnel-bar-wrap"><div class="funnel-bar" style="background:#C62828;width:${Math.max(cnt['Lost']/maxC*100,3)}%">${cnt['Lost']>0?cnt['Lost']:''}</div></div>
-          <div class="funnel-num">${cnt['Lost']}</div></div>
+        ${STATUS_LIST.filter(s=>cnt[s.k]>0).map(s=>`<div class="funnel-row">
+          <div class="funnel-label" style="font-size:11px">${s.k}</div>
+          <div class="funnel-bar-wrap"><div class="funnel-bar" style="background:${s.fc};width:${Math.max((cnt[s.k]||0)/maxC*100,3)}%">${cnt[s.k]>0?cnt[s.k]:''}</div></div>
+          <div class="funnel-num">${cnt[s.k]||0}</div></div>`).join('')}
       </div>
       <div style="margin-top:16px"><div class="section-title">\u041A\u043E\u043D\u0432\u0435\u0440\u0441\u0456\u044F \u043C\u0456\u0436 \u0435\u0442\u0430\u043F\u0430\u043C\u0438</div>
         <table class="conv-table">
-          ${[['New','Contacted'],['Contacted','Warm'],['Warm','Meeting scheduled'],['Offer sent','Won']].map(([f,t])=>`
-          <tr><td>${f} \u2192 ${t.replace('Meeting scheduled','Meeting')}</td>
+          ${[['\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440','\u0404 \u0456\u043D\u0442\u0435\u0440\u0435\u0441'],['\u0404 \u0456\u043D\u0442\u0435\u0440\u0435\u0441','\u041F\u0435\u0440\u0435\u0433\u043E\u0432\u043E\u0440\u0438'],['\u041F\u0435\u0440\u0435\u0433\u043E\u0432\u043E\u0440\u0438','\u0422\u0435\u0441\u0442\u043E\u0432\u0435 \u0437\u0430\u043C\u043E\u0432\u043B\u0435\u043D\u043D\u044F'],['\u0422\u0435\u0441\u0442\u043E\u0432\u0435 \u0437\u0430\u043C\u043E\u0432\u043B\u0435\u043D\u043D\u044F','\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440']].map(([f,t])=>`
+          <tr><td>${f} \u2192 ${t}</td>
           <td><div class="conv-bar" style="width:${Math.min(parseInt(cr(f,t))||0,100)*0.55}px"></div><strong>${cr(f,t)}</strong></td></tr>`).join('')}
         </table>
       </div>
     </div>
     <div class="card">
-      <div class="card-title">\uD83D\uDEA8 \u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C</div>
+      <div class="card-title">\u1F6A8 \u041A\u043E\u043D\u0442\u0440\u043E\u043B\u044C</div>
       <div class="alert-box">
-        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0456 (\u043F\u0440\u043E\u0441\u0442\u0440\u043E\u0447\u0435\u043D\u043E/\u0431\u0435\u0437 \u043A\u0440\u043E\u043A\u0443)</span><strong>${crits}</strong></div>
+        <div class="alert-item ${crits>0?'al-red':'al-green'}"><span>\u1F534 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0456 (\u043F\u0440\u043E\u0441\u0442\u0440\u043E\u0447\u0435\u043D\u043E/\u0431\u0435\u0437 \u043A\u0440\u043E\u043A\u0443)</span><strong>${crits}</strong></div>
         <div class="alert-item ${overdues>0?'al-red':'al-green'}"><span>\u23F0 \u041F\u0440\u043E\u0441\u0442\u0440\u043E\u0447\u0435\u043D\u0438\u0439 \u043A\u0440\u043E\u043A</span><strong>${overdues}</strong></div>
-        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>\uD83D\uDEA8 \u0411\u0435\u0437 \u043D\u0430\u0441\u0442\u0443\u043F\u043D\u043E\u0433\u043E \u043A\u0440\u043E\u043A\u0443</span><strong>${noSteps}</strong></div>
-        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>\uD83D\uDFE1 \u0411\u0435\u0437 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0456 3+ \u0434\u043D\u0456</span><strong>${risks}</strong></div>
+        <div class="alert-item ${noSteps>0?'al-orange':'al-green'}"><span>\u1F6A8 \u0411\u0435\u0437 \u043D\u0430\u0441\u0442\u0443\u043F\u043D\u043E\u0433\u043E \u043A\u0440\u043E\u043A\u0443</span><strong>${noSteps}</strong></div>
+        <div class="alert-item ${risks>0?'al-orange':'al-green'}"><span>\u1F7E1 \u0411\u0435\u0437 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0456 3+ \u0434\u043D\u0456</span><strong>${risks}</strong></div>
         <div class="alert-item al-blue"><span>\u267B\uFE0F Recycle</span><strong>${cnt['Recycle']}</strong></div>
         <div class="alert-item al-blue"><span>\u274C Lost</span><strong>${lost}</strong></div>
       </div>
-      <div style="margin-top:18px"><div class="section-title">\uD83D\uDCC5 KPI \u0437\u0430 7 \u0434\u043D\u0456\u0432</div>
+      <div style="margin-top:18px"><div class="section-title">\u1F4C5 KPI \u0437\u0430 7 \u0434\u043D\u0456\u0432</div>
         ${_acts.length===0?`<div style="color:#bbb;text-align:center;padding:14px;font-size:13px">\u0414\u043E\u0434\u0430\u0439\u0442\u0435 \u0434\u0430\u043D\u0456 \u0432 Activity Log</div>`:`
         <div class="alert-box">
-          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>\uD83C\uDD95 \u041D\u043E\u0432\u0438\u0445 \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 (\u0446\u0456\u043B\u044C 70+)</span><strong>${wNew}</strong></div>
-          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>\uD83D\uDCAC \u0414\u0456\u0430\u043B\u043E\u0433\u0456\u0432 (\u0446\u0456\u043B\u044C 35+)</span><strong>${wDial}</strong></div>
-          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>\uD83E\uDD1D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0435\u0439 (\u0446\u0456\u043B\u044C 14+)</span><strong>${wMeet}</strong></div>
+          <div class="alert-item ${wNew>=70?'al-green':wNew>=50?'al-orange':'al-red'}"><span>\u1F195 \u041D\u043E\u0432\u0438\u0445 \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 (\u0446\u0456\u043B\u044C 70+)</span><strong>${wNew}</strong></div>
+          <div class="alert-item ${wDial>=35?'al-green':wDial>=25?'al-orange':'al-red'}"><span>\u1F4AC \u0414\u0456\u0430\u043B\u043E\u0433\u0456\u0432 (\u0446\u0456\u043B\u044C 35+)</span><strong>${wDial}</strong></div>
+          <div class="alert-item ${wMeet>=14?'al-green':wMeet>=10?'al-orange':'al-red'}"><span>\u1F91D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0435\u0439 (\u0446\u0456\u043B\u044C 14+)</span><strong>${wMeet}</strong></div>
         </div>`}
       </div>
     </div>
   </div>
   <div class="card">
-    <div class="card-title">\uD83D\uDDC2 \u0420\u043E\u0437\u0431\u0438\u0432\u043A\u0430 \u043F\u043E \u043A\u0430\u043D\u0430\u043B\u0430\u0445</div>
+    <div class="card-title">\u1F5C2 \u0420\u043E\u0437\u0431\u0438\u0432\u043A\u0430 \u043F\u043E \u043A\u0430\u043D\u0430\u043B\u0430\u0445</div>
     <div class="ch-grid">
       ${CHS.map(ch=>{
         const n=_deals.filter(d=>d.channel===ch).length;
-        const w=_deals.filter(d=>d.channel===ch&&d.status==='Won').length;
+        const w=_deals.filter(d=>d.channel===ch&&_isWon(d.status)).length;
         const c=_deals.filter(d=>d.channel===ch&&calcDeal(d).ctrlCls==='ctrl-crit').length;
         return`<div class="ch-card">
           <div class="ch-name">${ch}</div><div class="ch-count">${n}</div>
           <div class="ch-type">${CH_TYPES[ch]||''}</div>
           <div style="font-size:11px;color:#2e7d32;font-weight:600;margin-top:4px">\u2705 Won: ${w}</div>
-          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">\uD83D\uDD34 \u041A\u0440\u0438\u0442: ${c}</div>`:''}
+          ${c>0?`<div style="font-size:11px;color:#b71c1c;font-weight:600">\u1F534 \u041A\u0440\u0438\u0442: ${c}</div>`:''}
         </div>`;}).join('')}
     </div>
   </div>
@@ -1421,11 +1436,11 @@ function renderDashboard(){
 function renderMgrStatsTable(){
   const allMgrs=getManagers();
   const sources=[
-    {label:'\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D', id:'__admin__',
+    {label:'\u1F451 \u0410\u0434\u043C\u0456\u043D', id:'__admin__',
      deals:JSON.parse(localStorage.getItem('hsm_deals')||'[]').map(migrateDeal),
      acts:JSON.parse(localStorage.getItem('hsm_acts')||'[]')},
     ...allMgrs.map(m=>({
-      label:'\uD83D\uDC77 '+m.name, id:m.id,
+      label:'\u1F477 '+m.name, id:m.id,
       deals:JSON.parse(localStorage.getItem(dealsKey(m.id))||'[]').map(migrateDeal),
       acts:JSON.parse(localStorage.getItem(actsKey(m.id))||'[]')
     }))
@@ -1435,10 +1450,10 @@ function renderMgrStatsTable(){
     const d=s.deals, a=s.acts;
     const total=d.length;
     if(!total&&!a.length)return null;
-    const active=d.filter(x=>x.status!=='Won'&&x.status!=='Lost'&&x.status!=='Recycle').length;
-    const won=d.filter(x=>x.status==='Won').length;
-    const warm=d.filter(x=>['Warm','Meeting scheduled','Offer sent'].includes(x.status)).length;
-    const lost=d.filter(x=>x.status==='Lost').length;
+    const active=d.filter(x=>_isActive(x.status)).length;
+    const won=d.filter(x=>_isWon(x.status)).length;
+    const warm=d.filter(x=>['\u0404 \u0456\u043D\u0442\u0435\u0440\u0435\u0441','\u0412\u0438\u044F\u0432\u043B\u0435\u043D\u043D\u044F \u043F\u043E\u0442\u0435\u043D\u0446\u0456\u0430\u043B\u0443','\u041D\u0430\u0434\u0456\u0441\u043B\u0430\u043D\u043E \u043F\u0440\u0430\u0439\u0441','\u041D\u0430\u0434\u0456\u0441\u043B\u0430\u043D\u043E \u043A\u0430\u0442\u0430\u043B\u043E\u0433','\u041D\u0430\u0434\u0456\u0441\u043B\u0430\u043D\u043E \u041A\u041F','\u041F\u0435\u0440\u0435\u0433\u043E\u0432\u043E\u0440\u0438','\u0423\u0437\u0433\u043E\u0434\u0436\u0435\u043D\u043D\u044F \u0443\u043C\u043E\u0432'].includes(x.status)).length;
+    const lost=d.filter(x=>_isLost(x.status)).length;
     const crits=d.filter(x=>calcDeal(x).ctrlCls==='ctrl-crit').length;
     const wActs=a.filter(x=>wDates.includes(x.date));
     const calls7=wActs.reduce((s,x)=>s+x.calls,0);
@@ -1448,13 +1463,13 @@ function renderMgrStatsTable(){
   }).filter(Boolean);
   if(!rows.length)return'';
   return`<div class="card">
-    <div class="card-title">\uD83D\uDC65 \u0417\u0432\u0456\u0442 \u043F\u043E \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430\u0445</div>
+    <div class="card-title">\u1F465 \u0417\u0432\u0456\u0442 \u043F\u043E \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430\u0445</div>
     <div style="overflow-x:auto">
     <table class="mgr-stats-table">
       <thead><tr>
-        <th>\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440</th><th>\u041A\u043B\u0456\u0454\u043D\u0442\u0456\u0432</th><th>\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445</th><th>\uD83D\uDD25 Warm+</th>
-        <th>\u2705 Won</th><th>\u274C Lost</th><th>\uD83D\uDD34 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</th>
-        <th>\uD83D\uDCDE \u0414\u0437\u0432\u0456\u043D\u043A\u0438 (7\u0434)</th><th>\uD83E\uDD1D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0456 (7\u0434)</th><th>\u041E\u0441\u0442\u0430\u043D\u043D\u044F \u0430\u043A\u0442\u0438\u0432\u043D\u0456\u0441\u0442\u044C</th>
+        <th>\u041C\u0435\u043D\u0435\u0434\u0436\u0435\u0440</th><th>\u041A\u043B\u0456\u0454\u043D\u0442\u0456\u0432</th><th>\u0410\u043A\u0442\u0438\u0432\u043D\u0438\u0445</th><th>\u1F525 Warm+</th>
+        <th>\u2705 Won</th><th>\u274C Lost</th><th>\u1F534 \u041A\u0440\u0438\u0442\u0438\u0447\u043D\u0438\u0445</th>
+        <th>\u1F4DE \u0414\u0437\u0432\u0456\u043D\u043A\u0438 (7\u0434)</th><th>\u1F91D \u0417\u0443\u0441\u0442\u0440\u0456\u0447\u0456 (7\u0434)</th><th>\u041E\u0441\u0442\u0430\u043D\u043D\u044F \u0430\u043A\u0442\u0438\u0432\u043D\u0456\u0441\u0442\u044C</th>
       </tr></thead>
       <tbody>${rows.map(r=>`<tr>
         <td><strong>${esc(r.label)}</strong></td>
@@ -1585,28 +1600,28 @@ function renderMgrList(){
     const acts_count=JSON.parse(localStorage.getItem(actsKey(m.id))||'[]').length;
     return`<div class="mgr-perm" style="margin-bottom:8px">
       <div>
-        <strong style="font-size:14px">\uD83D\uDC77 ${esc(m.name)}</strong>
+        <strong style="font-size:14px">\u1F477 ${esc(m.name)}</strong>
         <span style="font-size:11px;color:#999;margin-left:8px">${deals_count} \u043A\u043B\u0456\u0454\u043D\u0442\u0456\u0432 \u00B7 ${acts_count} \u0434\u043D\u0456\u0432 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0456</span><br>
         <span style="font-size:11px;color:#888">\u0414\u043E\u0437\u0432\u043E\u043B\u0438: ${[
           m.perms.add?'\u2795 \u0414\u043E\u0434\u0430\u0432\u0430\u0442\u0438':'',
           m.perms.edit?'\u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438':'',
-          m.perms.activity?'\uD83D\uDCCA Activity':'',
-          m.perms.dashboard?'\uD83D\uDE80 Dashboard':'',
+          m.perms.activity?'\u1F4CA Activity':'',
+          m.perms.dashboard?'\u1F680 Dashboard':'',
           m.perms.export?'\u2B07 CSV':''
         ].filter(Boolean).join(' \u00B7 ')}</span>
       </div>
       <div style="display:flex;gap:6px">
         <button class="btn btn-sm btn-primary" onclick="openMgrEdit('${m.id}')">\u270F\uFE0F \u041F\u0440\u0430\u0432\u0430</button>
-        <button class="btn btn-sm btn-danger" onclick="deleteMgr('${m.id}')">\uD83D\uDDD1 \u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteMgr('${m.id}')">\u1F5D1 \u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438</button>
       </div>
     </div>
     <div id="mgr-edit-${m.id}" style="display:none;margin-top:8px;padding:10px;background:#f5f7fa;border-radius:8px;font-size:13px">
       <label style="margin-right:12px"><input type="checkbox" id="ep-add-${m.id}" ${m.perms.add?'checked':''}> \u2795 \u0414\u043E\u0434\u0430\u0432\u0430\u0442\u0438</label>
       <label style="margin-right:12px"><input type="checkbox" id="ep-edit-${m.id}" ${m.perms.edit?'checked':''}> \u270F\uFE0F \u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438</label>
-      <label style="margin-right:12px"><input type="checkbox" id="ep-activity-${m.id}" ${m.perms.activity?'checked':''}> \uD83D\uDCCA Activity</label>
-      <label style="margin-right:12px"><input type="checkbox" id="ep-dashboard-${m.id}" ${m.perms.dashboard?'checked':''}> \uD83D\uDE80 Dashboard</label>
+      <label style="margin-right:12px"><input type="checkbox" id="ep-activity-${m.id}" ${m.perms.activity?'checked':''}> \u1F4CA Activity</label>
+      <label style="margin-right:12px"><input type="checkbox" id="ep-dashboard-${m.id}" ${m.perms.dashboard?'checked':''}> \u1F680 Dashboard</label>
       <label style="margin-right:12px"><input type="checkbox" id="ep-export-${m.id}" ${m.perms.export?'checked':''}> \u2B07 CSV</label>
-      <br><button class="btn btn-sm btn-success" style="margin-top:8px" onclick="saveMgrPerms('${m.id}')">\uD83D\uDCBE \u0417\u0431\u0435\u0440\u0435\u0433\u0442\u0438</button>
+      <br><button class="btn btn-sm btn-success" style="margin-top:8px" onclick="saveMgrPerms('${m.id}')">\u1F4BE \u0417\u0431\u0435\u0440\u0435\u0433\u0442\u0438</button>
     </div>`;
   }).join('');
 }
@@ -1638,9 +1653,9 @@ function updateDashMgrFilter(){
   const sel=document.getElementById('dash-mgr-filter');
   if(!sel)return;
   const managers=getManagers();
-  sel.innerHTML=`<option value="">\uD83D\uDC65 \u0412\u0441\u0456 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length+1})</option>
-    <option value="__admin__">\uD83D\uDC51 \u0410\u0434\u043C\u0456\u043D</option>`+
-    managers.map(m=>`<option value="${m.id}">\uD83D\uDC77 ${esc(m.name)}</option>`).join('');
+  sel.innerHTML=`<option value="">\u1F465 \u0412\u0441\u0456 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0438 (${managers.length+1})</option>
+    <option value="__admin__">\u1F451 \u0410\u0434\u043C\u0456\u043D</option>`+
+    managers.map(m=>`<option value="${m.id}">\u1F477 ${esc(m.name)}</option>`).join('');
 }
 
 // ============================================================
@@ -2034,7 +2049,7 @@ function parseCSV(text){
       phone:      colMap.phone>=0?cells[colMap.phone]?.trim()||'':'',
       email:      colMap.email>=0?cells[colMap.email]?.trim()||'':'',
       channel:    colMap.channel>=0?cells[colMap.channel]?.trim()||'':'',
-      status:     colMap.status>=0?cells[colMap.status]?.trim()||'New':'New',
+      status:     colMap.status>=0?cells[colMap.status]?.trim()||'\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440':'\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440',
       contactdate:parseCsvDate(colMap.contactdate>=0?cells[colMap.contactdate]:''),
       stepdate:   parseCsvDate(colMap.stepdate>=0?cells[colMap.stepdate]:''),
       nextstep:   colMap.nextstep>=0?cells[colMap.nextstep]?.trim()||'':'',
@@ -2244,7 +2259,7 @@ function restoreDraft(){
   (draft.emails&&draft.emails.length?draft.emails:[''] ).forEach(e=>addEmailField(e));
   buildCatGrid('categories-grid', draft.categories||[]);
   buildCatGrid('potential-grid', draft.potentialCategories||[]);
-  initStatusFlow(draft.status||'New');
+  initStatusFlow(draft.status||'\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440');
   document.getElementById('draft-bar').classList.remove('visible');
 }
 
@@ -2324,13 +2339,23 @@ function setStatus(val){
   document.getElementById('d-status').value=val;
   document.querySelectorAll('#status-flow .sf-step').forEach(el=>{
     const s=el.getAttribute('data-s');
-    el.classList.toggle('sf-active', s===val);
+    const active=s===val;
+    el.classList.toggle('sf-active',active);
+    el.style.background=active?(FCOLORS[s]||'#1565C0'):'';
   });
   saveDraft();
 }
 
 function initStatusFlow(val){
-  setStatus(val||'New');
+  const flow=document.getElementById('status-flow');
+  if(!flow)return;
+  const def=val||'\u041F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0438\u0439 \u0434\u0438\u043B\u0435\u0440';
+  // Render all statuses as small buttons
+  const allSt=[...STATUS_LIST.map(s=>s.k),'\u041D\u0430 \u043F\u0430\u0443\u0437\u0456','\u0412\u0456\u0434\u043C\u043E\u0432\u0430','\u0412\u0442\u0440\u0430\u0447\u0435\u043D\u0438\u0439 \u043A\u043E\u043D\u043A\u0443\u0440\u0435\u043D\u0442\u0443'].filter((v,i,a)=>a.indexOf(v)===i);
+  flow.innerHTML=STATUS_LIST.map(s=>
+    `<div class="sf-step" data-s="${s.k}" onclick="setStatus('${s.k.replace(/'/g,'\\\'')}')" style="${s.k===def?'background:'+s.fc+';border-color:transparent;color:#fff':''}">${s.k}</div>`
+  ).join('');
+  document.getElementById('d-status').value=def;
 }
 
 // ============================================================
@@ -2340,7 +2365,7 @@ function initCatFilter(){
   const sel=document.getElementById('fCat');
   if(!sel)return;
   const cur=sel.value;
-  sel.innerHTML=`<option value="">\uD83D\uDCE6 \u0412\u0441\u0456 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457</option>`+
+  sel.innerHTML=`<option value="">\u1F4E6 \u0412\u0441\u0456 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0456\u0457</option>`+
     CATEGORIES.map(c=>`<option value="${esc(c)}"${cur===c?' selected':''}>${esc(c)}</option>`).join('');
 }
 
@@ -2396,8 +2421,13 @@ function _runDupCheck(){
     const reasons=[];
     // Company name
     const dc=normCompany(d.company);
-    if(company&&dc&&(dc.includes(company)||company.includes(dc)))
-      reasons.push('\u043D\u0430\u0437\u0432\u0430 \u043A\u043E\u043C\u043F\u0430\u043D\u0456\u0457');
+    if(company&&dc){
+      const shorter=company.length<=dc.length?company:dc;
+      const longer=company.length>dc.length?company:dc;
+      const isSubstr=dc.includes(company)||company.includes(dc);
+      if(isSubstr&&shorter.length>=5&&shorter.length/longer.length>=0.5)
+        reasons.push('\u043D\u0430\u0437\u0432\u0430 \u043A\u043E\u043C\u043F\u0430\u043D\u0456\u0457');
+    }
     // Website domain
     const dw=normDomain(d.website||'');
     if(website&&dw&&dw===website)
@@ -2428,8 +2458,8 @@ function _runDupCheck(){
           ${reasons.map(r=>`<span class="dup-match-tag">${r}</span>`).join('')}
         </div>
         <div class="dup-item-meta">
-          ${d.city?'\uD83C\uDFD9 '+esc(d.city)+' \u00B7 ':''}
-          ${(d.phones&&d.phones[0])||d.phone?'\uD83D\uDCDE '+esc((d.phones&&d.phones[0])||d.phone||'')+' \u00B7 ':''}
+          ${d.city?'\u1F3D9 '+esc(d.city)+' \u00B7 ':''}
+          ${(d.phones&&d.phones[0])||d.phone?'\u1F4DE '+esc((d.phones&&d.phones[0])||d.phone||'')+' \u00B7 ':''}
           <span class="badge ${S_CLASS[d.status]||'s-New'}" style="font-size:10px;padding:1px 6px">${d.status}</span>
         </div>
       </div>
