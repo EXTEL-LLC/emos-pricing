@@ -135,9 +135,74 @@ tr:hover{background:#EBF3FB}
   .kp-table tr{page-break-inside:avoid;page-break-after:auto}
 }
 
+
+/* ═══ AUTH SCREEN ═══════════════════════════════════════════════════ */
+#authScreen{position:fixed;inset:0;background:linear-gradient(135deg,#1F4E79 0%,#2E75B6 100%);display:flex;align-items:center;justify-content:center;z-index:9999}
+.auth-card{background:#fff;border-radius:16px;padding:40px 36px;width:360px;box-shadow:0 12px 40px rgba(0,0,0,.35);text-align:center}
+.auth-logo{font-size:52px;margin-bottom:10px}
+.auth-title{font-size:22px;font-weight:800;color:#1F4E79;margin-bottom:4px}
+.auth-sub{font-size:13px;color:#999;margin-bottom:28px}
+.auth-roles{display:flex;gap:12px;justify-content:center;margin-bottom:20px}
+.auth-role-btn{flex:1;padding:14px 8px;border:2px solid #1F4E79;border-radius:10px;background:#fff;color:#1F4E79;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.auth-role-btn:hover,.auth-role-btn.selected{background:#1F4E79;color:#fff}
+.auth-role-btn.admin-btn{border-color:#C55A11;color:#C55A11}
+.auth-role-btn.admin-btn:hover,.auth-role-btn.admin-btn.selected{background:#C55A11;color:#fff}
+#authPassSection{display:none;margin-top:4px}
+.auth-input{width:100%;padding:12px;border:2px solid #ddd;border-radius:8px;font-size:15px;text-align:center;outline:none;transition:border .2s;margin-bottom:10px;letter-spacing:2px}
+.auth-input:focus{border-color:#1F4E79}
+.auth-submit{width:100%;padding:12px;background:#1F4E79;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s}
+.auth-submit:hover{background:#16375a}
+#authError{color:#C00000;font-size:13px;margin-top:8px;min-height:18px}
+/* ═══ MANAGER PANEL ══════════════════════════════════════════════════ */
+#mgrModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:8888;align-items:center;justify-content:center}
+#mgrModal.open{display:flex}
+.mgr-card{background:#fff;border-radius:12px;padding:28px;width:460px;max-height:80vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.mgr-card h3{color:#1F4E79;margin-bottom:16px;font-size:16px}
+.mgr-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+.mgr-row input{flex:1;padding:7px 10px;border:1px solid #ccc;border-radius:6px;font-size:13px}
+.mgr-list{margin-bottom:16px}
+.mgr-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f5f9ff;border-radius:6px;margin-bottom:6px}
+.mgr-name-text{font-weight:600;color:#1F4E79}
 </style>
 </head>
 <body>
+
+<!-- ═══ AUTH SCREEN ══════════════════════════════════════════════════ -->
+<div id="authScreen" style="display:none">
+  <div class="auth-card">
+    <div class="auth-logo">⚡</div>
+    <div class="auth-title">EMOS Pricing</div>
+    <div class="auth-sub">Order Form · EXTEL</div>
+    <div class="auth-roles">
+      <button class="auth-role-btn" id="btnRoleMgr" onclick="authSelectRole('manager',this)">👷 Менеджер</button>
+      <button class="auth-role-btn admin-btn" id="btnRoleAdmin" onclick="authSelectRole('admin',this)">👑 Адмін</button>
+    </div>
+    <div id="authPassSection">
+      <input type="password" id="authPassInput" class="auth-input" placeholder="Пароль..."
+        onkeydown="if(event.key==='Enter')doAuth()">
+      <button class="auth-submit" onclick="doAuth()">Увійти →</button>
+      <div id="authError"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MANAGER PANEL MODAL ══════════════════════════════════════════ -->
+<div id="mgrModal">
+  <div class="mgr-card">
+    <h3>👥 Керування менеджерами</h3>
+    <div class="mgr-list" id="mgrList"></div>
+    <hr style="margin-bottom:14px;border-color:#eee">
+    <div style="font-size:12px;color:#555;font-weight:600;margin-bottom:8px">Додати менеджера:</div>
+    <div class="mgr-row">
+      <input type="text" id="newMgrName" placeholder="Ім'я менеджера">
+      <input type="password" id="newMgrPass" placeholder="Пароль">
+      <button class="btn btn-primary btn-sm" onclick="addManager()">Додати</button>
+    </div>
+    <div style="margin-top:16px;display:flex;justify-content:flex-end">
+      <button class="btn btn-sm" style="background:#eee;color:#333" onclick="closeMgrModal()">Закрити</button>
+    </div>
+  </div>
+</div>
 
 <div class="top-bar">
   <h1>⚡ EMOS Pricing — Order Form</h1>
@@ -157,6 +222,9 @@ tr:hover{background:#EBF3FB}
   <span id="price-update-badge" style="font-size:11px;color:#a8d8ea;margin-left:4px;white-space:nowrap"></span>
   <span id="web-data-badge" style="font-size:11px;color:#90EE90;margin-left:4px;white-space:nowrap;display:none"></span>
   <span id="sku-count-badge" class="badge">— SKUs</span>
+  <span id="user-badge" style="font-size:12px;color:#a8d8ea;margin-left:auto;white-space:nowrap"></span>
+  <button id="btn-mgr-panel" onclick="openMgrModal()" style="display:none;background:#C55A11;color:#fff;border:none;border-radius:4px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;margin-left:4px">👥 Менеджери</button>
+  <button onclick="doLogout()" style="background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:4px;padding:5px 12px;font-size:12px;cursor:pointer;margin-left:4px">Вихід</button>
 </div>
 
 <div class="main">
@@ -425,6 +493,131 @@ tr:hover{background:#EBF3FB}
 </div>
 
 <script>
+// ═══════════════════════════════════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════════════════════════════════
+var _authRole = null;
+
+async function sha256(s) {
+  var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+}
+
+async function initAuth() {
+  var sess = sessionStorage.getItem('emos_session');
+  if (sess === 'admin' || sess === 'manager') {
+    _applySession(sess);
+    return;
+  }
+  document.getElementById('authScreen').style.display = 'flex';
+}
+
+function authSelectRole(role, btn) {
+  _authRole = role;
+  document.querySelectorAll('.auth-role-btn').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  document.getElementById('authPassSection').style.display = 'block';
+  document.getElementById('authPassInput').value = '';
+  document.getElementById('authError').textContent = '';
+  document.getElementById('authPassInput').focus();
+}
+
+async function doAuth() {
+  var pass = document.getElementById('authPassInput').value;
+  if (!pass) return;
+  var h = await sha256(pass);
+
+  if (_authRole === 'admin') {
+    var stored = localStorage.getItem('emos_admin_pass');
+    if (!stored) {
+      localStorage.setItem('emos_admin_pass', h);
+      sessionStorage.setItem('emos_session', 'admin');
+      document.getElementById('authScreen').style.display = 'none';
+      _applySession('admin');
+      return;
+    }
+    if (h === stored) {
+      sessionStorage.setItem('emos_session', 'admin');
+      document.getElementById('authScreen').style.display = 'none';
+      _applySession('admin');
+      return;
+    }
+    document.getElementById('authError').textContent = '❌ Невірний пароль';
+    return;
+  }
+
+  if (_authRole === 'manager') {
+    var managers = JSON.parse(localStorage.getItem('emos_managers') || '[]');
+    var matched = managers.find(function(m){ return m.passHash === h; });
+    if (matched) {
+      sessionStorage.setItem('emos_session', 'manager');
+      sessionStorage.setItem('emos_mgr_name', matched.name);
+      document.getElementById('authScreen').style.display = 'none';
+      _applySession('manager');
+      return;
+    }
+    document.getElementById('authError').textContent = '❌ Невірний пароль';
+    return;
+  }
+}
+
+function _applySession(role) {
+  if (role === 'admin') {
+    document.getElementById('user-badge').textContent = '👑 Адмін';
+    document.getElementById('btn-mgr-panel').style.display = 'inline-block';
+  } else {
+    var name = sessionStorage.getItem('emos_mgr_name') || 'Менеджер';
+    document.getElementById('user-badge').textContent = '👷 ' + name;
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem('emos_session');
+  sessionStorage.removeItem('emos_mgr_name');
+  location.reload();
+}
+
+// ═══ MANAGER MANAGEMENT ════════════════════════════════════════════
+function openMgrModal() {
+  renderMgrList();
+  document.getElementById('mgrModal').classList.add('open');
+}
+
+function closeMgrModal() {
+  document.getElementById('mgrModal').classList.remove('open');
+}
+
+function renderMgrList() {
+  var managers = JSON.parse(localStorage.getItem('emos_managers') || '[]');
+  var html = managers.length === 0
+    ? '<div style="color:#999;font-size:13px;padding:8px">Менеджерів поки немає</div>'
+    : managers.map(function(m, i) {
+        return '<div class="mgr-item"><span class="mgr-name-text">👷 ' + m.name + '</span>'
+          + '<button class="btn btn-danger btn-sm" onclick="removeManager(' + i + ')">Видалити</button></div>';
+      }).join('');
+  document.getElementById('mgrList').innerHTML = html;
+}
+
+async function addManager() {
+  var name = document.getElementById('newMgrName').value.trim();
+  var pass = document.getElementById('newMgrPass').value;
+  if (!name || !pass) { alert('Введіть ім\'я та пароль'); return; }
+  var h = await sha256(pass);
+  var managers = JSON.parse(localStorage.getItem('emos_managers') || '[]');
+  managers.push({ name: name, passHash: h });
+  localStorage.setItem('emos_managers', JSON.stringify(managers));
+  document.getElementById('newMgrName').value = '';
+  document.getElementById('newMgrPass').value = '';
+  renderMgrList();
+}
+
+function removeManager(idx) {
+  var managers = JSON.parse(localStorage.getItem('emos_managers') || '[]');
+  managers.splice(idx, 1);
+  localStorage.setItem('emos_managers', JSON.stringify(managers));
+  renderMgrList();
+}
+
 // ═══════════════════════════════════════════════════════════════════
 // DATA
 // ═══════════════════════════════════════════════════════════════════
@@ -2665,7 +2858,8 @@ function _checkWebVersion() {
     .catch(function(){ /* local mode — silent */ });
 }
 
-// Старт: перша перевірка + регулярний polling
+// Старт: авторизація + перша перевірка + регулярний polling
+initAuth();
 _checkWebVersion();
 setInterval(_checkWebVersion, _webPollMs);
 </script>
