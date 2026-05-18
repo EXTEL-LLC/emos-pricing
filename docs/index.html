@@ -218,7 +218,7 @@ tr:hover{background:#EBF3FB}
   <button class="kp-open-btn" onclick="openKP()">📄 Сформувати КП Замовлення</button>
   <button class="kp-open-btn" style="background:#375623;margin-left:4px" onclick="openKPNewTab()">📄 КП Прайс-лист</button>
   <input type="file" id="price-file-input" accept=".xlsx" style="display:none" onchange="loadPricesFromFile(this)">
-  <button class="kp-open-btn" style="background:#154360;margin-left:4px" onclick="document.getElementById('price-file-input').click()" title="Завантажити актуальні DDP-ціни з EMOS_Pricing_MVP.xlsx">🔄 Оновити ціни</button>
+  <button id="btn-update-prices" class="kp-open-btn" style="background:#154360;margin-left:4px;display:none" onclick="document.getElementById('price-file-input').click()" title="Завантажити актуальні DDP-ціни з EMOS_Pricing_MVP.xlsx">🔄 Оновити ціни</button>
   <span id="price-update-badge" style="font-size:11px;color:#a8d8ea;margin-left:4px;white-space:nowrap"></span>
   <span id="web-data-badge" style="font-size:11px;color:#90EE90;margin-left:4px;white-space:nowrap;display:none"></span>
   <span id="sku-count-badge" class="badge">— SKUs</span>
@@ -565,6 +565,7 @@ function _applySession(role) {
   if (role === 'admin') {
     document.getElementById('user-badge').textContent = '👑 Адмін';
     document.getElementById('btn-mgr-panel').style.display = 'inline-block';
+    document.getElementById('btn-update-prices').style.display = 'inline-block';
   } else {
     var name = sessionStorage.getItem('emos_mgr_name') || 'Менеджер';
     document.getElementById('user-badge').textContent = '👷 ' + name;
