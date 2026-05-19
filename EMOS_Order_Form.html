@@ -547,7 +547,10 @@ async function doAuth() {
   }
 
   if (_authRole === 'manager') {
-    var managers = JSON.parse(localStorage.getItem('emos_managers') || '[]');
+    // Always use in-memory managers from skus.json (window._authManagers), fallback to localStorage
+    var managers = (window._authManagers && window._authManagers.length > 0)
+      ? window._authManagers
+      : JSON.parse(localStorage.getItem('emos_managers') || '[]');
     if (managers.length === 0) {
       document.getElementById('authError').textContent = '❌ Менеджерів не налаштовано. Зверніться до адміністратора.';
       return;
@@ -593,7 +596,7 @@ function closeMgrModal() {
 }
 
 function renderMgrList() {
-  var managers = JSON.parse(localStorage.getItem('emos_managers') || '[]');
+  var managers = _getMgrList();
   var html = managers.length === 0
     ? '<div style="color:#999;font-size:13px;padding:8px">Менеджерів поки немає</div>'
     : managers.map(function(m, i) {
@@ -603,30 +606,40 @@ function renderMgrList() {
   document.getElementById('mgrList').innerHTML = html;
 }
 
+function _getMgrList() {
+  return window._authManagers && window._authManagers.length > 0
+    ? window._authManagers
+    : JSON.parse(localStorage.getItem('emos_managers') || '[]');
+}
+function _saveMgrList(managers) {
+  window._authManagers = managers;
+  localStorage.setItem('emos_managers', JSON.stringify(managers));
+}
+
 async function addManager() {
   var name = document.getElementById('newMgrName').value.trim();
   var pass = document.getElementById('newMgrPass').value;
   if (!name || !pass) { alert('Введіть ім\'я та пароль'); return; }
   var h = await sha256(pass);
-  var managers = JSON.parse(localStorage.getItem('emos_managers') || '[]');
+  var managers = _getMgrList();
   managers.push({ name: name, passHash: h });
-  localStorage.setItem('emos_managers', JSON.stringify(managers));
+  _saveMgrList(managers);
   document.getElementById('newMgrName').value = '';
   document.getElementById('newMgrPass').value = '';
   renderMgrList();
 }
 
 function removeManager(idx) {
-  var managers = JSON.parse(localStorage.getItem('emos_managers') || '[]');
+  var managers = _getMgrList();
   managers.splice(idx, 1);
-  localStorage.setItem('emos_managers', JSON.stringify(managers));
+  _saveMgrList(managers);
   renderMgrList();
 }
 
 function exportAuthConfig() {
   var adminHash = localStorage.getItem('emos_admin_pass') || '';
-  var managers = JSON.parse(localStorage.getItem('emos_managers') || '[]');
-  if (!adminHash) { alert('Спочатку встановіть пароль адміна (увійдіть локально через file://)'); return; }
+  var managers = _getMgrList();
+  if (!adminHash) { alert('Спочатку встановіть пароль адміна'); return; }
   var data = JSON.stringify({ adminHash: adminHash, managers: managers }, null, 2);
   var blob = new Blob([data], { type: 'application/json' });
   var url = URL.createObjectURL(blob);
@@ -2887,13 +2900,13 @@ function _applyWebData(data) {
     POLICY.splice(0, POLICY.length);
     data.policy.forEach(function(p){ POLICY.push(p); });
   }
-  // Sync auth from server (single source of truth)
+  // Sync auth from server — managers stored in memory only (no localStorage overwrite)
   if (data.auth) {
     if (data.auth.adminHash) {
       localStorage.setItem('emos_admin_pass', data.auth.adminHash);
     }
-    if (Array.isArray(data.auth.managers) && data.auth.managers.length > 0) {
-      localStorage.setItem('emos_managers', JSON.stringify(data.auth.managers));
+    if (Array.isArray(data.auth.managers)) {
+      window._authManagers = data.auth.managers;
     }
   }
   document.getElementById('sku-count-badge').textContent = SKUS.length + ' SKUs';
