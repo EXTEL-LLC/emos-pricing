@@ -547,10 +547,14 @@ async function doAuth() {
   }
 
   if (_authRole === 'manager') {
-    // Always use in-memory managers from skus.json (window._authManagers), fallback to localStorage
+    // Wait for skus.json to load before checking
+    if (!_webDataLoaded) {
+      document.getElementById('authError').textContent = '⏳ Завантаження даних... спробуйте ще раз через секунду';
+      return;
+    }
     var managers = (window._authManagers && window._authManagers.length > 0)
       ? window._authManagers
-      : JSON.parse(localStorage.getItem('emos_managers') || '[]');
+      : [];
     if (managers.length === 0) {
       document.getElementById('authError').textContent = '❌ Менеджерів не налаштовано. Зверніться до адміністратора.';
       return;
