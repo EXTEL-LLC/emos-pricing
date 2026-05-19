@@ -586,7 +586,14 @@ function _applySession(role) {
 function doLogout() {
   sessionStorage.removeItem('emos_session');
   sessionStorage.removeItem('emos_mgr_name');
-  location.reload();
+  // Don't reload — reload would serve cached old HTML. Just show auth screen.
+  document.getElementById('authScreen').style.display = 'flex';
+  document.getElementById('authPassInput').value = '';
+  document.getElementById('authError').textContent = '';
+  _authRole = 'manager';
+  document.querySelectorAll('.auth-role-btn').forEach(function(b){ b.classList.remove('selected'); });
+  var managerBtn = document.getElementById('btnRoleMgr');
+  if (managerBtn) managerBtn.classList.add('selected');
 }
 
 // ═══ MANAGER MANAGEMENT ════════════════════════════════════════════
