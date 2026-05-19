@@ -530,11 +530,6 @@ async function doAuth() {
   if (_authRole === 'admin') {
     var stored = localStorage.getItem('emos_admin_pass');
     if (!stored) {
-      // First-time setup allowed only in local mode (file://)
-      if (_webDataLoaded) {
-        document.getElementById('authError').textContent = '❌ Пароль адміна не налаштовано. Зверніться до власника системи.';
-        return;
-      }
       localStorage.setItem('emos_admin_pass', h);
       sessionStorage.setItem('emos_session', 'admin');
       document.getElementById('authScreen').style.display = 'none';
