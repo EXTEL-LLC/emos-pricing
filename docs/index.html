@@ -2924,6 +2924,7 @@ function openKPNewTab() {
     + '<button onclick="document.getElementById(\'nt-price-input\').click()" style="'+btnStyle+';background:#154360;color:#fff">🔄 Excel</button>'
     + '<span id="nt-update-badge" style="font-size:10px;color:#a8d8ea;white-space:nowrap"></span>'
     + '<button onclick="downloadXLSX_NT()" style="'+btnStyle+';background:#1D6A96;color:#fff">⬇ XLSX</button>'
+    + '<button onclick="downloadPDF_NT(this)" style="'+btnStyle+';background:#8B0000;color:#fff">⬇ PDF</button>'
     + '<button onclick="window.print()" style="'+btnStyle+';background:#375623;color:#fff">🖨 Друк / PDF</button>'
     + '</div>'
     + '</div>';
@@ -2940,9 +2941,10 @@ function openKPNewTab() {
 
   var kpDocHtml = document.getElementById('kp-doc').outerHTML;
 
-  // Also include XLSX + ExcelJS libraries for the KP tab
+  // Also include XLSX + ExcelJS + html2pdf libraries for the KP tab
   var xlsxScript = '<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"><\/script>'
-    + '<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"><\/script>';
+    + '<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"><\/script>'
+    + '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"><\/script>';
 
   var html = '<!DOCTYPE html><html lang="uk"><head><meta charset="UTF-8">'
     + '<title>EMOS — Комерційна пропозиція</title>'
@@ -2956,7 +2958,17 @@ function openKPNewTab() {
     + '</head><body style="background:#f0f4f8;margin:0;padding:0">'
     + toolbarHtml
     + kpDocHtml
-    + '<script>' + scriptData + scriptFns + '<\/script>'
+    + '<script>' + scriptData + scriptFns
+    + '\nfunction downloadPDF_NT(btn){'
+    + 'if(btn){btn.textContent="⏳...";btn.disabled=true;}'
+    + 'var el=document.querySelector(".kp-doc");'
+    + 'var opt={margin:[8,8,8,8],filename:"EMOS_Прайс-лист.pdf",'
+    + 'image:{type:"jpeg",quality:0.97},'
+    + 'html2canvas:{scale:2,useCORS:true,logging:false,windowWidth:1100},'
+    + 'jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}};'
+    + 'html2pdf().set(opt).from(el).save().then(function(){if(btn){btn.textContent="⬇ PDF";btn.disabled=false;}});'
+    + '}'
+    + '<\/script>'
     + '</body></html>';
 
   var blob = new Blob([html], {type:'text/html;charset=utf-8'});
