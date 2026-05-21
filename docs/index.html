@@ -33,7 +33,7 @@ select:focus,input:focus{border-color:#1F4E79}
 .search-wrap{position:relative}
 #sku-input{padding-right:40px}
 .search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);cursor:pointer;color:#999;font-size:16px;border:none;background:none}
-.autocomplete-list{position:absolute;z-index:999;background:#fff;border:1px solid #ccc;border-top:none;border-radius:0 0 6px 6px;max-height:260px;overflow-y:auto;min-width:580px;width:max-content;max-width:720px;right:0;top:100%}
+.autocomplete-list{position:fixed;z-index:9999;background:#fff;border:1px solid #ccc;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.18);max-height:280px;overflow-y:auto;min-width:580px;width:580px}
 .autocomplete-item{padding:7px 12px;cursor:pointer;border-bottom:1px solid #f0f0f0;display:flex;gap:8px}
 .autocomplete-item:hover,.autocomplete-item.active{background:#EBF3FB}
 .ac-code{font-weight:700;color:#1F4E79;min-width:70px;font-size:12px}
@@ -1545,6 +1545,12 @@ function onSkuInput() {
   ).slice(0, 40);
 
   if (!acResults.length) { list.style.display='none'; return; }
+
+  // Position fixed relative to input
+  const inp = document.getElementById('sku-input');
+  const rect = inp.getBoundingClientRect();
+  list.style.top = (rect.bottom + 2) + 'px';
+  list.style.left = Math.max(4, rect.right - 580) + 'px';
 
   list.innerHTML = acResults.map((s,i) => {
     const price = getPriceDDP(s[0], s[4], ch) ? fmt(getPriceDDP(s[0], s[4], ch)) + ' грн' : '—';
