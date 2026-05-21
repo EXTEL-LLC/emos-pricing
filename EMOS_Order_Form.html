@@ -2222,7 +2222,8 @@ function openKP() {
     + '<td style="text-align:center;font-weight:700;color:#1F4E79">'+order.reduce((s,i)=>s+i.qty,0)+'</td>'
     + '<td style="text-align:right;font-size:11px;color:#888">Разом DDP:</td>'
     + '<td style="text-align:right;font-weight:700;color:#1F4E79;font-size:14px">'+fmtN(totalSum)+' грн</td>'
-    + '</tr>';
+    + '</tr>'
+    + '<tr><td colspan="7" style="text-align:right;font-size:11px;color:#888;padding:2px 8px 6px">Усі ціни вказані з урахуванням ПДВ</td></tr>';
 
   // Policy conditions block (max limits from policy)
   var condsHtml = pol ? [
