@@ -2295,8 +2295,9 @@ function openKP() {
 
   var xlsxFn = [
     'var KP_LOGO_B64='+JSON.stringify(kpLogoB64)+';',
-    'async function downloadXLSX_KP(){',
-    '  var btn=event&&event.target;if(btn){btn.textContent="⏳...";btn.disabled=true;}',
+    'async function downloadXLSX_KP(btn){',
+    '  if(!window.ExcelJS){alert("Бібліотека ще завантажується, спробуйте через секунду");return;}',
+    '  if(btn){btn.textContent="⏳...";btn.disabled=true;}',
     '  var d='+xlsxPayload+';',
     '  var wb=new ExcelJS.Workbook();',
     '  var ws=wb.addWorksheet("КП Замовлення");',
@@ -2406,8 +2407,8 @@ function openKP() {
     + '<div class="no-print" style="background:#1F4E79;color:#fff;padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10">'
     + '<h2 style="font-size:15px;font-weight:700;margin:0">📄 КП Замовлення</h2>'
     + '<button onclick="window.print()" style="background:#375623;color:#fff;border:none;padding:7px 16px;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer">🖨 Друк / PDF</button>'
-    + '<button onclick="downloadPDF_KP()" style="background:#8B0000;color:#fff;border:none;padding:7px 16px;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer">⬇ Завантажити PDF</button>'
-    + '<button onclick="downloadXLSX_KP()" style="background:#1D6A96;color:#fff;border:none;padding:7px 16px;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer">⬇ Завантажити XLSX</button>'
+    + '<button onclick="downloadPDF_KP(this)" style="background:#8B0000;color:#fff;border:none;padding:7px 16px;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer">⬇ Завантажити PDF</button>'
+    + '<button onclick="downloadXLSX_KP(this)" style="background:#1D6A96;color:#fff;border:none;padding:7px 16px;border-radius:5px;font-size:13px;font-weight:700;cursor:pointer">⬇ Завантажити XLSX</button>'
     + '</div>'
     + '<div class="kp-doc">'
     + '<div class="kp-header-row">'
@@ -2428,14 +2429,14 @@ function openKP() {
     + '<div class="kp-footer"><div>EMOS — офіційний прайс-лист · Ціни в гривнях з ПДВ (DDP Україна)</div><div>Дата: '+today+'</div></div>'
     + '</div>'
     + '<script>'+xlsxFn+'\n'
-    + 'function downloadPDF_KP(){'
-    + '  var btn=event.target;btn.textContent="⏳ Генерація...";btn.disabled=true;'
+    + 'function downloadPDF_KP(btn){'
+    + '  if(btn){btn.textContent="⏳ Генерація...";btn.disabled=true;}'
     + '  var el=document.querySelector(".kp-doc");'
     + '  var opt={margin:[10,10,10,10],filename:"EMOS_КП_Замовлення.pdf",'
     + '    image:{type:"jpeg",quality:0.97},'
     + '    html2canvas:{scale:2,useCORS:true,logging:false},'
     + '    jsPDF:{unit:"mm",format:"a4",orientation:"portrait"}};'
-    + '  html2pdf().set(opt).from(el).save().then(function(){btn.textContent="⬇ Завантажити PDF";btn.disabled=false;});'
+    + '  html2pdf().set(opt).from(el).save().then(function(){if(btn){btn.textContent="⬇ Завантажити PDF";btn.disabled=false;}});'
     + '}'
     + '<\/script>'
     + '</body></html>';
