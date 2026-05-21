@@ -2289,29 +2289,86 @@ function openKP() {
     del: del, pay: pay, toPay: toPay
   });
 
-  // ── inline XLSX download function ──────────────────────────────────────────
+  // ── inline XLSX download function (ExcelJS) ───────────────────────────────
+  var kpLogoImg = document.querySelector('#kp-doc img[alt="EMOS"]') || document.querySelector('#kp-doc img');
+  var kpLogoB64 = (kpLogoImg && kpLogoImg.src && kpLogoImg.src.indexOf('base64,')!==-1) ? kpLogoImg.src.split('base64,')[1] : '';
+
   var xlsxFn = [
-    'function downloadXLSX_KP(){',
+    'var KP_LOGO_B64='+JSON.stringify(kpLogoB64)+';',
+    'async function downloadXLSX_KP(){',
+    '  var btn=event&&event.target;if(btn){btn.textContent="⏳...";btn.disabled=true;}',
     '  var d='+xlsxPayload+';',
-    '  var wb=XLSX.utils.book_new();',
-    '  var R=[];',
-    '  R.push(["КП Замовлення — "+d.client,"","","","","",""]);',
-    '  R.push(["Канал: "+d.ch+"  |  Тип: "+d.ct+"  |  Дата: "+d.today,"","","","","",""]);',
-    '  R.push([]);',
-    '  R.push(["#","Код SKU","Найменування","Од.","К-сть","DDP ціна, грн","Сума, грн"]);',
-    '  d.order.forEach(function(r){R.push(r);});',
-    '  R.push([]);',
-    '  R.push(["","","","","","Сума замовлення (DDP), грн",d.totalSum]);',
-    '  if(d.disc>0)R.push(["","","","","","Знижка ("+d.disc+"%), грн",-d.discAmt]);',
-    '  if(d.welc>0)R.push(["","","","","","Велком бонус ("+d.welc+"%), грн",-d.welcAmt]);',
-    '  R.push(["","","","","","Доставка",d.del]);',
-    '  R.push(["","","","","","Умови оплати",(d.pay===0?"Передоплата":d.pay+" днів")]);',
-    '  R.push(["","","","","","ДО ОПЛАТИ, грн",d.toPay]);',
-    '  var ws=XLSX.utils.aoa_to_sheet(R);',
-    '  ws["!cols"]=[{wch:4},{wch:12},{wch:42},{wch:5},{wch:7},{wch:20},{wch:16}];',
-    '  XLSX.utils.book_append_sheet(wb,ws,"Замовлення");',
+    '  var wb=new ExcelJS.Workbook();',
+    '  var ws=wb.addWorksheet("КП Замовлення");',
+    '  ws.columns=[{width:5},{width:13},{width:44},{width:7},{width:8},{width:22},{width:18}];',
+    // Logo row
+    '  if(KP_LOGO_B64){',
+    '    try{var imgId=wb.addImage({base64:KP_LOGO_B64,extension:"png"});',
+    '    ws.addImage(imgId,{tl:{col:0,row:0},ext:{width:120,height:38}});}catch(e){}',
+    '  }',
+    // Row 1: logo placeholder + meta right side
+    '  ws.addRow(["","","","","","Дата:",d.today]);',
+    '  ws.addRow(["","","","","","Дійсно до:",d.validTo||"—"]);',
+    '  ws.addRow(["","","","","","Менеджер:","EMOS Sales"]);',
+    '  ws.addRow([]);',
+    // Title
+    '  var tRow=ws.addRow(["Комерційна пропозиція","","","","","",""]);',
+    '  ws.mergeCells(tRow.number,1,tRow.number,7);',
+    '  tRow.getCell(1).font={bold:true,size:16,color:{argb:"FF1F4E79"}};',
+    '  tRow.getCell(1).alignment={vertical:"middle"};',
+    '  tRow.height=24;',
+    // Subtitle
+    '  var sRow=ws.addRow([d.ch+" | Тип клієнта: "+d.ct,"","","","","",""]);',
+    '  ws.mergeCells(sRow.number,1,sRow.number,7);',
+    '  sRow.getCell(1).font={size:11,color:{argb:"FF555555"}};',
+    '  ws.addRow([]);',
+    // Client
+    '  var cRow=ws.addRow(["Підготовлено для: "+d.client,"","","","","",""]);',
+    '  ws.mergeCells(cRow.number,1,cRow.number,7);',
+    '  cRow.getCell(1).font={bold:true,size:12};',
+    '  cRow.getCell(1).fill={type:"pattern",pattern:"solid",fgColor:{argb:"FFDEEAF1"}};',
+    '  cRow.height=20;',
+    '  ws.addRow([]);',
+    // Table header
+    '  var hRow=ws.addRow(["#","Код SKU","Найменування","Од.","К-сть","DDP ціна, грн","Сума, грн"]);',
+    '  hRow.eachCell(function(c){',
+    '    c.fill={type:"pattern",pattern:"solid",fgColor:{argb:"FF1F4E79"}};',
+    '    c.font={bold:true,color:{argb:"FFFFFFFF"},size:11};',
+    '    c.alignment={horizontal:"center",vertical:"middle",wrapText:true};',
+    '    c.border={bottom:{style:"thin",color:{argb:"FFFFFFFF"}}};',
+    '  });',
+    '  hRow.height=22;',
+    // Data rows
+    '  d.order.forEach(function(r,i){',
+    '    var row=ws.addRow(r);',
+    '    var bg=i%2===0?"FFFFFFFF":"FFF0F5FA";',
+    '    row.eachCell(function(c){c.fill={type:"pattern",pattern:"solid",fgColor:{argb:bg}};c.font={size:11};c.alignment={vertical:"middle"};});',
+    '    row.getCell(5).alignment={horizontal:"center"};',
+    '    row.getCell(6).numFmt="#,##0.00";row.getCell(6).alignment={horizontal:"right"};',
+    '    row.getCell(7).numFmt="#,##0.00";row.getCell(7).alignment={horizontal:"right"};row.getCell(7).font={bold:true,size:11,color:{argb:"FF1F4E79"}};',
+    '    row.height=18;',
+    '  });',
+    // Total line
+    '  ws.addRow([]);',
+    '  var sumRow=ws.addRow(["","","","","","Сума замовлення (DDP), грн",d.totalSum]);',
+    '  sumRow.getCell(6).font={bold:true};sumRow.getCell(7).numFmt="#,##0.00";sumRow.getCell(7).font={bold:true};',
+    '  if(d.disc>0){var dRow=ws.addRow(["","","","","","Знижка ("+d.disc+"%), грн",-d.discAmt]);dRow.getCell(6).font={color:{argb:"FFC00000"}};dRow.getCell(7).numFmt="#,##0.00";dRow.getCell(7).font={color:{argb:"FFC00000"}};}',
+    '  if(d.welc>0){var wRow=ws.addRow(["","","","","","Велком бонус ("+d.welc+"%), грн",-d.welcAmt]);wRow.getCell(6).font={color:{argb:"FFC00000"}};wRow.getCell(7).numFmt="#,##0.00";wRow.getCell(7).font={color:{argb:"FFC00000"}};}',
+    '  ws.addRow(["","","","","","Доставка",d.del]);',
+    '  ws.addRow(["","","","","","Умови оплати",(d.pay===0?"Передоплата":d.pay+" днів")]);',
+    '  var tpRow=ws.addRow(["","","","","","ДО ОПЛАТИ, грн",d.toPay]);',
+    '  tpRow.eachCell(function(c,i){if(i>=6){c.fill={type:"pattern",pattern:"solid",fgColor:{argb:"FF375623"}};c.font={bold:true,color:{argb:"FFFFFFFF"},size:13};c.numFmt="#,##0.00";}});',
+    '  tpRow.height=24;',
+    // VAT note
+    '  ws.addRow([]);',
+    '  var vatRow=ws.addRow(["Усі ціни вказані з урахуванням ПДВ","","","","","",""]);',
+    '  ws.mergeCells(vatRow.number,1,vatRow.number,7);',
+    '  vatRow.getCell(1).font={italic:true,size:10,color:{argb:"FF888888"}};',
+    // Save
     '  var fn="EMOS_КП_"+(d.client||"Order").replace(/[^\\w\\u0400-\\u04FF]/g,"_")+"_"+d.today.replace(/\\./g,"")+".xlsx";',
-    '  XLSX.writeFile(wb,fn);',
+    '  var buf=await wb.xlsx.writeBuffer();',
+    '  var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([buf]));a.download=fn;a.click();',
+    '  if(btn){btn.textContent="⬇ Завантажити XLSX";btn.disabled=false;}',
     '}'
   ].join('\n');
 
@@ -2337,7 +2394,7 @@ function openKP() {
   ].join('\n');
 
   var logoSrc = document.querySelector('.kp-doc img') ? document.querySelector('.kp-doc img').src : '';
-  var xlsxScript = '<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"><\/script>';
+  var xlsxScript = '<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"><\/script>';
   var html2pdfScript = '<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"><\/script>';
 
   var html = '<!DOCTYPE html><html lang="uk"><head><meta charset="UTF-8">'
