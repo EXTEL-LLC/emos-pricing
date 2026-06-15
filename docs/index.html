@@ -2211,11 +2211,11 @@ function openKP() {
   const chLabel = {'D1':'D1 — Національні мережі','D2':'D2 — Регіональні мережі / B2B','D3':'D3 — Дилери / магазини','D4 Buy':'D4 Buy — Інтернет-магазини','D4 Drop':'D4 Drop — Дропшип','D5':'D5 — Проектні продажі','D6':'D6 — Регіональний дистриб\'ютор'};
 
   // Build order table rows
-  function ddpR(v){return Math.round(Math.round(v/6*100)*6)/100;}
+  function ddpR(v){return Math.round(Math.round(v/6*100)*6)/100;}  var totDsc = disc + welc;
   var rows = order.map(function(item, i) {
-    var discDdp = (disc > 0) ? ddpR(item.ddp * (1 - disc/100)) : item.ddp;
+    var discDdp = (totDsc > 0) ? ddpR(item.ddp * (1 - totDsc/100)) : item.ddp;
     var total = Math.round(discDdp * item.qty * 100) / 100;
-    var ddpCell = (disc > 0)
+    var ddpCell = (totDsc > 0)
       ? '<td style="text-align:right;color:#999;text-decoration:line-through">'+fmtN(item.ddp)+'</td>'
       : '<td style="text-align:right;color:#555">'+fmtN(item.ddp)+'</td>';
     return '<tr>'
@@ -2229,7 +2229,7 @@ function openKP() {
       + '<td style="text-align:right;font-weight:700;color:#1F4E79">'+fmtN(total)+'</td>'
       + '</tr>';
   }).join('');
-  var discTotalSum = Math.round(order.reduce(function(s,item){var d=(disc>0)?ddpR(item.ddp*(1-disc/100)):item.ddp;return s+d*item.qty;},0)*100)/100;
+  var discTotalSum = Math.round(order.reduce(function(s,item){var d=(totDsc>0)?ddpR(item.ddp*(1-totDsc/100)):item.ddp;return s+d*item.qty;},0)*100)/100;
   // Totals row
   rows += '<tr style="background:#EBF3FB">'
     + '<td colspan="4"></td>'
@@ -2292,7 +2292,7 @@ function openKP() {
     ct: ct||'—',
     today: today,
     order: order.map(function(item,idx){
-      var dDdp = (disc>0) ? ddpR(item.ddp*(1-disc/100)) : item.ddp;
+      var dDdp = (totDsc>0) ? ddpR(item.ddp*(1-totDsc/100)) : item.ddp;
       return [idx+1, item.code, item.name, item.unit, item.qty,
               Math.round(item.ddp*100)/100,
               Math.round(dDdp*100)/100,
