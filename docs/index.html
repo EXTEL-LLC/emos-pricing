@@ -464,7 +464,7 @@ tr:hover{background:#EBF3FB}
     <div class="kp-section-title">Комерційні умови</div>
     <div class="kp-conds">
       <div class="kp-cond"><div class="c-label">Сценарій</div><div class="c-val" id="kpc-scenario">—</div></div>
-      <div class="kp-cond"><div class="c-label">Знижка (макс.)</div><div class="c-val" id="kpc-disc">—</div></div>
+      <div class="kp-cond"><div class="c-label">Знижка</div><div class="c-val" id="kpc-disc">—</div></div>
       <div class="kp-cond"><div class="c-label">Велком бонус</div><div class="c-val" id="kpc-welc">—</div></div>
       <div class="kp-cond"><div class="c-label">Доставка</div><div class="c-val" id="kpc-del">—</div></div>
       <div class="kp-cond"><div class="c-label">Відстрочка</div><div class="c-val" id="kpc-pay">—</div></div>
@@ -479,8 +479,9 @@ tr:hover{background:#EBF3FB}
           <th style="width:70px">Код</th>
           <th>Найменування</th>
           <th style="width:36px">Од.</th>
-          <th class="r" style="width:110px">DDP ціна, грн</th>
-          <th class="r" style="width:100px">РРЦ, грн</th>
+          <th class="r" style="width:95px">DDP ціна, грн</th>
+          <th class="r" style="width:100px">DDP зі знижкою, грн<br><span style="font-size:9px;font-weight:400">(з ПДВ)</span></th>
+          <th class="r" style="width:90px">РРЦ, грн</th>
         </tr>
       </thead>
       <tbody id="kp-table-body"></tbody>
@@ -2505,13 +2506,17 @@ function renderKP() {
 
   const pols = POLICY.filter(function(p){ return p.channel===ch && p.ct===ct; }).sort(function(a,b){ return b.vol_min-a.vol_min; });
   const pol = pols[0]||null;
+  var _d=parseFloat(document.getElementById('inp-disc').value)||0;
+  var _w=parseFloat(document.getElementById('inp-welc').value)||0;
+  var _p=parseInt(document.getElementById('inp-pay').value)||0;
+  var _del=document.getElementById('inp-del').value||'';
   document.getElementById('kpc-scenario').textContent = pol ? (pol.scenario||'').replace(/\n/g,' ') : '—';
-  document.getElementById('kpc-disc').textContent     = pol ? (pol.disc||'—') : '—';
-  document.getElementById('kpc-welc').textContent     = pol ? (pol.welcome||'—').replace(/\n/g,' ') : '—';
-  document.getElementById('kpc-del').textContent      = pol ? (pol.delivery||'—') : '—';
-  document.getElementById('kpc-pay').textContent      = pol && pol.pay_days!==null ? pol.pay_days+' днів' : '—';
+  document.getElementById('kpc-disc').textContent     = _d>0 ? _d+'%' : '—';
+  document.getElementById('kpc-welc').textContent     = _w>0 ? _w+'%' : '—';
+  document.getElementById('kpc-del').textContent      = _del || (pol ? (pol.delivery||'—') : '—');
+  document.getElementById('kpc-pay').textContent      = _p===0 ? 'Передоплата' : _p+' днів';
   document.getElementById('kpc-retro').textContent    = pol && pol.retro ? pol.retro+'%' : '—';
-  document.getElementById('kp-conds-note').textContent = pol ? '* Умови відповідають максимальному обсягу для обраного сценарію. Знижки в рамках комерційної політики EMOS.' : '';
+  document.getElementById('kp-conds-note').textContent = '* Фактично обрані менеджером умови для цього клієнта. Ретро — згідно політики (виплата після виконання KPI).';
 
   renderKPTable();
 }
@@ -2535,6 +2540,10 @@ function renderKPTable() {
   });
 
   // build table rows using DOM (no template literals — avoids special char issues)
+  const _disc = parseFloat(document.getElementById('inp-disc').value)||0;
+  const _welc = parseFloat(document.getElementById('inp-welc').value)||0;
+  const _totD = _disc + _welc;
+  const _ddpR = function(v){ return Math.round(Math.round(v/6*100)*6)/100; };
   tbody.innerHTML = '';
   let n = 0;
   let hasRows = false;
@@ -2545,7 +2554,7 @@ function renderKPTable() {
     const catTr = document.createElement('tr');
     catTr.className = 'cat-row';
     const catTd = document.createElement('td');
-    catTd.colSpan = 6;
+    catTd.colSpan = 7;
     catTd.textContent = cat;
     catTr.appendChild(catTd);
     tbody.appendChild(catTr);
@@ -2553,6 +2562,7 @@ function renderKPTable() {
     bycat[cat].forEach(function(s) {
       const ddp    = getPriceDDP(s[0], s[4], ch)||0;
       const rrp    = s[5]||0;
+      const dDdp   = _totD>0 ? _ddpR(ddp*(1-_totD/100)) : ddp;
       n++;
       const tr = document.createElement('tr');
       const cells = [
@@ -2560,7 +2570,8 @@ function renderKPTable() {
         {text: s[0], style: 'color:#1F4E79;font-size:11px;font-weight:700'},
         {text: s[1], style: ''},
         {text: s[2], style: 'color:#888;text-align:center'},
-        {text: fmtK(ddp), style: 'text-align:right'},
+        {text: fmtK(ddp), style: _totD>0 ? 'text-align:right;color:#aaa;text-decoration:line-through' : 'text-align:right'},
+        {text: fmtK(dDdp), style: 'text-align:right;font-weight:700;color:#C55A11'},
         {text: fmtK(rrp), style: 'text-align:right;color:#555'},
       ];
       cells.forEach(function(c) {
@@ -2576,7 +2587,7 @@ function renderKPTable() {
   if (!hasRows) {
     const tr = document.createElement('tr');
     const td = document.createElement('td');
-    td.colSpan = 6;
+    td.colSpan = 7;
     td.style.cssText = 'text-align:center;color:#999;padding:20px';
     td.textContent = 'Оберіть категорії товарів вище';
     tr.appendChild(td);
@@ -2622,6 +2633,10 @@ function openKPNewTab() {
     + 'var POLICY_NT=' + JSON.stringify(POLICY) + ';'
     + 'var NT_CH=' + JSON.stringify(ch) + ';'
     + 'var NT_CT=' + JSON.stringify(ct||'') + ';'
+    + 'var NT_DISC=' + (parseFloat(document.getElementById('inp-disc').value)||0) + ';'
+    + 'var NT_WELC=' + (parseFloat(document.getElementById('inp-welc').value)||0) + ';'
+    + 'var NT_PAY=' + (parseInt(document.getElementById('inp-pay').value)||0) + ';'
+    + 'var NT_DEL=' + JSON.stringify(document.getElementById('inp-del').value||'') + ';'
     + 'var CH_IDX_NT={"D1":0,"D2":1,"D3":2,"D4 Buy":3,"D4 Drop":4,"D5":5,"D6":6};'
     + 'var ntActiveCats=new Set(' + JSON.stringify(Array.from(kpActiveCatIds)) + ');'
     + 'var ntUpdateTime=null;'
@@ -2652,32 +2667,36 @@ function openKPNewTab() {
     '  buildCatChipsNT();renderTableNT();',
     '}',
 
+    'function ddpRnt(v){return Math.round(Math.round(v/6*100)*6)/100;}',
     'function renderTableNT(){',
     '  var tbody=document.getElementById("kp-table-body");tbody.innerHTML="";',
     '  var activeCatNames={};ntActiveCats.forEach(function(i){activeCatNames[CATS_NT[i]]=true;});',
     '  var bycat={};',
     '  SKUS_NT.forEach(function(s){if(activeCatNames[s[6]]){if(!bycat[s[6]])bycat[s[6]]=[];bycat[s[6]].push(s);}});',
+    '  var totDscNt=(NT_DISC||0)+(NT_WELC||0);',
     '  var n=0;var hasRows=false;',
     '  CATS_NT.forEach(function(cat){',
     '    if(!bycat[cat])return;hasRows=true;',
     '    var catTr=document.createElement("tr");catTr.className="cat-row";',
-    '    var catTd=document.createElement("td");catTd.colSpan=6;catTd.textContent=cat;',
+    '    var catTd=document.createElement("td");catTd.colSpan=7;catTd.textContent=cat;',
     '    catTr.appendChild(catTd);tbody.appendChild(catTr);',
     '    bycat[cat].forEach(function(s){',
     '      var ddp=getPriceDDP_NT(s[0],s[4],NT_CH);var rrp=s[5]||0;',
+    '      var dDdp=totDscNt>0?ddpRnt(ddp*(1-totDscNt/100)):ddp;',
     '      n++;',
     '      var tr=document.createElement("tr");',
     '      [{text:String(n),style:"color:#999;font-size:10px"},',
     '       {text:s[0],style:"color:#1F4E79;font-size:11px;font-weight:700"},',
     '       {text:s[1],style:""},',
     '       {text:s[2],style:"color:#888;text-align:center"},',
-    '       {text:fmtKnt(ddp),style:"text-align:right"},',
+    '       {text:fmtKnt(ddp),style:totDscNt>0?"text-align:right;color:#aaa;text-decoration:line-through":"text-align:right"},',
+    '       {text:fmtKnt(dDdp),style:"text-align:right;font-weight:700;color:#C55A11"},',
     '       {text:fmtKnt(rrp),style:"text-align:right;color:#555"}',
     '      ].forEach(function(c){var td=document.createElement("td");td.textContent=c.text;if(c.style)td.style.cssText=c.style;tr.appendChild(td);});',
     '      tbody.appendChild(tr);',
     '    });',
     '  });',
-    '  if(!hasRows){var tr=document.createElement("tr");var td=document.createElement("td");td.colSpan=6;td.style.cssText="text-align:center;color:#999;padding:20px";td.textContent="Оберіть категорії товарів вище";tr.appendChild(td);tbody.appendChild(tr);}',
+    '  if(!hasRows){var tr=document.createElement("tr");var td=document.createElement("td");td.colSpan=7;td.style.cssText="text-align:center;color:#999;padding:20px";td.textContent="Оберіть категорії товарів вище";tr.appendChild(td);tbody.appendChild(tr);}',
     '}',
 
     'function findPolNT(ch,ct){',
@@ -2689,12 +2708,12 @@ function openKPNewTab() {
     '  if(!pol)return;',
     '  var el=function(id){return document.getElementById(id);};',
     '  if(el("kpc-scenario"))el("kpc-scenario").textContent=pol.scenario||(pol.goal||"—");',
-    '  if(el("kpc-disc"))el("kpc-disc").textContent=pol.disc&&pol.disc!=="—"?pol.disc:"—";',
-    '  if(el("kpc-welc"))el("kpc-welc").textContent=pol.welcome&&pol.welcome!=="—"?pol.welcome:"—";',
-    '  if(el("kpc-del"))el("kpc-del").textContent=pol.delivery||"—";',
-    '  if(el("kpc-pay"))el("kpc-pay").textContent=pol.pay_days!==null?(pol.pay_days===0?"Передоплата":pol.pay_days+" днів"):"—";',
+    '  if(el("kpc-disc"))el("kpc-disc").textContent=(NT_DISC>0?NT_DISC+"%":"—");',
+    '  if(el("kpc-welc"))el("kpc-welc").textContent=(NT_WELC>0?NT_WELC+"%":"—");',
+    '  if(el("kpc-del"))el("kpc-del").textContent=NT_DEL||(pol.delivery||"—");',
+    '  if(el("kpc-pay"))el("kpc-pay").textContent=(NT_PAY===0?"Передоплата":NT_PAY+" днів");',
     '  if(el("kpc-retro"))el("kpc-retro").textContent=pol.retro&&pol.retro!=="—"?pol.retro:"—";',
-    '  if(el("kp-conds-note"))el("kp-conds-note").textContent="* Умови відповідають максимальному обсягу для обраного сценарію. Знижки в рамках комерційної політики EMOS.";',
+    '  if(el("kp-conds-note"))el("kp-conds-note").textContent="* Фактично обрані менеджером умови для цього клієнта. Ретро — згідно політики (виплата після виконання KPI).";',
     '}',
 
     'function parseCommercialPolicyNT(data){',
@@ -2802,8 +2821,9 @@ function openKPNewTab() {
     '  var pol=NT_CT?findPolNT(NT_CH,NT_CT):null;',
     '  var wb=new ExcelJS.Workbook();wb.creator="EMOS";wb.created=new Date();',
     '  var ws=wb.addWorksheet("Прайс-лист");',
-    '  ws.columns=[{width:4},{width:12},{width:50},{width:6},{width:15},{width:13}];',
-    '  var BLUE="FF1F4E79",GREEN="FF375623",CATBG="FFE2EFDA",LGREY="FFF5F9FF",WHITE="FFFFFFFF",DGREY="FF555555";',
+    '  ws.columns=[{width:4},{width:12},{width:50},{width:6},{width:14},{width:18},{width:13}];',
+    '  var BLUE="FF1F4E79",GREEN="FF375623",CATBG="FFE2EFDA",LGREY="FFF5F9FF",WHITE="FFFFFFFF",DGREY="FF555555",ORANGE="FFC55A11";',
+    '  var totDscNt=(NT_DISC||0)+(NT_WELC||0);',
     '  var cur=1;',
     // Logo (rows 1-3)
     '  if(NT_LOGO_B64){try{',
@@ -2816,39 +2836,39 @@ function openKPNewTab() {
     '  var tR=ws.getRow(cur);',
     '  tR.getCell(1).value="EMOS — Комерційна пропозиція · Прайс-лист";',
     '  tR.getCell(1).font={bold:true,size:13,color:{argb:BLUE}};',
-    '  ws.mergeCells(cur,1,cur,6);cur++;',
+    '  ws.mergeCells(cur,1,cur,7);cur++;',
     // Meta row
     '  var mR=ws.getRow(cur);',
     '  mR.getCell(1).value="Клієнт: "+cl;',
     '  mR.getCell(3).value="Канал: "+NT_CH;',
     '  mR.getCell(5).value="Дата: "+today+"  |  Дійсно до: "+validTo;',
-    '  ws.mergeCells(cur,1,cur,2);ws.mergeCells(cur,3,cur,4);ws.mergeCells(cur,5,cur,6);',
+    '  ws.mergeCells(cur,1,cur,2);ws.mergeCells(cur,3,cur,4);ws.mergeCells(cur,5,cur,7);',
     '  [1,3,5].forEach(function(c){mR.getCell(c).font={size:10,color:{argb:DGREY}};});',
     '  cur++;cur++;',
     // Policy
     '  if(pol){',
     '    var phR=ws.getRow(cur);',
-    '    phR.getCell(1).value="КОМЕРЦІЙНІ УМОВИ";',
+    '    phR.getCell(1).value="КОМЕРЦІЙНІ УМОВИ (фактично обрані)";',
     '    phR.getCell(1).font={bold:true,size:10,color:{argb:WHITE}};',
     '    phR.getCell(1).fill={type:"pattern",pattern:"solid",fgColor:{argb:BLUE}};',
-    '    ws.mergeCells(cur,1,cur,6);cur++;',
+    '    ws.mergeCells(cur,1,cur,7);cur++;',
     '    var p1R=ws.getRow(cur);',
     '    p1R.getCell(1).value="Сценарій";p1R.getCell(2).value=pol.scenario||"—";',
-    '    p1R.getCell(3).value="Знижка (макс.)";p1R.getCell(4).value=pol.disc||"—";',
-    '    p1R.getCell(5).value="Велком";p1R.getCell(6).value=pol.welcome||"—";',
+    '    p1R.getCell(3).value="Знижка";p1R.getCell(4).value=(NT_DISC>0?NT_DISC+"%":"—");',
+    '    p1R.getCell(5).value="Велком";p1R.getCell(6).value=(NT_WELC>0?NT_WELC+"%":"—");',
     '    cur++;',
     '    var p2R=ws.getRow(cur);',
-    '    p2R.getCell(1).value="Доставка";p2R.getCell(2).value=pol.delivery||"—";',
-    '    p2R.getCell(3).value="Відстрочка";p2R.getCell(4).value=pol.pay_days!==null?(pol.pay_days===0?"Передоплата":pol.pay_days+" днів"):"—";',
-    '    p2R.getCell(5).value="Ретро";p2R.getCell(6).value=pol.retro||"—";',
+    '    p2R.getCell(1).value="Доставка";p2R.getCell(2).value=NT_DEL||pol.delivery||"—";',
+    '    p2R.getCell(3).value="Відстрочка";p2R.getCell(4).value=(NT_PAY===0?"Передоплата":NT_PAY+" днів");',
+    '    p2R.getCell(5).value="Ретро (політика)";p2R.getCell(6).value=pol.retro||"—";',
     '    cur++;cur++;',
     '  }',
     // Table header
     '  var hR=ws.getRow(cur);',
-    '  hR.values=["#","Код SKU","Найменування","Од.","DDP ціна, грн","РРЦ, грн"];',
+    '  hR.values=["#","Код SKU","Найменування","Од.","DDP ціна, грн","DDP зі знижкою (з ПДВ), грн","РРЦ, грн"];',
     '  hR.font={bold:true,color:{argb:WHITE}};hR.height=17;',
     '  hR.eachCell(function(cell){cell.fill={type:"pattern",pattern:"solid",fgColor:{argb:BLUE}};});',
-    '  [5,6].forEach(function(c){hR.getCell(c).alignment={horizontal:"right"};});',
+    '  [5,6,7].forEach(function(c){hR.getCell(c).alignment={horizontal:"right",wrapText:true};});',
     '  cur++;',
     // Data
     '  var activeCN={};ntActiveCats.forEach(function(i){activeCN[CATS_NT[i]]=true;});',
@@ -2857,7 +2877,7 @@ function openKPNewTab() {
     '    if(!activeCN[cat])return;',
     '    var cR=ws.getRow(cur);',
     '    cR.getCell(1).value=cat.toUpperCase();',
-    '    ws.mergeCells(cur,1,cur,6);',
+    '    ws.mergeCells(cur,1,cur,7);',
     '    cR.getCell(1).font={bold:true,size:9,color:{argb:GREEN}};',
     '    cR.getCell(1).fill={type:"pattern",pattern:"solid",fgColor:{argb:CATBG}};',
     '    cR.height=13;cur++;even=false;',
@@ -2865,14 +2885,16 @@ function openKPNewTab() {
     '      if(s[6]!==cat)return;',
     '      n++;even=!even;',
     '      var ddp=getPriceDDP_NT(s[0],s[4],NT_CH);var rrp=s[5]||0;',
+    '      var dDdp=totDscNt>0?ddpRnt(ddp*(1-totDscNt/100)):ddp;',
     '      var r=ws.getRow(cur);',
     '      r.getCell(1).value=n;r.getCell(1).font={size:9,color:{argb:"FF999999"}};',
     '      r.getCell(2).value=s[0];r.getCell(2).font={bold:true,size:10,color:{argb:BLUE}};',
     '      r.getCell(3).value=s[1];',
     '      r.getCell(4).value=s[2];r.getCell(4).alignment={horizontal:"center"};',
-    '      r.getCell(5).value=ddp||0;r.getCell(5).numFmt="#,##0.00";r.getCell(5).alignment={horizontal:"right"};',
-    '      r.getCell(6).value=rrp||0;r.getCell(6).numFmt="#,##0.00";r.getCell(6).alignment={horizontal:"right"};',
-    '      if(even){[1,2,3,4,5,6].forEach(function(c){r.getCell(c).fill={type:"pattern",pattern:"solid",fgColor:{argb:LGREY}};});}',
+    '      r.getCell(5).value=ddp||0;r.getCell(5).numFmt="#,##0.00";r.getCell(5).alignment={horizontal:"right"};r.getCell(5).font=totDscNt>0?{size:10,color:{argb:"FFAAAAAA"},strike:true}:{size:10};',
+    '      r.getCell(6).value=dDdp||0;r.getCell(6).numFmt="#,##0.00";r.getCell(6).alignment={horizontal:"right"};r.getCell(6).font={bold:true,size:10,color:{argb:ORANGE}};',
+    '      r.getCell(7).value=rrp||0;r.getCell(7).numFmt="#,##0.00";r.getCell(7).alignment={horizontal:"right"};',
+    '      if(even){[1,2,3,4,5,6,7].forEach(function(c){r.getCell(c).fill={type:"pattern",pattern:"solid",fgColor:{argb:LGREY}};});}',
     '      cur++;',
     '    });',
     '  });',
@@ -2881,7 +2903,7 @@ function openKPNewTab() {
     '  var fR=ws.getRow(cur);',
     '  fR.getCell(1).value="EMOS — офіційний прайс-лист · Ціни в гривнях з ПДВ (DDP Україна)";',
     '  fR.getCell(1).font={size:9,italic:true,color:{argb:"FF888888"}};',
-    '  ws.mergeCells(cur,1,cur,6);',
+    '  ws.mergeCells(cur,1,cur,7);',
     // Download
     '  var buf=await wb.xlsx.writeBuffer();',
     '  var blob=new Blob([buf],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});',
