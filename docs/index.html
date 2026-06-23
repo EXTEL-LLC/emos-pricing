@@ -468,7 +468,6 @@ tr:hover{background:#EBF3FB}
       <div class="kp-cond"><div class="c-label">Велком бонус</div><div class="c-val" id="kpc-welc">—</div></div>
       <div class="kp-cond"><div class="c-label">Доставка</div><div class="c-val" id="kpc-del">—</div></div>
       <div class="kp-cond"><div class="c-label">Відстрочка</div><div class="c-val" id="kpc-pay">—</div></div>
-      <div class="kp-cond"><div class="c-label">Ретро бонус</div><div class="c-val" id="kpc-retro">—</div></div>
     </div>
     <p class="kp-note" id="kp-conds-note"></p>
     <div class="kp-section-title">Прайс-лист</div>
@@ -2516,8 +2515,7 @@ function renderKP() {
   document.getElementById('kpc-welc').textContent     = _w>0 ? _w+'%' : '—';
   document.getElementById('kpc-del').textContent      = _del || (pol ? (pol.delivery||'—') : '—');
   document.getElementById('kpc-pay').textContent      = _p===0 ? 'Передоплата' : _p+' днів';
-  document.getElementById('kpc-retro').textContent    = pol && pol.retro ? pol.retro+'%' : '—';
-  document.getElementById('kp-conds-note').textContent = '* Фактично обрані менеджером умови для цього клієнта. Ретро — згідно політики (виплата після виконання KPI).';
+  document.getElementById('kp-conds-note').textContent = '* Фактично обрані менеджером умови для цього клієнта.';
 
   renderKPTable();
 }
@@ -2713,8 +2711,7 @@ function openKPNewTab() {
     '  if(el("kpc-welc"))el("kpc-welc").textContent=(NT_WELC>0?NT_WELC+"%":"—");',
     '  if(el("kpc-del"))el("kpc-del").textContent=NT_DEL||(pol.delivery||"—");',
     '  if(el("kpc-pay"))el("kpc-pay").textContent=(NT_PAY===0?"Передоплата":NT_PAY+" днів");',
-    '  if(el("kpc-retro"))el("kpc-retro").textContent=pol.retro&&pol.retro!=="—"?pol.retro:"—";',
-    '  if(el("kp-conds-note"))el("kp-conds-note").textContent="* Фактично обрані менеджером умови для цього клієнта. Ретро — згідно політики (виплата після виконання KPI).";',
+    '  if(el("kp-conds-note"))el("kp-conds-note").textContent="* Фактично обрані менеджером умови для цього клієнта.";',
     '}',
 
     'function parseCommercialPolicyNT(data){',
@@ -2861,7 +2858,6 @@ function openKPNewTab() {
     '    var p2R=ws.getRow(cur);',
     '    p2R.getCell(1).value="Доставка";p2R.getCell(2).value=NT_DEL||pol.delivery||"—";',
     '    p2R.getCell(3).value="Відстрочка";p2R.getCell(4).value=(NT_PAY===0?"Передоплата":NT_PAY+" днів");',
-    '    p2R.getCell(5).value="Ретро (політика)";p2R.getCell(6).value=pol.retro||"—";',
     '    cur++;cur++;',
     '  }',
     // Table header
